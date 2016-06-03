@@ -10,6 +10,6 @@
 
 @interface NSObject (ANSObjectExtension)
 
-+ (instancetype)autoreleseObject;
++ (instancetype)object;
 
 @end

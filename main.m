@@ -20,8 +20,8 @@ int main(int argc, const char * argv[]) {
         NSMutableArray *creaturesArray = [NSMutableArray autoreleseObject];
         for (int index = 0; index < kANSCount; index ++) {
             NSString *name = [NSString stringWithFormat:@"Human %d", index];
-            ANSCreature *creature = [[ANSCreature alloc] initWithName:name];
-            creature.gender = [ANSRandom randomIntegerBetweenMinValue:1 maxValue:2];
+            ANSCreature *creature = ()[ANSCreature object];
+        
             [creaturesArray addObject: creature];
             
             [creature dealloc];

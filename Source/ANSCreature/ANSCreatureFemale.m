@@ -16,7 +16,7 @@
 
 - (ANSCreature *)giveBirth {
     NSLog(@"%@ - i'am can give birth" , self.name);
-    ANSCreature *child = [ANSCreature autoreleseObject];
+    ANSCreature *child = [ANSCreature object];
     [self addChild:child];
     
     return child;

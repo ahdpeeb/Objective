@@ -10,7 +10,7 @@
 
 @implementation NSObject (ANSObjectExtension)
 
-+ (instancetype)autoreleseObject {
++ (instancetype)object {
     return [[[self alloc] init] autorelease];
 }
 

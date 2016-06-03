@@ -32,7 +32,7 @@ static NSString * const kANSHi = @"Hi";
 - (instancetype)initWithName:(NSString*) name {
     self = [super init];
     if (self) {
-        self.mutableChildren = [NSMutableArray autoreleseObject];
+        self.mutableChildren = [NSMutableArray object];
         self.name = name;
     }
     
