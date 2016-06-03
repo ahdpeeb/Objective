@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		931D0F211D00480900DF749C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D0F201D00480900DF749C /* main.m */; };
 		931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D0F311D0049DF00DF749C /* ANSCreature.m */; };
-		931FA4441D00571F00756016 /* NSObject+ANSObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4431D00571F00756016 /* NSObject+ANSObjectExtension.m */; };
 		931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4471D005B0900756016 /* ANSCreatureMale.m */; };
 		931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA44A1D005B2900756016 /* ANSCreatureFemale.m */; };
-		931FA4561D00700700756016 /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4551D00700700756016 /* ANSRandom.m */; };
+		937FBE9A1D01D50E00BD0F3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBE991D01D50E00BD0F3F /* main.m */; };
+		937FBEA21D01D62600BD0F3F /* NSObject+ANSObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */; };
+		937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA61D01D69A00BD0F3F /* ANSRandom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,17 +29,17 @@
 
 /* Begin PBXFileReference section */
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
-		931D0F201D00480900DF749C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		931D0F301D0049DF00DF749C /* ANSCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreature.h; sourceTree = "<group>"; };
 		931D0F311D0049DF00DF749C /* ANSCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreature.m; sourceTree = "<group>"; };
-		931FA4421D00571F00756016 /* NSObject+ANSObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ANSObjectExtension.h"; path = "Public instantions /NSObject+ANSObjectExtension.h"; sourceTree = "<group>"; };
-		931FA4431D00571F00756016 /* NSObject+ANSObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ANSObjectExtension.m"; path = "Public instantions /NSObject+ANSObjectExtension.m"; sourceTree = "<group>"; };
 		931FA4461D005B0900756016 /* ANSCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureMale.h; sourceTree = "<group>"; };
 		931FA4471D005B0900756016 /* ANSCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureMale.m; sourceTree = "<group>"; };
 		931FA4491D005B2900756016 /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
 		931FA44A1D005B2900756016 /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
-		931FA4541D00700700756016 /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
-		931FA4551D00700700756016 /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
+		937FBE991D01D50E00BD0F3F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		937FBE9F1D01D62600BD0F3F /* NSObject+ANSObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSObjectExtension.h"; sourceTree = "<group>"; };
+		937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSObjectExtension.m"; sourceTree = "<group>"; };
+		937FBEA51D01D69A00BD0F3F /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
+		937FBEA61D01D69A00BD0F3F /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +56,11 @@
 		931D0F141D00480900DF749C = {
 			isa = PBXGroup;
 			children = (
-				931FA4501D006FC600756016 /* ANSRandom */,
-				931FA4451D00572B00756016 /* NSObject */,
+				937FBEA41D01D69A00BD0F3F /* ANSRandom */,
+				937FBE9E1D01D62600BD0F3F /* NSObject */,
 				931D0F2E1D0049DF00DF749C /* Source */,
-				931D0F1F1D00480900DF749C /* Objective-c course */,
 				931D0F1E1D00480900DF749C /* Products */,
+				937FBE991D01D50E00BD0F3F /* main.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,14 +70,6 @@
 				931D0F1D1D00480900DF749C /* Objective-c course */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		931D0F1F1D00480900DF749C /* Objective-c course */ = {
-			isa = PBXGroup;
-			children = (
-				931D0F201D00480900DF749C /* main.m */,
-			);
-			path = "Objective-c course";
 			sourceTree = "<group>";
 		};
 		931D0F2E1D0049DF00DF749C /* Source */ = {
@@ -101,20 +93,21 @@
 			path = ANSCreature;
 			sourceTree = "<group>";
 		};
-		931FA4451D00572B00756016 /* NSObject */ = {
+		937FBE9E1D01D62600BD0F3F /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				931FA4421D00571F00756016 /* NSObject+ANSObjectExtension.h */,
-				931FA4431D00571F00756016 /* NSObject+ANSObjectExtension.m */,
+				937FBE9F1D01D62600BD0F3F /* NSObject+ANSObjectExtension.h */,
+				937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */,
 			);
 			name = NSObject;
+			path = "Public instantions /NSObject";
 			sourceTree = "<group>";
 		};
-		931FA4501D006FC600756016 /* ANSRandom */ = {
+		937FBEA41D01D69A00BD0F3F /* ANSRandom */ = {
 			isa = PBXGroup;
 			children = (
-				931FA4541D00700700756016 /* ANSRandom.h */,
-				931FA4551D00700700756016 /* ANSRandom.m */,
+				937FBEA51D01D69A00BD0F3F /* ANSRandom.h */,
+				937FBEA61D01D69A00BD0F3F /* ANSRandom.m */,
 			);
 			name = ANSRandom;
 			path = "Public instantions /ANSRandom";
@@ -177,10 +170,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */,
-				931FA4561D00700700756016 /* ANSRandom.m in Sources */,
+				937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */,
 				931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */,
-				931FA4441D00571F00756016 /* NSObject+ANSObjectExtension.m in Sources */,
-				931D0F211D00480900DF749C /* main.m in Sources */,
+				937FBEA21D01D62600BD0F3F /* NSObject+ANSObjectExtension.m in Sources */,
+				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
 				931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

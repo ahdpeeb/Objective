@@ -11,11 +11,14 @@
 #import "ANSCreatureFemale.h"
 #import "ANSCreatureMale.h"
 #import "NSObject+ANSObjectExtension.h"
+#import "ANSRandom.h"
+
+static const int kANSCount = 10;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSMutableArray *creaturesArray = [NSMutableArray autoreleseObject];
-        for (int index = 0; index < count; index ++) {
+        for (int index = 0; index < kANSCount; index ++) {
             NSString *name = [NSString stringWithFormat:@"Human %d", index];
             ANSCreature *creature = [[ANSCreature alloc] initWithName:name];
             creature.gender = [ANSRandom randomIntegerBetweenMinValue:1 maxValue:2];
