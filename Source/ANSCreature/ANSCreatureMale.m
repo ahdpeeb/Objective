@@ -10,6 +10,10 @@
 
 @implementation ANSCreatureMale
 
+- (void)goFight {
+    NSLog(@"%@ - i'am go to fing", self.name);
+}
+
 - (void)performGenderSpecificOperation {
     [self goFight];
 }

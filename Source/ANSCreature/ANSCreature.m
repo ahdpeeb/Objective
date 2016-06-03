@@ -7,9 +7,8 @@
 //
 
 #import "ANSCreature.h"
-#import "NSObject+ANSObjectExtension.h"
 
-const static NSString *string = @"Hi";
+static NSString * const kANSHi = @"Hi";
 
 @interface ANSCreature ()
 @property (nonatomic, retain) NSMutableArray *mutableChildren;
@@ -17,12 +16,13 @@ const static NSString *string = @"Hi";
 @end
 
 @implementation ANSCreature
+
 @dynamic children; //I'am responsible for property implementation, do not create new field
 
 #pragma mark -
 #pragma mark Init / deallocate
 
-- (void)deallocate {
+- (void)dealloc {
     self.name = nil;
     self.mutableChildren = nil;
     
@@ -66,7 +66,7 @@ const static NSString *string = @"Hi";
 }
 
 - (void)saySomething {
-    NSLog(@"%@", string);
+    NSLog(@"%@", kANSHi);
 }
 
 - (void)familySayHi {
@@ -74,16 +74,6 @@ const static NSString *string = @"Hi";
     for (ANSCreature *creatureChildren in self.mutableChildren) {
         [creatureChildren saySomething];
     }
-}
-
-- (void)goFight {
-    NSLog(@"%@ - i'am go to fing", self.name);
-}
-
-- (ANSCreature *)giveBirth {
-    NSLog(@"%@ - i'am can give birth" , self.name);
-    
-    return [ANSCreature autoreleseObject];
 }
 
 - (NSString *)description {

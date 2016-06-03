@@ -10,6 +10,7 @@
 
 @interface ANSCreatureFemale : ANSCreature
 
+- (ANSCreature *)giveBirth;
 - (void)performGenderSpecificOperation;
 
 @end

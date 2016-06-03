@@ -10,6 +10,7 @@
 
 @interface ANSCreatureMale : ANSCreature
 
+- (void)goFight;
 - (void)performGenderSpecificOperation;
 
 @end

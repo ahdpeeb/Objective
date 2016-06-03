@@ -56,8 +56,7 @@
 		931D0F141D00480900DF749C = {
 			isa = PBXGroup;
 			children = (
-				937FBEA41D01D69A00BD0F3F /* ANSRandom */,
-				937FBE9E1D01D62600BD0F3F /* NSObject */,
+				937FBEA81D01E05C00BD0F3F /* ANSAccessory  */,
 				931D0F2E1D0049DF00DF749C /* Source */,
 				931D0F1E1D00480900DF749C /* Products */,
 				937FBE991D01D50E00BD0F3F /* main.m */,
@@ -111,6 +110,15 @@
 			);
 			name = ANSRandom;
 			path = "Public instantions /ANSRandom";
+			sourceTree = "<group>";
+		};
+		937FBEA81D01E05C00BD0F3F /* ANSAccessory  */ = {
+			isa = PBXGroup;
+			children = (
+				937FBEA41D01D69A00BD0F3F /* ANSRandom */,
+				937FBE9E1D01D62600BD0F3F /* NSObject */,
+			);
+			name = "ANSAccessory ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +273,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -274,7 +282,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

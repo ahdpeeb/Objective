@@ -14,7 +14,7 @@
                                  maxValue:(NSInteger)max
 {
     if (max >= min) {
-        return min + (arc4random () %max - min + 1) ;
+        return min + (arc4random_uniform(max - min)) ;
     }
     
     return 0;
