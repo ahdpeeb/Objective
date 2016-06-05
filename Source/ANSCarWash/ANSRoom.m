@@ -7,18 +7,51 @@
 //
 
 #import "ANSRoom.h"
+#import "NSObject+ANSExtension.h"
+#import "ANSCar.h"
 
 @interface ANSRoom ()
-@property (nonatomic, retain, readwrite) ANSAccountant *accountant;
-@property (nonatomic, retain, readwrite) ANSAccountant *direcrot;
-@property (nonatomic, retain, readwrite) NSMutableArray *mutableCars;
-@property (nonatomic, retain, readwrite) NSMutableArray *carWashers;
+@property (nonatomic, retain, readwrite) NSMutableArray *mutableCarsLine;
+
 @end
 
 @implementation ANSRoom
 
-@dynamic cars;
-@dynamic carWashers;
+@dynamic carsLine;
+
+#pragma mark -
+#pragma mark Initialization/ dealloc
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.mutableCarsLine = [NSMutableArray object];
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)carsLine {
+    return [[self.mutableCarsLine copy] autorelease];
+}
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)addCarToRoom:(ANSCar *) car {
+    [self.mutableCarsLine addObject:car];
+}
+
+- (void)removeCarFromRoom:(ANSCar *) car {
+    [self.mutableCarsLine removeObject:car];
+}
+
+- (void)removeCarFromRoomAtIndex:(NSUInteger) index {
+    [self.mutableCarsLine removeObjectAtIndex:index];
+}
 
 
 

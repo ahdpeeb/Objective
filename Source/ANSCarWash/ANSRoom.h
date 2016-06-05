@@ -14,9 +14,13 @@
 
 @interface ANSRoom : NSObject
 
-@property (nonatomic, readonly) NSArray *cars;
-@property (nonatomic, readonly) NSArray *carWashers;
-@property (nonatomic, readonly) ANSAccountant *accountant;
-@property (nonatomic, readonly) ANSAccountant *direcrot;
+@property (nonatomic, readonly) NSArray *carsLine;
+@property (nonatomic, retain) NSArray *carWashers;
+@property (nonatomic, retain) ANSAccountant *accountant;
+@property (nonatomic, retain) ANSAccountant *direcrot;
+
+- (void)addCarToRoom:(ANSCar *) car;
+- (void)removeCarFromRoom:(ANSCar *) car;
+- (void)removeCarFromRoomAtIndex:(NSUInteger) index;
 
 @end

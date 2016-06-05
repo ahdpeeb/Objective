@@ -12,12 +12,13 @@
 #import "NSObject+ANSExtension.h"
 
 #import "ANSCar.h"
-
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
 
-@interface ANSCarWash : NSObject
+@interface ANSCarWashComplex : NSObject
+@property (nonatomic, readonly) ANSAdminBuilding *adminBuilding;
+@property (nonatomic, readonly) ANSWashBuilding *washBuilding;
 
-
++ (ANSCarWashComplex *)createComplex;
 
 @end

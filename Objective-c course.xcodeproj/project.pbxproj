@@ -10,7 +10,7 @@
 		931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D0F311D0049DF00DF749C /* ANSCreature.m */; };
 		931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4471D005B0900756016 /* ANSCreatureMale.m */; };
 		931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA44A1D005B2900756016 /* ANSCreatureFemale.m */; };
-		937A2B7F1D04645200D52556 /* ANSCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B7E1D04645200D52556 /* ANSCarWash.m */; };
+		937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */; };
 		937A2B831D046FFA00D52556 /* ANSAdminBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B821D046FFA00D52556 /* ANSAdminBuilding.m */; };
 		937A2B861D0471F000D52556 /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B851D0471F000D52556 /* ANSWorker.m */; };
 		937A2B8A1D047DC900D52556 /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B891D047DC900D52556 /* ANSCarWasher.m */; };
@@ -44,8 +44,8 @@
 		931FA4471D005B0900756016 /* ANSCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureMale.m; sourceTree = "<group>"; };
 		931FA4491D005B2900756016 /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
 		931FA44A1D005B2900756016 /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
-		937A2B7D1D04645200D52556 /* ANSCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWash.h; path = Source/ANSCarWash/ANSCarWash.h; sourceTree = "<group>"; };
-		937A2B7E1D04645200D52556 /* ANSCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWash.m; path = Source/ANSCarWash/ANSCarWash.m; sourceTree = "<group>"; };
+		937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWashComplex.h; path = Source/ANSCarWash/ANSCarWashComplex.h; sourceTree = "<group>"; };
+		937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWashComplex.m; path = Source/ANSCarWash/ANSCarWashComplex.m; sourceTree = "<group>"; };
 		937A2B811D046FFA00D52556 /* ANSAdminBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSAdminBuilding.h; path = Source/ANSCarWash/ANSAdminBuilding.h; sourceTree = "<group>"; };
 		937A2B821D046FFA00D52556 /* ANSAdminBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAdminBuilding.m; path = Source/ANSCarWash/ANSAdminBuilding.m; sourceTree = "<group>"; };
 		937A2B841D0471F000D52556 /* ANSWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSWorker.h; path = Source/ANSCarWash/ANSWorkers/ANSWorker.h; sourceTree = "<group>"; };
@@ -160,8 +160,8 @@
 		937A2B981D0495D900D52556 /* ANSCarWashBuildings */ = {
 			isa = PBXGroup;
 			children = (
-				937A2B7D1D04645200D52556 /* ANSCarWash.h */,
-				937A2B7E1D04645200D52556 /* ANSCarWash.m */,
+				937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */,
+				937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */,
 				937A2B811D046FFA00D52556 /* ANSAdminBuilding.h */,
 				937A2B821D046FFA00D52556 /* ANSAdminBuilding.m */,
 				937A2B951D0495C600D52556 /* ANSWashBuilding.h */,
@@ -268,7 +268,7 @@
 				937A2B941D048EAD00D52556 /* ANSDirector.m in Sources */,
 				937FBEA21D01D62600BD0F3F /* NSObject+ANSExtension.m in Sources */,
 				937A2B911D048E3E00D52556 /* ANSAccountant.m in Sources */,
-				937A2B7F1D04645200D52556 /* ANSCarWash.m in Sources */,
+				937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */,
 				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
 				931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */,
 				937A2B971D0495C600D52556 /* ANSWashBuilding.m in Sources */,
