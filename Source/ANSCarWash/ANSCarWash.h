@@ -12,9 +12,6 @@
 #import "NSObject+ANSExtension.h"
 
 #import "ANSCar.h"
-#import "ANSCarWasher.h"
-#import "ANSAccountant.h"
-#import "ANSDirector.h"
 
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
