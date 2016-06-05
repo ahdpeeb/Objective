@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSObject+ANSObjectExtension.h"
+#import "NSObject+ANSExtension.h"
 
 typedef enum {
     ANSCreatureGenderNotDefine,
@@ -23,8 +23,6 @@ typedef enum {
 @property (nonatomic, assign)   ANSCreatureGenderType   gender;
 @property (nonatomic, readonly) NSArray                 *children;
 
-- (void)dealloc;
-
 - (instancetype)initWithName:(NSString*) name;
 
 - (void)addChild:(ANSCreature *)creature;
@@ -35,6 +33,6 @@ typedef enum {
 
 - (void)familySayHi;
 
-- (void) performGenderSpecificOperation;
+- (void)performGenderSpecificOperation;
 
 @end

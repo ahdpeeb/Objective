@@ -77,7 +77,10 @@ static NSString * const kANSHi = @"Hi";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Name - %@, age - %lu, Children - %@", self.name, (unsigned long)self.age, self.children];
+    return [NSString stringWithFormat:@"Name - %@, age - %lu, Children - %@",
+            self.name,
+            (unsigned long)self.age,
+            self.children];
 }
 
 - (void)performGenderSpecificOperation {

@@ -11,7 +11,7 @@
 		931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4471D005B0900756016 /* ANSCreatureMale.m */; };
 		931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA44A1D005B2900756016 /* ANSCreatureFemale.m */; };
 		937FBE9A1D01D50E00BD0F3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBE991D01D50E00BD0F3F /* main.m */; };
-		937FBEA21D01D62600BD0F3F /* NSObject+ANSObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */; };
+		937FBEA21D01D62600BD0F3F /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */; };
 		937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA61D01D69A00BD0F3F /* ANSRandom.m */; };
 /* End PBXBuildFile section */
 
@@ -36,8 +36,8 @@
 		931FA4491D005B2900756016 /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
 		931FA44A1D005B2900756016 /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
 		937FBE991D01D50E00BD0F3F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		937FBE9F1D01D62600BD0F3F /* NSObject+ANSObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSObjectExtension.h"; sourceTree = "<group>"; };
-		937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSObjectExtension.m"; sourceTree = "<group>"; };
+		937FBE9F1D01D62600BD0F3F /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
+		937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSExtension.m"; sourceTree = "<group>"; };
 		937FBEA51D01D69A00BD0F3F /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
 		937FBEA61D01D69A00BD0F3F /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,8 +95,8 @@
 		937FBE9E1D01D62600BD0F3F /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				937FBE9F1D01D62600BD0F3F /* NSObject+ANSObjectExtension.h */,
-				937FBEA01D01D62600BD0F3F /* NSObject+ANSObjectExtension.m */,
+				937FBE9F1D01D62600BD0F3F /* NSObject+ANSExtension.h */,
+				937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */,
 			);
 			name = NSObject;
 			path = "Public instantions /NSObject";
@@ -180,7 +180,7 @@
 				931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */,
 				937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */,
 				931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */,
-				937FBEA21D01D62600BD0F3F /* NSObject+ANSObjectExtension.m in Sources */,
+				937FBEA21D01D62600BD0F3F /* NSObject+ANSExtension.m in Sources */,
 				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
 				931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */,
 			);

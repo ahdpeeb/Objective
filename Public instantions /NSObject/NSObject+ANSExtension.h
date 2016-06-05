@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (ANSObjectExtension)
+@interface NSObject (ANSExtension)
 
 + (instancetype)object;
 

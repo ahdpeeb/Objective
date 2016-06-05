@@ -8,20 +8,15 @@
 
 #import "ANSRandom.h"
 
-@implementation ANSRandom
-
-+ (NSInteger)randomIntegerBetweenMinValue:(NSInteger)min
-                                 maxValue:(NSInteger)max
-{
+NSInteger randomIntegerBetweenMinValue(NSInteger min, NSInteger max) {
     if (max >= min) {
-        return min + (arc4random_uniform(max - min)) ;
+        return min + (arc4random_uniform((u_int32_t)(max - min + 1))) ;
     }
     
     return 0;
 }
 
-+ (BOOL)randomBool {
+BOOL randomBool(void) {
     return arc4random_uniform(2);
 }
 
-@end

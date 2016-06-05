@@ -6,9 +6,9 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "NSObject+ANSObjectExtension.h"
+#import "NSObject+ANSExtension.h"
 
-@implementation NSObject (ANSObjectExtension)
+@implementation NSObject (ANSExtension)
 
 + (instancetype)object {
     return [[[self alloc] init] autorelease];

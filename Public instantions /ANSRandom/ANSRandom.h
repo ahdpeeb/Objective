@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ANSRandom : NSObject
+NSInteger randomIntegerBetweenMinValue(NSInteger min, NSInteger max);
 
-+ (NSInteger)randomIntegerBetweenMinValue:(NSInteger)min
-                                 maxValue:(NSInteger)max;
+BOOL randomBool(void);
 
-+ (BOOL)randomBool;
-
-@end
