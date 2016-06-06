@@ -9,29 +9,35 @@
 #import "ANSAdminBuilding.h"
 
 @interface ANSAdminBuilding ()
-@property (nonatomic, retain) NSMutableArray *mutableRooms;
+@property (nonatomic, retain) NSMutableArray *mutableAdminRooms;
 
 @end
 
 @implementation ANSAdminBuilding
-@dynamic rooms;
+@dynamic adminRooms;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)rooms {
-    return [[self.mutableRooms copy] autorelease];
+    return [[self.mutableAdminRooms copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
 - (void)addRoomToAdminBuilding:(ANSAdminRoom *) room {
-    [self.mutableRooms addObject:room];
+    NSMutableArray *adminRooms = self.mutableAdminRooms;
+    if(![adminRooms containsObject:room]) {
+        [adminRooms addObject:room];
+    }
 }
 
 - (void)removeRoomsFromAdminBuilding:(ANSAdminRoom *) room {
-    [self.mutableRooms removeObject:room];
+    NSMutableArray *adminRooms = self.mutableAdminRooms;
+    if([adminRooms containsObject:room]) {
+        [adminRooms removeObject:room];
+    }
 }
 
 @end

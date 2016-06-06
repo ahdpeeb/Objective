@@ -11,7 +11,7 @@
 #import "ANSAdminRoom.h"
 
 @interface ANSAdminBuilding : NSObject
-@property (nonatomic, readonly) NSArray *rooms;
+@property (nonatomic, readonly) NSArray *adminRooms;
 
 - (void)addRoomToAdminBuilding:(ANSAdminRoom *) room;
 - (void)removeRoomsFromAdminBuilding:(ANSAdminRoom *) room;

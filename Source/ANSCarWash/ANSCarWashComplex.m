@@ -9,42 +9,110 @@
 #import "ANSCarWashComplex.h"
 #import "NSObject+ANSExtension.h"
 
-
-static float kANSServiceCost = 5;
+static NSString * const allBoxesFul = @"No sutable box for car";
+static NSString * const noPlaceForWasher = @"No vacansy for washer";
 
 @interface ANSCarWashComplex ()
 @property (nonatomic, retain) ANSAdminBuilding *adminBuilding;
 @property (nonatomic, retain) ANSWashBuilding *washBuilding;
 
+- (ANSWashBox* )getSuitableBoxForCar;
+
 @end
 
 @implementation ANSCarWashComplex
 
-+ (ANSCarWashComplex *)createComplex; {
-    ANSCarWashComplex *complex = [ANSCarWashComplex object];
-    if (complex) {
-        complex.adminBuilding = [ANSAdminBuilding object];
-        complex.washBuilding = [ANSWashBuilding object];
+#pragma mark -
+#pragma mark Private implementation
+
+- (ANSWashBox* )getSuitableBoxForCar {
+    ANSWashBuilding *washBuilding = self.washBuilding;
+    ANSWashBox *box = NULL;
+    for (ANSWashBox *box in washBuilding.boxes) {
+        if (!box.isFullWithCars && box.isFullWithCarWasher) {
+            
+            return box;
+            break;
+        } else {
+            NSLog(@"%@", allBoxesFul);
+        }
     }
     
-    return complex;
+    return box;
 }
 
-- (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex {
+
+#pragma mark -
+#pragma mark Public implementation
+
++ (ANSCarWashComplex *)createComplex; {
+    ANSCarWashComplex *washComplex = [ANSCarWashComplex object];
+    if (washComplex) {
+        washComplex.adminBuilding = [ANSAdminBuilding object];
+        washComplex.washBuilding = [ANSWashBuilding object];
+    }
+    
+    return washComplex;
+}
+
+- (ANSAdminRoom *)washComplexAddAdminRoom; {
     ANSAdminRoom *room = [ANSAdminRoom object];
-    [complex.adminBuilding addRoomToAdminBuilding:room];
+    [self.adminBuilding addRoomToAdminBuilding:room];
     [room release];
     
     return room;
 }
 
-- (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex {
+- (void)washComplexRemoveAdminRoom:(ANSAdminRoom *) room {
+    [self.adminBuilding removeRoomsFromAdminBuilding:room];
+}
+
+
+- (ANSWashBox *)washComplexAddWashBox {
     ANSWashBox *box = [ANSWashBox object];
-    [complex.washBuilding addBoxToWashBuilding:box];
+    [self.washBuilding addBoxToWashBuilding:box];
     [box release];
     
     return box;
+}
+
+- (void)washComplexRemoveWashBox:(ANSWashBox *) box {
+    [self.washBuilding removeBoxFromWashBuilding:box];
+}
+
+//__________________________________________________________________________________
+
+- (ANSCarWasher *)washComplexAddCarWasher {
+    ANSCarWasher *washer = [ANSCarWasher object];
+    ANSWashBuilding *washBuilding = self.washBuilding;
+    for (ANSWashBox * washBox in washBuilding.boxes) {
+        if (!washBox.isFullWithCarWasher) { // if wash box not full.
+            [washBox addCarWasherToRoom:washer];
+            break;
+        } else {
+            NSLog(@"%@", noPlaceForWasher);
+        }
+    }
+    
+    [washer release];
+    return washer;
+}
+
+- (void)washComplexRemoveRemoveWasher:(ANSCarWasher *) washer;
+{
+    ANSWashBuilding *washBuilding = self.washBuilding;
+    for (ANSWashBox * washBox in washBuilding.boxes) {
+        [washBox removeCarWasherFromRoom:washer];
+    }
+}
+
+//__________________________________________________________________________________
+// processing
+- (void)washComplexAddCar:(ANSCar* ) car {
+    ANSWashBuilding *washBuilding = self.washBuilding;
+    ANSWashBox *suitableBox
     
 }
 
 @end
+

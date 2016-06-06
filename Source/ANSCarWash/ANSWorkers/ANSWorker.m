@@ -17,6 +17,7 @@
     if (self) {
         self.proffesion = ANSProffesionUnemployed;
     }
+    
     return self;
 }
 

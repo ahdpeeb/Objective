@@ -177,10 +177,10 @@
 				937A2BA11D05785800D52556 /* ANSAdminBuilding.m */,
 				937A2BA21D05785800D52556 /* ANSAdminRoom.h */,
 				937A2BA31D05785800D52556 /* ANSAdminRoom.m */,
-				937A2BA41D05785800D52556 /* ANSWashBox.h */,
-				937A2BA51D05785800D52556 /* ANSWashBox.m */,
 				937A2BA61D05785800D52556 /* ANSWashBuilding.h */,
 				937A2BA71D05785800D52556 /* ANSWashBuilding.m */,
+				937A2BA41D05785800D52556 /* ANSWashBox.h */,
+				937A2BA51D05785800D52556 /* ANSWashBox.m */,
 			);
 			name = ANSBuildingsAndRooms;
 			path = Source/ANSCarWash/ANSBuildingsAndRooms;
