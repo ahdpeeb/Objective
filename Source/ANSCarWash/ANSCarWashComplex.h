@@ -19,6 +19,9 @@
 + (ANSCarWashComplex *)createComplex;
 
 - (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex;
+- (void)complexRemoveAdminRoom:(ANSCarWashComplex *) complex; // not define
+
 - (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex;
+- (void)complexRemoveWashBox:(ANSCarWashComplex *) complex; //not define
 
 @end

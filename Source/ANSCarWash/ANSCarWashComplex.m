@@ -33,6 +33,7 @@ static float kANSServiceCost = 5;
 - (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex {
     ANSAdminRoom *room = [ANSAdminRoom object];
     [complex.adminBuilding addRoomToAdminBuilding:room];
+    [room release];
     
     return room;
 }
@@ -40,6 +41,7 @@ static float kANSServiceCost = 5;
 - (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex {
     ANSWashBox *box = [ANSWashBox object];
     [complex.washBuilding addBoxToWashBuilding:box];
+    [box release];
     
     return box;
     

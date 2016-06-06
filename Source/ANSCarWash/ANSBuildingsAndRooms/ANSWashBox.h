@@ -14,10 +14,12 @@
 @interface ANSWashBox : NSObject
 @property (nonatomic, readonly) NSArray *carsLine;
 @property (nonatomic, readonly) NSArray *carWashers;
+@property (nonatomic, assign, readonly) BOOL isFullWithCarWasher;
+@property (nonatomic, assign, readonly) BOOL isFullWithCars;
 
 - (void)addCarToRoom:(ANSCar *) car;
 - (void)removeCarFromRoom:(ANSCar *) car;
-- (void)removeCarFromRoomAtIndex:(NSUInteger) index;
+
 - (void)addCarWasherToRoom:(ANSCarWasher *) washer;
 - (void)removeCarWasherFromRoom:(ANSCarWasher *) washer;
 
