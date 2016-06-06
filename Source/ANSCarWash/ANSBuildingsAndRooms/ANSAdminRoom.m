@@ -7,12 +7,11 @@
 //
 
 #import "ANSAdminRoom.h"
-
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminRoom ()
-@property (nonatomic, retain, readwrite) ANSAccountant *accountant;
-@property (nonatomic, retain, readwrite) ANSDirector *direcrot;
+@property (nonatomic, retain, readwrite) ANSAccountant  *accountant;
+@property (nonatomic, retain, readwrite) ANSDirector    *direcrot;
 
 @end
 

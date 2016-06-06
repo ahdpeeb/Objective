@@ -14,8 +14,8 @@ typedef enum {
 } ANSCarStatus;
 
 @interface ANSCar : NSObject
-@property (nonatomic, assign) float balans;
-@property (nonatomic, assign) ANSCarStatus status;
+@property (nonatomic, assign) float         balans;
+@property (nonatomic, assign) ANSCarStatus  status;
 
 - (instancetype)initWithBalans:(float) balans;
 

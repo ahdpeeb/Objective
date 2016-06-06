@@ -12,10 +12,10 @@
 #import "ANSCar.h"
 
 @interface ANSWashBox : NSObject
-@property (nonatomic, readonly) NSArray *carsLine;
-@property (nonatomic, readonly) NSArray *carWashers;
-@property (nonatomic, assign, readonly) BOOL isFullWithCarWasher;
-@property (nonatomic, assign, readonly) BOOL isFullWithCars;
+@property (nonatomic, readonly)         NSArray *carsLine;
+@property (nonatomic, readonly)         NSArray *carWashers;
+@property (nonatomic, assign, readonly) BOOL    isFullWithCarWasher;
+@property (nonatomic, assign, readonly) BOOL    isFullWithCars;
 
 - (void)addCarToRoom:(ANSCar *) car;
 - (void)removeCarFromRoom:(ANSCar *) car;

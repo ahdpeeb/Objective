@@ -7,7 +7,6 @@
 //
 
 #import "ANSAdminBuilding.h"
-
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminBuilding ()

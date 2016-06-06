@@ -15,8 +15,8 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
 @interface ANSWashBox ()
 @property (nonatomic, retain, readwrite) NSMutableArray *mutableCarsLine;
 @property (nonatomic, retain, readwrite) NSMutableArray *mutableCarWashers;
-@property (nonatomic, assign, readwrite) BOOL isFullWithCarWasher;
-@property (nonatomic, assign, readwrite) BOOL isFullWithCars;
+@property (nonatomic, assign, readwrite) BOOL           isFullWithCarWasher;
+@property (nonatomic, assign, readwrite) BOOL           isFullWithCars;
 
 @end
 

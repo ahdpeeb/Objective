@@ -97,8 +97,7 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
     return washer;
 }
 
-- (void)washComplexRemoveRemoveWasher:(ANSCarWasher *) washer;
-{
+- (void)washComplexRemoveWasher:(ANSCarWasher *) washer {
     ANSWashBuilding *washBuilding = self.washBuilding;
     for (ANSWashBox * washBox in washBuilding.boxes) {
         [washBox removeCarWasherFromRoom:washer];

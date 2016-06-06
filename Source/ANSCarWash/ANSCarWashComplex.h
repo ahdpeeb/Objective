@@ -15,8 +15,8 @@
 static const float kANSServiceCost = 9;
 
 @interface ANSCarWashComplex : NSObject
-@property (nonatomic, readonly) ANSAdminBuilding *adminBuilding;
-@property (nonatomic, readonly) ANSWashBuilding *washBuilding;
+@property (nonatomic, readonly) ANSAdminBuilding    *adminBuilding;
+@property (nonatomic, readonly) ANSWashBuilding     *washBuilding;
 
 + (ANSCarWashComplex *)createComplex;
 
@@ -30,7 +30,7 @@ static const float kANSServiceCost = 9;
 
     // add/remove carWashers ro boxes
 - (ANSCarWasher *)washComplexAddCarWasher;
-- (void)washComplexRemoveRemoveWasher:(ANSCarWasher *) washer;
+- (void)washComplexRemoveWasher:(ANSCarWasher *) washer;
 
     // wash car
 - (void)washComplexWashCar:(ANSCar* ) car;

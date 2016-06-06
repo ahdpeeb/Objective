@@ -11,8 +11,8 @@
 #import "ANSDirector.h"
 
 @interface ANSAdminRoom : NSObject
-@property (nonatomic, retain, readonly) ANSAccountant *accountant;
-@property (nonatomic, retain, readonly) ANSDirector *direcrot;
+@property (nonatomic, retain, readonly) ANSAccountant   *accountant;
+@property (nonatomic, retain, readonly) ANSDirector     *direcrot;
 
 - (ANSAccountant *)addAccountantToRoom;
 - (void)removeAccountantFromRoom;

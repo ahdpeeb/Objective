@@ -10,13 +10,13 @@
 
 @implementation ANSCar
 
-- (instancetype)initWithBalans:(float) balans
-{
+- (instancetype)initWithBalans:(float) balans {
     self = [super init];
     if (self) {
         self.status = ANSCarStatusDirty;
         self.balans = balans;
     }
+    
     return self;
 }
 
