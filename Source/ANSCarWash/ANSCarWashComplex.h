@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSRandom.h"
-#import "NSObject+ANSExtension.h"
-
 #import "ANSCar.h"
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
@@ -20,5 +17,8 @@
 @property (nonatomic, readonly) ANSWashBuilding *washBuilding;
 
 + (ANSCarWashComplex *)createComplex;
+
+- (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex;
+- (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex;
 
 @end

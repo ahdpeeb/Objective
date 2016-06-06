@@ -7,6 +7,8 @@
 //
 
 #import "ANSCarWashComplex.h"
+#import "NSObject+ANSExtension.h"
+
 
 static float kANSServiceCost = 5;
 
@@ -28,5 +30,19 @@ static float kANSServiceCost = 5;
     return complex;
 }
 
+- (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex {
+    ANSAdminRoom *room = [ANSAdminRoom object];
+    [complex.adminBuilding addRoomToAdminBuilding:room];
+    
+    return room;
+}
+
+- (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex {
+    ANSWashBox *box = [ANSWashBox object];
+    [complex.washBuilding addBoxToWashBuilding:box];
+    
+    return box;
+    
+}
 
 @end

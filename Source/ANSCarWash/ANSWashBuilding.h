@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ANSWashBox.h"
 
 @interface ANSWashBuilding : NSObject
 
+@property (nonatomic, readonly) NSArray *boxes;
 
+- (void)addBoxToWashBuilding:(ANSWashBox *) box;
+- (void)removeBoxFromWashBuilding:(ANSWashBox *) box;
 
 @end

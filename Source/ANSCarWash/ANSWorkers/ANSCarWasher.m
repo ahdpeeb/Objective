@@ -9,8 +9,6 @@
 #import "ANSCarWasher.h"
 #import "ANSRandom.h"
 
-static float kANSServiceCost = 5; // remove to ANSCARWASH
-
 @interface ANSCarWasher ()
 
 @end

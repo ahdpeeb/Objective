@@ -26,11 +26,12 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addRoomToAdminBuilding:(ANSRoom *) room {
+- (void)addRoomToAdminBuilding:(ANSAdminRoom *) room {
     [self.mutableRooms addObject:room];
 }
 
-- (void)removeRoomsFromAdminBuilding:(ANSRoom *) room {
+- (void)removeRoomsFromAdminBuilding:(ANSAdminRoom *) room {
     [self.mutableRooms removeObject:room];
 }
+
 @end

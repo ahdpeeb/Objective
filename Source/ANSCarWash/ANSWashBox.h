@@ -9,18 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "ANSCarWasher.h"
-#import "ANSAccountant.h"
-#import "ANSDirector.h"
+#import "ANSCar.h"
 
-@interface ANSRoom : NSObject
-
+@interface ANSWashBox : NSObject
 @property (nonatomic, readonly) NSArray *carsLine;
-@property (nonatomic, retain) NSArray *carWashers;
-@property (nonatomic, retain) ANSAccountant *accountant;
-@property (nonatomic, retain) ANSAccountant *direcrot;
+@property (nonatomic, readonly) NSArray *carWashers;
 
 - (void)addCarToRoom:(ANSCar *) car;
 - (void)removeCarFromRoom:(ANSCar *) car;
 - (void)removeCarFromRoomAtIndex:(NSUInteger) index;
+- (void)addCarWasherToRoom:(ANSCarWasher *) washer;
+- (void)removeCarWasherFromRoom:(ANSCarWasher *) washer;
 
 @end
