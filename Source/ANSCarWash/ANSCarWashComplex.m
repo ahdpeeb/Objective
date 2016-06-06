@@ -27,18 +27,17 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
 
 - (ANSWashBox* )getSuitableBoxForCar {
     ANSWashBuilding *washBuilding = self.washBuilding;
-    ANSWashBox *box = NULL;
+    ANSWashBox *sutableBox = nil;
     for (ANSWashBox *box in washBuilding.boxes) {
         if (!box.isFullWithCars && box.isFullWithCarWasher) {
-            
-            return box;
-            break;
+            sutableBox = box;
+            break ;
         } else {
             NSLog(@"%@", allBoxesFul);
         }
     }
     
-    return box;
+    return sutableBox;
 }
 
 
@@ -106,12 +105,14 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
     }
 }
 
-//__________________________________________________________________________________
-// processing
-- (void)washComplexAddCar:(ANSCar* ) car {
-    ANSWashBuilding *washBuilding = self.washBuilding;
-    ANSWashBox *suitableBox
-    
+- (void)washComplexWashCar:(ANSCar* ) car {
+    ANSWashBox *suitableBox = [self getSuitableBoxForCar];
+    if (suitableBox) {
+        ANSCarWasher *washer = [suitableBox getRandomWasher]; // случайный мойщик
+        [suitableBox addCarToRoom:car]; // добавил машину в мойку
+        [washer washCar:car withCost:kANSServiceCost];
+        [suitableBox removeCarFromRoom:car];
+    }
 }
 
 @end

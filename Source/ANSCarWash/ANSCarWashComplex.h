@@ -12,7 +12,7 @@
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
 
-const float kANSServiceCost = 9.99;
+static const float kANSServiceCost = 9;
 
 @interface ANSCarWashComplex : NSObject
 @property (nonatomic, readonly) ANSAdminBuilding *adminBuilding;
@@ -32,4 +32,8 @@ const float kANSServiceCost = 9.99;
 - (ANSCarWasher *)washComplexAddCarWasher;
 - (void)washComplexRemoveRemoveWasher:(ANSCarWasher *) washer;
 
+    // wash car
+- (void)washComplexWashCar:(ANSCar* ) car;
+//______________processing____________________________________
+    
 @end

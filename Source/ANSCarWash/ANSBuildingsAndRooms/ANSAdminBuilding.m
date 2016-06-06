@@ -8,6 +8,8 @@
 
 #import "ANSAdminBuilding.h"
 
+#import "NSObject+ANSExtension.h"
+
 @interface ANSAdminBuilding ()
 @property (nonatomic, retain) NSMutableArray *mutableAdminRooms;
 
@@ -15,6 +17,18 @@
 
 @implementation ANSAdminBuilding
 @dynamic adminRooms;
+
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.mutableAdminRooms = [NSMutableArray object];
+    }
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accessors

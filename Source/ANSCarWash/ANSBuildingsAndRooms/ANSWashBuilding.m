@@ -8,13 +8,28 @@
 
 #import "ANSWashBuilding.h"
 
+#import "NSObject+ANSExtension.h"
+
 @interface ANSWashBuilding ()
-@property (nonatomic, retain) NSMutableArray *mutableBoxes;
+@property (nonatomic, retain, readwrite) NSMutableArray *mutableBoxes;
 
 @end
 
 @implementation ANSWashBuilding
 @dynamic boxes;
+
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.mutableBoxes = [NSMutableArray object];
+    }
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accessors

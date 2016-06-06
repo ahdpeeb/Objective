@@ -85,6 +85,10 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     if (carWashers.count < kANSMaxCarWasherCapacity && ![carWashers containsObject:washer]) {
         [carWashers addObject:washer];
     }
+    
+    if(carWashers.count >= kANSMaxCarWasherCapacity) {
+        self.isFullWithCarWasher = YES;
+    }
 }
     
 - (void)removeCarWasherFromRoom:(ANSCarWasher *) washer {
@@ -96,6 +100,14 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     if (carWashers.count < kANSMaxCarWasherCapacity) {
         self.isFullWithCarWasher = NO;
     }
+}
+
+- (ANSCarWasher *)getRandomWasher {
+    NSArray *washers = self.carWashers;
+    NSInteger randomIndex = arc4random_uniform((u_int32_t)(washers.count));
+    ANSCarWasher *washer = [washers objectAtIndex:randomIndex];
+    
+    return washer;
 }
 
 @end

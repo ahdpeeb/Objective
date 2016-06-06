@@ -22,5 +22,7 @@
 
 - (void)addCarWasherToRoom:(ANSCarWasher *) washer;
 - (void)removeCarWasherFromRoom:(ANSCarWasher *) washer;
+- (ANSCarWasher *)getRandomWasher;
+
 
 @end

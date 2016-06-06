@@ -13,7 +13,7 @@
 
 @interface ANSAdminRoom : NSObject
 
-@property (nonatomic, retain) ANSAccountant *accountant; //remove to another room
-@property (nonatomic, retain) ANSDirector *direcrot; //remove to another room
+@property (nonatomic, retain) ANSAccountant *accountant;
+@property (nonatomic, retain) ANSDirector *direcrot;
 
 @end
