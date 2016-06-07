@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ANSMoney <NSObject>
+@protocol ANSCarWashComplexProtocol <NSObject>
 @property (nonatomic, assign, readonly) float money;
 
 @required
+
 -(void)giveMoney:(float)number;
 -(void)acceptMoney:(float)number;
+
 @end

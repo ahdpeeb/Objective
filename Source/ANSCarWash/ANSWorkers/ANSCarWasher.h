@@ -13,7 +13,7 @@
 @interface ANSCarWasher : ANSWorker
 
 - (instancetype)initWorker;
-- (void)washCar:(ANSCar *) car withCost:(float) cost;
-- (void)giveMoneyToАccountant:(ANSAccountant *) accountant;
+- (void)washCar:(ANSCar *)car withCost:(float) cost;
+- (void)giveMoneyToАccountant:(ANSAccountant *)accountant;
 
 @end

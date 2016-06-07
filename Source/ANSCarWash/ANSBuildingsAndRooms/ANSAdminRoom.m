@@ -18,7 +18,21 @@
 @implementation ANSAdminRoom
 
 #pragma mark -
-#pragma mark PublicMethods
+#pragma mark Init
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.accountant = [ANSAccountant object];
+        self.boss = [ANSBoss object];
+    }
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public methods
 
 + (ANSAdminRoom *)create {
     ANSAdminRoom *room = [ANSAdminRoom object];
@@ -44,7 +58,7 @@
 }
 
 - (ANSBoss *)addBoss {
-    ANSBoss *boss = self.direcrot;
+    ANSBoss *boss = self.boss;
     if (!boss) {
         ANSBoss *director = [ANSBoss object];
         boss = director;

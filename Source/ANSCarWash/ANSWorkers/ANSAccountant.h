@@ -11,4 +11,6 @@
 
 @interface ANSAccountant : ANSWorker
 
+- (void)giveMoneyToBoss:(ANSBoss *)boss;
+
 @end

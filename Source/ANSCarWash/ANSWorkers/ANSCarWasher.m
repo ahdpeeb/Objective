@@ -16,23 +16,21 @@
     self = [super init];
     if (self) {
         self.proffesion = ANSWasher;
-        self.yearsOfExperience = randomIntegerBetweenMinValue(0, 3);
+        self.yearsOfExperience = ANSRandomIntWithRange(0, 3);
     }
     
     return self;
 }
 
-//take money from car, clean car.
 - (void)washCar:(ANSCar *)car withCost:(float)cost {
     if (car.money >= cost) {
         [car giveMoney:cost];
         [self acceptMoney:cost];
-        car.status = ANSCarClean; // remove to another method.
+        car.status = ANSCarClean;
     }
 }
 
-//give money to accountant
-- (void)giveMoneyToАccountant:(ANSAccountant *) accountant {
+- (void)giveMoneyToАccountant:(ANSAccountant *)accountant {
     float allMoney = self.money;
     [self giveMoney:allMoney];
     [accountant acceptMoney:allMoney];

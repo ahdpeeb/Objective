@@ -26,7 +26,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
 @dynamic carWashers;
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Init
 
 - (instancetype)init
 {
@@ -75,7 +75,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
 
-- (void)removeCar:(ANSCar *) car {
+- (void)removeCar:(ANSCar *)car {
     NSMutableArray *carsLine = self.mutableCarsLine;
     
     if ([carsLine containsObject:car]) {
@@ -87,7 +87,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
     
-- (void)addCarWasher:(ANSCarWasher *) washer {
+- (void)addCarWasher:(ANSCarWasher *)washer {
     NSMutableArray *carWashers = self.mutableCarWashers;
     
     if (carWashers.count < kANSMaxCarWasherCapacity && ![carWashers containsObject:washer]) {

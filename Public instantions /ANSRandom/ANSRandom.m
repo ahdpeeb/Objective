@@ -8,7 +8,7 @@
 
 #import "ANSRandom.h"
 
-NSInteger randomIntegerBetweenMinValue(NSInteger min, NSInteger max) {
+NSInteger ANSRandomIntWithRange(NSInteger min, NSInteger max) {
     if (max >= min) {
         return min + (arc4random_uniform((u_int32_t)(max - min + 1))) ;
     }
@@ -16,7 +16,7 @@ NSInteger randomIntegerBetweenMinValue(NSInteger min, NSInteger max) {
     return 0;
 }
 
-BOOL randomBool(void) {
+BOOL ANSRandomBool(void) {
     return arc4random_uniform(2);
 }
 

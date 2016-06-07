@@ -7,8 +7,9 @@
 //
 
 #import "ANSWashBuilding.h"
-
 #import "NSObject+ANSExtension.h"
+
+static NSString * const kANSallBoxesFul = @"No sutable box for car";
 
 @interface ANSWashBuilding ()
 @property (nonatomic, retain, readwrite) NSMutableArray *mutableBoxes;
@@ -48,6 +49,20 @@
 
 - (void)removeBox:(ANSWashBox *)box {
     [self.mutableBoxes removeObject:box];
+}
+
+- (ANSWashBox* )freeBox {
+    ANSWashBox *freeBox = nil;
+    for (ANSWashBox *box in self.mutableBoxes) {
+        if (!box.isFullWithCars && box.isFullWithCarWasher) {
+            freeBox = box;
+            break ;
+        } else {
+            NSLog(@"%@", kANSallBoxesFul);
+        }
+    }
+    
+    return freeBox;
 }
 
 @end

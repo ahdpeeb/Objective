@@ -13,7 +13,7 @@
 
 @interface ANSAdminRoom : NSObject
 @property (nonatomic, retain, readonly) ANSAccountant   *accountant;
-@property (nonatomic, retain, readonly) ANSBoss         *direcrot;
+@property (nonatomic, retain, readonly) ANSBoss         *boss;
 
 + (ANSAdminRoom *)create;
 
