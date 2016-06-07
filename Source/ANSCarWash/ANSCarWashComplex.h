@@ -12,28 +12,27 @@
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
 
-static const float kANSServiceCost = 9;
+static const float kANSServiceCost = 5;
 
 @interface ANSCarWashComplex : NSObject
-@property (nonatomic, readonly) ANSAdminBuilding    *adminBuilding;
-@property (nonatomic, readonly) ANSWashBuilding     *washBuilding;
+@property (nonatomic, readonly) ANSAdminBuilding    *administrative;
+@property (nonatomic, readonly) ANSWashBuilding     *washing;
 
 + (ANSCarWashComplex *)createComplex;
 
-    // Add/ remove rooms to adminBuilding
+// Add/ remove rooms to adminBuilding
 - (ANSAdminRoom *)washComplexAddAdminRoom;
 - (void)washComplexRemoveAdminRoom:(ANSAdminRoom *) room;
 
-    // Add/ remove rooms to washBuilding
+// Add/ remove rooms to washBuilding
 - (ANSWashBox *)washComplexAddWashBox;
 - (void)washComplexRemoveWashBox:(ANSWashBox *) box;
 
-    // add/remove carWashers ro boxes
+// add/remove carWashers ro boxes
 - (ANSCarWasher *)washComplexAddCarWasher;
 - (void)washComplexRemoveWasher:(ANSCarWasher *) washer;
 
-    // wash car
-- (void)washComplexWashCar:(ANSCar* ) car;
-//______________processing____________________________________
+// wash car
+- (void)washComplexWashCar:(ANSCar *)car;
     
 @end

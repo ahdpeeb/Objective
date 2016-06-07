@@ -9,14 +9,14 @@
 #import "ANSCarWashComplex.h"
 #import "NSObject+ANSExtension.h"
 
-static NSString * const allBoxesFul = @"No sutable box for car";
-static NSString * const noPlaceForWasher = @"No vacansy for washer";
+static NSString * const kANSallBoxesFul =       @"No sutable box for car";
+static NSString * const kANSnoPlaceForWasher =  @"No vacansy for washer";
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSAdminBuilding *adminBuilding;
-@property (nonatomic, retain) ANSWashBuilding *washBuilding;
+@property (nonatomic, retain) ANSAdminBuilding  *administrative;
+@property (nonatomic, retain) ANSWashBuilding   *washing;
 
-- (ANSWashBox* )getSuitableBoxForCar;
+- (ANSWashBox* )freeBox;
 
 @end
 
@@ -25,15 +25,15 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
 #pragma mark -
 #pragma mark Private implementation
 
-- (ANSWashBox* )getSuitableBoxForCar {
-    ANSWashBuilding *washBuilding = self.washBuilding;
+- (ANSWashBox* )freeBox {
+    ANSWashBuilding *washBuilding = self.washing;
     ANSWashBox *sutableBox = nil;
     for (ANSWashBox *box in washBuilding.boxes) {
         if (!box.isFullWithCars && box.isFullWithCarWasher) {
             sutableBox = box;
             break ;
         } else {
-            NSLog(@"%@", allBoxesFul);
+            NSLog(@"%@", kANSallBoxesFul);
         }
     }
     
@@ -44,52 +44,50 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
 #pragma mark -
 #pragma mark Public implementation
 
-+ (ANSCarWashComplex *)createComplex; {
-    ANSCarWashComplex *washComplex = [ANSCarWashComplex object];
-    if (washComplex) {
-        washComplex.adminBuilding = [ANSAdminBuilding object];
-        washComplex.washBuilding = [ANSWashBuilding object];
++ (ANSCarWashComplex *)create; {
+    ANSCarWashComplex *station = [ANSCarWashComplex object];
+    if (station) {
+        station.administrative = [ANSAdminBuilding object];
+        station.washing = [ANSWashBuilding object];
     }
     
-    return washComplex;
+    return station;
 }
 
 - (ANSAdminRoom *)washComplexAddAdminRoom; {
     ANSAdminRoom *room = [ANSAdminRoom object];
-    [self.adminBuilding addRoomToAdminBuilding:room];
-    [room release];
+    [self.administrative addRoomToAdminBuilding:room];
     
     return room;
 }
 
 - (void)washComplexRemoveAdminRoom:(ANSAdminRoom *) room {
-    [self.adminBuilding removeRoomsFromAdminBuilding:room];
+    [self.administrative removeRoomsFromAdminBuilding:room];
 }
 
 
 - (ANSWashBox *)washComplexAddWashBox {
     ANSWashBox *box = [ANSWashBox object];
-    [self.washBuilding addBoxToWashBuilding:box];
-    [box release];
+    [self.washing addBoxToWashBuilding:box];
     
     return box;
 }
 
 - (void)washComplexRemoveWashBox:(ANSWashBox *) box {
-    [self.washBuilding removeBoxFromWashBuilding:box];
+    [self.washing removeBoxFromWashBuilding:box];
 }
 
 //__________________________________________________________________________________
 
 - (ANSCarWasher *)washComplexAddCarWasher {
     ANSCarWasher *washer = [ANSCarWasher object];
-    ANSWashBuilding *washBuilding = self.washBuilding;
+    ANSWashBuilding *washBuilding = self.washing;
     for (ANSWashBox * washBox in washBuilding.boxes) {
         if (!washBox.isFullWithCarWasher) { // if wash box not full.
             [washBox addCarWasherToRoom:washer];
             break;
         } else {
-            NSLog(@"%@", noPlaceForWasher);
+            NSLog(@"%@", kANSnoPlaceForWasher);
         }
     }
     
@@ -98,14 +96,14 @@ static NSString * const noPlaceForWasher = @"No vacansy for washer";
 }
 
 - (void)washComplexRemoveWasher:(ANSCarWasher *) washer {
-    ANSWashBuilding *washBuilding = self.washBuilding;
+    ANSWashBuilding *washBuilding = self.washing;
     for (ANSWashBox * washBox in washBuilding.boxes) {
         [washBox removeCarWasherFromRoom:washer];
     }
 }
 
 - (void)washComplexWashCar:(ANSCar* ) car {
-    ANSWashBox *suitableBox = [self getSuitableBoxForCar];
+    ANSWashBox *suitableBox = [self freeBox];
     if (suitableBox) {
         ANSCarWasher *washer = [suitableBox getRandomWasher]; // случайный мойщик
         [suitableBox addCarToRoom:car]; // добавил машину в мойку

@@ -10,4 +10,10 @@
 
 @implementation ANSAccountant
 
+- (void)giveMoneyToBoss:(ANSBoss *) boss {
+    float allMoney = self.money;
+    [self giveMoney:allMoney];
+    [boss acceptMoney:allMoney];
+}
+
 @end

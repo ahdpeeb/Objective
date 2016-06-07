@@ -2,16 +2,12 @@
 //  ANSCarWasher.m
 //  Objective-c course
 //
-//  Created by Nikola Andriiev on 05.06.16.
+//  Created by Nikola Andriiev on 07.06.16.
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
 #import "ANSCarWasher.h"
 #import "ANSRandom.h"
-
-@interface ANSCarWasher ()
-
-@end
 
 @implementation ANSCarWasher
 
@@ -19,27 +15,27 @@
 {
     self = [super init];
     if (self) {
-        self.proffesion = ANSProffesionCarWasher;
+        self.proffesion = ANSWasher;
         self.yearsOfExperience = randomIntegerBetweenMinValue(0, 3);
-        self.currentBalance = 0;
-        
     }
+    
     return self;
 }
-    //take money from car, clean car. 
-- (void)washCar:(ANSCar *) car withCost:(float) cost {
-    if (car.balans >= cost) {
-        self.currentBalance = self.currentBalance + cost;
-        car.status = ANSCarStatusClead; // may be need to move to another method.
-        car.balans = car.balans - cost; // may be need to move to another method.
+
+//take money from car, clean car.
+- (void)washCar:(ANSCar *)car withCost:(float)cost {
+    if (car.money >= cost) {
+        [car giveMoney:cost];
+        [self acceptMoney:cost];
+        car.status = ANSCarClean; // remove to another method.
     }
 }
-    //give money to accountant
+
+//give money to accountant
 - (void)giveMoneyToАccountant:(ANSAccountant *) accountant {
-    if (self.currentBalance > 0) {
-        accountant.currentBalance = accountant.currentBalance + self.currentBalance;
-        self.currentBalance = 0;
-    }
+    float allMoney = self.money;
+    [self giveMoney:allMoney];
+    [accountant acceptMoney:allMoney];
 }
-    
+
 @end

@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ANSMoney.h"
 
 typedef enum {
-    ANSCarStatusDirty,
-    ANSCarStatusClead
+    ANSCarDirty,
+    ANSCarClean
 } ANSCarStatus;
 
-@interface ANSCar : NSObject
-@property (nonatomic, assign) float         balans;
-@property (nonatomic, assign) ANSCarStatus  status;
+@interface ANSCar : NSObject <ANSMoney>
+@property (nonatomic, assign)           ANSCarStatus    status;
+@property (nonatomic, assign, readonly)  float           money;
 
-- (instancetype)initWithBalans:(float) balans;
+-(void)acceptMoney:(float)number;
+-(void)giveMoney:(float)number;
 
 @end

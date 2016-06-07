@@ -9,16 +9,32 @@
 #import "ANSWorker.h"
 #import "ANSCar.h"
 
+@interface ANSWorker ()
+@property(nonatomic, assign) float money;
+
+- (void)setMoney:(float)money;
+
+@end
+
 @implementation ANSWorker
 
-- (instancetype)initWorker
-{
-    self = [super init];
-    if (self) {
-        self.proffesion = ANSProffesionUnemployed;
-    }
-    
-    return self;
+- (void)acceptMoney:(float)number {
+    self.money = self.money + number;
+}
+
+- (void)giveMoney:(float)number {
+    self.money = self.money - number;
+}
+
+- (void)countMoney {
+    NSLog(@"i have %f money", self.money);
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)setMoney:(float)money {
+    self.money = money;
 }
 
 @end

@@ -20,8 +20,8 @@
 - (void)addCarToRoom:(ANSCar *) car;
 - (void)removeCarFromRoom:(ANSCar *) car;
 
-- (void)addCarWasherToRoom:(ANSCarWasher *) washer;
-- (void)removeCarWasherFromRoom:(ANSCarWasher *) washer;
+- (void)addCarWasherToRoom:(ANSCarWasher *)washer;
+- (void)removeCarWasherFromRoom:(ANSCarWasher *)washer;
 - (ANSCarWasher *)getRandomWasher;
 
 
