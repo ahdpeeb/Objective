@@ -12,8 +12,8 @@
 #import "ANSBoss.h"
 
 @interface ANSAdminRoom : NSObject
-@property (nonatomic, retain, readonly) ANSAccountant   *accountant;
-@property (nonatomic, retain, readonly) ANSBoss         *boss;
+@property (nonatomic, readonly) ANSAccountant   *accountant;
+@property (nonatomic, readonly) ANSBoss         *boss;
 
 + (ANSAdminRoom *)create;
 

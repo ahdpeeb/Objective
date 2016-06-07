@@ -16,7 +16,7 @@ typedef enum {
 
 @interface ANSCar : NSObject <ANSCarWashComplexProtocol>
 @property (nonatomic, assign)           ANSCarStatus    status;
-@property (nonatomic, assign, readonly)  float           money;
+@property (nonatomic, assign, readonly) float           money;
 
 -(void)acceptMoney:(float)number;
 -(void)giveMoney:(float)number;

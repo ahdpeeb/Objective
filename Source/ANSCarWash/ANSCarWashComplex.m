@@ -27,6 +27,7 @@
         self.administrative = [ANSAdminBuilding object];
         self.washing = [ANSWashBuilding object];
     }
+    
     return self;
 }
 
