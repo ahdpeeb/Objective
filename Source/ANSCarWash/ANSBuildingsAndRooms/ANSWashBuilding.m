@@ -26,6 +26,7 @@
     self = [super init];
     if (self) {
         self.mutableBoxes = [NSMutableArray object];
+        [self addBox:[ANSWashBox create]];
     }
     
     return self;
@@ -41,11 +42,11 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addBoxToWashBuilding:(ANSWashBox *) box {
+- (void)addBox:(ANSWashBox *)box {
     [self.mutableBoxes addObject:box];
 }
 
-- (void)removeBoxFromWashBuilding:(ANSWashBox *) box {
+- (void)removeBox:(ANSWashBox *)box {
     [self.mutableBoxes removeObject:box];
 }
 

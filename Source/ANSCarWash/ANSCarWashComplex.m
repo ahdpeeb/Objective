@@ -22,6 +22,16 @@ static NSString * const kANSnoPlaceForWasher =  @"No vacansy for washer";
 
 @implementation ANSCarWashComplex
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.administrative = [ANSAdminBuilding object];
+        self.washing = [ANSWashBuilding object];
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark Private implementation
 
@@ -46,10 +56,7 @@ static NSString * const kANSnoPlaceForWasher =  @"No vacansy for washer";
 
 + (ANSCarWashComplex *)create; {
     ANSCarWashComplex *station = [ANSCarWashComplex object];
-    if (station) {
-        station.administrative = [ANSAdminBuilding object];
-        station.washing = [ANSWashBuilding object];
-    }
+
     
     return station;
 }

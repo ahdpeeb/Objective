@@ -13,10 +13,10 @@ const NSInteger kANSMaxCarCapacity = 1;
 const NSInteger kANSMaxCarWasherCapacity = 1;
 
 @interface ANSWashBox ()
-@property (nonatomic, retain, readwrite) NSMutableArray *mutableCarsLine;
-@property (nonatomic, retain, readwrite) NSMutableArray *mutableCarWashers;
-@property (nonatomic, assign, readwrite) BOOL           isFullWithCarWasher;
-@property (nonatomic, assign, readwrite) BOOL           isFullWithCars;
+@property (nonatomic, retain) NSMutableArray *mutableCarsLine;
+@property (nonatomic, retain) NSMutableArray *mutableCarWashers;
+@property (nonatomic, assign) BOOL           isFullWithCarWasher;
+@property (nonatomic, assign) BOOL           isFullWithCars;
 
 @end
 
@@ -44,6 +44,14 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
 #pragma mark -
 #pragma mark Accessors
 
++ (ANSWashBox *)create; {
+    ANSWashBox *box = [ANSWashBox object];
+    ANSCarWasher *washer = [ANSCarWasher object];
+    [box addCarWasher:washer];
+    
+    return box;
+}
+
 - (NSArray *)carsLine {
     return [[self.mutableCarsLine copy] autorelease];
 }
@@ -55,7 +63,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addCarToRoom:(ANSCar *) car {
+- (void)addCar:(ANSCar *) car {
     NSMutableArray *carsLine = self.mutableCarsLine;
     
     if (carsLine.count < kANSMaxCarCapacity && ![carsLine containsObject:car]) {
@@ -67,7 +75,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
 
-- (void)removeCarFromRoom:(ANSCar *) car {
+- (void)removeCar:(ANSCar *) car {
     NSMutableArray *carsLine = self.mutableCarsLine;
     
     if ([carsLine containsObject:car]) {
@@ -79,7 +87,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
     
-- (void)addCarWasherToRoom:(ANSCarWasher *) washer {
+- (void)addCarWasher:(ANSCarWasher *) washer {
     NSMutableArray *carWashers = self.mutableCarWashers;
     
     if (carWashers.count < kANSMaxCarWasherCapacity && ![carWashers containsObject:washer]) {
@@ -91,7 +99,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
     
-- (void)removeCarWasherFromRoom:(ANSCarWasher *) washer {
+- (void)removeCarWasher:(ANSCarWasher *)washer {
     NSMutableArray *carWashers = self.mutableCarWashers;
     if ([carWashers containsObject:washer]) {
         [carWashers removeObject:washer];
@@ -102,7 +110,7 @@ const NSInteger kANSMaxCarWasherCapacity = 1;
     }
 }
 
-- (ANSCarWasher *)getRandomWasher {
+- (ANSCarWasher *)randomWasher {
     NSArray *washers = self.carWashers;
     NSInteger randomIndex = arc4random_uniform((u_int32_t)(washers.count));
     ANSCarWasher *washer = [washers objectAtIndex:randomIndex];

@@ -15,13 +15,7 @@
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
 
-        ANSCarWashComplex *complex = [ANSCarWashComplex createComplex];
-        ANSAdminRoom *adminRoom = [complex washComplexAddAdminRoom];
-        ANSWashBox *box = [complex washComplexAddWashBox];
-        ANSCarWasher *washer= [complex washComplexAddCarWasher];
-        ANSCar *car = [[ANSCar alloc]initWithBalans:10];
-        [complex washComplexWashCar:car];
-        NSLog(@"hi");
+
     }
     return 0;
 }

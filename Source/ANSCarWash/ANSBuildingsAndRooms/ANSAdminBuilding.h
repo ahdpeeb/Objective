@@ -13,7 +13,7 @@
 @interface ANSAdminBuilding : NSObject
 @property (nonatomic, readonly) NSArray *adminRooms;
 
-- (void)addRoomToAdminBuilding:(ANSAdminRoom *) room;
-- (void)removeRoomsFromAdminBuilding:(ANSAdminRoom *) room;
+- (void)addRoom:(ANSAdminRoom *)room;
+- (void)removeRoom:(ANSAdminRoom *)room;
 
 @end

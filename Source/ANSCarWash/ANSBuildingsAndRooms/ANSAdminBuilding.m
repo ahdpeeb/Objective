@@ -25,7 +25,9 @@
     self = [super init];
     if (self) {
         self.mutableAdminRooms = [NSMutableArray object];
+        [self addRoom:[ANSAdminRoom create]];
     }
+    
     return self;
 }
 
@@ -39,14 +41,14 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addRoomToAdminBuilding:(ANSAdminRoom *) room {
+- (void)addRoom:(ANSAdminRoom *)room {
     NSMutableArray *adminRooms = self.mutableAdminRooms;
     if(![adminRooms containsObject:room]) {
         [adminRooms addObject:room];
     }
 }
 
-- (void)removeRoomsFromAdminBuilding:(ANSAdminRoom *) room {
+- (void)removeRoom:(ANSAdminRoom *)room {
     NSMutableArray *adminRooms = self.mutableAdminRooms;
     if([adminRooms containsObject:room]) {
         [adminRooms removeObject:room];

@@ -11,41 +11,51 @@
 
 @interface ANSAdminRoom ()
 @property (nonatomic, retain, readwrite) ANSAccountant  *accountant;
-@property (nonatomic, retain, readwrite) ANSDirector    *direcrot;
+@property (nonatomic, retain, readwrite) ANSBoss        *boss;
 
 @end
 
 @implementation ANSAdminRoom
 
-- (ANSAccountant *)addAccountantToRoom {
+#pragma mark -
+#pragma mark PublicMethods
+
++ (ANSAdminRoom *)create {
+    ANSAdminRoom *room = [ANSAdminRoom object];
+    [room addAccountant];
+    [room addBoss];
+    
+    return room;
+}
+
+- (ANSAccountant *)addAccountant {
     ANSAccountant *accountant = self.accountant;
-    if (!accountant) {
+    if (!self.accountant) {
         ANSAccountant *bookkeeper = [ANSAccountant object];
         accountant = bookkeeper;
-        [bookkeeper release];
     }
     
     return accountant;
     
 }
 
-- (void)removeAccountantFromRoom {
+- (void)removeAccountant {
     self.accountant = nil;
 }
 
-- (ANSDirector *)addDirectorToRoom {
-    ANSDirector *director = self.direcrot;
-    if (!director) {
-        ANSDirector *boss = [ANSDirector object];
-        director = boss;
-        [boss release];
+- (ANSBoss *)addBoss {
+    ANSBoss *boss = self.direcrot;
+    if (!boss) {
+        ANSBoss *director = [ANSBoss object];
+        boss = director;
+       
     }
     
-    return director;
+    return boss;
 }
 
-- (void)removeDirectorFromRoom {
-    self.direcrot = nil;
+- (void)removeDirector {
+    self.boss = nil;
 }
 
 @end

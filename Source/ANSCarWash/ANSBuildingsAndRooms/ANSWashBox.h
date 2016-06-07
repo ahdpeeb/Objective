@@ -17,12 +17,13 @@
 @property (nonatomic, assign, readonly) BOOL    isFullWithCarWasher;
 @property (nonatomic, assign, readonly) BOOL    isFullWithCars;
 
-- (void)addCarToRoom:(ANSCar *) car;
-- (void)removeCarFromRoom:(ANSCar *) car;
++ (ANSWashBox *)create;
 
-- (void)addCarWasherToRoom:(ANSCarWasher *)washer;
-- (void)removeCarWasherFromRoom:(ANSCarWasher *)washer;
-- (ANSCarWasher *)getRandomWasher;
+- (void)addCar:(ANSCar *)car;
+- (void)removeCar:(ANSCar *)car;
 
+- (void)addCarWasher:(ANSCarWasher *)washer;
+- (void)removeCarWasher:(ANSCarWasher *)washer;
+- (ANSCarWasher *)randomWasher;
 
 @end
