@@ -20,7 +20,7 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
 @dynamic boxes;
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Init
 
 - (instancetype)init
 {
@@ -51,7 +51,7 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
     [self.mutableBoxes removeObject:box];
 }
 
-- (ANSWashBox* )freeBox {
+- (ANSWashBox *)freeBox {
     ANSWashBox *freeBox = nil;
     for (ANSWashBox *box in self.mutableBoxes) {
         if (!box.isFullWithCars && box.isFullWithCarWasher) {

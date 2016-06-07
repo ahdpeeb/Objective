@@ -21,6 +21,6 @@
 - (void)removeAccountant;
 
 - (ANSBoss *)addBoss;
-- (void)removeDirector;
+- (void)removeBoss;
 
 @end

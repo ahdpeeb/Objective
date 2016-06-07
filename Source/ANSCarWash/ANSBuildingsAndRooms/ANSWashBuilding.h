@@ -15,6 +15,6 @@
 
 - (void)addBox:(ANSWashBox *)box;
 - (void)removeBox:(ANSWashBox *)box;
-- (ANSWashBox* )freeBox;
+- (ANSWashBox *)freeBox;
 
 @end

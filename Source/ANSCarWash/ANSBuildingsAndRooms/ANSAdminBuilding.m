@@ -18,7 +18,7 @@
 @dynamic adminRooms;
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Init
 
 - (instancetype)init
 {

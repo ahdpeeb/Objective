@@ -62,13 +62,12 @@
     if (!boss) {
         ANSBoss *director = [ANSBoss object];
         boss = director;
-       
     }
     
     return boss;
 }
 
-- (void)removeDirector {
+- (void)removeBoss {
     self.boss = nil;
 }
 

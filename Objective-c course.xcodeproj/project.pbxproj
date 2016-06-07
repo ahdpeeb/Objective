@@ -20,9 +20,9 @@
 		937A2BAB1D05785800D52556 /* ANSWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BA71D05785800D52556 /* ANSWashBuilding.m */; };
 		937A2BB51D06E2BC00D52556 /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BB41D06E2BC00D52556 /* ANSCarWasher.m */; };
 		937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BBA1D06E9DF00D52556 /* ANSBoss.m */; };
+		937A2BC41D07126200D52556 /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC01D07126200D52556 /* ANSRandom.m */; };
+		937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */; };
 		937FBE9A1D01D50E00BD0F3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBE991D01D50E00BD0F3F /* main.m */; };
-		937FBEA21D01D62600BD0F3F /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */; };
-		937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBEA61D01D69A00BD0F3F /* ANSRandom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,11 +66,11 @@
 		937A2BB91D06E9DF00D52556 /* ANSBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSBoss.h; path = Source/ANSCarWash/ANSWorkers/ANSBoss.h; sourceTree = "<group>"; };
 		937A2BBA1D06E9DF00D52556 /* ANSBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSBoss.m; path = Source/ANSCarWash/ANSWorkers/ANSBoss.m; sourceTree = "<group>"; };
 		937A2BBC1D0710E800D52556 /* ANSCarWashComplexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWashComplexProtocol.h; path = Source/ANSCarWash/ANSCarWashComplexProtocol.h; sourceTree = "<group>"; };
+		937A2BBF1D07126200D52556 /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
+		937A2BC01D07126200D52556 /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
+		937A2BC21D07126200D52556 /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
+		937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSExtension.m"; sourceTree = "<group>"; };
 		937FBE991D01D50E00BD0F3F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		937FBE9F1D01D62600BD0F3F /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
-		937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSExtension.m"; sourceTree = "<group>"; };
-		937FBEA51D01D69A00BD0F3F /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
-		937FBEA61D01D69A00BD0F3F /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */,
-				937FBEA81D01E05C00BD0F3F /* ANSAccessory  */,
+				937A2BBD1D07126200D52556 /* Library */,
 				931D0F2E1D0049DF00DF749C /* Source */,
 				931D0F1E1D00480900DF749C /* Products */,
 				937FBE991D01D50E00BD0F3F /* main.m */,
@@ -180,33 +180,31 @@
 			path = Source/ANSCarWash/ANSBuildingsAndRooms;
 			sourceTree = "<group>";
 		};
-		937FBE9E1D01D62600BD0F3F /* NSObject */ = {
+		937A2BBD1D07126200D52556 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				937FBE9F1D01D62600BD0F3F /* NSObject+ANSExtension.h */,
-				937FBEA01D01D62600BD0F3F /* NSObject+ANSExtension.m */,
+				937A2BBE1D07126200D52556 /* ANSRandom */,
+				937A2BC11D07126200D52556 /* NSObject */,
 			);
-			name = NSObject;
-			path = "Public instantions /NSObject";
+			path = Library;
 			sourceTree = "<group>";
 		};
-		937FBEA41D01D69A00BD0F3F /* ANSRandom */ = {
+		937A2BBE1D07126200D52556 /* ANSRandom */ = {
 			isa = PBXGroup;
 			children = (
-				937FBEA51D01D69A00BD0F3F /* ANSRandom.h */,
-				937FBEA61D01D69A00BD0F3F /* ANSRandom.m */,
+				937A2BBF1D07126200D52556 /* ANSRandom.h */,
+				937A2BC01D07126200D52556 /* ANSRandom.m */,
 			);
-			name = ANSRandom;
-			path = "Public instantions /ANSRandom";
+			path = ANSRandom;
 			sourceTree = "<group>";
 		};
-		937FBEA81D01E05C00BD0F3F /* ANSAccessory  */ = {
+		937A2BC11D07126200D52556 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				937FBEA41D01D69A00BD0F3F /* ANSRandom */,
-				937FBE9E1D01D62600BD0F3F /* NSObject */,
+				937A2BC21D07126200D52556 /* NSObject+ANSExtension.h */,
+				937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */,
 			);
-			name = "ANSAccessory ";
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,14 +267,14 @@
 				937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */,
 				937A2BA81D05785800D52556 /* ANSAdminBuilding.m in Sources */,
 				937A2BAA1D05785800D52556 /* ANSWashBox.m in Sources */,
+				937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */,
 				931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */,
-				937FBEA71D01D69A00BD0F3F /* ANSRandom.m in Sources */,
 				931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */,
 				937A2BA91D05785800D52556 /* ANSAdminRoom.m in Sources */,
-				937FBEA21D01D62600BD0F3F /* NSObject+ANSExtension.m in Sources */,
 				937A2B911D048E3E00D52556 /* ANSAccountant.m in Sources */,
 				937A2BB51D06E2BC00D52556 /* ANSCarWasher.m in Sources */,
 				937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */,
+				937A2BC41D07126200D52556 /* ANSRandom.m in Sources */,
 				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
 				937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */,
 				931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */,
