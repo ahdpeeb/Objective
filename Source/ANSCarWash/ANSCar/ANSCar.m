@@ -16,28 +16,29 @@
 @implementation ANSCar
 
 #pragma mark -
-#pragma mark Init
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.status = ANSCarDirty;
-        self.money = 5;
-    }
-    
+    self.status = ANSCarDirty;
+    self.money = 5;
+
     return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
--(void)acceptMoney:(float)number {
-    self.money = self.money + number;
+- (void)receiveMoney:(float)number {
+    self.money += number;
 }
 
--(void)giveMoney:(float)number {
-    self.money = self.money - number;
+- (void)giveMoney:(float)number {
+    self.money -= number;
 }
 
 @end

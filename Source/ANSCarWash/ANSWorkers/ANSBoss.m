@@ -10,4 +10,8 @@
 
 @implementation ANSBoss
 
+- (void)calculateProfit {
+    NSLog(@"my profit - %f", self.money);
+}
+
 @end

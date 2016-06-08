@@ -18,17 +18,20 @@
 @dynamic adminRooms;
 
 #pragma mark -
-#pragma mark Init
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.mutableAdminRooms = [NSMutableArray object];
-        [self addRoom:[ANSAdminRoom create]];
-    }
+    self.mutableAdminRooms = [NSMutableArray object];
+    [self addRoom:[ANSAdminRoom create]];
     
     return self;
+}
+
+- (void)dealloc {
+    self.mutableAdminRooms = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark -

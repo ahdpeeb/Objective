@@ -65,7 +65,7 @@
 		937A2BB41D06E2BC00D52556 /* ANSCarWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWasher.m; path = Source/ANSCarWash/ANSWorkers/ANSCarWasher.m; sourceTree = "<group>"; };
 		937A2BB91D06E9DF00D52556 /* ANSBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSBoss.h; path = Source/ANSCarWash/ANSWorkers/ANSBoss.h; sourceTree = "<group>"; };
 		937A2BBA1D06E9DF00D52556 /* ANSBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSBoss.m; path = Source/ANSCarWash/ANSWorkers/ANSBoss.m; sourceTree = "<group>"; };
-		937A2BBC1D0710E800D52556 /* ANSCarWashComplexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWashComplexProtocol.h; path = Source/ANSCarWash/ANSCarWashComplexProtocol.h; sourceTree = "<group>"; };
+		937A2BBC1D0710E800D52556 /* ANSMoneyOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSMoneyOwner.h; path = Source/ANSCarWash/ANSMoneyOwner.h; sourceTree = "<group>"; };
 		937A2BBF1D07126200D52556 /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
 		937A2BC01D07126200D52556 /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 		937A2BC21D07126200D52556 /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		937A2B801D04645C00D52556 /* ANSCarWash */ = {
 			isa = PBXGroup;
 			children = (
-				937A2BBC1D0710E800D52556 /* ANSCarWashComplexProtocol.h */,
+				937A2BBC1D0710E800D52556 /* ANSMoneyOwner.h */,
 				937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */,
 				937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */,
 				937A2B9F1D05785800D52556 /* ANSBuildingsAndRooms */,

@@ -18,28 +18,32 @@
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark Init
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.administrative = [ANSAdminBuilding object];
-        self.washing = [ANSWashBuilding object];
-    }
+    self.administrative = [ANSAdminBuilding object];
+    self.washing = [ANSWashBuilding object];
     
     return self;
+}
+
+- (void)dealloc {
+    self.administrative = nil;
+    self.washing = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Public implementation
 
-- (void)washCar:(ANSCar *)car withCost:(float)cost; {
+- (void)washCar:(ANSCar *)car; {
     ANSWashBox *freeBox = [self.washing freeBox];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         [freeBox addCar:car];
-        [washer washCar:car withCost:cost];
+        [washer washCar:car];
         [freeBox removeCar:car];
     }
 }

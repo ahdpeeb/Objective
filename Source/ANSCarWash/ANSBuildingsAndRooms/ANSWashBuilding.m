@@ -20,17 +20,20 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
 @dynamic boxes;
 
 #pragma mark -
-#pragma mark Init
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.mutableBoxes = [NSMutableArray object];
-        [self addBox:[ANSWashBox create]];
-    }
+    self.mutableBoxes = [NSMutableArray object];
+    [self addBox:[ANSWashBox new]];
     
     return self;
+}
+
+- (void)dealloc {
+    self.mutableBoxes = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark -
@@ -52,17 +55,15 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
 }
 
 - (ANSWashBox *)freeBox {
-    ANSWashBox *freeBox = nil;
     for (ANSWashBox *box in self.mutableBoxes) {
-        if (!box.isFullWithCars && box.isFullWithCarWasher) {
-            freeBox = box;
-            break ;
-        } else {
-            NSLog(@"%@", kANSallBoxesFul);
+        if ([box isReady]) {
+            return box;
         }
     }
     
-    return freeBox;
+    NSLog(@"%@", kANSallBoxesFul);
+    
+    return nil;
 }
 
 @end

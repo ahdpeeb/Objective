@@ -10,4 +10,6 @@
 
 @interface ANSBoss : ANSWorker
 
+- (void)calculateProfit;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ANSAdminRoom.h"
+\
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminRoom ()
@@ -18,17 +19,21 @@
 @implementation ANSAdminRoom
 
 #pragma mark -
-#pragma mark Init
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.accountant = [ANSAccountant object];
-        self.boss = [ANSBoss object];
-    }
+    self.accountant = [ANSAccountant object];
+    self.boss = [ANSBoss object];
     
     return self;
+}
+
+- (void)dealloc {
+    self.accountant = nil;
+    self.boss = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark -

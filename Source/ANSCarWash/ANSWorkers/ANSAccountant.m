@@ -10,10 +10,8 @@
 
 @implementation ANSAccountant
 
-- (void)giveMoneyToBoss:(ANSBoss *)boss {
-    float allMoney = self.money;
-    [self giveMoney:allMoney];
-    [boss acceptMoney:allMoney];
+- (void)countMoneyInCashBox {
+    NSLog(@"%f money in my cashbox", self.money);
 }
 
 @end

@@ -8,33 +8,44 @@
 
 #import "ANSWorker.h"
 #import "ANSCar.h"
+#import "ANSRandom.h"
 
 @interface ANSWorker ()
 @property(nonatomic, assign) float money;
-
-- (void)setMoney:(float)money;
 
 @end
 
 @implementation ANSWorker
 
-- (void)acceptMoney:(float)number {
-    self.money = self.money + number;
+#pragma mark -
+#pragma mark initialize / deallocate
+
+- (instancetype)init {
+    self = [super init];
+    self.yearsOfExperience = ANSRandomIntWithRange(0, 3);
+    
+    return self;
 }
 
-- (void)giveMoney:(float)number {
-    self.money = self.money - number;
-}
-
-- (void)countMoney {
-    NSLog(@"i have %f money", self.money);
+- (void)dealloc {
+    [super dealloc];
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Public methods
 
-- (void)setMoney:(float)money {
-    self.money = money;
+- (void)receiveMoney:(float)number {
+    self.money += number;
+}
+
+- (void)giveMoney:(float)number {
+    self.money -= number;
+}
+
+- (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
+    float money = owner.money;
+    [owner giveMoney:money];
+    [self receiveMoney:money];
 }
 
 @end

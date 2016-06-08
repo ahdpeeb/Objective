@@ -18,6 +18,6 @@ static const float kANSServiceCost = 5;
 @property (nonatomic, readonly) ANSAdminBuilding    *administrative;
 @property (nonatomic, readonly) ANSWashBuilding     *washing;
 
-- (void)washCar:(ANSCar *)car withCost:(float)cost;
+- (void)washCar:(ANSCar *)car;
     
 @end

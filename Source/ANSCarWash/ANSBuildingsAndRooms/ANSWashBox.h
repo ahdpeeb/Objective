@@ -12,18 +12,18 @@
 #import "ANSCar.h"
 
 @interface ANSWashBox : NSObject
-@property (nonatomic, readonly)         NSArray *carsLine;
-@property (nonatomic, readonly)         NSArray *carWashers;
-@property (nonatomic, assign, readonly) BOOL    isFullWithCarWasher;
-@property (nonatomic, assign, readonly) BOOL    isFullWithCars;
-
-+ (ANSWashBox *)create;
+@property (nonatomic, readonly) NSArray                            *carsLine;
+@property (nonatomic, readonly) NSArray                            *carWashers;
+@property (nonatomic, readonly, getter = isFullWithCarWasher) BOOL fullWithCarWasher;
+@property (nonatomic, readonly, getter = isFullWithCars)      BOOL fullWithCars;
 
 - (void)addCar:(ANSCar *)car;
 - (void)removeCar:(ANSCar *)car;
 
 - (void)addCarWasher:(ANSCarWasher *)washer;
 - (void)removeCarWasher:(ANSCarWasher *)washer;
+
 - (ANSCarWasher *)randomWasher;
+- (BOOL)isReady;
 
 @end
