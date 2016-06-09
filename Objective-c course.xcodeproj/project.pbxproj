@@ -22,6 +22,7 @@
 		937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BBA1D06E9DF00D52556 /* ANSBoss.m */; };
 		937A2BC41D07126200D52556 /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC01D07126200D52556 /* ANSRandom.m */; };
 		937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */; };
+		937A2BD51D09AFEE00D52556 /* NSString+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */; };
 		937FBE9A1D01D50E00BD0F3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBE991D01D50E00BD0F3F /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +71,10 @@
 		937A2BC01D07126200D52556 /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 		937A2BC21D07126200D52556 /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
 		937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSExtension.m"; sourceTree = "<group>"; };
-		937A2BCC1D0963C800D52556 /* ANSConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
-		937A2BCE1D09A68500D52556 /* ANSFindingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSFindingObject.h; sourceTree = "<group>"; };
+		937A2BD31D09AFEE00D52556 /* NSString+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ANSExtension.h"; sourceTree = "<group>"; };
+		937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ANSExtension.m"; sourceTree = "<group>"; };
+		937A2BD61D09B03D00D52556 /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSConstants.h; path = Source/ANSCarWash/ANSConstants.h; sourceTree = "<group>"; };
+		937A2BD71D09B03D00D52556 /* ANSFindingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSFindingObject.h; path = Source/ANSCarWash/ANSFindingObject.h; sourceTree = "<group>"; };
 		937FBE991D01D50E00BD0F3F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,9 +134,9 @@
 		937A2B801D04645C00D52556 /* ANSCarWash */ = {
 			isa = PBXGroup;
 			children = (
+				937A2BD61D09B03D00D52556 /* ANSConstants.h */,
+				937A2BD71D09B03D00D52556 /* ANSFindingObject.h */,
 				937A2BBC1D0710E800D52556 /* ANSMoneyOwner.h */,
-				937A2BCE1D09A68500D52556 /* ANSFindingObject.h */,
-				937A2BCC1D0963C800D52556 /* ANSConstants.h */,
 				937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */,
 				937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */,
 				937A2B9F1D05785800D52556 /* ANSBuildings */,
@@ -184,6 +187,7 @@
 		937A2BBD1D07126200D52556 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				937A2BD21D09AFEE00D52556 /* NSString */,
 				937A2BBE1D07126200D52556 /* ANSRandom */,
 				937A2BC11D07126200D52556 /* NSObject */,
 			);
@@ -218,6 +222,15 @@
 			);
 			name = ANSRooms;
 			path = Source/ANSCarWash/ANSBuildingsAndRooms;
+			sourceTree = "<group>";
+		};
+		937A2BD21D09AFEE00D52556 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				937A2BD31D09AFEE00D52556 /* NSString+ANSExtension.h */,
+				937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */,
+			);
+			path = NSString;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				937A2B861D0471F000D52556 /* ANSWorker.m in Sources */,
+				937A2BD51D09AFEE00D52556 /* NSString+ANSExtension.m in Sources */,
 				937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */,
 				937A2BA81D05785800D52556 /* ANSAdminBuilding.m in Sources */,
 				937A2BAA1D05785800D52556 /* ANSWashBox.m in Sources */,

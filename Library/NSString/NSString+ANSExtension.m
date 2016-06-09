@@ -1,13 +1,13 @@
 //
-//  Header.h
+//  NSString+ANSExtension.m
 //  Objective-c course
 //
 //  Created by Nikola Andriiev on 09.06.16.
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#ifndef Header_h
-#define Header_h
+#import "NSString+ANSExtension.h"
 
+@implementation NSString (ANSExtension)
 
-#endif /* Header_h */
+@end
