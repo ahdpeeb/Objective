@@ -22,7 +22,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.yearsOfExperience = ANSRandomIntWithRange(0, 3);
+    self.yearsOfExperience = ANSRandomIntegerWithRange(0, 3);
     
     return self;
 }

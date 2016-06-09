@@ -31,10 +31,8 @@ static NSString * const kANSHi = @"Hi";
 
 - (instancetype)initWithName:(NSString*) name {
     self = [super init];
-    if (self) {
-        self.mutableChildren = [NSMutableArray object];
-        self.name = name;
-    }
+    self.mutableChildren = [NSMutableArray object];
+    self.name = name;
     
     return self;
 }
