@@ -7,9 +7,8 @@
 //
 
 #import "ANSWashBuilding.h"
-#import "NSObject+ANSExtension.h"
 
-static NSString * const kANSallBoxesFul = @"No sutable box for car";
+#import "NSObject+ANSExtension.h"
 
 @interface ANSWashBuilding ()
 @property (nonatomic, retain, readwrite) NSMutableArray *mutableBoxes;
@@ -25,7 +24,7 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
 - (instancetype)init {
     self = [super init];
     self.mutableBoxes = [NSMutableArray object];
-    [self addBox:[ANSWashBox new]];
+    [self addBox:[ANSWashBox object]];
     
     return self;
 }
@@ -61,7 +60,7 @@ static NSString * const kANSallBoxesFul = @"No sutable box for car";
         }
     }
     
-    NSLog(@"%@", kANSallBoxesFul);
+    NSLog(@"No sutable box for car"); //kANSallBoxesFul
     
     return nil;
 }

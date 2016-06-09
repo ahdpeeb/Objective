@@ -7,12 +7,11 @@
 //
 
 #import "ANSAdminRoom.h"
-\
+
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminRoom ()
-@property (nonatomic, retain, readwrite) ANSAccountant  *accountant;
-@property (nonatomic, retain, readwrite) ANSBoss        *boss;
+@property (nonatomic, retain) NSMutableArray *mutableWorkers;
 
 @end
 
@@ -23,57 +22,72 @@
 
 - (instancetype)init {
     self = [super init];
-    self.accountant = [ANSAccountant object];
-    self.boss = [ANSBoss object];
+    self.mutableWorkers = [NSMutableArray new];
+    
+    return self;
+}
+
+- (instancetype)initWithAccountant:(ANSAccountant *)accountant
+                              boss:(ANSBoss *)boss
+{
+    self = [super init];
+    if (self) {
+        self.mutableWorkers = [NSMutableArray new];
+        [self.mutableWorkers addObject:accountant];
+        [self.mutableWorkers addObject:boss];
+    }
     
     return self;
 }
 
 - (void)dealloc {
-    self.accountant = nil;
-    self.boss = nil;
+    self.mutableWorkers = nil;
     
     [super dealloc];
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)workers {
+    return [[self.mutableWorkers copy] autorelease];
+}
+
+#pragma mark -
 #pragma mark Public methods
 
-+ (ANSAdminRoom *)create {
-    ANSAdminRoom *room = [ANSAdminRoom object];
-    [room addAccountant];
-    [room addBoss];
-    
-    return room;
+- (void)addWorker:(id)worker {
+    NSMutableArray *workers = self.mutableWorkers;
+    if (![workers containsObject:worker]){
+        [workers addObject:worker];
+    }
 }
 
-- (ANSAccountant *)addAccountant {
-    ANSAccountant *accountant = self.accountant;
-    if (!self.accountant) {
-        ANSAccountant *bookkeeper = [ANSAccountant object];
-        accountant = bookkeeper;
+- (void)removeWorker:(id)worker {
+    [self.mutableWorkers removeObject:worker];
+}
+
+- (NSArray *)findWorkerWithClass:(Class)anyClass {
+    NSMutableArray *mutableArray = [NSMutableArray object];
+    for (id worker in self.mutableWorkers) {
+        if ([worker isKindOfClass:[anyClass class]]) {
+            [mutableArray addObject:worker];
+        }
     }
     
-    return accountant;
+    return [mutableArray copy];
+}
+
+- (ANSAccountant *)firsAccountant {
+    NSArray *accountants = [self findWorkerWithClass:[ANSAccountant class]];
     
+    return [accountants objectAtIndex:0];
 }
 
-- (void)removeAccountant {
-    self.accountant = nil;
-}
-
-- (ANSBoss *)addBoss {
-    ANSBoss *boss = self.boss;
-    if (!boss) {
-        ANSBoss *director = [ANSBoss object];
-        boss = director;
-    }
+- (ANSAccountant *)firsBoss {
+    NSArray *bosses = [self findWorkerWithClass:[ANSAccountant class]];
     
-    return boss;
-}
-
-- (void)removeBoss {
-    self.boss = nil;
+    return [bosses objectAtIndex:0];
 }
 
 @end

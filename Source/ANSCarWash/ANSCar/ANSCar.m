@@ -21,7 +21,7 @@
 - (instancetype)init {
     self = [super init];
     self.status = ANSCarDirty;
-    self.money = 5;
+    self.money = 5; // kANSServiceCost
 
     return self;
 }

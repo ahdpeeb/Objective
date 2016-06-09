@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSAccountant.h"
 #import "ANSBoss.h"
+#import "ANSAccountant.h"
 
 @interface ANSAdminRoom : NSObject
-@property (nonatomic, readonly) ANSAccountant   *accountant;
-@property (nonatomic, readonly) ANSBoss         *boss;
+@property (nonatomic, readonly) NSArray *workers ;
 
-+ (ANSAdminRoom *)create;
+- (instancetype)initWithAccountant:(ANSAccountant *)accountant boss:(ANSBoss *)boss;
 
-- (ANSAccountant *)addAccountant;
-- (void)removeAccountant;
+- (void)addWorker:(id)worker;
+- (void)removeWorker:(id)worker;
+- (ANSAccountant *)firsAccountant;
+- (ANSAccountant *)firsBoss;
 
-- (ANSBoss *)addBoss;
-- (void)removeBoss;
+- (NSArray *)findWorkerWithClass:(Class)anyClass;
 
 @end

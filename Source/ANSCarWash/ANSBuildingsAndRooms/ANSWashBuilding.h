@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "ANSWashBox.h"
 
 @interface ANSWashBuilding : NSObject

@@ -12,8 +12,6 @@
 #import "ANSAdminBuilding.h"
 #import "ANSWashBuilding.h"
 
-static const float kANSServiceCost = 5;
-
 @interface ANSCarWashComplex : NSObject
 @property (nonatomic, readonly) ANSAdminBuilding    *administrative;
 @property (nonatomic, readonly) ANSWashBuilding     *washing;

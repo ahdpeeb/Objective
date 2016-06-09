@@ -7,6 +7,7 @@
 //
 
 #import "ANSAdminBuilding.h"
+
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminBuilding ()
@@ -23,7 +24,9 @@
 - (instancetype)init {
     self = [super init];
     self.mutableAdminRooms = [NSMutableArray object];
-    [self addRoom:[ANSAdminRoom create]];
+    ANSAdminRoom *room = [[[ANSAdminRoom alloc]initWithAccountant:[ANSAccountant object]
+                                                             boss:[ANSBoss object]]autorelease];
+    [self addRoom:room];
     
     return self;
 }

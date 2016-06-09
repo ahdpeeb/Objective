@@ -15,10 +15,10 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
-        BOOL value = [ANSCarWashComplex isKindOfClass:[ANSCarWashComplex class]];
-        if ([ANSCarWashComplex class] == [complex class]) {
-             NSLog(@"Hi");
-        }
+        ANSCar *car = [ANSCar object];
+        [complex washCar:car];
+        
+        NSLog(@"Hi");
         
     }
     return 0;
