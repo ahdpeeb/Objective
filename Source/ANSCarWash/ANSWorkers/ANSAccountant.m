@@ -10,4 +10,8 @@
 
 @implementation ANSAccountant
 
+- (void)countMoneyInCashBox {
+    NSLog(@"%f money in my cashbox", self.money);
+}
+
 @end

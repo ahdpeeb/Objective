@@ -2,7 +2,7 @@
 //  ANSCarWasher.h
 //  Objective-c course
 //
-//  Created by Nikola Andriiev on 05.06.16.
+//  Created by Nikola Andriiev on 07.06.16.
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
@@ -12,8 +12,6 @@
 
 @interface ANSCarWasher : ANSWorker
 
-- (instancetype)initWorker;
-- (void)washCar:(ANSCar *) car withCost:(float) cost;
-- (void)giveMoneyToАccountant:(ANSAccountant *) accountant;
+- (void)washCar:(ANSCar *)car;
 
 @end

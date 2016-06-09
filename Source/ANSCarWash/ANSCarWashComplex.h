@@ -13,12 +13,9 @@
 #import "ANSWashBuilding.h"
 
 @interface ANSCarWashComplex : NSObject
-@property (nonatomic, readonly) ANSAdminBuilding *adminBuilding;
-@property (nonatomic, readonly) ANSWashBuilding *washBuilding;
+@property (nonatomic, readonly) ANSAdminBuilding    *administrative;
+@property (nonatomic, readonly) ANSWashBuilding     *washing;
 
-+ (ANSCarWashComplex *)createComplex;
-
-- (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex;
-- (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex;
-
+- (void)washCar:(ANSCar *)car;
+    
 @end

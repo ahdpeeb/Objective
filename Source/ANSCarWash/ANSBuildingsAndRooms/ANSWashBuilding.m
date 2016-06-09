@@ -8,13 +8,32 @@
 
 #import "ANSWashBuilding.h"
 
+#import "NSObject+ANSExtension.h"
+
 @interface ANSWashBuilding ()
-@property (nonatomic, retain) NSMutableArray *mutableBoxes;
+@property (nonatomic, retain, readwrite) NSMutableArray *mutableBoxes;
 
 @end
 
 @implementation ANSWashBuilding
 @dynamic boxes;
+
+#pragma mark -
+#pragma mark initialize / deallocate
+
+- (instancetype)init {
+    self = [super init];
+    self.mutableBoxes = [NSMutableArray object];
+    [self addBox:[ANSWashBox object]];
+    
+    return self;
+}
+
+- (void)dealloc {
+    self.mutableBoxes = nil;
+    
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -26,13 +45,24 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addBoxToWashBuilding:(ANSWashBox *) box {
+- (void)addBox:(ANSWashBox *)box {
     [self.mutableBoxes addObject:box];
 }
 
-- (void)removeBoxFromWashBuilding:(ANSWashBox *) box {
+- (void)removeBox:(ANSWashBox *)box {
     [self.mutableBoxes removeObject:box];
 }
 
-@end
+- (ANSWashBox *)freeBox {
+    for (ANSWashBox *box in self.mutableBoxes) {
+        if ([box isReady]) {
+            return box;
+        }
+    }
+    
+    NSLog(@"No sutable box for car"); //kANSallBoxesFul
+    
+    return nil;
+}
 
+@end

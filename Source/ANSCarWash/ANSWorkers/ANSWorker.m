@@ -8,16 +8,44 @@
 
 #import "ANSWorker.h"
 #import "ANSCar.h"
+#import "ANSRandom.h"
+
+@interface ANSWorker ()
+@property(nonatomic, assign) float money;
+
+@end
 
 @implementation ANSWorker
 
-- (instancetype)initWorker
-{
+#pragma mark -
+#pragma mark initialize / deallocate
+
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.proffesion = ANSProffesionUnemployed;
-    }
+    self.yearsOfExperience = ANSRandomIntegerWithRange(0, 3);
+    
     return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)receiveMoney:(float)number {
+    self.money += number;
+}
+
+- (void)giveMoney:(float)number {
+    self.money -= number;
+}
+
+- (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
+    float money = owner.money;
+    [owner giveMoney:money];
+    [self receiveMoney:money];
 }
 
 @end

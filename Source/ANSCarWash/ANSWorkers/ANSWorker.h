@@ -7,20 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ANSMoneyOwner.h"
+#import "ANSFindingObject.h"
 
-typedef enum {
-    ANSProffesionUnemployed,
-    ANSProffesionCarWasher,
-    ANSProffesionAccounter,
-    ANSProffesionDirector
-} ANSProffesionType;
-
-@interface ANSWorker : NSObject
-@property (nonatomic, assign) float             monthlyIncome;
-@property (nonatomic, assign) ANSProffesionType proffesion;
-@property (nonatomic, assign) NSInteger         yearsOfExperience;
-@property (nonatomic, assign) float             currentBalance;
-
-- (instancetype)initWorker;
+@interface ANSWorker : NSObject <ANSMoneyOwner, ANSFindingObject>
+@property (nonatomic, assign)           float             income;
+@property (nonatomic, assign)           NSInteger         yearsOfExperience;
 
 @end

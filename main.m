@@ -10,13 +10,15 @@
 
 #import "ANSCarWashComplex.h"
 #import "NSObject+ANSExtension.h"
-#import "ANSRandom.h"
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
 
-        ANSCarWashComplex *complex = [ANSCarWashComplex createComplex];
+        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        ANSCar *car = [ANSCar object];
+        [complex washCar:car];
         
+        NSLog(@"Hi");
         
     }
     return 0;

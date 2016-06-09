@@ -7,65 +7,89 @@
 //
 
 #import "ANSWashBox.h"
+
 #import "NSObject+ANSExtension.h"
+#import "ANSConstants.h"
 
 @interface ANSWashBox ()
-@property (nonatomic, retain, readwrite) NSMutableArray *mutableCarsLine;
-@property (nonatomic, retain, readwrite) NSMutableArray *mutableCarWashers;
+@property (nonatomic, retain) NSMutableArray *mutableCarsQueue;
+@property (nonatomic, assign) BOOL           fullWithCars;
+
+- (BOOL)ANS_isWashBoxAvailableForCar:(ANSCar *)car;
 
 @end
 
 @implementation ANSWashBox
 
-@dynamic carsLine;
-@dynamic carWashers;
+@dynamic carsQueue;
 
 #pragma mark -
-#pragma mark Initialization/ dealloc
+#pragma mark initialize / deallocate
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.mutableCarsLine = [NSMutableArray object];
-        self.mutableCarWashers = [NSMutableArray object];
-    }
+    self.mutableCarsQueue = [NSMutableArray object];
+    self.fullWithCars = NO;
+    ANSCarWasher *washer = [ANSCarWasher object];
+    [self addWorker:washer];
     
     return self;
+}
+
+- (void)dealloc {
+    self.mutableCarsQueue = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)carsLine {
-    return [[self.mutableCarsLine copy] autorelease];
-}
-
-- (NSArray *)carWashers {
-    return [[self.mutableCarWashers copy] autorelease];
+    return [[self.mutableCarsQueue copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addCarToRoom:(ANSCar *) car {
-    [self.mutableCarsLine addObject:car];
+- (void)addCar:(ANSCar *)car {
+    NSMutableArray *carsLine = self.mutableCarsQueue;
+    if ([self ANS_isWashBoxAvailableForCar:car]) {
+        [carsLine addObject:car];
+    }
+    
+    if (carsLine.count >= kANSMaxCarCapacity) {
+        self.fullWithCars = YES;
+    }
 }
 
-- (void)removeCarFromRoom:(ANSCar *) car {
-    [self.mutableCarsLine removeObject:car];
+- (void)removeCar:(ANSCar *)car {
+    NSMutableArray *carsLine = self.mutableCarsQueue;
+    [carsLine removeObject:car];
+    
+    if (carsLine.count < kANSMaxCarCapacity) {
+        self.fullWithCars = NO;
+    }
 }
 
-- (void)removeCarFromRoomAtIndex:(NSUInteger) index {
-    [self.mutableCarsLine removeObjectAtIndex:index];
+- (ANSCarWasher *)randomWasher {
+    NSArray *washers = self.workers;
+    NSInteger randomIndex = arc4random_uniform((u_int32_t)(washers.count));
+    ANSCarWasher *washer = [washers objectAtIndex:randomIndex];
+    
+    return washer;
 }
 
-- (void)addCarWasherToRoom:(ANSCarWasher *) washer {
-    [self.mutableCarWashers addObject:washer];
-}
-- (void)removeCarWasherFromRoom:(ANSCarWasher *) washer {
-    [self.mutableCarWashers removeObject:washer];
+- (BOOL)isReady {
+    return !self.isFullWithCars; //&& self.carsQueue.count < self.workers.count;
 }
 
+#pragma mark -
+#pragma mark Privat Methods
+
+- (BOOL)ANS_isWashBoxAvailableForCar:(ANSCar *)car {
+    NSMutableArray *carsLine = self.mutableCarsQueue;
+    return carsLine.count < kANSMaxCarCapacity && ![carsLine containsObject:car] ;
+}
 
 @end

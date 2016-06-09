@@ -8,16 +8,37 @@
 
 #import "ANSCar.h"
 
+@interface ANSCar ()
+@property(nonatomic, assign) float money;
+
+@end
+
 @implementation ANSCar
 
-- (instancetype)initWithBalans:(float) balans
-{
+#pragma mark -
+#pragma mark initialize / deallocate
+
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.status = ANSCarStatusDirty;
-        self.balans = balans;
-    }
+    self.status = ANSCarDirty;
+    self.money = 5; // kANSServiceCost
+
     return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)receiveMoney:(float)number {
+    self.money += number;
+}
+
+- (void)giveMoney:(float)number {
+    self.money -= number;
 }
 
 @end

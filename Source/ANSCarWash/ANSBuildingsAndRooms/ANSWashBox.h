@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ANSAdminRoom.h"
 #import "ANSCarWasher.h"
 #import "ANSCar.h"
 
-@interface ANSWashBox : NSObject
-@property (nonatomic, readonly) NSArray *carsLine;
-@property (nonatomic, readonly) NSArray *carWashers;
+@interface ANSWashBox : ANSAdminRoom
+@property (nonatomic, readonly)                               NSArray *carsQueue;
+@property (nonatomic, readonly, getter = isFullWithCars)      BOOL    fullWithCars;
 
-- (void)addCarToRoom:(ANSCar *) car;
-- (void)removeCarFromRoom:(ANSCar *) car;
-- (void)removeCarFromRoomAtIndex:(NSUInteger) index;
-- (void)addCarWasherToRoom:(ANSCarWasher *) washer;
-- (void)removeCarWasherFromRoom:(ANSCarWasher *) washer;
+- (void)addCar:(ANSCar *)car;
+- (void)removeCar:(ANSCar *)car;
+
+- (ANSCarWasher *)randomWasher;
+- (BOOL)isReady;
 
 @end

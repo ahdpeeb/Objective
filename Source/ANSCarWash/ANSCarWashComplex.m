@@ -7,42 +7,46 @@
 //
 
 #import "ANSCarWashComplex.h"
+
 #import "NSObject+ANSExtension.h"
 
-
-static float kANSServiceCost = 5;
-
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSAdminBuilding *adminBuilding;
-@property (nonatomic, retain) ANSWashBuilding *washBuilding;
+@property (nonatomic, retain) ANSAdminBuilding  *administrative;
+@property (nonatomic, retain) ANSWashBuilding   *washing;
 
 @end
 
 @implementation ANSCarWashComplex
 
-+ (ANSCarWashComplex *)createComplex; {
-    ANSCarWashComplex *complex = [ANSCarWashComplex object];
-    if (complex) {
-        complex.adminBuilding = [ANSAdminBuilding object];
-        complex.washBuilding = [ANSWashBuilding object];
+#pragma mark -
+#pragma mark initialize / deallocate
+
+- (instancetype)init {
+    self = [super init];
+    self.administrative = [ANSAdminBuilding object];
+    self.washing = [ANSWashBuilding object];
+    
+    return self;
+}
+
+- (void)dealloc {
+    self.administrative = nil;
+    self.washing = nil;
+    
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Public implementation
+
+- (void)washCar:(ANSCar *)car; {
+    ANSWashBox *freeBox = [self.washing freeBox];
+    if (freeBox) {
+        ANSCarWasher *washer = [freeBox randomWasher];
+        [freeBox addCar:car];
+        [washer washCar:car];
+        [freeBox removeCar:car];
     }
-    
-    return complex;
-}
-
-- (ANSAdminRoom *)complexAddAdminRoom:(ANSCarWashComplex *) complex {
-    ANSAdminRoom *room = [ANSAdminRoom object];
-    [complex.adminBuilding addRoomToAdminBuilding:room];
-    
-    return room;
-}
-
-- (ANSWashBox *)complexAddWashBox:(ANSCarWashComplex *) complex {
-    ANSWashBox *box = [ANSWashBox object];
-    [complex.washBuilding addBoxToWashBuilding:box];
-    
-    return box;
-    
 }
 
 @end

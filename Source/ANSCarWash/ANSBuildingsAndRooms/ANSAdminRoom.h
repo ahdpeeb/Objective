@@ -7,13 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "ANSBoss.h"
 #import "ANSAccountant.h"
-#import "ANSDirector.h"
+#import "ANSFindingObject.h"
 
+@interface ANSAdminRoom : NSObject <ANSFindingObject>
+@property (nonatomic, readonly) NSArray *workers ;
 
-@interface ANSAdminRoom : NSObject
+- (instancetype)initWithAccountant:(ANSAccountant *)accountant boss:(ANSBoss *)boss;
 
-@property (nonatomic, retain) ANSAccountant *accountant; //remove to another room
-@property (nonatomic, retain) ANSDirector *direcrot; //remove to another room
+- (void)addWorker:(id)worker;
+- (void)removeWorker:(id)worker;
+- (ANSAccountant *)firsAccountant;
+- (ANSAccountant *)firsBoss;
 
 @end
