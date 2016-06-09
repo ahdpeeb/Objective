@@ -10,4 +10,6 @@
 
 @interface NSString (ANSExtension)
 
++ (instancetype)randomStrnigWithLength:(NSInteger)length;
+
 @end
