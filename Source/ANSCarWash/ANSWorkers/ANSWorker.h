@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ANSMoneyOwner.h"
+#import "ANSFindingObject.h"
 
-@interface ANSWorker : NSObject <ANSMoneyOwner>
+@interface ANSWorker : NSObject <ANSMoneyOwner, ANSFindingObject>
 @property (nonatomic, assign)           float             income;
 @property (nonatomic, assign)           NSInteger         yearsOfExperience;
 

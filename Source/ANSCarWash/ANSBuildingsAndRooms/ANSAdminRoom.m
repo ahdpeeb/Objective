@@ -67,10 +67,10 @@
     [self.mutableWorkers removeObject:worker];
 }
 
-- (NSArray *)findWorkerWithClass:(Class)anyClass {
+- (NSArray *)ObjectsWithClass:(Class<ANSFindingObject>)anyClass {
     NSMutableArray *mutableArray = [NSMutableArray object];
     for (id worker in self.mutableWorkers) {
-        if ([worker isKindOfClass:[anyClass class]]) {
+        if ([worker isKindOfClass:anyClass]) {
             [mutableArray addObject:worker];
         }
     }
@@ -79,13 +79,13 @@
 }
 
 - (ANSAccountant *)firsAccountant {
-    NSArray *accountants = [self findWorkerWithClass:[ANSAccountant class]];
+    NSArray *accountants = [self objectsWithClass:[ANSAccountant class]];
     
     return [accountants objectAtIndex:0];
 }
 
 - (ANSAccountant *)firsBoss {
-    NSArray *bosses = [self findWorkerWithClass:[ANSAccountant class]];
+    NSArray *bosses = [self objectsWithClass:[ANSAccountant class]];
     
     return [bosses objectAtIndex:0];
 }

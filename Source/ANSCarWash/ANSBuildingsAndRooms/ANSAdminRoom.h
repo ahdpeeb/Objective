@@ -10,8 +10,9 @@
 
 #import "ANSBoss.h"
 #import "ANSAccountant.h"
+#import "ANSFindingObject.h"
 
-@interface ANSAdminRoom : NSObject
+@interface ANSAdminRoom : NSObject <ANSFindingObject>
 @property (nonatomic, readonly) NSArray *workers ;
 
 - (instancetype)initWithAccountant:(ANSAccountant *)accountant boss:(ANSBoss *)boss;
@@ -20,7 +21,5 @@
 - (void)removeWorker:(id)worker;
 - (ANSAccountant *)firsAccountant;
 - (ANSAccountant *)firsBoss;
-
-- (NSArray *)findWorkerWithClass:(Class)anyClass;
 
 @end
