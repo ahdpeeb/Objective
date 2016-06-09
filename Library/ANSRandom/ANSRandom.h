@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-NSInteger ANSRandomIntWithRange(NSInteger min, NSInteger max);
+NSInteger ANSRandomIntegerWithRange(NSInteger min, NSInteger max);
 
 BOOL ANSRandomBool(void);
 
