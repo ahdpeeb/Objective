@@ -78,7 +78,7 @@
 - (NSArray *)workersWithClass:(Class)class {
     NSMutableArray *workers = [NSMutableArray object];
     for (id room in self.mutablerooms) {
-    [workers addObjectsFromArray:[room objectsWithClass:class]];
+        [workers addObjectsFromArray:[room objectsWithClass:class]];
     }
     
     return [[workers copy] autorelease];

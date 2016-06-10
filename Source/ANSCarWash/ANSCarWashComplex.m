@@ -69,8 +69,8 @@ ANSBuilding *washing;
         [freeBox addCar:car];
         [washer washCar:car];
         [freeBox removeCar:car];
-        ANSBoss *boss = (ANSBoss *)[office workersWithClass:[ANSBoss class]];
-        ANSAccountant *accountant = (ANSAccountant *)[office workersWithClass:[ANSAccountant class]];
+        ANSBoss *boss = (ANSBoss *)[self firsWorkerWithClass:[ANSBoss class]];
+        ANSAccountant *accountant = (ANSAccountant *)[self firsWorkerWithClass:[ANSBoss class]];
         [accountant takeMoneyFromObject:washer];
         [boss takeMoneyFromObject:accountant];
     }
@@ -78,7 +78,6 @@ ANSBuilding *washing;
 
 #pragma mark -
 #pragma mark Privat test methods
-
 
 - (instancetype)firsWorkerWithClass:(Class)class {
     NSArray *array = [office workersWithClass:class];
