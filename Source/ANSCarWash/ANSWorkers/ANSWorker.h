@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "ANSMoneyOwner.h"
 
 @interface ANSWorker : NSObject <ANSMoneyOwner>

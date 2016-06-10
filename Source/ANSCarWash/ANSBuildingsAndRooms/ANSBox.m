@@ -8,8 +8,9 @@
 
 #import "ANSBox.h"
 
-#import "NSObject+ANSExtension.h"
 #import "ANSConstants.h"
+
+#import "NSObject+ANSExtension.h"
 
 @interface ANSWashBox ()
 @property (nonatomic, retain) NSMutableArray *mutableCarsQueue;
