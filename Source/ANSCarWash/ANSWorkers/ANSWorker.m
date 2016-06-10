@@ -11,7 +11,7 @@
 #import "ANSRandom.h"
 
 @interface ANSWorker ()
-@property(nonatomic, assign) float money;
+@property (nonatomic, assign) float money;
 
 @end
 

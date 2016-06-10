@@ -7,6 +7,7 @@
 //
 
 #import "ANSWashBuilding.h"
+#import "ANSConstants.h"
 
 #import "NSObject+ANSExtension.h"
 
@@ -60,7 +61,7 @@
         }
     }
     
-    NSLog(@"No sutable box for car"); //kANSallBoxesFul
+    NSLog(@"%@", kANSallBoxesFul);
     
     return nil;
 }

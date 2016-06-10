@@ -16,6 +16,7 @@
 @end
 
 @implementation ANSAdminBuilding
+
 @dynamic adminRooms;
 
 #pragma mark -
@@ -24,8 +25,8 @@
 - (instancetype)init {
     self = [super init];
     self.mutableAdminRooms = [NSMutableArray object];
-    ANSAdminRoom *room = [[[ANSAdminRoom alloc]initWithAccountant:[ANSAccountant object]
-                                                             boss:[ANSBoss object]]autorelease];
+    ANSAdminRoom *room = [[[ANSAdminRoom alloc] initWithAccountant:[ANSAccountant object]
+                                                              boss:[ANSBoss object]] autorelease];
     [self addRoom:room];
     
     return self;

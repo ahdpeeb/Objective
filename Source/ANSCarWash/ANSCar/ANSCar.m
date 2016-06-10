@@ -7,6 +7,7 @@
 //
 
 #import "ANSCar.h"
+#import "ANSConstants.h"
 
 @interface ANSCar ()
 @property(nonatomic, assign) float money;
@@ -21,7 +22,7 @@
 - (instancetype)init {
     self = [super init];
     self.status = ANSCarDirty;
-    self.money = 5; // kANSServiceCost
+    self.money = kANSServiceCost;
 
     return self;
 }

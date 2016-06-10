@@ -67,10 +67,10 @@
     [self.mutableWorkers removeObject:worker];
 }
 
-- (NSArray *)ObjectsWithClass:(Class<ANSFindingObject>)anyClass {
+- (NSArray *)objectsWithClass:(Class)class {
     NSMutableArray *mutableArray = [NSMutableArray object];
     for (id worker in self.mutableWorkers) {
-        if ([worker isKindOfClass:anyClass]) {
+        if ([worker isKindOfClass:class]) {
             [mutableArray addObject:worker];
         }
     }
