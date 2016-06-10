@@ -6,14 +6,14 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "ANSWashBox.h"
+#import "ANSBox.h"
 
 #import "NSObject+ANSExtension.h"
 #import "ANSConstants.h"
 
 @interface ANSWashBox ()
 @property (nonatomic, retain) NSMutableArray *mutableCarsQueue;
-@property (nonatomic, assign) BOOL           fullWithCars;
+@property (nonatomic, assign) BOOL           occupied;
 
 - (BOOL)ANS_isWashBoxAvailableForCar:(ANSCar *)car;
 
@@ -29,7 +29,7 @@
 - (instancetype)init {
     self = [super init];
     self.mutableCarsQueue = [NSMutableArray object];
-    self.fullWithCars = NO;
+    self.occupied = NO;
     ANSCarWasher *washer = [ANSCarWasher object];
     [self addWorker:washer];
     
@@ -59,7 +59,7 @@
     }
     
     if (carsLine.count >= kANSMaxCarCapacity) {
-        self.fullWithCars = YES;
+        self.occupied = YES;
     }
 }
 
@@ -68,7 +68,7 @@
     [carsLine removeObject:car];
     
     if (carsLine.count < kANSMaxCarCapacity) {
-        self.fullWithCars = NO;
+        self.occupied = NO;
     }
 }
 
@@ -81,7 +81,7 @@
 }
 
 - (BOOL)isReady {
-    return !self.isFullWithCars; //&& self.carsQueue.count < self.workers.count;
+    return !self.isOccupied; //&& self.carsQueue.count < self.workers.count;
 }
 
 #pragma mark -

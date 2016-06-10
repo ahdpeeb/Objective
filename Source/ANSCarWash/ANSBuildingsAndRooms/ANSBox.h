@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSAdminRoom.h"
+#import "ANSRoom.h"
 #import "ANSCarWasher.h"
 #import "ANSCar.h"
 
 @interface ANSWashBox : ANSAdminRoom
-@property (nonatomic, readonly)                               NSArray *carsQueue;
-@property (nonatomic, readonly, getter = isFullWithCars)      BOOL    fullWithCars;
+@property (nonatomic, readonly)                      NSArray *carsQueue;
+@property (nonatomic, readonly, getter = isOccupied) BOOL    occupied;
 
 - (void)addCar:(ANSCar *)car;
 - (void)removeCar:(ANSCar *)car;

@@ -10,6 +10,14 @@
 
 @interface NSString (ANSExtension)
 
-+ (instancetype)randomStrnigWithLength:(NSUInteger)length;
++ (instancetype)randomStringWithLength:(NSUInteger)length;
++ (instancetype)randomStringWithLength:(NSUInteger)length
+                              alphabet:(NSString *)alphabet;
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseLetterAlphabet;
++ (instancetype)capitalizedLetterAlphabet;
++ (instancetype)letterAlphabet;
 
 @end

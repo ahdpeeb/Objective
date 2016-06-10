@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSAdminRoom.h"
+#import "ANSRoom.h"
 
 @interface ANSAdminBuilding : NSObject
 @property (nonatomic, readonly) NSArray *adminRooms;

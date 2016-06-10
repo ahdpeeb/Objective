@@ -19,7 +19,8 @@ int main(int argc, const char * argv[]) {
         [complex washCar:car];
         
         NSLog(@"Hi");
-        
     }
+    
     return 0;
 }
+

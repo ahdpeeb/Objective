@@ -6,7 +6,7 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "ANSAdminRoom.h"
+#import "ANSRoom.h"
 
 #import "NSObject+ANSExtension.h"
 
