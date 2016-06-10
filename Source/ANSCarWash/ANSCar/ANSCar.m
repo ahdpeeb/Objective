@@ -20,16 +20,16 @@
 #pragma mark -
 #pragma mark initialize / deallocate
 
+- (void)dealloc {
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     self.status = ANSCarDirty;
     self.money = kANSServiceCost;
 
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 #pragma mark -

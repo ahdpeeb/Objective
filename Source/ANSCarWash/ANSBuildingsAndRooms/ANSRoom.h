@@ -11,7 +11,7 @@
 #import "ANSBoss.h"
 #import "ANSAccountant.h"
 
-@interface ANSAdminRoom : NSObject
+@interface ANSRoom : NSObject
 @property (nonatomic, readonly) NSArray *workers ;
 
 - (instancetype)initWithAccountant:(ANSAccountant *)accountant boss:(ANSBoss *)boss;

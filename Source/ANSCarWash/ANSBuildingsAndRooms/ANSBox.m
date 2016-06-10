@@ -12,15 +12,15 @@
 
 #import "NSObject+ANSExtension.h"
 
-@interface ANSWashBox ()
+@interface ANSBox ()
 @property (nonatomic, retain) NSMutableArray *mutableCarsQueue;
 @property (nonatomic, assign) BOOL           occupied;
 
-- (BOOL)ANS_isWashBoxAvailableForCar:(ANSCar *)car;
+- (BOOL)isWashBoxAvailableForCar:(ANSCar *)car;
 
 @end
 
-@implementation ANSWashBox
+@implementation ANSBox
 
 @dynamic carsQueue;
 
@@ -55,7 +55,7 @@
 
 - (void)addCar:(ANSCar *)car {
     NSMutableArray *carsLine = self.mutableCarsQueue;
-    if ([self ANS_isWashBoxAvailableForCar:car]) {
+    if ([self isWashBoxAvailableForCar:car]) {
         [carsLine addObject:car];
     }
     
@@ -88,7 +88,7 @@
 #pragma mark -
 #pragma mark Privat Methods
 
-- (BOOL)ANS_isWashBoxAvailableForCar:(ANSCar *)car {
+- (BOOL)isWashBoxAvailableForCar:(ANSCar *)car {
     NSMutableArray *carsLine = self.mutableCarsQueue;
     return carsLine.count < kANSMaxCarCapacity && ![carsLine containsObject:car] ;
 }

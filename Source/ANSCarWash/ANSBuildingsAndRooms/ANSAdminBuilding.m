@@ -11,54 +11,54 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSAdminBuilding ()
-@property (nonatomic, retain) NSMutableArray *mutableAdminRooms;
+@property (nonatomic, retain) NSMutableArray *mutablerooms;
 
 @end
 
 @implementation ANSAdminBuilding
 
-@dynamic adminRooms;
+@dynamic rooms;
 
 #pragma mark -
 #pragma mark initialize / deallocate
 
+- (void)dealloc {
+    self.mutablerooms = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
-    self.mutableAdminRooms = [NSMutableArray object];
-    ANSAdminRoom *room = [[[ANSAdminRoom alloc] initWithAccountant:[ANSAccountant object]
-                                                              boss:[ANSBoss object]] autorelease];
+    self.mutablerooms = [NSMutableArray object];
+    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
+                                                    boss:[ANSBoss object]] autorelease];
     [self addRoom:room];
     
     return self;
-}
-
-- (void)dealloc {
-    self.mutableAdminRooms = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)rooms {
-    return [[self.mutableAdminRooms copy] autorelease];
+    return [[self.mutablerooms copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addRoom:(ANSAdminRoom *)room {
-    NSMutableArray *adminRooms = self.mutableAdminRooms;
-    if(![adminRooms containsObject:room]) {
-        [adminRooms addObject:room];
+- (void)addRoom:(ANSRoom *)room {
+    NSMutableArray *rooms = self.mutablerooms;
+    if(![rooms containsObject:room]) {
+        [rooms addObject:room];
     }
 }
 
-- (void)removeRoom:(ANSAdminRoom *)room {
-    NSMutableArray *adminRooms = self.mutableAdminRooms;
-    if([adminRooms containsObject:room]) {
-        [adminRooms removeObject:room];
+- (void)removeRoom:(ANSRoom *)room {
+    NSMutableArray *rooms = self.mutablerooms;
+    if([rooms containsObject:room]) {
+        [rooms removeObject:room];
     }
 }
 

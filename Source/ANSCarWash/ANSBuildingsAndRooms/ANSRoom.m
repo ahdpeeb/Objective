@@ -10,15 +10,21 @@
 
 #import "NSObject+ANSExtension.h"
 
-@interface ANSAdminRoom ()
+@interface ANSRoom ()
 @property (nonatomic, retain) NSMutableArray *mutableWorkers;
 
 @end
 
-@implementation ANSAdminRoom
+@implementation ANSRoom
 
 #pragma mark -
 #pragma mark initialize / deallocate
+
+- (void)dealloc {
+    self.mutableWorkers = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)init {
     self = [super init];
@@ -38,12 +44,6 @@
     }
     
     return self;
-}
-
-- (void)dealloc {
-    self.mutableWorkers = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

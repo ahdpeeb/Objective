@@ -14,8 +14,8 @@
 
 @property (nonatomic, readonly) NSArray *boxes;
 
-- (void)addBox:(ANSWashBox *)box;
-- (void)removeBox:(ANSWashBox *)box;
-- (ANSWashBox *)freeBox;
+- (void)addBox:(ANSBox *)box;
+- (void)removeBox:(ANSBox *)box;
+- (ANSBox *)freeBox;
 
 @end

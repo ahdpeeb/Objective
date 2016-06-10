@@ -21,15 +21,15 @@
 #pragma mark -
 #pragma mark initialize / deallocate
 
+- (void)dealloc {
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     self.yearsOfExperience = ANSRandomIntegerWithRange(0, 3);
     
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 #pragma mark -

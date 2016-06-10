@@ -12,7 +12,7 @@
 #import "ANSCarWasher.h"
 #import "ANSCar.h"
 
-@interface ANSWashBox : ANSAdminRoom
+@interface ANSBox : ANSRoom
 @property (nonatomic, readonly)                      NSArray *carsQueue;
 @property (nonatomic, readonly, getter = isOccupied) BOOL    occupied;
 

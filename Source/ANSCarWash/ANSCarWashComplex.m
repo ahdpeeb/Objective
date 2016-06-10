@@ -21,6 +21,13 @@
 #pragma mark -
 #pragma mark initialize / deallocate
 
+- (void)dealloc {
+    self.administrative = nil;
+    self.washing = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     self.administrative = [ANSAdminBuilding object];
@@ -29,18 +36,11 @@
     return self;
 }
 
-- (void)dealloc {
-    self.administrative = nil;
-    self.washing = nil;
-    
-    [super dealloc];
-}
-
 #pragma mark -
 #pragma mark Public implementation
 
 - (void)washCar:(ANSCar *)car; {
-    ANSWashBox *freeBox = [self.washing freeBox];
+    ANSBox *freeBox = [self.washing freeBox];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         [freeBox addCar:car];
