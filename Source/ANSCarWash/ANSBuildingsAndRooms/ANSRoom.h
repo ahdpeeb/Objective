@@ -18,8 +18,6 @@
 
 - (void)addWorker:(id)worker;
 - (void)removeWorker:(id)worker;
-- (ANSAccountant *)firsAccountant;
-- (ANSAccountant *)firsBoss;
 - (NSArray *)objectsWithClass:(Class)class;
 
 @end

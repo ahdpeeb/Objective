@@ -28,7 +28,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.mutableWorkers = [NSMutableArray new];
+    self.mutableWorkers = [NSMutableArray object];
     
     return self;
 }
@@ -38,7 +38,7 @@
 {
     self = [super init];
     if (self) {
-        self.mutableWorkers = [NSMutableArray new];
+        self.mutableWorkers = [NSMutableArray object];
         [self.mutableWorkers addObject:accountant];
         [self.mutableWorkers addObject:boss];
     }
@@ -76,18 +76,6 @@
     }
     
     return [mutableArray copy];
-}
-
-- (ANSAccountant *)firsAccountant {
-    NSArray *accountants = [self objectsWithClass:[ANSAccountant class]];
-    
-    return [accountants objectAtIndex:0];
-}
-
-- (ANSAccountant *)firsBoss {
-    NSArray *bosses = [self objectsWithClass:[ANSAccountant class]];
-    
-    return [bosses objectAtIndex:0];
 }
 
 @end

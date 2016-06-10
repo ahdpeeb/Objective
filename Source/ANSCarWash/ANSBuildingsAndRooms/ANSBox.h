@@ -20,6 +20,6 @@
 - (void)removeCar:(ANSCar *)car;
 
 - (ANSCarWasher *)randomWasher;
-- (BOOL)isReady;
+- (BOOL)isReadyToUse;
 
 @end

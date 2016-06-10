@@ -6,16 +6,18 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "ANSAdminBuilding.h"
+#import "ANSBuilding.h"
+
+#import "ANSConstants.h"
 
 #import "NSObject+ANSExtension.h"
 
-@interface ANSAdminBuilding ()
+@interface ANSBuilding ()
 @property (nonatomic, retain) NSMutableArray *mutablerooms;
 
 @end
 
-@implementation ANSAdminBuilding
+@implementation ANSBuilding
 
 @dynamic rooms;
 
@@ -31,9 +33,6 @@
 - (instancetype)init {
     self = [super init];
     self.mutablerooms = [NSMutableArray object];
-    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
-                                                    boss:[ANSBoss object]] autorelease];
-    [self addRoom:room];
     
     return self;
 }
@@ -60,6 +59,29 @@
     if([rooms containsObject:room]) {
         [rooms removeObject:room];
     }
+}
+
+- (instancetype)freeRoom {
+    for (id room in self.mutablerooms) {
+        if ([room respondsToSelector:@selector(isReadyToUse)]) { //makeObjectsPerformSelector
+            if ([room isReadyToUse]) {
+                return room;
+            }
+        }
+    }
+    
+    NSLog(@"%@", kANSallBoxesFul);
+
+    return nil;
+}
+
+- (NSArray *)workersWithClass:(Class)class {
+    NSMutableArray *workers = [NSMutableArray object];
+    for (id room in self.mutablerooms) {
+    [workers addObjectsFromArray:[room objectsWithClass:class]];
+    }
+    
+    return [[workers copy] autorelease];
 }
 
 @end

@@ -81,7 +81,7 @@
     return washer;
 }
 
-- (BOOL)isReady {
+- (BOOL)isReadyToUse {
     return !self.isOccupied; //&& self.carsQueue.count < self.workers.count;
 }
 

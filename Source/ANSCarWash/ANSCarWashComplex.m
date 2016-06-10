@@ -8,11 +8,19 @@
 
 #import "ANSCarWashComplex.h"
 
+#import "ANSBuilding.h"
+#import "ANSRoom.h"
+
 #import "NSObject+ANSExtension.h"
 
+ANSBuilding *office;
+ANSBuilding *washing;
+
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSAdminBuilding  *administrative;
-@property (nonatomic, retain) ANSWashBuilding   *washing;
+@property (nonatomic, retain) NSMutableArray *mutableRooms;
+
+    //test method
+- (instancetype)firsWorkerWithClass:(Class)class;
 
 @end
 
@@ -22,31 +30,63 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
-    self.administrative = nil;
-    self.washing = nil;
+    self.mutableRooms = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.administrative = [ANSAdminBuilding object];
-    self.washing = [ANSWashBuilding object];
+    self.mutableRooms = [NSMutableArray object];
+    office = [ANSBuilding object];
+    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
+                                                    boss:[ANSBoss object]] autorelease];
+    [office addRoom:room];
+    
+    washing = [ANSBuilding object];
+    [washing addRoom:[ANSBox object]];
+    
+    [self.mutableRooms addObject:office];
+    [self.mutableRooms addObject:washing];
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)rooms {
+    return [[self.mutableRooms copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public implementation
 
 - (void)washCar:(ANSCar *)car; {
-    ANSBox *freeBox = [self.washing freeBox];
+    ANSBox *freeBox = (ANSBox*)[washing freeRoom];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         [freeBox addCar:car];
         [washer washCar:car];
         [freeBox removeCar:car];
+        ANSBoss *boss = (ANSBoss *)[office workersWithClass:[ANSBoss class]];
+        ANSAccountant *accountant = (ANSAccountant *)[office workersWithClass:[ANSAccountant class]];
+        [accountant takeMoneyFromObject:washer];
+        [boss takeMoneyFromObject:accountant];
     }
+}
+
+#pragma mark -
+#pragma mark Privat test methods
+
+
+- (instancetype)firsWorkerWithClass:(Class)class {
+    NSArray *array = [office workersWithClass:class];
+    if (array.count != 0) {
+        return [array objectAtIndex:0];
+    }
+    
+    return nil;
 }
 
 @end

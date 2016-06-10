@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "ANSCar.h"
-#import "ANSAdminBuilding.h"
-#import "ANSWashBuilding.h"
 
 @interface ANSCarWashComplex : NSObject
-@property (nonatomic, readonly) ANSAdminBuilding    *administrative;
-@property (nonatomic, readonly) ANSWashBuilding     *washing;
+@property (nonatomic, readonly) NSArray *rooms;
 
 - (void)washCar:(ANSCar *)car;
-    
+
 @end
