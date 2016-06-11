@@ -22,7 +22,7 @@
 
 @implementation ANSBox
 
-@dynamic carsQueue;
+@dynamic cars;
 
 #pragma mark -
 #pragma mark initialize / deallocate
@@ -46,7 +46,7 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)carsLine {
+- (NSArray *)cars {
     return [[self.mutableCarsQueue copy] autorelease];
 }
 

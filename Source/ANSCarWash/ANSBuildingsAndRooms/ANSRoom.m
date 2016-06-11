@@ -36,13 +36,12 @@
 - (instancetype)initWithAccountant:(ANSAccountant *)accountant
                               boss:(ANSBoss *)boss
 {
-    self = [super init];
-    if (self) {
-        self.mutableWorkers = [NSMutableArray object];
-        [self.mutableWorkers addObject:accountant];
-        [self.mutableWorkers addObject:boss];
-    }
+    self = [self init];
     
+    NSMutableArray *workers = self.mutableWorkers;
+    [workers addObject:accountant];
+    [workers addObject:boss];
+
     return self;
 }
 
@@ -67,15 +66,15 @@
     [self.mutableWorkers removeObject:worker];
 }
 
-- (NSArray *)objectsWithClass:(Class)class {
+- (NSArray *)objectsWithClass:(Class)cls {
     NSMutableArray *mutableArray = [NSMutableArray object];
     for (id worker in self.mutableWorkers) {
-        if ([worker isKindOfClass:class]) {
+        if ([worker isKindOfClass:cls]) {
             [mutableArray addObject:worker];
         }
     }
     
-    return [mutableArray copy];
+    return [[mutableArray copy] autorelease];
 }
 
 @end

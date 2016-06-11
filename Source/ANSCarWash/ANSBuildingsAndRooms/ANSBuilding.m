@@ -60,13 +60,11 @@
         [rooms removeObject:room];
     }
 }
-
-- (instancetype)freeRoom {
-    for (id room in self.mutablerooms) {
-        if ([room respondsToSelector:@selector(isReadyToUse)]) { //makeObjectsPerformSelector
-            if ([room isReadyToUse]) {
-                return room;
-            }
+    //dynamic prop!
+- (ANSRoom *)freeRoom {
+    for (ANSRoom *room in self.mutablerooms) {
+        if ([room.isReadyToUse]) { 
+            return room;
         }
     }
     
@@ -75,10 +73,10 @@
     return nil;
 }
 
-- (NSArray *)workersWithClass:(Class)class {
+- (NSArray *)workersWithClass:(Class)cls {
     NSMutableArray *workers = [NSMutableArray object];
-    for (id room in self.mutablerooms) {
-        [workers addObjectsFromArray:[room objectsWithClass:class]];
+    for (ANSRoom *room in self.mutablerooms) {
+        [workers addObjectsFromArray:[room objectsWithClass:cls]];
     }
     
     return [[workers copy] autorelease];

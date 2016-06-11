@@ -18,6 +18,6 @@
 
 - (void)addWorker:(id)worker;
 - (void)removeWorker:(id)worker;
-- (NSArray *)objectsWithClass:(Class)class;
+- (NSArray *)objectsWithClass:(Class)cls;
 
 @end

@@ -13,13 +13,13 @@
 #import "ANSCar.h"
 
 @interface ANSBox : ANSRoom
-@property (nonatomic, readonly)                      NSArray *carsQueue;
-@property (nonatomic, readonly, getter = isOccupied) BOOL    occupied;
+@property (nonatomic, readonly)                      NSArray *cars;
+@property (nonatomic, readonly, getter = isOccupied) BOOL    occupied; //dynamic prop
 
 - (void)addCar:(ANSCar *)car;
 - (void)removeCar:(ANSCar *)car;
 
 - (ANSCarWasher *)randomWasher;
-- (BOOL)isReadyToUse;
+- (BOOL)isReadyToUse; //dynamic prop!
 
 @end

@@ -20,7 +20,7 @@ ANSBuilding *washing;
 @property (nonatomic, retain) NSMutableArray *mutableRooms;
 
     //test method
-- (instancetype)firsWorkerWithClass:(Class)class;
+- (id)workerWithClass:(Class)cls;
 
 @end
 
@@ -69,8 +69,8 @@ ANSBuilding *washing;
         [freeBox addCar:car];
         [washer washCar:car];
         [freeBox removeCar:car];
-        ANSBoss *boss = (ANSBoss *)[self firsWorkerWithClass:[ANSBoss class]];
-        ANSAccountant *accountant = (ANSAccountant *)[self firsWorkerWithClass:[ANSBoss class]];
+        ANSBoss *boss = (ANSBoss *)[self workerWithClass:[ANSBoss class]];
+        ANSAccountant *accountant = (ANSAccountant *)[self workerWithClass:[ANSBoss class]];
         [accountant takeMoneyFromObject:washer];
         [boss takeMoneyFromObject:accountant];
     }
@@ -79,13 +79,8 @@ ANSBuilding *washing;
 #pragma mark -
 #pragma mark Privat test methods
 
-- (instancetype)firsWorkerWithClass:(Class)class {
-    NSArray *array = [office workersWithClass:class];
-    if (array.count != 0) {
-        return [array objectAtIndex:0];
-    }
-    
-    return nil;
+- (id)workerWithClass:(Class)cls {
+    return [[office workersWithClass:cls] firstObject];
 }
 
 @end

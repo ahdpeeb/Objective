@@ -16,9 +16,11 @@
 
 - (void)addRoom:(ANSRoom *)room;
 - (void)removeRoom:(ANSRoom *)room;
+
 // returns free box for washing a car.
 - (instancetype)freeRoom;
+
 // returns array workers with class
-- (NSArray *)workersWithClass:(Class)class;
+- (NSArray *)workersWithClass:(Class)cls;
 
 @end
