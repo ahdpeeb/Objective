@@ -14,7 +14,7 @@
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
 
-        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        ANSCarWashComplex *complex = [[[ANSCarWashComplex alloc] initInfrastructure] autorelease];
         ANSCar *car = [ANSCar object];
         [complex washCar:car];
         

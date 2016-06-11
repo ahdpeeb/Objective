@@ -60,11 +60,13 @@
         [rooms removeObject:room];
     }
 }
-    //dynamic prop!
-- (ANSRoom *)freeRoom {
+
+- (ANSBox *)freeRoom {
     for (ANSRoom *room in self.mutablerooms) {
-        if ([room.isReadyToUse]) { 
-            return room;
+        if ([room respondsToSelector:@selector(isOccupied)]) {
+            if (![(ANSBox *)room isOccupied]) {
+                return (ANSBox *)room;
+            }
         }
     }
     

@@ -17,7 +17,9 @@ ANSBuilding *office;
 ANSBuilding *washing;
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) NSMutableArray *mutableRooms;
+@property (nonatomic, retain) NSMutableArray    *mutableRooms;
+@property (nonatomic, retain) ANSBuilding       *office;
+@property (nonatomic, retain) ANSBuilding       *washing;
 
     //test method
 - (id)workerWithClass:(Class)cls;
@@ -31,23 +33,33 @@ ANSBuilding *washing;
 
 - (void)dealloc {
     self.mutableRooms = nil;
+    self.office = nil;
+    self.washing = nil;
     
     [super dealloc];
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
     self.mutableRooms = [NSMutableArray object];
-    office = [ANSBuilding object];
+    NSMutableArray *rooms = self.mutableRooms;
+    
+    self.office = [ANSBuilding object];
+    self.washing = [ANSBuilding object];
+
+    [rooms addObject:self.office];
+    [rooms addObject:self.washing];
+    
+    return self;
+}
+
+- (instancetype)initInfrastructure {
+    self = [self init];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
                                                     boss:[ANSBoss object]] autorelease];
-    [office addRoom:room];
-    
-    washing = [ANSBuilding object];
-    [washing addRoom:[ANSBox object]];
-    
-    [self.mutableRooms addObject:office];
-    [self.mutableRooms addObject:washing];
+    [self.office addRoom:room];
+    [self.washing addRoom:[ANSBox object]];
     
     return self;
 }
@@ -63,7 +75,7 @@ ANSBuilding *washing;
 #pragma mark Public implementation
 
 - (void)washCar:(ANSCar *)car; {
-    ANSBox *freeBox = (ANSBox*)[washing freeRoom];
+    ANSBox *freeBox = [self.washing freeRoom];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         [freeBox addCar:car];

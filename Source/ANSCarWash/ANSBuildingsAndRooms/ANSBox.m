@@ -13,24 +13,21 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSBox ()
-@property (nonatomic, retain) NSMutableArray *mutableCarsQueue;
-@property (nonatomic, assign) BOOL           occupied;
-
-- (BOOL)isWashBoxAvailableForCar:(ANSCar *)car;
+@property (nonatomic, retain) NSMutableArray *mutableCars;
 
 @end
 
 @implementation ANSBox
 
 @dynamic cars;
+@dynamic occupied;
 
 #pragma mark -
 #pragma mark initialize / deallocate
 
 - (instancetype)init {
     self = [super init];
-    self.mutableCarsQueue = [NSMutableArray object];
-    self.occupied = NO;
+    self.mutableCars = [NSMutableArray object];
     ANSCarWasher *washer = [ANSCarWasher object];
     [self addWorker:washer];
     
@@ -38,7 +35,7 @@
 }
 
 - (void)dealloc {
-    self.mutableCarsQueue = nil;
+    self.mutableCars = nil;
     
     [super dealloc];
 }
@@ -47,30 +44,25 @@
 #pragma mark Accessors
 
 - (NSArray *)cars {
-    return [[self.mutableCarsQueue copy] autorelease];
+    return [[self.mutableCars copy] autorelease];
+}
+
+- (BOOL)isOccupied {
+    return self.cars.count >= kANSMaxCarCapacity;
 }
 
 #pragma mark -
 #pragma mark Public methods
 
 - (void)addCar:(ANSCar *)car {
-    NSMutableArray *carsLine = self.mutableCarsQueue;
-    if ([self isWashBoxAvailableForCar:car]) {
-        [carsLine addObject:car];
-    }
-    
-    if (carsLine.count >= kANSMaxCarCapacity) {
-        self.occupied = YES;
+    NSMutableArray *cars = self.mutableCars;
+    if (!self.isOccupied && ![cars containsObject:car]) {
+        [cars addObject:car];
     }
 }
 
 - (void)removeCar:(ANSCar *)car {
-    NSMutableArray *carsLine = self.mutableCarsQueue;
-    [carsLine removeObject:car];
-    
-    if (carsLine.count < kANSMaxCarCapacity) {
-        self.occupied = NO;
-    }
+    [self.mutableCars removeObject:car];
 }
 
 - (ANSCarWasher *)randomWasher {
@@ -83,14 +75,6 @@
 
 - (BOOL)isReadyToUse {
     return !self.isOccupied; //&& self.carsQueue.count < self.workers.count;
-}
-
-#pragma mark -
-#pragma mark Privat Methods
-
-- (BOOL)isWashBoxAvailableForCar:(ANSCar *)car {
-    NSMutableArray *carsLine = self.mutableCarsQueue;
-    return carsLine.count < kANSMaxCarCapacity && ![carsLine containsObject:car] ;
 }
 
 @end
