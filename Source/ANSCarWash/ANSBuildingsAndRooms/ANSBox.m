@@ -11,6 +11,7 @@
 #import "ANSConstants.h"
 
 #import "NSObject+ANSExtension.h"
+#import "ANSRandom.h"
 
 @interface ANSBox ()
 @property (nonatomic, retain) NSMutableArray *mutableCars;
@@ -67,14 +68,14 @@
 
 - (ANSCarWasher *)randomWasher {
     NSArray *washers = self.workers;
-    NSInteger randomIndex = arc4random_uniform((u_int32_t)(washers.count));
+    NSInteger randomIndex = ANSRandomUnsignedInteget(washers.count);
     ANSCarWasher *washer = [washers objectAtIndex:randomIndex];
     
     return washer;
 }
 
 - (BOOL)isReadyToUse {
-    return !self.isOccupied; //&& self.carsQueue.count < self.workers.count;
+    return !self.isOccupied;
 }
 
 @end

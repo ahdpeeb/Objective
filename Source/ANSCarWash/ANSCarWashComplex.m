@@ -78,11 +78,13 @@ ANSBuilding *washing;
     ANSBox *freeBox = [self.washing freeRoom];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
+        ANSBoss *boss = [self workerWithClass:[ANSBoss class]];
+        ANSAccountant *accountant = [self workerWithClass:[ANSBoss class]];
+        
         [freeBox addCar:car];
         [washer washCar:car];
         [freeBox removeCar:car];
-        ANSBoss *boss = (ANSBoss *)[self workerWithClass:[ANSBoss class]];
-        ANSAccountant *accountant = (ANSAccountant *)[self workerWithClass:[ANSBoss class]];
+
         [accountant takeMoneyFromObject:washer];
         [boss takeMoneyFromObject:accountant];
     }
