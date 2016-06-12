@@ -7,26 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D0F311D0049DF00DF749C /* ANSCreature.m */; };
-		931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4471D005B0900756016 /* ANSCreatureMale.m */; };
-		931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA44A1D005B2900756016 /* ANSCreatureFemale.m */; };
 		935C2EC91D0D541F00CB11DE /* ANSAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2EC81D0D541F00CB11DE /* ANSAlphabet.m */; };
 		935C2ECC1D0D5EF500CB11DE /* ANSRAngeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ECB1D0D5EF500CB11DE /* ANSRAngeAlphabet.m */; };
 		935C2ED01D0D5F1F00CB11DE /* ANSClasterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ECF1D0D5F1F00CB11DE /* ANSClasterAlphabet.m */; };
 		935C2ED31D0D5F4100CB11DE /* ANSStringAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ED21D0D5F4100CB11DE /* ANSStringAlphabet.m */; };
-		937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */; };
-		937A2B861D0471F000D52556 /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B851D0471F000D52556 /* ANSWorker.m */; };
-		937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B8C1D047E9900D52556 /* ANSCar.m */; };
-		937A2B911D048E3E00D52556 /* ANSAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B901D048E3E00D52556 /* ANSAccountant.m */; };
-		937A2BA81D05785800D52556 /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BA11D05785800D52556 /* ANSBuilding.m */; };
-		937A2BA91D05785800D52556 /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BA31D05785800D52556 /* ANSRoom.m */; };
-		937A2BAA1D05785800D52556 /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BA51D05785800D52556 /* ANSBox.m */; };
-		937A2BB51D06E2BC00D52556 /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BB41D06E2BC00D52556 /* ANSCarWasher.m */; };
-		937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BBA1D06E9DF00D52556 /* ANSBoss.m */; };
+		935C2F2C1D0DDAE900CB11DE /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F101D0DDAE900CB11DE /* ANSBox.m */; };
+		935C2F2D1D0DDAE900CB11DE /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F101D0DDAE900CB11DE /* ANSBox.m */; };
+		935C2F2E1D0DDAE900CB11DE /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F121D0DDAE900CB11DE /* ANSBuilding.m */; };
+		935C2F2F1D0DDAE900CB11DE /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F121D0DDAE900CB11DE /* ANSBuilding.m */; };
+		935C2F301D0DDAE900CB11DE /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F141D0DDAE900CB11DE /* ANSRoom.m */; };
+		935C2F311D0DDAE900CB11DE /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F141D0DDAE900CB11DE /* ANSRoom.m */; };
+		935C2F321D0DDAE900CB11DE /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F171D0DDAE900CB11DE /* ANSCar.m */; };
+		935C2F331D0DDAE900CB11DE /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F171D0DDAE900CB11DE /* ANSCar.m */; };
+		935C2F341D0DDAE900CB11DE /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F191D0DDAE900CB11DE /* ANSCarWashComplex.m */; };
+		935C2F351D0DDAE900CB11DE /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F191D0DDAE900CB11DE /* ANSCarWashComplex.m */; };
+		935C2F361D0DDAE900CB11DE /* ANSAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F1E1D0DDAE900CB11DE /* ANSAccountant.m */; };
+		935C2F371D0DDAE900CB11DE /* ANSAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F1E1D0DDAE900CB11DE /* ANSAccountant.m */; };
+		935C2F381D0DDAE900CB11DE /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F201D0DDAE900CB11DE /* ANSBoss.m */; };
+		935C2F391D0DDAE900CB11DE /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F201D0DDAE900CB11DE /* ANSBoss.m */; };
+		935C2F3A1D0DDAE900CB11DE /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F221D0DDAE900CB11DE /* ANSCarWasher.m */; };
+		935C2F3B1D0DDAE900CB11DE /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F221D0DDAE900CB11DE /* ANSCarWasher.m */; };
+		935C2F3C1D0DDAE900CB11DE /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F241D0DDAE900CB11DE /* ANSWorker.m */; };
+		935C2F3D1D0DDAE900CB11DE /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F241D0DDAE900CB11DE /* ANSWorker.m */; };
+		935C2F3E1D0DDAE900CB11DE /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F271D0DDAE900CB11DE /* ANSCreature.m */; };
+		935C2F3F1D0DDAE900CB11DE /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F271D0DDAE900CB11DE /* ANSCreature.m */; };
+		935C2F401D0DDAE900CB11DE /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F291D0DDAE900CB11DE /* ANSCreatureFemale.m */; };
+		935C2F411D0DDAE900CB11DE /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F291D0DDAE900CB11DE /* ANSCreatureFemale.m */; };
+		935C2F421D0DDAE900CB11DE /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F2B1D0DDAE900CB11DE /* ANSCreatureMale.m */; };
+		935C2F431D0DDAE900CB11DE /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F2B1D0DDAE900CB11DE /* ANSCreatureMale.m */; };
+		935C2F451D0DDB0E00CB11DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2F441D0DDB0E00CB11DE /* main.m */; };
 		937A2BC41D07126200D52556 /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC01D07126200D52556 /* ANSRandom.m */; };
 		937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */; };
 		937A2BD51D09AFEE00D52556 /* NSString+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */; };
-		937FBE9A1D01D50E00BD0F3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FBE991D01D50E00BD0F3F /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,12 +55,6 @@
 
 /* Begin PBXFileReference section */
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
-		931D0F301D0049DF00DF749C /* ANSCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreature.h; sourceTree = "<group>"; };
-		931D0F311D0049DF00DF749C /* ANSCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreature.m; sourceTree = "<group>"; };
-		931FA4461D005B0900756016 /* ANSCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureMale.h; sourceTree = "<group>"; };
-		931FA4471D005B0900756016 /* ANSCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureMale.m; sourceTree = "<group>"; };
-		931FA4491D005B2900756016 /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
-		931FA44A1D005B2900756016 /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
 		935C2EC71D0D541F00CB11DE /* ANSAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSAlphabet.h; sourceTree = "<group>"; };
 		935C2EC81D0D541F00CB11DE /* ANSAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSAlphabet.m; sourceTree = "<group>"; };
 		935C2ECA1D0D5EF500CB11DE /* ANSRAngeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSRAngeAlphabet.h; path = Privat/ANSRAngeAlphabet.h; sourceTree = "<group>"; };
@@ -57,38 +63,53 @@
 		935C2ECF1D0D5F1F00CB11DE /* ANSClasterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSClasterAlphabet.m; path = Privat/ANSClasterAlphabet.m; sourceTree = "<group>"; };
 		935C2ED11D0D5F4100CB11DE /* ANSStringAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSStringAlphabet.h; path = Privat/ANSStringAlphabet.h; sourceTree = "<group>"; };
 		935C2ED21D0D5F4100CB11DE /* ANSStringAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSStringAlphabet.m; path = Privat/ANSStringAlphabet.m; sourceTree = "<group>"; };
-		937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWashComplex.h; path = Source/ANSCarWash/ANSCarWashComplex.h; sourceTree = "<group>"; };
-		937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWashComplex.m; path = Source/ANSCarWash/ANSCarWashComplex.m; sourceTree = "<group>"; };
-		937A2B841D0471F000D52556 /* ANSWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSWorker.h; path = Source/ANSCarWash/ANSWorkers/ANSWorker.h; sourceTree = "<group>"; };
-		937A2B851D0471F000D52556 /* ANSWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSWorker.m; path = Source/ANSCarWash/ANSWorkers/ANSWorker.m; sourceTree = "<group>"; };
-		937A2B8B1D047E9900D52556 /* ANSCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCar.h; path = Source/ANSCarWash/ANSCar/ANSCar.h; sourceTree = "<group>"; };
-		937A2B8C1D047E9900D52556 /* ANSCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCar.m; path = Source/ANSCarWash/ANSCar/ANSCar.m; sourceTree = "<group>"; };
-		937A2B8F1D048E3E00D52556 /* ANSAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSAccountant.h; path = Source/ANSCarWash/ANSWorkers/ANSAccountant.h; sourceTree = "<group>"; };
-		937A2B901D048E3E00D52556 /* ANSAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAccountant.m; path = Source/ANSCarWash/ANSWorkers/ANSAccountant.m; sourceTree = "<group>"; };
-		937A2BA01D05785800D52556 /* ANSBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBuilding.h; sourceTree = "<group>"; };
-		937A2BA11D05785800D52556 /* ANSBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBuilding.m; sourceTree = "<group>"; };
-		937A2BA21D05785800D52556 /* ANSRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRoom.h; sourceTree = "<group>"; };
-		937A2BA31D05785800D52556 /* ANSRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRoom.m; sourceTree = "<group>"; };
-		937A2BA41D05785800D52556 /* ANSBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBox.h; sourceTree = "<group>"; };
-		937A2BA51D05785800D52556 /* ANSBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBox.m; sourceTree = "<group>"; };
-		937A2BB31D06E2BC00D52556 /* ANSCarWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWasher.h; path = Source/ANSCarWash/ANSWorkers/ANSCarWasher.h; sourceTree = "<group>"; };
-		937A2BB41D06E2BC00D52556 /* ANSCarWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWasher.m; path = Source/ANSCarWash/ANSWorkers/ANSCarWasher.m; sourceTree = "<group>"; };
-		937A2BB91D06E9DF00D52556 /* ANSBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSBoss.h; path = Source/ANSCarWash/ANSWorkers/ANSBoss.h; sourceTree = "<group>"; };
-		937A2BBA1D06E9DF00D52556 /* ANSBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSBoss.m; path = Source/ANSCarWash/ANSWorkers/ANSBoss.m; sourceTree = "<group>"; };
-		937A2BBC1D0710E800D52556 /* ANSMoneyOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSMoneyOwner.h; path = Source/ANSCarWash/ANSMoneyOwner.h; sourceTree = "<group>"; };
+		935C2ED81D0DD8C100CB11DE /* ObjectiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		935C2EDC1D0DD8C100CB11DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		935C2F0F1D0DDAE900CB11DE /* ANSBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBox.h; sourceTree = "<group>"; };
+		935C2F101D0DDAE900CB11DE /* ANSBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBox.m; sourceTree = "<group>"; };
+		935C2F111D0DDAE900CB11DE /* ANSBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBuilding.h; sourceTree = "<group>"; };
+		935C2F121D0DDAE900CB11DE /* ANSBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBuilding.m; sourceTree = "<group>"; };
+		935C2F131D0DDAE900CB11DE /* ANSRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRoom.h; sourceTree = "<group>"; };
+		935C2F141D0DDAE900CB11DE /* ANSRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRoom.m; sourceTree = "<group>"; };
+		935C2F161D0DDAE900CB11DE /* ANSCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCar.h; sourceTree = "<group>"; };
+		935C2F171D0DDAE900CB11DE /* ANSCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCar.m; sourceTree = "<group>"; };
+		935C2F181D0DDAE900CB11DE /* ANSCarWashComplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCarWashComplex.h; sourceTree = "<group>"; };
+		935C2F191D0DDAE900CB11DE /* ANSCarWashComplex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashComplex.m; sourceTree = "<group>"; };
+		935C2F1A1D0DDAE900CB11DE /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
+		935C2F1B1D0DDAE900CB11DE /* ANSMoneyOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSMoneyOwner.h; sourceTree = "<group>"; };
+		935C2F1D1D0DDAE900CB11DE /* ANSAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSAccountant.h; sourceTree = "<group>"; };
+		935C2F1E1D0DDAE900CB11DE /* ANSAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSAccountant.m; sourceTree = "<group>"; };
+		935C2F1F1D0DDAE900CB11DE /* ANSBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBoss.h; sourceTree = "<group>"; };
+		935C2F201D0DDAE900CB11DE /* ANSBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBoss.m; sourceTree = "<group>"; };
+		935C2F211D0DDAE900CB11DE /* ANSCarWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCarWasher.h; sourceTree = "<group>"; };
+		935C2F221D0DDAE900CB11DE /* ANSCarWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCarWasher.m; sourceTree = "<group>"; };
+		935C2F231D0DDAE900CB11DE /* ANSWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSWorker.h; sourceTree = "<group>"; };
+		935C2F241D0DDAE900CB11DE /* ANSWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSWorker.m; sourceTree = "<group>"; };
+		935C2F261D0DDAE900CB11DE /* ANSCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreature.h; sourceTree = "<group>"; };
+		935C2F271D0DDAE900CB11DE /* ANSCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreature.m; sourceTree = "<group>"; };
+		935C2F281D0DDAE900CB11DE /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
+		935C2F291D0DDAE900CB11DE /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
+		935C2F2A1D0DDAE900CB11DE /* ANSCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureMale.h; sourceTree = "<group>"; };
+		935C2F2B1D0DDAE900CB11DE /* ANSCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureMale.m; sourceTree = "<group>"; };
+		935C2F441D0DDB0E00CB11DE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		937A2BBF1D07126200D52556 /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
 		937A2BC01D07126200D52556 /* ANSRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRandom.m; sourceTree = "<group>"; };
 		937A2BC21D07126200D52556 /* NSObject+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ANSExtension.h"; sourceTree = "<group>"; };
 		937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ANSExtension.m"; sourceTree = "<group>"; };
 		937A2BD31D09AFEE00D52556 /* NSString+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ANSExtension.h"; sourceTree = "<group>"; };
 		937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ANSExtension.m"; sourceTree = "<group>"; };
-		937A2BD61D09B03D00D52556 /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSConstants.h; path = Source/ANSCarWash/ANSConstants.h; sourceTree = "<group>"; };
-		937FBE991D01D50E00BD0F3F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		931D0F1A1D00480900DF749C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		935C2ED51D0DD8C100CB11DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,10 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */,
+				935C2F441D0DDB0E00CB11DE /* main.m */,
 				937A2BBD1D07126200D52556 /* Library */,
-				931D0F2E1D0049DF00DF749C /* Source */,
+				935C2F0C1D0DDAE900CB11DE /* Source */,
+				935C2ED91D0DD8C100CB11DE /* ObjectiveTests */,
 				931D0F1E1D00480900DF749C /* Products */,
-				937FBE991D01D50E00BD0F3F /* main.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,30 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				931D0F1D1D00480900DF749C /* Objective-c course */,
+				935C2ED81D0DD8C100CB11DE /* ObjectiveTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		931D0F2E1D0049DF00DF749C /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				937A2B801D04645C00D52556 /* ANSCarWash */,
-				931D0F2F1D0049DF00DF749C /* ANSCreature */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		931D0F2F1D0049DF00DF749C /* ANSCreature */ = {
-			isa = PBXGroup;
-			children = (
-				931D0F301D0049DF00DF749C /* ANSCreature.h */,
-				931D0F311D0049DF00DF749C /* ANSCreature.m */,
-				931FA4461D005B0900756016 /* ANSCreatureMale.h */,
-				931FA4471D005B0900756016 /* ANSCreatureMale.m */,
-				931FA4491D005B2900756016 /* ANSCreatureFemale.h */,
-				931FA44A1D005B2900756016 /* ANSCreatureFemale.m */,
-			);
-			path = ANSCreature;
 			sourceTree = "<group>";
 		};
 		935C2ECD1D0D5EFA00CB11DE /* Private */ = {
@@ -152,54 +153,85 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
-		937A2B801D04645C00D52556 /* ANSCarWash */ = {
+		935C2ED91D0DD8C100CB11DE /* ObjectiveTests */ = {
 			isa = PBXGroup;
 			children = (
-				937A2BD61D09B03D00D52556 /* ANSConstants.h */,
-				937A2BBC1D0710E800D52556 /* ANSMoneyOwner.h */,
-				937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */,
-				937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */,
-				937A2B9F1D05785800D52556 /* ANSBuildings */,
-				937A2BCD1D09799500D52556 /* ANSRooms */,
-				937A2B8E1D047EAA00D52556 /* ANSCar */,
-				937A2B871D0471FE00D52556 /* ANSWorkers */,
+				935C2EDC1D0DD8C100CB11DE /* Info.plist */,
 			);
-			name = ANSCarWash;
-			path = ..;
+			path = ObjectiveTests;
 			sourceTree = "<group>";
 		};
-		937A2B871D0471FE00D52556 /* ANSWorkers */ = {
+		935C2F0C1D0DDAE900CB11DE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				937A2B841D0471F000D52556 /* ANSWorker.h */,
-				937A2B851D0471F000D52556 /* ANSWorker.m */,
-				937A2BB31D06E2BC00D52556 /* ANSCarWasher.h */,
-				937A2BB41D06E2BC00D52556 /* ANSCarWasher.m */,
-				937A2B8F1D048E3E00D52556 /* ANSAccountant.h */,
-				937A2B901D048E3E00D52556 /* ANSAccountant.m */,
-				937A2BB91D06E9DF00D52556 /* ANSBoss.h */,
-				937A2BBA1D06E9DF00D52556 /* ANSBoss.m */,
+				935C2F0D1D0DDAE900CB11DE /* ANSCarWash */,
+				935C2F251D0DDAE900CB11DE /* ANSCreature */,
 			);
-			name = ANSWorkers;
+			path = Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		935C2F0D1D0DDAE900CB11DE /* ANSCarWash */ = {
+			isa = PBXGroup;
+			children = (
+				935C2F0E1D0DDAE900CB11DE /* ANSBuildingsAndRooms */,
+				935C2F151D0DDAE900CB11DE /* ANSCar */,
+				935C2F181D0DDAE900CB11DE /* ANSCarWashComplex.h */,
+				935C2F191D0DDAE900CB11DE /* ANSCarWashComplex.m */,
+				935C2F1A1D0DDAE900CB11DE /* ANSConstants.h */,
+				935C2F1B1D0DDAE900CB11DE /* ANSMoneyOwner.h */,
+				935C2F1C1D0DDAE900CB11DE /* ANSWorkers */,
+			);
+			path = ANSCarWash;
 			sourceTree = "<group>";
 		};
-		937A2B8E1D047EAA00D52556 /* ANSCar */ = {
+		935C2F0E1D0DDAE900CB11DE /* ANSBuildingsAndRooms */ = {
 			isa = PBXGroup;
 			children = (
-				937A2B8B1D047E9900D52556 /* ANSCar.h */,
-				937A2B8C1D047E9900D52556 /* ANSCar.m */,
+				935C2F0F1D0DDAE900CB11DE /* ANSBox.h */,
+				935C2F101D0DDAE900CB11DE /* ANSBox.m */,
+				935C2F111D0DDAE900CB11DE /* ANSBuilding.h */,
+				935C2F121D0DDAE900CB11DE /* ANSBuilding.m */,
+				935C2F131D0DDAE900CB11DE /* ANSRoom.h */,
+				935C2F141D0DDAE900CB11DE /* ANSRoom.m */,
 			);
-			name = ANSCar;
+			path = ANSBuildingsAndRooms;
 			sourceTree = "<group>";
 		};
-		937A2B9F1D05785800D52556 /* ANSBuildings */ = {
+		935C2F151D0DDAE900CB11DE /* ANSCar */ = {
 			isa = PBXGroup;
 			children = (
-				937A2BA01D05785800D52556 /* ANSBuilding.h */,
-				937A2BA11D05785800D52556 /* ANSBuilding.m */,
+				935C2F161D0DDAE900CB11DE /* ANSCar.h */,
+				935C2F171D0DDAE900CB11DE /* ANSCar.m */,
 			);
-			name = ANSBuildings;
-			path = Source/ANSCarWash/ANSBuildingsAndRooms;
+			path = ANSCar;
+			sourceTree = "<group>";
+		};
+		935C2F1C1D0DDAE900CB11DE /* ANSWorkers */ = {
+			isa = PBXGroup;
+			children = (
+				935C2F1D1D0DDAE900CB11DE /* ANSAccountant.h */,
+				935C2F1E1D0DDAE900CB11DE /* ANSAccountant.m */,
+				935C2F1F1D0DDAE900CB11DE /* ANSBoss.h */,
+				935C2F201D0DDAE900CB11DE /* ANSBoss.m */,
+				935C2F211D0DDAE900CB11DE /* ANSCarWasher.h */,
+				935C2F221D0DDAE900CB11DE /* ANSCarWasher.m */,
+				935C2F231D0DDAE900CB11DE /* ANSWorker.h */,
+				935C2F241D0DDAE900CB11DE /* ANSWorker.m */,
+			);
+			path = ANSWorkers;
+			sourceTree = "<group>";
+		};
+		935C2F251D0DDAE900CB11DE /* ANSCreature */ = {
+			isa = PBXGroup;
+			children = (
+				935C2F261D0DDAE900CB11DE /* ANSCreature.h */,
+				935C2F271D0DDAE900CB11DE /* ANSCreature.m */,
+				935C2F281D0DDAE900CB11DE /* ANSCreatureFemale.h */,
+				935C2F291D0DDAE900CB11DE /* ANSCreatureFemale.m */,
+				935C2F2A1D0DDAE900CB11DE /* ANSCreatureMale.h */,
+				935C2F2B1D0DDAE900CB11DE /* ANSCreatureMale.m */,
+			);
+			path = ANSCreature;
 			sourceTree = "<group>";
 		};
 		937A2BBD1D07126200D52556 /* Library */ = {
@@ -228,18 +260,6 @@
 				937A2BC31D07126200D52556 /* NSObject+ANSExtension.m */,
 			);
 			path = NSObject;
-			sourceTree = "<group>";
-		};
-		937A2BCD1D09799500D52556 /* ANSRooms */ = {
-			isa = PBXGroup;
-			children = (
-				937A2BA21D05785800D52556 /* ANSRoom.h */,
-				937A2BA31D05785800D52556 /* ANSRoom.m */,
-				937A2BA41D05785800D52556 /* ANSBox.h */,
-				937A2BA51D05785800D52556 /* ANSBox.m */,
-			);
-			name = ANSRooms;
-			path = Source/ANSCarWash/ANSBuildingsAndRooms;
 			sourceTree = "<group>";
 		};
 		937A2BD21D09AFEE00D52556 /* NSString */ = {
@@ -274,6 +294,23 @@
 			productReference = 931D0F1D1D00480900DF749C /* Objective-c course */;
 			productType = "com.apple.product-type.tool";
 		};
+		935C2ED71D0DD8C100CB11DE /* ObjectiveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 935C2EDD1D0DD8C100CB11DE /* Build configuration list for PBXNativeTarget "ObjectiveTests" */;
+			buildPhases = (
+				935C2ED41D0DD8C100CB11DE /* Sources */,
+				935C2ED51D0DD8C100CB11DE /* Frameworks */,
+				935C2ED61D0DD8C100CB11DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObjectiveTests;
+			productName = ObjectiveTests;
+			productReference = 935C2ED81D0DD8C100CB11DE /* ObjectiveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -285,6 +322,10 @@
 				TargetAttributes = {
 					931D0F1C1D00480900DF749C = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					935C2ED71D0DD8C100CB11DE = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 2MQ5R4FSP4;
 					};
 				};
 			};
@@ -301,35 +342,65 @@
 			projectRoot = "";
 			targets = (
 				931D0F1C1D00480900DF749C /* Objective-c course */,
+				935C2ED71D0DD8C100CB11DE /* ObjectiveTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		935C2ED61D0DD8C100CB11DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		931D0F191D00480900DF749C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937A2B861D0471F000D52556 /* ANSWorker.m in Sources */,
 				937A2BD51D09AFEE00D52556 /* NSString+ANSExtension.m in Sources */,
-				937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */,
-				937A2BA81D05785800D52556 /* ANSBuilding.m in Sources */,
+				935C2F3E1D0DDAE900CB11DE /* ANSCreature.m in Sources */,
+				935C2F341D0DDAE900CB11DE /* ANSCarWashComplex.m in Sources */,
 				935C2ED31D0D5F4100CB11DE /* ANSStringAlphabet.m in Sources */,
 				935C2EC91D0D541F00CB11DE /* ANSAlphabet.m in Sources */,
-				937A2BAA1D05785800D52556 /* ANSBox.m in Sources */,
+				935C2F381D0DDAE900CB11DE /* ANSBoss.m in Sources */,
+				935C2F321D0DDAE900CB11DE /* ANSCar.m in Sources */,
+				935C2F301D0DDAE900CB11DE /* ANSRoom.m in Sources */,
+				935C2F421D0DDAE900CB11DE /* ANSCreatureMale.m in Sources */,
 				937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */,
-				931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */,
-				931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */,
-				937A2BA91D05785800D52556 /* ANSRoom.m in Sources */,
+				935C2F451D0DDB0E00CB11DE /* main.m in Sources */,
+				935C2F401D0DDAE900CB11DE /* ANSCreatureFemale.m in Sources */,
 				935C2ED01D0D5F1F00CB11DE /* ANSClasterAlphabet.m in Sources */,
-				937A2B911D048E3E00D52556 /* ANSAccountant.m in Sources */,
-				937A2BB51D06E2BC00D52556 /* ANSCarWasher.m in Sources */,
-				937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */,
+				935C2F2C1D0DDAE900CB11DE /* ANSBox.m in Sources */,
+				935C2F2E1D0DDAE900CB11DE /* ANSBuilding.m in Sources */,
+				935C2F3A1D0DDAE900CB11DE /* ANSCarWasher.m in Sources */,
+				935C2F3C1D0DDAE900CB11DE /* ANSWorker.m in Sources */,
 				935C2ECC1D0D5EF500CB11DE /* ANSRAngeAlphabet.m in Sources */,
 				937A2BC41D07126200D52556 /* ANSRandom.m in Sources */,
-				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
-				937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */,
-				931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */,
+				935C2F361D0DDAE900CB11DE /* ANSAccountant.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		935C2ED41D0DD8C100CB11DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				935C2F3D1D0DDAE900CB11DE /* ANSWorker.m in Sources */,
+				935C2F411D0DDAE900CB11DE /* ANSCreatureFemale.m in Sources */,
+				935C2F391D0DDAE900CB11DE /* ANSBoss.m in Sources */,
+				935C2F2F1D0DDAE900CB11DE /* ANSBuilding.m in Sources */,
+				935C2F431D0DDAE900CB11DE /* ANSCreatureMale.m in Sources */,
+				935C2F3F1D0DDAE900CB11DE /* ANSCreature.m in Sources */,
+				935C2F311D0DDAE900CB11DE /* ANSRoom.m in Sources */,
+				935C2F3B1D0DDAE900CB11DE /* ANSCarWasher.m in Sources */,
+				935C2F371D0DDAE900CB11DE /* ANSAccountant.m in Sources */,
+				935C2F2D1D0DDAE900CB11DE /* ANSBox.m in Sources */,
+				935C2F331D0DDAE900CB11DE /* ANSCar.m in Sources */,
+				935C2F351D0DDAE900CB11DE /* ANSCarWashComplex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +504,35 @@
 			};
 			name = Release;
 		};
+		935C2EDE1D0DD8C100CB11DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ObjectiveTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Andriiev.Mykola.ObjectiveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		935C2EDF1D0DD8C100CB11DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ObjectiveTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Andriiev.Mykola.ObjectiveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -450,6 +550,15 @@
 			buildConfigurations = (
 				931D0F251D00480900DF749C /* Debug */,
 				931D0F261D00480900DF749C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		935C2EDD1D0DD8C100CB11DE /* Build configuration list for PBXNativeTarget "ObjectiveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				935C2EDE1D0DD8C100CB11DE /* Debug */,
+				935C2EDF1D0DD8C100CB11DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
