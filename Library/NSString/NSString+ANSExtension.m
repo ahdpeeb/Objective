@@ -62,4 +62,16 @@ static NSString * const kANSalphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return nil;
 }
 
+- (NSArray *)symbols {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.length];
+    NSUInteger length = [self length];
+    
+    for (NSUInteger index = 0; index < length; index ++) {
+        unichar resultChar = [self characterAtIndex:index];
+        [result addObject:[NSString stringWithFormat:@"%c", resultChar]];
+    }
+    
+    return [[result copy] autorelease];
+}
+
 @end

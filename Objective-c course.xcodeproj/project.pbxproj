@@ -10,6 +10,10 @@
 		931D0F321D0049DF00DF749C /* ANSCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D0F311D0049DF00DF749C /* ANSCreature.m */; };
 		931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA4471D005B0900756016 /* ANSCreatureMale.m */; };
 		931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 931FA44A1D005B2900756016 /* ANSCreatureFemale.m */; };
+		935C2EC91D0D541F00CB11DE /* ANSAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2EC81D0D541F00CB11DE /* ANSAlphabet.m */; };
+		935C2ECC1D0D5EF500CB11DE /* ANSRAngeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ECB1D0D5EF500CB11DE /* ANSRAngeAlphabet.m */; };
+		935C2ED01D0D5F1F00CB11DE /* ANSClasterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ECF1D0D5F1F00CB11DE /* ANSClasterAlphabet.m */; };
+		935C2ED31D0D5F4100CB11DE /* ANSStringAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2ED21D0D5F4100CB11DE /* ANSStringAlphabet.m */; };
 		937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */; };
 		937A2B861D0471F000D52556 /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B851D0471F000D52556 /* ANSWorker.m */; };
 		937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A2B8C1D047E9900D52556 /* ANSCar.m */; };
@@ -45,6 +49,14 @@
 		931FA4471D005B0900756016 /* ANSCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureMale.m; sourceTree = "<group>"; };
 		931FA4491D005B2900756016 /* ANSCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSCreatureFemale.h; sourceTree = "<group>"; };
 		931FA44A1D005B2900756016 /* ANSCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCreatureFemale.m; sourceTree = "<group>"; };
+		935C2EC71D0D541F00CB11DE /* ANSAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSAlphabet.h; sourceTree = "<group>"; };
+		935C2EC81D0D541F00CB11DE /* ANSAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSAlphabet.m; sourceTree = "<group>"; };
+		935C2ECA1D0D5EF500CB11DE /* ANSRAngeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSRAngeAlphabet.h; path = Privat/ANSRAngeAlphabet.h; sourceTree = "<group>"; };
+		935C2ECB1D0D5EF500CB11DE /* ANSRAngeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSRAngeAlphabet.m; path = Privat/ANSRAngeAlphabet.m; sourceTree = "<group>"; };
+		935C2ECE1D0D5F1F00CB11DE /* ANSClasterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSClasterAlphabet.h; path = Privat/ANSClasterAlphabet.h; sourceTree = "<group>"; };
+		935C2ECF1D0D5F1F00CB11DE /* ANSClasterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSClasterAlphabet.m; path = Privat/ANSClasterAlphabet.m; sourceTree = "<group>"; };
+		935C2ED11D0D5F4100CB11DE /* ANSStringAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSStringAlphabet.h; path = Privat/ANSStringAlphabet.h; sourceTree = "<group>"; };
+		935C2ED21D0D5F4100CB11DE /* ANSStringAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSStringAlphabet.m; path = Privat/ANSStringAlphabet.m; sourceTree = "<group>"; };
 		937A2B7D1D04645200D52556 /* ANSCarWashComplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSCarWashComplex.h; path = Source/ANSCarWash/ANSCarWashComplex.h; sourceTree = "<group>"; };
 		937A2B7E1D04645200D52556 /* ANSCarWashComplex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSCarWashComplex.m; path = Source/ANSCarWash/ANSCarWashComplex.m; sourceTree = "<group>"; };
 		937A2B841D0471F000D52556 /* ANSWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSWorker.h; path = Source/ANSCarWash/ANSWorkers/ANSWorker.h; sourceTree = "<group>"; };
@@ -125,6 +137,19 @@
 				931FA44A1D005B2900756016 /* ANSCreatureFemale.m */,
 			);
 			path = ANSCreature;
+			sourceTree = "<group>";
+		};
+		935C2ECD1D0D5EFA00CB11DE /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				935C2ECA1D0D5EF500CB11DE /* ANSRAngeAlphabet.h */,
+				935C2ECB1D0D5EF500CB11DE /* ANSRAngeAlphabet.m */,
+				935C2ECE1D0D5F1F00CB11DE /* ANSClasterAlphabet.h */,
+				935C2ECF1D0D5F1F00CB11DE /* ANSClasterAlphabet.m */,
+				935C2ED11D0D5F4100CB11DE /* ANSStringAlphabet.h */,
+				935C2ED21D0D5F4100CB11DE /* ANSStringAlphabet.m */,
+			);
+			name = Private;
 			sourceTree = "<group>";
 		};
 		937A2B801D04645C00D52556 /* ANSCarWash */ = {
@@ -222,6 +247,9 @@
 			children = (
 				937A2BD31D09AFEE00D52556 /* NSString+ANSExtension.h */,
 				937A2BD41D09AFEE00D52556 /* NSString+ANSExtension.m */,
+				935C2EC71D0D541F00CB11DE /* ANSAlphabet.h */,
+				935C2EC81D0D541F00CB11DE /* ANSAlphabet.m */,
+				935C2ECD1D0D5EFA00CB11DE /* Private */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -286,14 +314,18 @@
 				937A2BD51D09AFEE00D52556 /* NSString+ANSExtension.m in Sources */,
 				937A2B8D1D047E9900D52556 /* ANSCar.m in Sources */,
 				937A2BA81D05785800D52556 /* ANSBuilding.m in Sources */,
+				935C2ED31D0D5F4100CB11DE /* ANSStringAlphabet.m in Sources */,
+				935C2EC91D0D541F00CB11DE /* ANSAlphabet.m in Sources */,
 				937A2BAA1D05785800D52556 /* ANSBox.m in Sources */,
 				937A2BC51D07126200D52556 /* NSObject+ANSExtension.m in Sources */,
 				931FA4481D005B0A00756016 /* ANSCreatureMale.m in Sources */,
 				931FA44B1D005B2900756016 /* ANSCreatureFemale.m in Sources */,
 				937A2BA91D05785800D52556 /* ANSRoom.m in Sources */,
+				935C2ED01D0D5F1F00CB11DE /* ANSClasterAlphabet.m in Sources */,
 				937A2B911D048E3E00D52556 /* ANSAccountant.m in Sources */,
 				937A2BB51D06E2BC00D52556 /* ANSCarWasher.m in Sources */,
 				937A2B7F1D04645200D52556 /* ANSCarWashComplex.m in Sources */,
+				935C2ECC1D0D5EF500CB11DE /* ANSRAngeAlphabet.m in Sources */,
 				937A2BC41D07126200D52556 /* ANSRandom.m in Sources */,
 				937FBE9A1D01D50E00BD0F3F /* main.m in Sources */,
 				937A2BBB1D06E9DF00D52556 /* ANSBoss.m in Sources */,

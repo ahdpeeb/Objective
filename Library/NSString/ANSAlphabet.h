@@ -1,0 +1,28 @@
+//
+//  ANSAlphabet.h
+//  Objective-c course
+//
+//  Created by Nikola Andriiev on 12.06.16.
+//  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface ANSAlphabet : NSObject <NSFastEnumeration>
+
++ (instancetype)alphabetWithRange:(NSRange)range;
++ (instancetype)alphabetWithStrings:(NSArray *)strings;
++ (instancetype)alphabetWithAlphabets:(NSArray *)alphabers;
++ (instancetype)alphabetWithCharacters:(NSString *)strnig;
+
+- (instancetype)initWithRange:(NSRange)range;
+- (instancetype)initWithAlphabets:(NSArray *)alphabets;
+- (instancetype)initWithStrings:(NSArray *)strings;
+- (instancetype)initWithSymbols:(NSString *)string;
+
+- (NSUInteger)count;
+- (NSString *)stringAtIndex:(NSInteger)index;
+
+- (NSString *)objectAtIndexSubscript:(NSUInteger)index;
+
+@end

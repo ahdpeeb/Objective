@@ -20,4 +20,5 @@
 + (instancetype)capitalizedLetterAlphabet;
 + (instancetype)letterAlphabet;
 
+- (NSArray *)symbols;
 @end
