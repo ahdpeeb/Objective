@@ -110,9 +110,13 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2) {
     NSUInteger length = MIN(state->state + len, [self count]);
     len  = length - state->state;
     
-    for (NSUInteger index = state->state; index < length; index ++) {
-        buffer[index] = self[index];
+    if (0 != len) {
+        for (NSUInteger index = 0; index < len; index ++) {
+            buffer[index] = ((NSArray *)self)[index + state->state]; //
+        }
     }
+    
+    state->itemsPtr = buffer;
     
     state->state +=  len;
     

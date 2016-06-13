@@ -236,12 +236,12 @@
 		93DAD42F1D0DF2910055E7FB /* ANSCarWash */ = {
 			isa = PBXGroup;
 			children = (
-				93DAD4301D0DF2910055E7FB /* ANSBuildingsAndRooms */,
-				93DAD4371D0DF2910055E7FB /* ANSCar */,
 				93DAD43A1D0DF2910055E7FB /* ANSCarWashComplex.h */,
 				93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */,
 				93DAD43C1D0DF2910055E7FB /* ANSConstants.h */,
 				93DAD43D1D0DF2910055E7FB /* ANSMoneyOwner.h */,
+				93DAD4301D0DF2910055E7FB /* ANSBuildingsAndRooms */,
+				93DAD4371D0DF2910055E7FB /* ANSCar */,
 				93DAD43E1D0DF2910055E7FB /* ANSWorkers */,
 			);
 			path = ANSCarWash;
@@ -250,12 +250,12 @@
 		93DAD4301D0DF2910055E7FB /* ANSBuildingsAndRooms */ = {
 			isa = PBXGroup;
 			children = (
-				93DAD4311D0DF2910055E7FB /* ANSBox.h */,
-				93DAD4321D0DF2910055E7FB /* ANSBox.m */,
 				93DAD4331D0DF2910055E7FB /* ANSBuilding.h */,
 				93DAD4341D0DF2910055E7FB /* ANSBuilding.m */,
 				93DAD4351D0DF2910055E7FB /* ANSRoom.h */,
 				93DAD4361D0DF2910055E7FB /* ANSRoom.m */,
+				93DAD4311D0DF2910055E7FB /* ANSBox.h */,
+				93DAD4321D0DF2910055E7FB /* ANSBox.m */,
 			);
 			path = ANSBuildingsAndRooms;
 			sourceTree = "<group>";

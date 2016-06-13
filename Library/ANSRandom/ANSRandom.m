@@ -8,14 +8,14 @@
 
 #import "ANSRandom.h"
 
-NSInteger ANSRandomIntegerWithRange(NSInteger min, NSInteger max) {
+NSInteger ANSRandomIntegerWithValues(NSInteger min, NSInteger max) {
     ANSIntegerRange range = ANSIntegerRangeCreate(min, max);
     
     return range.min + (arc4random_uniform((u_int32_t)(range.max - range.min))) ;
 }
 
 NSUInteger ANSRandomUnsignedInteget(NSUInteger value) {
-    return ANSRandomIntegerWithRange(0, value);
+    return ANSRandomIntegerWithValues(0, value);
 }
 
 BOOL ANSRandomBool(void) {

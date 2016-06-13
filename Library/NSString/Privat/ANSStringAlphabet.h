@@ -11,7 +11,11 @@
 #import "ANSAlphabet.h"
 
 @interface ANSStringAlphabet : ANSAlphabet
+@property (nonatomic, readonly) NSArray *strings;
 
-- (instancetype)initWithStrings:(NSArray *)strings;
+- (instancetype)initWithArray:(NSArray *)strings;
+
+- (NSUInteger)count;
+- (NSString *)stringAtIndex:(NSInteger)index;
 
 @end

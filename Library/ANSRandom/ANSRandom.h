@@ -22,7 +22,7 @@ ANSIntegerRange ANSIntegerRangeCreate(NSInteger firstValue, NSInteger secondValu
     return range;
 }
 // genarate random number between (min, max -1) 
-NSInteger ANSRandomIntegerWithRange(NSInteger min, NSInteger max);
+NSInteger ANSRandomIntegerWithValues(NSInteger min, NSInteger max);
 
 // genarate random number between (min, max -1)
 NSUInteger ANSRandomUnsignedInteget(NSUInteger value);

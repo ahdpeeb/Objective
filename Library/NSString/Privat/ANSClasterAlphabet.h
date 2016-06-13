@@ -11,6 +11,7 @@
 #import "ANSAlphabet.h"
 
 @interface ANSClasterAlphabet : ANSAlphabet
+@property (nonatomic, readonly) NSArray *alphabets;
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets;
 
