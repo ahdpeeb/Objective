@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ANSAlphabet : NSObject <NSFastEnumeration>
+NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 
+@interface ANSAlphabet : NSObject <NSFastEnumeration>
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers;
@@ -24,5 +25,7 @@
 - (NSString *)stringAtIndex:(NSInteger)index;
 
 - (NSString *)objectAtIndexSubscript:(NSUInteger)index;
+
+- (NSString *)strnig;
 
 @end

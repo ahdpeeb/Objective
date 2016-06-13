@@ -10,4 +10,8 @@
 
 @implementation ANSStringAlphabet
 
+- (instancetype)initWithStrings:(NSArray *)strings {
+    return nil; //processing
+}
+
 @end

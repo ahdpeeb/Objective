@@ -1,5 +1,3 @@
-#Kiwi -> docs
-
-target ‘ObjectiveTests’, exclusive: true do
+target ‘OSUnitTesting’ do
   pod ‘Kiwi’, '~> 2.3’
 end

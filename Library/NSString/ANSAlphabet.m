@@ -8,11 +8,15 @@
 
 #import "ANSAlphabet.h"
 
-#import "ANSRAngeAlphabet.h"
+#import "ANSRangeAlphabet.h"
 #import "ANSClasterAlphabet.h"
 #import "ANSStringAlphabet.h"
 
 #import "NSString+ANSExtension.h"
+
+NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2) {
+    return NSMakeRange(MIN(value1, value2), MAX(value1, value2));
+}
 
 @implementation ANSAlphabet
 
@@ -20,7 +24,7 @@
 #pragma mark Class methods
 
 + (instancetype)alphabetWithRange:(NSRange)range {
-    return [[[ANSRAngeAlphabet alloc] initWithRange:range] autorelease];
+    return [[[ANSRangeAlphabet alloc] initWithRange:range] autorelease];
 }
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
     return [[[ANSStringAlphabet alloc] initWithStrings:strings] autorelease];
@@ -38,7 +42,7 @@
 - (instancetype)initWithRange:(NSRange)range {
     [self release];
     
-    ANSAlphabet *result = [[ANSRAngeAlphabet alloc] initWithRange:range];
+    ANSAlphabet *result = [[ANSRangeAlphabet alloc] initWithRange:range];
     
     return result;
 }
@@ -70,7 +74,6 @@
 #pragma mark -
 #pragma mark Public methods
 
-
 - (NSUInteger)count {
     [self doesNotRecognizeSelector:_cmd];
     
@@ -87,15 +90,33 @@
     return [self stringAtIndex:index];
 }
 
+- (NSString *)strnig {
+    NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
+    for (NSString *symbols in self) {
+        [string appendString:symbols];
+    }
+    
+    return [[string copy] autorelease];
+}
+
 #pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id __unsafe_unretained [])buffer
+                                  objects:(id [])buffer
                                   count:(NSUInteger)len
 {
-
-    return 0;
+    state->mutationsPtr = (unsigned long *)self;
+    NSUInteger length = MIN(state->state + len, [self count]);
+    len  = length - state->state;
+    
+    for (NSUInteger index = state->state; index < length; index ++) {
+        buffer[index] = self[index];
+    }
+    
+    state->state +=  len;
+    
+    return len;
 }
 
 @end

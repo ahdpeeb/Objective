@@ -10,4 +10,8 @@
 
 @implementation ANSClasterAlphabet
 
+- (instancetype)initWithAlphabets:(NSArray *)alphabets {
+    return nil; //processing
+}
+
 @end
