@@ -12,6 +12,6 @@
 
 @interface ANSAccountant : ANSWorker
 
-- (void)countMoneyInCashBox;
+- (void)countMoney;
 
 @end

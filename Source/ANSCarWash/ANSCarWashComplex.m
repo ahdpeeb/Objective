@@ -8,18 +8,16 @@
 
 #import "ANSCarWashComplex.h"
 
-#import "ANSBuilding.h"
 #import "ANSRoom.h"
+#import "ANSAccountant.h"
+#import "ANSBoss.h"
 
 #import "NSObject+ANSExtension.h"
 
-ANSBuilding *office;
-ANSBuilding *washing;
-
 @interface ANSCarWashComplex ()
 @property (nonatomic, retain) NSMutableArray    *mutableRooms;
-@property (nonatomic, retain) ANSBuilding       *office;
-@property (nonatomic, retain) ANSBuilding       *washing;
+@property (nonatomic, retain) ANSBuilding       *officeRoom;
+@property (nonatomic, retain) ANSBuilding       *washingRoom;
 
     //test method
 - (id)workerWithClass:(Class)cls;
@@ -33,23 +31,22 @@ ANSBuilding *washing;
 
 - (void)dealloc {
     self.mutableRooms = nil;
-    self.office = nil;
-    self.washing = nil;
+    self.officeRoom = nil;
+    self.washingRoom = nil;
     
     [super dealloc];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     self.mutableRooms = [NSMutableArray object];
     NSMutableArray *rooms = self.mutableRooms;
     
-    self.office = [ANSBuilding object];
-    self.washing = [ANSBuilding object];
+    self.officeRoom = [ANSBuilding object];
+    self.washingRoom = [ANSBuilding object];
 
-    [rooms addObject:self.office];
-    [rooms addObject:self.washing];
+    [rooms addObject:self.officeRoom];
+    [rooms addObject:self.washingRoom];
     
     return self;
 }
@@ -58,8 +55,8 @@ ANSBuilding *washing;
     self = [self init];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
                                                     boss:[ANSBoss object]] autorelease];
-    [self.office addRoom:room];
-    [self.washing addRoom:[ANSBox object]];
+    [self.officeRoom addRoom:room];
+    [self.washingRoom addRoom:[ANSBox object]];
     
     return self;
 }
@@ -75,26 +72,27 @@ ANSBuilding *washing;
 #pragma mark Public implementation
 
 - (void)washCar:(ANSCar *)car; {
-    ANSBox *freeBox = [self.washing freeRoom];
+    ANSBox *freeBox = [self.washingRoom freeRoom];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         ANSBoss *boss = [self workerWithClass:[ANSBoss class]];
-        ANSAccountant *accountant = [self workerWithClass:[ANSBoss class]];
+        ANSAccountant *accountant = [self workerWithClass:[ANSAccountant class]];
         
         [freeBox addCar:car];
-        [washer washCar:car];
+        
+        [washer processObject:car];
+        [accountant processObject:washer];
+        [boss processObject:accountant];
+        
         [freeBox removeCar:car];
-
-        [accountant takeMoneyFromObject:washer];
-        [boss takeMoneyFromObject:accountant];
     }
 }
 
 #pragma mark -
-#pragma mark Privat test methods
+#pragma mark Private test methods
 
 - (id)workerWithClass:(Class)cls {
-    return [[office workersWithClass:cls] firstObject];
+    return [[self.officeRoom workersWithClass:cls] firstObject];
 }
 
 @end

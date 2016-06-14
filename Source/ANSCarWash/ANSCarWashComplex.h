@@ -12,9 +12,9 @@
 #import "ANSBuilding.h"
 
 @interface ANSCarWashComplex : NSObject
-@property (nonatomic, readonly) NSArray *rooms;
-@property (nonatomic, readonly) ANSBuilding       *office;
-@property (nonatomic, readonly) ANSBuilding       *washing;
+@property (nonatomic, readonly) NSArray           *rooms;
+@property (nonatomic, readonly) ANSBuilding       *officeRoom;
+@property (nonatomic, readonly) ANSBuilding       *washingRoom;
 
 - (instancetype)initInfrastructure;
 - (void)washCar:(ANSCar *)car;

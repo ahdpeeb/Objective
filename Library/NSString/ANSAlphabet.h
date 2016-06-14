@@ -14,7 +14,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers;
-+ (instancetype)alphabetWithCharacters:(NSString *)strnig;
++ (instancetype)alphabetWithCharacters:(NSString *)string;
 
 - (instancetype)initWithRange:(NSRange)range;
 - (instancetype)initWithAlphabets:(NSArray *)alphabets;
@@ -26,6 +26,6 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 
 - (NSString *)objectAtIndexSubscript:(NSUInteger)index;
 
-- (NSString *)strnig;
+- (NSString *)string;
 
 @end

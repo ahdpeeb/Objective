@@ -10,12 +10,16 @@
 
 #import "NSObject+ANSExtension.h"
 
+#import "ANSConstants.h"
+
 @interface ANSRoom ()
 @property (nonatomic, retain) NSMutableArray *mutableWorkers;
 
 @end
 
 @implementation ANSRoom
+
+@dynamic occupied;
 
 #pragma mark -
 #pragma mark initialize / deallocate
@@ -75,6 +79,10 @@
     }
     
     return [[mutableArray copy] autorelease];
+}
+
+- (BOOL)isOccupied {
+    return self.mutableWorkers.count > kANSMaxWorkersCapacity;
 }
 
 @end

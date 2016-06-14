@@ -10,8 +10,13 @@
 
 @implementation ANSAccountant
 
-- (void)countMoneyInCashBox {
+- (void)countMoney {
     NSLog(@"%f money in my cashbox", self.money);
+}
+
+- (void)processObject:(id)object {
+    [self takeMoneyFromObject:object];
+    [self countMoney];
 }
 
 @end

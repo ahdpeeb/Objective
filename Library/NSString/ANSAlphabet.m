@@ -90,7 +90,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2) {
     return [self stringAtIndex:index];
 }
 
-- (NSString *)strnig {
+- (NSString *)string {
     NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
     for (NSString *symbols in self) {
         [string appendString:symbols];

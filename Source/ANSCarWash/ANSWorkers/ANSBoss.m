@@ -14,4 +14,9 @@
     NSLog(@"my profit - %f", self.money);
 }
 
+- (void)processObject:(id)object {
+    [self takeMoneyFromObject:object];
+    [self calculateProfit];
+}
+
 @end

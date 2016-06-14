@@ -42,7 +42,7 @@ static NSString * const kANSalphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }
 
 + (instancetype)lowercaseLetterAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('a', 'a' - 'a')];
+    return [self alphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a')];
 }
 
 + (instancetype)capitalizedLetterAlphabet {

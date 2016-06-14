@@ -74,8 +74,4 @@
     return washer;
 }
 
-- (BOOL)isReadyToUse {
-    return !self.isOccupied;
-}
-
 @end

@@ -12,7 +12,8 @@
 #import "ANSAccountant.h"
 
 @interface ANSRoom : NSObject
-@property (nonatomic, readonly) NSArray *workers ;
+@property (nonatomic, readonly)                         NSArray *workers ;
+@property (nonatomic, readonly, getter = isOccupied)    BOOL    occupied;
 
 - (instancetype)initWithAccountant:(ANSAccountant *)accountant boss:(ANSBoss *)boss;
 

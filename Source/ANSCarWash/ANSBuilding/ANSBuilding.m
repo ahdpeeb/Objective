@@ -61,12 +61,10 @@
     }
 }
 
-- (ANSBox *)freeRoom {
+- (ANSRoom *)freeRoom {
     for (ANSRoom *room in self.mutablerooms) {
-        if ([room respondsToSelector:@selector(isOccupied)]) {
-            if (![(ANSBox *)room isOccupied]) {
-                return (ANSBox *)room;
-            }
+        if (![room isOccupied]) {
+            return room;
         }
     }
     

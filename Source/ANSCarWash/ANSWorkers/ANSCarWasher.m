@@ -15,4 +15,8 @@
     car.status = ANSCarClean;
 }
 
+- (void)processObject:(id)object {
+    [self washCar:object];
+}
+
 @end

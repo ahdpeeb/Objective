@@ -49,4 +49,8 @@
     [self receiveMoney:money];
 }
 
+- (void)processObject:(id)object {
+    NSLog(@"process object");
+}
+
 @end
