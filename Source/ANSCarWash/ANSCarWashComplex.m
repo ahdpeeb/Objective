@@ -15,9 +15,9 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) NSMutableArray    *mutableRooms;
-@property (nonatomic, retain) ANSBuilding       *officeRoom;
-@property (nonatomic, retain) ANSBuilding       *washingRoom;
+@property (nonatomic, retain) NSMutableArray    *mutableBuildings;
+@property (nonatomic, retain) ANSBuilding       *officeBuilding;
+@property (nonatomic, retain) ANSBuilding       *washBuilding ;
 
     //test method
 - (id)workerWithClass:(Class)cls;
@@ -30,49 +30,47 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
-    self.mutableRooms = nil;
-    self.officeRoom = nil;
-    self.washingRoom = nil;
+    self.mutableBuildings = nil;
+    self.officeBuilding = nil;
+    self.washBuilding = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.mutableRooms = [NSMutableArray object];
-    NSMutableArray *rooms = self.mutableRooms;
-    
-    self.officeRoom = [ANSBuilding object];
-    self.washingRoom = [ANSBuilding object];
-
-    [rooms addObject:self.officeRoom];
-    [rooms addObject:self.washingRoom];
+    [self initInfrastructure];
     
     return self;
 }
 
-- (instancetype)initInfrastructure {
-    self = [self init];
+- (void)initInfrastructure {
+    self.mutableBuildings = [NSMutableArray object];
+    NSMutableArray *buildings = self.mutableBuildings;
+    
+    self.officeBuilding = [ANSBuilding object];
+    self.washBuilding = [ANSBuilding object];
+    
+    [buildings addObject:self.officeBuilding];
+    [buildings addObject:self.washBuilding];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
                                                     boss:[ANSBoss object]] autorelease];
-    [self.officeRoom addRoom:room];
-    [self.washingRoom addRoom:[ANSBox object]];
-    
-    return self;
+    [self.officeBuilding addRoom:room];
+    [self.washBuilding addRoom:[ANSBox object]];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)rooms {
-    return [[self.mutableRooms copy] autorelease];
+    return [[self.mutableBuildings copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public implementation
 
 - (void)washCar:(ANSCar *)car; {
-    ANSBox *freeBox = [self.washingRoom freeRoom];
+    ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
         ANSCarWasher *washer = [freeBox randomWasher];
         ANSBoss *boss = [self workerWithClass:[ANSBoss class]];
@@ -92,7 +90,7 @@
 #pragma mark Private test methods
 
 - (id)workerWithClass:(Class)cls {
-    return [[self.officeRoom workersWithClass:cls] firstObject];
+    return [[self.officeBuilding workersWithClass:cls] firstObject];
 }
 
 @end

@@ -8,8 +8,6 @@
 
 #import "NSString+ANSExtension.h"
 
-static NSString * const kANSalphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 @implementation NSString (ANSExtension)
 
 + (instancetype)randomStringWithLength:(NSUInteger)length

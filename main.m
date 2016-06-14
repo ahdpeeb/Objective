@@ -18,6 +18,7 @@ int main(int argc, const char * argv[]) {
         NSString *value = [NSString alphabetWithUnicodeSymbols:'a' : 'z'];
         
         NSLog(@"%@", value);
+        
     return 0;
     }
 

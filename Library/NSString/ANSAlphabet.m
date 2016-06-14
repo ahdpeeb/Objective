@@ -86,7 +86,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
     return 0;
 }
 
-- (NSString *)objectAtIndexSubscript:(NSUInteger)index {
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index {
     return [self stringAtIndex:index];
 }
 

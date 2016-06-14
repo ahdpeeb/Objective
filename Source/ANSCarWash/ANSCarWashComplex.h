@@ -13,10 +13,10 @@
 
 @interface ANSCarWashComplex : NSObject
 @property (nonatomic, readonly) NSArray           *rooms;
-@property (nonatomic, readonly) ANSBuilding       *officeRoom;
-@property (nonatomic, readonly) ANSBuilding       *washingRoom;
+@property (nonatomic, readonly) ANSBuilding       *officeBuilding;
+@property (nonatomic, readonly) ANSBuilding       *washBuilding;
 
-- (instancetype)initInfrastructure;
+- (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
 
 @end

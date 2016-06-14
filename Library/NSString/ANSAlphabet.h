@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT
 NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 
 @interface ANSAlphabet : NSObject <NSFastEnumeration>
@@ -24,7 +25,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 - (NSUInteger)count;
 - (NSString *)stringAtIndex:(NSInteger)index;
 
-- (NSString *)objectAtIndexSubscript:(NSUInteger)index;
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (NSString *)string;
 
