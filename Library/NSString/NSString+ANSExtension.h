@@ -10,10 +10,12 @@
 
 @interface NSString (ANSExtension)
 
-+ (instancetype)randomStringWithLength:(NSUInteger)length;
 + (instancetype)randomStringWithLength:(NSUInteger)length
                               alphabet:(NSString *)alphabet;
-+ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
+
+    // generate unicode symbols alphabet in range between firs ans last symbols;
++ (instancetype)alphabetWithUnicodeSymbols:(unichar)firstSymbol
+                                          :(unichar)lastSymbol;
 + (instancetype)alphanumericAlphabet;
 + (instancetype)numericAlphabet;
 + (instancetype)lowercaseLetterAlphabet;
@@ -21,4 +23,5 @@
 + (instancetype)letterAlphabet;
 
 - (NSArray *)symbols;
+
 @end

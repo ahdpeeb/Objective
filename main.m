@@ -10,17 +10,15 @@
 
 #import "ANSCarWashComplex.h"
 #import "NSObject+ANSExtension.h"
+#import "NSString+ANSExtension.h"
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
-
-        ANSCarWashComplex *complex = [[[ANSCarWashComplex alloc] initInfrastructure] autorelease];
-        ANSCar *car = [ANSCar object];
-        [complex washCar:car];
         
-        NSLog(@"Hi");
-    }
-    
+        NSString *value = [NSString alphabetWithUnicodeSymbols:'a' : 'z'];
+        
+        NSLog(@"%@", value);
     return 0;
-}
+    }
 
+}

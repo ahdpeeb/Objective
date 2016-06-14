@@ -12,19 +12,29 @@ static NSString * const kANSalphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 @implementation NSString (ANSExtension)
 
-+ (instancetype)randomStringWithLength:(NSUInteger)length {
++ (instancetype)randomStringWithLength:(NSUInteger)length
+                              alphabet:(NSString *)alphabet
+{
     NSMutableString *string = [NSMutableString stringWithCapacity:length];
     for (NSUInteger index = 0; index < length; index ++) {
-        [string appendFormat:@"%c", [kANSalphabet characterAtIndex:arc4random_uniform((u_int32_t)length)]];
+        [string appendFormat:@"%c", [alphabet characterAtIndex:arc4random_uniform((u_int32_t)length)]];
     }
     
     return [self stringWithString:string];
 }
-
-+ (instancetype)alphabetWithUnicodeRange:(NSRange)range {
+   
++ (instancetype)alphabetWithUnicodeSymbols:(unichar)firstSymbol
+                                          :(unichar)lastSymbol;
+{
     NSMutableString *result = [NSMutableString string];
-    for (unichar character = range.location; character < NSMaxRange(range); character ++) {
-        [result appendFormat:@"%c",character];
+    NSRange range = NSMakeRange(firstSymbol, lastSymbol - firstSymbol);
+    NSUInteger startPoint = range.location;
+    NSUInteger finishPoint = range.length + range.location;
+    for (NSUInteger index = startPoint; index <= finishPoint; index ++) {
+        NSString *buffer = [[NSString alloc]initWithBytes:&index
+                                          length:1
+                                        encoding:NSNEXTSTEPStringEncoding]; 
+        [result appendString:buffer];
     }
     
     return [self stringWithString:result];
@@ -38,28 +48,23 @@ static NSString * const kANSalphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }
 
 + (instancetype)numericAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('0', '9' - '0')];
+    return [self alphabetWithUnicodeSymbols: '0' : '9'];
 }
 
 + (instancetype)lowercaseLetterAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a')];
+    return [self alphabetWithUnicodeSymbols: 'a': 'z'];
 }
 
 + (instancetype)capitalizedLetterAlphabet {
-   return [self alphabetWithUnicodeRange:NSMakeRange('A', 'Z' - 'A')];
+    return [self alphabetWithUnicodeSymbols: 'A': 'Z'];
 }
 
 + (instancetype)letterAlphabet {
-    NSMutableString *result = [NSMutableString stringWithString:[self lowercaseLetterAlphabet]];
+    NSMutableString *result = [NSMutableString new];
+    [result appendString:[self lowercaseLetterAlphabet]];
     [result appendString:[self capitalizedLetterAlphabet]];
     
     return [self stringWithString:result];
-}
-
-+ (instancetype)randomStringWithLength:(NSUInteger)length
-                              alphabet:(NSString *)alphabet {
-    
-    return nil;
 }
 
 - (NSArray *)symbols {

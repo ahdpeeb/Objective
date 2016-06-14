@@ -44,15 +44,14 @@
     NSUInteger iteretedIndex = index;
     
     NSAssert(index < count, NSRangeException);
-    NSUInteger iterator = 0;
     for (ANSAlphabet *alphabet in self.alphabets) {
-        if (iterator > index) {
+        count = [alphabet count];
+        
+        if (iteretedIndex < index) {
             return ((NSArray *)alphabet)[iteretedIndex];
         }
         
-        count = [alphabet count];
-        iterator += count;
-        iteretedIndex -=count;
+        iteretedIndex -= count;
     }
     
     return nil;

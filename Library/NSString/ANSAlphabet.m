@@ -14,7 +14,7 @@
 
 #import "NSString+ANSExtension.h"
 
-NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2) {
+NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
     return NSMakeRange(MIN(value1, value2), MAX(value1, value2));
 }
 
