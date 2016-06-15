@@ -14,8 +14,11 @@
 
 #import "NSString+ANSExtension.h"
 
-NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
-    return NSMakeRange(MIN(value1, value2), MAX(value1, value2));
+NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
+    NSUInteger headValue = MIN(value1, value2);
+    NSUInteger railValue = MAX(value1, value2);
+    
+    return NSMakeRange(headValue, railValue - headValue + 1);
 }
 
 @implementation ANSAlphabet
@@ -26,16 +29,18 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 + (instancetype)alphabetWithRange:(NSRange)range {
     return [[[ANSRangeAlphabet alloc] initWithRange:range] autorelease];
 }
+
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
     return [[[ANSStringAlphabet alloc] initWithStrings:strings] autorelease];
 }
+
++ (instancetype)alphabetWithCharacters:(NSString *)string {
+    return [[[ANSStringAlphabet alloc] initWithStrings:[string symbols]] autorelease];
+}
+
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers {
     return [[[ANSClasterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
 }
-+ (instancetype)alphabetWithCharacters:(NSString *)strings {
-    return [[[ANSStringAlphabet alloc] initWithStrings:[strings symbols]] autorelease];
-}
-
 #pragma mark -
 #pragma mark Initialization and deallocation 
 
@@ -108,11 +113,11 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 {
     state->mutationsPtr = (unsigned long *)self;
     NSUInteger length = MIN(state->state + len, [self count]);
-    len  = length - state->state;
+    len = length - state->state;
     
     if (0 != len) {
         for (NSUInteger index = 0; index < len; index ++) {
-            buffer[index] = ((NSArray *)self)[index + state->state]; //
+            buffer[index] = ((NSArray *)self)[index + state->state];
         }
     }
     

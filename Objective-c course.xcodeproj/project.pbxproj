@@ -15,6 +15,7 @@
 		93BE280B1D0FF643008DABB7 /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28051D0FF643008DABB7 /* ANSRoom.m */; };
 		93BE28121D0FF7D4008DABB7 /* ANSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28111D0FF7D4008DABB7 /* ANSConstants.m */; };
 		93BE28131D0FF7D4008DABB7 /* ANSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28111D0FF7D4008DABB7 /* ANSConstants.m */; };
+		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
 		93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD44F1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD4501D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4201D0DF2910055E7FB /* NSObject+ANSExtension.m */; };
@@ -76,6 +77,7 @@
 		93BE28051D0FF643008DABB7 /* ANSRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSRoom.m; sourceTree = "<group>"; };
 		93BE28101D0FF7D4008DABB7 /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
 		93BE28111D0FF7D4008DABB7 /* ANSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSConstants.m; sourceTree = "<group>"; };
+		93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAlphabetTest.m; path = Spec/ANSAlphabetTest.m; sourceTree = "<group>"; };
 		93DAD4121D0DF1730055E7FB /* OSUnitTesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSUnitTesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DAD4161D0DF1740055E7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93DAD41C1D0DF2910055E7FB /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				93DAD4761D0DF4D80055E7FB /* Spec */,
 				93DAD4161D0DF1740055E7FB /* Info.plist */,
+				93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */,
 			);
 			path = OSUnitTesting;
 			sourceTree = "<group>";
@@ -235,10 +238,10 @@
 		93DAD4211D0DF2910055E7FB /* NSString */ = {
 			isa = PBXGroup;
 			children = (
-				93DAD4221D0DF2910055E7FB /* ANSAlphabet.h */,
-				93DAD4231D0DF2910055E7FB /* ANSAlphabet.m */,
 				93DAD4241D0DF2910055E7FB /* NSString+ANSExtension.h */,
 				93DAD4251D0DF2910055E7FB /* NSString+ANSExtension.m */,
+				93DAD4221D0DF2910055E7FB /* ANSAlphabet.h */,
+				93DAD4231D0DF2910055E7FB /* ANSAlphabet.m */,
 				93DAD4261D0DF2910055E7FB /* Privat */,
 			);
 			path = NSString;
@@ -247,12 +250,12 @@
 		93DAD4261D0DF2910055E7FB /* Privat */ = {
 			isa = PBXGroup;
 			children = (
-				93DAD4271D0DF2910055E7FB /* ANSClasterAlphabet.h */,
-				93DAD4281D0DF2910055E7FB /* ANSClasterAlphabet.m */,
 				93DAD4291D0DF2910055E7FB /* ANSRangeAlphabet.h */,
 				93DAD42A1D0DF2910055E7FB /* ANSRangeAlphabet.m */,
 				93DAD42B1D0DF2910055E7FB /* ANSStringAlphabet.h */,
 				93DAD42C1D0DF2910055E7FB /* ANSStringAlphabet.m */,
+				93DAD4271D0DF2910055E7FB /* ANSClasterAlphabet.h */,
+				93DAD4281D0DF2910055E7FB /* ANSClasterAlphabet.m */,
 			);
 			path = Privat;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				93DAD4671D0DF2910055E7FB /* ANSCarWashComplex.m in Sources */,
 				93DAD4591D0DF2910055E7FB /* ANSRangeAlphabet.m in Sources */,
 				93DAD4511D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */,
+				93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */,
 				93DAD46B1D0DF2910055E7FB /* ANSBoss.m in Sources */,
 				93BE28071D0FF643008DABB7 /* ANSBuilding.m in Sources */,
 				93DAD4651D0DF2910055E7FB /* ANSCar.m in Sources */,

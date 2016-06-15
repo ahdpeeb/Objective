@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT
-NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
+NSRange ANSCreateAlphabetRange(unichar value1, unichar value2);
 
 @interface ANSAlphabet : NSObject <NSFastEnumeration>
 + (instancetype)alphabetWithRange:(NSRange)range;
@@ -23,10 +23,12 @@ NSRange ANSCreateAlphabetRange(unsigned char value1,unsigned char value2);
 - (instancetype)initWithSymbols:(NSString *)string;
 
 - (NSUInteger)count;
+// take string at index
 - (NSString *)stringAtIndex:(NSInteger)index;
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
 
+  // converts the alphabet in a row
 - (NSString *)string;
 
 @end
