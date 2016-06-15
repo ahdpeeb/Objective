@@ -14,8 +14,9 @@
                               alphabet:(NSString *)alphabet;
 
     // generate unicode symbols alphabet in range between firs ans last symbols;
-+ (instancetype)alphabetWithUnicodeSymbols:(unichar)firstSymbol
-                                          :(unichar)lastSymbol;
++ (instancetype)alphabetWithUnicodeFirstSymbol:(unichar)firstSymbol
+                                    lastSymbol:(unichar)lastSymbol;
+
 + (instancetype)alphanumericAlphabet;
 + (instancetype)numericAlphabet;
 + (instancetype)lowercaseLetterAlphabet;

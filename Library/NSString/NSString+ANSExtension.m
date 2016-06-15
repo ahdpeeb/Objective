@@ -21,17 +21,15 @@
     return [self stringWithString:string];
 }
    
-+ (instancetype)alphabetWithUnicodeSymbols:(unichar)firstSymbol
-                                          :(unichar)lastSymbol;
++ (instancetype)alphabetWithUnicodeFirstSymbol:(unichar)firstSymbol
+                                    lastSymbol:(unichar)lastSymbol
 {
     NSMutableString *result = [NSMutableString string];
     NSRange range = NSMakeRange(firstSymbol, lastSymbol - firstSymbol);
-    NSUInteger startPoint = range.location;
-    NSUInteger finishPoint = range.length + range.location;
-    for (NSUInteger index = startPoint; index <= finishPoint; index ++) {
+    for (NSUInteger index = range.location; index <= NSMaxRange(range); index ++) {
         NSString *buffer = [[NSString alloc]initWithBytes:&index
-                                          length:1
-                                        encoding:NSNEXTSTEPStringEncoding]; 
+                                                   length:1
+                                                 encoding:NSUTF8StringEncoding];
         [result appendString:buffer];
     }
     
@@ -46,15 +44,15 @@
 }
 
 + (instancetype)numericAlphabet {
-    return [self alphabetWithUnicodeSymbols: '0' : '9'];
+    return [self alphabetWithUnicodeFirstSymbol:'0' lastSymbol:'9'];
 }
 
 + (instancetype)lowercaseLetterAlphabet {
-    return [self alphabetWithUnicodeSymbols: 'a': 'z'];
+    return [self alphabetWithUnicodeFirstSymbol:'a' lastSymbol:'z'];
 }
 
 + (instancetype)capitalizedLetterAlphabet {
-    return [self alphabetWithUnicodeSymbols: 'A': 'Z'];
+    return [self alphabetWithUnicodeFirstSymbol:'A' lastSymbol:'Z'];
 }
 
 + (instancetype)letterAlphabet {

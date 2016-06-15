@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-extern const float      kANSServiceCost;             
-extern const NSInteger  kANSMaxCarCapacity;
-extern const NSInteger  kANSMaxWorkersCapacity;
-extern const NSInteger  kANSMaxCarWasherCapacity;
+FOUNDATION_EXPORT
+const float      kANSServiceCost;
 
+FOUNDATION_EXPORT
+const NSInteger  kANSMaxCarCapacity;
 
-extern NSString * const kANSallBoxesFul;
+FOUNDATION_EXPORT
+const NSInteger  kANSMaxWorkersCapacity;
+
+FOUNDATION_EXPORT
+const NSInteger  kANSMaxCarWasherCapacity;
+
+FOUNDATION_EXPORT
+NSString * const kANSallBoxesFul;

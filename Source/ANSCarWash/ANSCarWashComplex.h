@@ -16,7 +16,6 @@
 @property (nonatomic, readonly) ANSBuilding       *officeBuilding;
 @property (nonatomic, readonly) ANSBuilding       *washBuilding;
 
-- (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
 
 @end

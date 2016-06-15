@@ -11,7 +11,7 @@
 #import "ANSConstants.h"
 
 @interface ANSCar ()
-@property(nonatomic, assign) float money;
+@property (nonatomic, assign) float money;
 
 @end
 

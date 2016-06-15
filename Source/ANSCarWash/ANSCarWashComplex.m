@@ -19,8 +19,8 @@
 @property (nonatomic, retain) ANSBuilding       *officeBuilding;
 @property (nonatomic, retain) ANSBuilding       *washBuilding ;
 
-    //test method
 - (id)workerWithClass:(Class)cls;
+- (void)initInfrastructure;
 
 @end
 
@@ -51,12 +51,15 @@
     self.officeBuilding = [ANSBuilding object];
     self.washBuilding = [ANSBuilding object];
     
-    [buildings addObject:self.officeBuilding];
-    [buildings addObject:self.washBuilding];
+    ANSBuilding *officeBuilding = self.officeBuilding;
+    ANSBuilding *washBuilding = self.washBuilding;
+    
+    [buildings addObject:officeBuilding];
+    [buildings addObject:washBuilding];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
                                                     boss:[ANSBoss object]] autorelease];
-    [self.officeBuilding addRoom:room];
-    [self.washBuilding addRoom:[ANSBox object]];
+    [officeBuilding addRoom:room];
+    [washBuilding addRoom:[ANSBox object]];
 }
 
 #pragma mark -

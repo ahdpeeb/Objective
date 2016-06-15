@@ -15,9 +15,10 @@
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         
-        NSString *value = [NSString alphabetWithUnicodeSymbols:'a' : 'z'];
+        ANSCarWashComplex *comples = [ANSCarWashComplex object];
+        ANSCar *car = [ANSCar object];
         
-        NSLog(@"%@", value);
+        [comples washCar:car];
         
     return 0;
     }
