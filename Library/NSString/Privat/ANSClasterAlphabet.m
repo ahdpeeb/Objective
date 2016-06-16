@@ -62,8 +62,8 @@
                                     count:(NSUInteger)len
 {
     return [super countByEnumeratingWithState:state
-                                             objects:buffer
-                                               count:len];
+                                      objects:buffer
+                                        count:len];
 }
 
 #pragma mark -

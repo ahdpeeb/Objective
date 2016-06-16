@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93968A321D12AD73009E7EF1 /* washComlexTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A311D12AD73009E7EF1 /* washComlexTest.m */; };
 		93BE28061D0FF643008DABB7 /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28001D0FF643008DABB7 /* ANSBuilding.m */; };
 		93BE28071D0FF643008DABB7 /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28001D0FF643008DABB7 /* ANSBuilding.m */; };
 		93BE28081D0FF643008DABB7 /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28031D0FF643008DABB7 /* ANSBox.m */; };
@@ -69,6 +70,9 @@
 		1EDE8192052DE5DCFAC40416 /* libPods-OSUnitTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSUnitTesting.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = washComlexTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93968A311D12AD73009E7EF1 /* washComlexTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = washComlexTest.m; sourceTree = "<group>"; };
+		93968A331D12AD73009E7EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93BE27FF1D0FF643008DABB7 /* ANSBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBuilding.h; sourceTree = "<group>"; };
 		93BE28001D0FF643008DABB7 /* ANSBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBuilding.m; sourceTree = "<group>"; };
 		93BE28021D0FF643008DABB7 /* ANSBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBox.h; sourceTree = "<group>"; };
@@ -125,6 +129,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93968A2C1D12AD73009E7EF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93DAD40F1D0DF1730055E7FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,6 +163,7 @@
 				93DAD42E1D0DF2910055E7FB /* Source */,
 				93DAD42D1D0DF2910055E7FB /* main.m */,
 				93DAD4131D0DF1740055E7FB /* OSUnitTesting */,
+				93968A301D12AD73009E7EF1 /* washComlexTest */,
 				931D0F1E1D00480900DF749C /* Products */,
 				E8E481700E3FF1DA234A6F48 /* Pods */,
 				3432DA85276CA02C06CC7AD6 /* Frameworks */,
@@ -163,8 +175,18 @@
 			children = (
 				931D0F1D1D00480900DF749C /* Objective-c course */,
 				93DAD4121D0DF1730055E7FB /* OSUnitTesting.xctest */,
+				93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		93968A301D12AD73009E7EF1 /* washComlexTest */ = {
+			isa = PBXGroup;
+			children = (
+				93968A311D12AD73009E7EF1 /* washComlexTest.m */,
+				93968A331D12AD73009E7EF1 /* Info.plist */,
+			);
+			path = washComlexTest;
 			sourceTree = "<group>";
 		};
 		93BE27FE1D0FF643008DABB7 /* ANSBuilding */ = {
@@ -356,6 +378,23 @@
 			productReference = 931D0F1D1D00480900DF749C /* Objective-c course */;
 			productType = "com.apple.product-type.tool";
 		};
+		93968A2E1D12AD73009E7EF1 /* washComlexTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93968A341D12AD73009E7EF1 /* Build configuration list for PBXNativeTarget "washComlexTest" */;
+			buildPhases = (
+				93968A2B1D12AD73009E7EF1 /* Sources */,
+				93968A2C1D12AD73009E7EF1 /* Frameworks */,
+				93968A2D1D12AD73009E7EF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = washComlexTest;
+			productName = washComlexTest;
+			productReference = 93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		93DAD4111D0DF1730055E7FB /* OSUnitTesting */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93DAD4191D0DF1740055E7FB /* Build configuration list for PBXNativeTarget "OSUnitTesting" */;
@@ -388,6 +427,9 @@
 					931D0F1C1D00480900DF749C = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
+					93968A2E1D12AD73009E7EF1 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					93DAD4111D0DF1730055E7FB = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
@@ -407,11 +449,19 @@
 			targets = (
 				931D0F1C1D00480900DF749C /* Objective-c course */,
 				93DAD4111D0DF1730055E7FB /* OSUnitTesting */,
+				93968A2E1D12AD73009E7EF1 /* washComlexTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		93968A2D1D12AD73009E7EF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93DAD4101D0DF1730055E7FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +545,14 @@
 				93DAD45C1D0DF2910055E7FB /* main.m in Sources */,
 				93DAD4681D0DF2910055E7FB /* ANSAccountant.m in Sources */,
 				93DAD4521D0DF2910055E7FB /* ANSAlphabet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93968A2B1D12AD73009E7EF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93968A321D12AD73009E7EF1 /* washComlexTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +684,30 @@
 			};
 			name = Release;
 		};
+		93968A351D12AD73009E7EF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = washComlexTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Andriiev.Mykola.washComlexTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		93968A361D12AD73009E7EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = washComlexTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Andriiev.Mykola.washComlexTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		93DAD4171D0DF1740055E7FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00BB46DAD617C15302EDFBEA /* Pods-OSUnitTesting.debug.xcconfig */;
@@ -672,6 +754,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		93968A341D12AD73009E7EF1 /* Build configuration list for PBXNativeTarget "washComlexTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93968A351D12AD73009E7EF1 /* Debug */,
+				93968A361D12AD73009E7EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		93DAD4191D0DF1740055E7FB /* Build configuration list for PBXNativeTarget "OSUnitTesting" */ = {
 			isa = XCConfigurationList;

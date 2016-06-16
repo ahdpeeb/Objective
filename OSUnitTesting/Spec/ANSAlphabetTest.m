@@ -10,7 +10,6 @@
 
 #import "ANSAlphabet.h"
 #import "ANSRangeAlphabet.h"
-#import "ANSRangeAlphabet.h"
 
 SPEC_BEGIN(ANSAlphabetTest);
 
@@ -18,7 +17,7 @@ __block ANSAlphabet *alphabet = nil;
 
 describe(@"ANSAlphabet", ^{
     registerMatchers(@"BG"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
-    context(@"new alphabetWithRange should contain 3 symbols 'a', 'b', 'c'", ^{
+    context(@"alphabetWithRange testing", ^{
         beforeAll(^{
             alphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('a', 'c')];
         });
@@ -40,7 +39,7 @@ describe(@"ANSAlphabet", ^{
         });
         
         it(@"should respond to selector stringAtIndex", ^{
-            [[alphabet should] respondsToSelector:@selector(stringAtIndex:)];
+            [[alphabet should] respondsToSelector:@selector(initWithRange:)];
         });
         
         //alphabet should not bee nil;

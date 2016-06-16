@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSAlphabet.h"
+#import "ANSCarWashComplex.h"
+
+#import "NSObject+ANSExtension.h"
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         
-        ANSAlphabet *alphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('a', 'b')];
-        NSLog(@"%@", [alphabet string]);
+        ANSCarWashComplex *complex = [[ANSCarWashComplex new] autorelease];
+        for (NSUInteger index = 0; index <= 100000; index ++) {
+            ANSCar *car = [ANSCar object];
+            [complex addCarToQueue:car];
+        }
         
     return 0;
     }

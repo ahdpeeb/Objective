@@ -15,9 +15,9 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) NSMutableArray    *mutableBuildings;
+@property (nonatomic, retain) NSMutableArray    *mutableCarsQueue;
 @property (nonatomic, retain) ANSBuilding       *officeBuilding;
-@property (nonatomic, retain) ANSBuilding       *washBuilding ;
+@property (nonatomic, retain) ANSBuilding       *washBuilding;
 
 - (id)workerWithClass:(Class)cls;
 - (void)initInfrastructure;
@@ -30,7 +30,7 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
-    self.mutableBuildings = nil;
+    self.mutableCarsQueue = nil;
     self.officeBuilding = nil;
     self.washBuilding = nil;
     
@@ -45,8 +45,7 @@
 }
 
 - (void)initInfrastructure {
-    self.mutableBuildings = [NSMutableArray object];
-    NSMutableArray *buildings = self.mutableBuildings;
+    self.mutableCarsQueue = [NSMutableArray object];
     
     self.officeBuilding = [ANSBuilding object];
     self.washBuilding = [ANSBuilding object];
@@ -54,8 +53,6 @@
     ANSBuilding *officeBuilding = self.officeBuilding;
     ANSBuilding *washBuilding = self.washBuilding;
     
-    [buildings addObject:officeBuilding];
-    [buildings addObject:washBuilding];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
                                                     boss:[ANSBoss object]] autorelease];
     [officeBuilding addRoom:room];
@@ -65,13 +62,13 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)rooms {
-    return [[self.mutableBuildings copy] autorelease];
+- (NSArray *)carsQueue {
+    return [[self.mutableCarsQueue copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public implementation
-
+    //
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
@@ -86,6 +83,17 @@
         [boss processObject:accountant];
         
         [freeBox removeCar:car];
+        NSLog(@"%@ washed",car);
+    }
+}
+
+- (void)addCarToQueue:(ANSCar *)car {
+    NSMutableArray *carsQueue = self.mutableCarsQueue;
+    [self.mutableCarsQueue addObject:car];
+    while ([carsQueue firstObject]) {
+        ANSCar *car = [carsQueue objectAtIndex:0];
+        [self washCar:car];
+        [carsQueue removeObject:car];
     }
 }
 
