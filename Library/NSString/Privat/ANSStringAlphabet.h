@@ -16,6 +16,6 @@
 - (instancetype)initWithArray:(NSArray *)strings;
 
 - (NSUInteger)count;
-- (NSString *)stringAtIndex:(NSInteger)index;
+- (NSString *)stringAtIndex:(NSUInteger)index;
 
 @end

@@ -40,7 +40,7 @@
     return self.strings.count;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
+- (NSString *)stringAtIndex:(NSUInteger)index {
     return self.strings[index];
 }
 

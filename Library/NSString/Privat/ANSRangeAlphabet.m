@@ -35,7 +35,7 @@
     return self.range.length;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
+- (NSString *)stringAtIndex:(NSUInteger)index {
     NSRange range = self.range;
     
     return [NSString stringWithFormat:@"%c", (unichar)(range.location + index)];

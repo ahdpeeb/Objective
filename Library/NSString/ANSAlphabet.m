@@ -85,7 +85,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
     return 0;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
+- (NSString *)stringAtIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
     
     return 0;

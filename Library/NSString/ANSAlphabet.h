@@ -24,7 +24,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2);
 
 - (NSUInteger)count;
 // take string at index
-- (NSString *)stringAtIndex:(NSInteger)index;
+- (NSString *)stringAtIndex:(NSUInteger)index;
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
 
