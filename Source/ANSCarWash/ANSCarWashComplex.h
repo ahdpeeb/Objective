@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) ANSBuilding       *officeBuilding;
 @property (nonatomic, readonly) ANSBuilding       *washBuilding;
 
+// can be privat method
 - (void)washCar:(ANSCar *)car;
 - (void)addCarToQueue:(ANSCar *)car;
 

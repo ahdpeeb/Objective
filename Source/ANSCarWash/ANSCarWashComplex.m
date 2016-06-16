@@ -68,7 +68,7 @@
 
 #pragma mark -
 #pragma mark Public implementation
-    //
+
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
@@ -89,7 +89,7 @@
 
 - (void)addCarToQueue:(ANSCar *)car {
     NSMutableArray *carsQueue = self.mutableCarsQueue;
-    [self.mutableCarsQueue addObject:car];
+    [carsQueue addObject:car];
     while ([carsQueue firstObject]) {
         ANSCar *car = [carsQueue objectAtIndex:0];
         [self washCar:car];
