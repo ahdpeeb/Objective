@@ -23,6 +23,8 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 
 @implementation ANSAlphabet
 
+@dynamic count;
+
 #pragma mark -
 #pragma mark Class methods
 
@@ -78,13 +80,16 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 }
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Accessors
 
 - (NSUInteger)count {
     [self doesNotRecognizeSelector:_cmd];
     
     return 0;
 }
+
+#pragma mark -
+#pragma mark Public methods
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];

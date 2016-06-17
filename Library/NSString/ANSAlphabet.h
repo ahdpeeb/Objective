@@ -12,6 +12,7 @@ FOUNDATION_EXPORT
 NSRange ANSCreateAlphabetRange(unichar value1, unichar value2);
 
 @interface ANSAlphabet : NSObject <NSFastEnumeration>
+@property (nonatomic, assign) NSUInteger count;
 
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
@@ -23,7 +24,6 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2);
 - (instancetype)initWithStrings:(NSArray *)strings;
 - (instancetype)initWithSymbols:(NSString *)string;
 
-- (NSUInteger)count;
 // take string at index
 - (NSString *)stringAtIndex:(NSUInteger)index;
 

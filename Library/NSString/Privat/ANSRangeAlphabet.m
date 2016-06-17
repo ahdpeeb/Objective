@@ -29,11 +29,14 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Accessors
 
 - (NSUInteger)count {
     return self.range.length;
 }
+
+#pragma mark -
+#pragma mark Public
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
     return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
@@ -43,7 +46,7 @@
                                   objects:(id [])buffer
                                     count:(NSUInteger)len
 {
-    BOOL firsCycle = YES; // первая пробежука равно да.
+    BOOL firsCycle = YES;
     state->mutationsPtr = 0;
 
     NSUInteger elementsCount = self.range.length;

@@ -34,11 +34,14 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Accessors
 
 - (NSUInteger)count {
     return self.strings.count;
 }
+
+#pragma mark -
+#pragma mark Public
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
     return self.strings[index];
