@@ -53,9 +53,16 @@
                                   objects:(id [])buffer
                                     count:(NSUInteger)len
 {
-    return [super countByEnumeratingWithState:state
-                                      objects:buffer
-                                        count:len];
+    state->mutationsPtr = 0;
+    NSUInteger value = MIN(state->state + len, self.count);
+    len = value - state->state;
+    for (NSUInteger index = state->state; index < value; index ++) {
+        buffer[index] = self[index];
+    }
+    
+    state->state += value;
+    
+    return len;
 }
 
 #pragma mark -

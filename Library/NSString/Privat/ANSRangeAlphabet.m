@@ -39,4 +39,33 @@
     return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
 }
 
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id [])buffer
+                                    count:(NSUInteger)len
+{
+    BOOL firsCycle = YES; // первая пробежука равно да.
+    state->mutationsPtr = 0;
+
+    NSUInteger elementsCount = self.range.length;
+    if (elementsCount == 0) {
+        return 0;
+    }
+    
+    if (firsCycle) {
+        state->state = self.range.location;
+        firsCycle = NO;
+    }
+    
+    NSUInteger value = MIN(state->state + len, NSMaxRange(self.range));
+    len = value - state->state;
+    
+    for (NSUInteger index = state->state; index < value; index ++) {
+        buffer[index] = self[index]; // self.range.location + index
+    }
+    
+    state->state += (value - state->state);
+    
+    return len;
+}
+
 @end
