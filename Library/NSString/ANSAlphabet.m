@@ -41,6 +41,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers {
     return [[[ANSClusterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
 }
+
 #pragma mark -
 #pragma mark Initialization and deallocation 
 

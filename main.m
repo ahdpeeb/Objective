@@ -15,9 +15,10 @@
 int main(int argc, const char * argv[]) {    
 @autoreleasepool {
     
-    NSRange alphabetRange = ANSCreateAlphabetRange('A', 'z');
+    NSRange alphabetRange = ANSCreateAlphabetRange('A', 'Z');
     ANSAlphabet *alphabet = [ANSAlphabet alphabetWithRange:alphabetRange];
-    NSLog(@"%@", alphabet);
+    
+    NSLog(@"%@", [alphabet string]);
     
     NSString *value = [alphabet stringAtIndex:2];
     NSLog(@"%@", value);

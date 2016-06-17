@@ -9,7 +9,7 @@
 #import "ANSStringAlphabet.h"
 
 @interface ANSStringAlphabet ()
-@property (nonatomic, assign) NSArray *strings;
+@property (nonatomic, retain) NSArray *strings;
 
 @end
 

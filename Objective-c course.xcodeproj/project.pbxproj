@@ -19,6 +19,7 @@
 		93968A3F1D13E52D009E7EF1 /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28051D0FF643008DABB7 /* ANSRoom.m */; };
 		93968A401D13E52F009E7EF1 /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28031D0FF643008DABB7 /* ANSBox.m */; };
 		93968A411D13E548009E7EF1 /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
+		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93BE28061D0FF643008DABB7 /* ANSBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28001D0FF643008DABB7 /* ANSBuilding.m */; };
 		93BE28081D0FF643008DABB7 /* ANSBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28031D0FF643008DABB7 /* ANSBox.m */; };
 		93BE280A1D0FF643008DABB7 /* ANSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28051D0FF643008DABB7 /* ANSRoom.m */; };
@@ -74,6 +75,8 @@
 		93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = washComlexTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93968A311D12AD73009E7EF1 /* ANSCarWashComlexTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashComlexTest.m; sourceTree = "<group>"; };
 		93968A331D12AD73009E7EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93968A461D13F0E0009E7EF1 /* ANSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSQueue.h; sourceTree = "<group>"; };
+		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
 		93BE27FF1D0FF643008DABB7 /* ANSBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBuilding.h; sourceTree = "<group>"; };
 		93BE28001D0FF643008DABB7 /* ANSBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSBuilding.m; sourceTree = "<group>"; };
 		93BE28021D0FF643008DABB7 /* ANSBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSBox.h; sourceTree = "<group>"; };
@@ -191,6 +194,15 @@
 			path = washComlexTest;
 			sourceTree = "<group>";
 		};
+		93968A451D13F0E0009E7EF1 /* ANSQueue */ = {
+			isa = PBXGroup;
+			children = (
+				93968A461D13F0E0009E7EF1 /* ANSQueue.h */,
+				93968A471D13F0E0009E7EF1 /* ANSQueue.m */,
+			);
+			path = ANSQueue;
+			sourceTree = "<group>";
+		};
 		93BE27FE1D0FF643008DABB7 /* ANSBuilding */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +246,7 @@
 		93DAD41A1D0DF2910055E7FB /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				93968A451D13F0E0009E7EF1 /* ANSQueue */,
 				93DAD41B1D0DF2910055E7FB /* ANSRandom */,
 				93DAD41E1D0DF2910055E7FB /* NSObject */,
 				93DAD4211D0DF2910055E7FB /* NSString */,
@@ -526,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */,
 				93DAD4541D0DF2910055E7FB /* NSString+ANSExtension.m in Sources */,
 				93DAD4701D0DF2910055E7FB /* ANSCreature.m in Sources */,
 				93DAD4661D0DF2910055E7FB /* ANSCarWashComplex.m in Sources */,
