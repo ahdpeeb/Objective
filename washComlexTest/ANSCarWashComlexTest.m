@@ -17,7 +17,7 @@
 
 @end
 
-@implementation washComlexTest
+@implementation ANSCarWashComlexTest
 
 - (void)setUp {
     [super setUp];

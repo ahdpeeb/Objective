@@ -6,9 +6,9 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "ANSClasterAlphabet.h"
+#import "ANSClusterAlphabet.h"
 
-@interface ANSClasterAlphabet ()
+@interface ANSClusterAlphabet ()
 
 @property (nonatomic, retain) NSArray *alphabets;
 @property (nonatomic, assign) NSUInteger symbolsCount;
@@ -16,7 +16,7 @@
 - (NSUInteger)symbolsCount:(NSArray *)alphabets;
 
 @end
-@implementation ANSClasterAlphabet
+@implementation ANSClusterAlphabet
 
 #pragma mark -
 #pragma mark Initialization and deallocation
@@ -43,9 +43,8 @@
             }
             
             iteratedIndex -= [alphabet count];
-            }
         }
-        
+    }
     
     return nil;
 }

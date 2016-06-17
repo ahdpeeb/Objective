@@ -10,7 +10,7 @@
 
 #import "ANSAlphabet.h"
 
-@interface ANSClasterAlphabet : ANSAlphabet
+@interface ANSClusterAlphabet : ANSAlphabet
 @property (nonatomic, readonly) NSArray *alphabets;
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets;

@@ -9,7 +9,7 @@
 #import "ANSAlphabet.h"
 
 #import "ANSRangeAlphabet.h"
-#import "ANSClasterAlphabet.h"
+#import "ANSClusterAlphabet.h"
 #import "ANSStringAlphabet.h"
 
 #import "NSString+ANSExtension.h"
@@ -39,7 +39,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 }
 
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers {
-    return [[[ANSClasterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
+    return [[[ANSClusterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
 }
 #pragma mark -
 #pragma mark Initialization and deallocation 
@@ -55,7 +55,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
     [self release];
     
-    ANSAlphabet *result = [[ANSClasterAlphabet alloc] initWithAlphabets:alphabets];
+    ANSAlphabet *result = [[ANSClusterAlphabet alloc] initWithAlphabets:alphabets];
     
     return result;
 }
@@ -108,7 +108,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id [])buffer
+                                  objects:(id[])buffer
                                   count:(NSUInteger)len
 {
     state->mutationsPtr = (unsigned long *)self;

@@ -13,9 +13,9 @@
 
 SPEC_BEGIN(ANSAlphabetTest);
 
-__block ANSAlphabet *alphabet = nil;
-
 describe(@"ANSAlphabet", ^{
+    
+    __block ANSAlphabet *alphabet = nil;
     registerMatchers(@"BG"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
     context(@"alphabetWithRange testing", ^{
         beforeAll(^{
@@ -39,7 +39,7 @@ describe(@"ANSAlphabet", ^{
         });
         
         it(@"should respond to selector stringAtIndex", ^{
-            [[alphabet should] respondsToSelector:@selector(initWithRange:)];
+            [[alphabet should] respondToSelector:@selector(initWithRange:)];
         });
         
         //alphabet should not bee nil;
