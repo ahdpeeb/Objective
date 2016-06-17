@@ -12,6 +12,7 @@ FOUNDATION_EXPORT
 NSRange ANSCreateAlphabetRange(unichar value1, unichar value2);
 
 @interface ANSAlphabet : NSObject <NSFastEnumeration>
+
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabers;

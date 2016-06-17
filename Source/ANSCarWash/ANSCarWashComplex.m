@@ -11,16 +11,19 @@
 #import "ANSRoom.h"
 #import "ANSAccountant.h"
 #import "ANSBoss.h"
+#import "ANSBuilding.h"
 
 #import "NSObject+ANSExtension.h"
+#import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) NSMutableArray    *mutableCarsQueue;
+@property (nonatomic, retain) ANSQueue          *carQueue;
 @property (nonatomic, retain) ANSBuilding       *officeBuilding;
 @property (nonatomic, retain) ANSBuilding       *washBuilding;
 
 - (id)workerWithClass:(Class)cls;
 - (void)initInfrastructure;
+- (void)washCar:(ANSCar *)car;
 
 @end
 
@@ -30,7 +33,7 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
-    self.mutableCarsQueue = nil;
+    self.carQueue = nil;
     self.officeBuilding = nil;
     self.washBuilding = nil;
     
@@ -45,7 +48,7 @@
 }
 
 - (void)initInfrastructure {
-    self.mutableCarsQueue = [NSMutableArray object];
+    self.carQueue = [ANSQueue object];
     
     self.officeBuilding = [ANSBuilding object];
     self.washBuilding = [ANSBuilding object];
@@ -60,14 +63,22 @@
 }
 
 #pragma mark -
-#pragma mark Accessors
+#pragma mark Public implementation
 
-- (NSArray *)carsQueue {
-    return [[self.mutableCarsQueue copy] autorelease];
+- (void)addCarToQueue:(ANSCar *)car {
+    ANSQueue *queue = self.carQueue;
+    [queue enqueue:car];
+    while (!queue.count == 0) {
+        [self washCar:[queue dequeue]];
+    }
 }
 
 #pragma mark -
-#pragma mark Public implementation
+#pragma mark Private methods
+
+- (id)workerWithClass:(Class)cls {
+    return [[self.officeBuilding workersWithClass:cls] firstObject];
+}
 
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
@@ -85,23 +96,6 @@
         [freeBox removeCar:car];
         NSLog(@"%@ washed",car);
     }
-}
-
-- (void)addCarToQueue:(ANSCar *)car {
-    NSMutableArray *carsQueue = self.mutableCarsQueue;
-    [carsQueue addObject:car];
-    while ([carsQueue firstObject]) {
-        ANSCar *car = [carsQueue objectAtIndex:0];
-        [self washCar:car];
-        [carsQueue removeObject:car];
-    }
-}
-
-#pragma mark -
-#pragma mark Private test methods
-
-- (id)workerWithClass:(Class)cls {
-    return [[self.officeBuilding workersWithClass:cls] firstObject];
 }
 
 @end

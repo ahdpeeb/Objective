@@ -15,7 +15,4 @@
 
 - (instancetype)initWithRange:(NSRange)range;
 
-- (NSUInteger)count;
-- (NSString *)stringAtIndex:(NSUInteger)index;
-
 @end

@@ -14,7 +14,6 @@
 SPEC_BEGIN(ANSAlphabetTest);
 
 describe(@"ANSAlphabet", ^{
-    
     __block ANSAlphabet *alphabet = nil;
     registerMatchers(@"BG"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
     context(@"alphabetWithRange testing", ^{
