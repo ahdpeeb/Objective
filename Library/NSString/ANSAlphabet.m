@@ -110,7 +110,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
     
     return [[string copy] autorelease];
 }
-// need to make correciton!
+
 #pragma mark -
 #pragma mark NSFastEnumeration
 
@@ -132,7 +132,7 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
     
     state->itemsPtr = buffer;
     
-    state->state +=  len;
+    state->state += len;
     
     return len;
 }

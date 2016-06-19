@@ -21,11 +21,7 @@ int main(int argc, const char * argv[]) {
     ANSAlphabet *alphabet = [ANSAlphabet alphabetWithRange:alphabetRange];
     NSString *value = [alphabet string];
     NSLog(@"%@", value);
-    
-    for (id value in alphabet) {
-        [mutableString appendFormat:@"%@", value];
-    }
-    
+        
     NSLog(@"%@", mutableString);
     
 return 0;

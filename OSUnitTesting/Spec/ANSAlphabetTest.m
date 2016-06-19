@@ -10,6 +10,8 @@
 
 #import "ANSAlphabet.h"
 #import "ANSRangeAlphabet.h"
+#import "ANSStringAlphabet.h"
+#import "ANSClusterAlphabet.h"
 
 SPEC_BEGIN(ANSAlphabetTest);
 
@@ -18,7 +20,7 @@ describe(@"ANSAlphabet", ^{
     registerMatchers(@"BG"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
     context(@"alphabetWithRange testing", ^{
         beforeAll(^{
-            alphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('a', 'c')];
+            alphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
         });
         
         it(@"should bee kind of class", ^{
@@ -26,7 +28,7 @@ describe(@"ANSAlphabet", ^{
         });
         
         it(@"count should be 3", ^{
-            [[theValue([alphabet count]) should] equal:theValue(3)];
+            [[theValue([alphabet count]) should] equal:theValue(26)];
         });
         
         it(@"should not be empty", ^{
@@ -34,11 +36,15 @@ describe(@"ANSAlphabet", ^{
         });
         
         it(@"firs symbol should be 'a'", ^{
-            [[[alphabet stringAtIndex:2] should] equal:@"c"];
+            [[[alphabet stringAtIndex:2] should] equal:@"C"];
         });
         
         it(@"should respond to selector stringAtIndex", ^{
             [[alphabet should] respondToSelector:@selector(initWithRange:)];
+        });
+        
+        it(@"result from [alphabet string] should be equal to ABCDEFGHIJKLMNOPQRSTUVWXYZ", ^{
+            [[[alphabet string] should] equal:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
         });
         
         //alphabet should not bee nil;
@@ -46,7 +52,7 @@ describe(@"ANSAlphabet", ^{
             [[alphabet shouldNot] beNil];
         });
         
-        afterAll(^{ // Occurs once
+        afterAll(^{ // Occurs once at the and
             
         });
         
@@ -54,8 +60,6 @@ describe(@"ANSAlphabet", ^{
             it(@"does another thing", ^{
             });
             
-            pending(@"something unimplemented", ^{
-            });
         });
     });
 });

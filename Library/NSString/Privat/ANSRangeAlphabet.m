@@ -44,33 +44,4 @@
     return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
 }
 
-#pragma mark -
-#pragma mark NSFastEnumeration
-
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id [])buffer
-                                    count:(NSUInteger)len
-{
-    state->mutationsPtr = (unsigned long *)self;
-    NSUInteger count = self.count;
-    
-    if (state->state >= count) {
-        return 0;
-    }
-    
-    id objectsBuffer[count];
-    memset(objectsBuffer, 0, sizeof(objectsBuffer));
-    
-    for (NSUInteger index = 0; index < count; index ++) {
-        NSString *symbol = [self stringAtIndex:index];
-        objectsBuffer[index] = symbol;
-        NSLog(@"%@", objectsBuffer[index]);
-    }
-    
-    state->itemsPtr = objectsBuffer;
-    state->state = count;
-    
-    return count;
-}
-
 @end
