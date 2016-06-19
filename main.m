@@ -15,13 +15,18 @@
 int main(int argc, const char * argv[]) {    
 @autoreleasepool {
     
+    NSMutableString *mutableString = [NSMutableString object];
+    
     NSRange alphabetRange = ANSCreateAlphabetRange('A', 'Z');
     ANSAlphabet *alphabet = [ANSAlphabet alphabetWithRange:alphabetRange];
-    
-    NSLog(@"%@", [alphabet string]);
-    
-    NSString *value = [alphabet stringAtIndex:2];
+    NSString *value = [alphabet string];
     NSLog(@"%@", value);
+    
+    for (id value in alphabet) {
+        [mutableString appendFormat:@"%@", value];
+    }
+    
+    NSLog(@"%@", mutableString);
     
 return 0;
 }

@@ -8,6 +8,8 @@
 
 #import "ANSRangeAlphabet.h"
 
+#import "NSObject+ANSExtension.h"
+
 @interface ANSRangeAlphabet ()
 @property (nonatomic, assign) NSRange range;
 
@@ -42,33 +44,33 @@
     return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
 }
 
+#pragma mark -
+#pragma mark NSFastEnumeration
+
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer
                                     count:(NSUInteger)len
 {
-    BOOL firsCycle = YES;
-    state->mutationsPtr = 0;
-
-    NSUInteger elementsCount = self.range.length;
-    if (elementsCount == 0) {
+    state->mutationsPtr = (unsigned long *)self;
+    NSUInteger count = self.count;
+    
+    if (state->state >= count) {
         return 0;
     }
     
-    if (firsCycle) {
-        state->state = self.range.location;
-        firsCycle = NO;
+    id objectsBuffer[count];
+    memset(objectsBuffer, 0, sizeof(objectsBuffer));
+    
+    for (NSUInteger index = 0; index < count; index ++) {
+        NSString *symbol = [self stringAtIndex:index];
+        objectsBuffer[index] = symbol;
+        NSLog(@"%@", objectsBuffer[index]);
     }
     
-    NSUInteger value = MIN(state->state + len, NSMaxRange(self.range));
-    len = value - state->state;
+    state->itemsPtr = objectsBuffer;
+    state->state = count;
     
-    for (NSUInteger index = state->state; index < value; index ++) {
-        buffer[index] = self[index]; // self.range.location + index
-    }
-    
-    state->state += (value - state->state);
-    
-    return len;
+    return count;
 }
 
 @end

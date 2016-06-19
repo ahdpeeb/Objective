@@ -32,6 +32,13 @@
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (NSUInteger)count {
+   return self.symbolsCount;
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (NSString *)stringAtIndex:(NSUInteger)index {

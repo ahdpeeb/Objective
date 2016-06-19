@@ -104,12 +104,13 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
 - (NSString *)string {
     NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
     for (NSString *symbols in self) {
+            NSLog(@"%@", symbols);
         [string appendString:symbols];
     }
     
     return [[string copy] autorelease];
 }
-
+// need to make correciton!
 #pragma mark -
 #pragma mark NSFastEnumeration
 
@@ -117,13 +118,15 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
                                   objects:(id[])buffer
                                   count:(NSUInteger)len
 {
+    
     state->mutationsPtr = (unsigned long *)self;
-    NSUInteger length = MIN(state->state + len, [self count]);
+    
+    NSUInteger length = MIN(state->state + len, self.count);
     len = length - state->state;
     
     if (0 != len) {
         for (NSUInteger index = 0; index < len; index ++) {
-            buffer[index] = ((NSArray *)self)[index + state->state];
+            buffer[index] = self[index + state->state];
         }
     }
     
