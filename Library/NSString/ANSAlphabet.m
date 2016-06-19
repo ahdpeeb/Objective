@@ -55,18 +55,18 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
     return result;
 }
 
-- (instancetype)initWithAlphabets:(NSArray *)alphabets {
-    [self release];
-    
-    ANSAlphabet *result = [[ANSClusterAlphabet alloc] initWithAlphabets:alphabets];
-    
-    return result;
-}
-
 - (instancetype)initWithStrings:(NSArray *)strings {
     [self release];
     
     ANSAlphabet *result = [[ANSStringAlphabet alloc] initWithStrings:strings];
+    
+    return result;
+}
+
+- (instancetype)initWithAlphabets:(NSArray *)alphabets {
+    [self release];
+    
+    ANSAlphabet *result = [[ANSClusterAlphabet alloc] initWithAlphabets:alphabets];
     
     return result;
 }
@@ -118,7 +118,6 @@ NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
                                   objects:(id[])buffer
                                   count:(NSUInteger)len
 {
-    
     state->mutationsPtr = (unsigned long *)self;
     
     NSUInteger length = MIN(state->state + len, self.count);

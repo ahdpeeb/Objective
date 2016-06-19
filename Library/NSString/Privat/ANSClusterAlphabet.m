@@ -46,7 +46,8 @@
         NSUInteger iteratedIndex = index;
         for (ANSAlphabet *alphabet in self.alphabets) {
             if (iteratedIndex < [alphabet count]) {
-                return alphabet[iteratedIndex];
+                NSString *value = alphabet[iteratedIndex];
+                return value;
             }
             
             iteratedIndex -= [alphabet count];
@@ -56,21 +57,25 @@
     return nil;
 }
 
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id [])buffer
-                                    count:(NSUInteger)len
-{
-    state->mutationsPtr = 0;
-    NSUInteger value = MIN(state->state + len, self.count);
-    len = value - state->state;
-    for (NSUInteger index = state->state; index < value; index ++) {
-        buffer[index] = self[index];
+- (NSString *)string {
+    NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
+    for (NSString *symbols in self) {
+        NSLog(@"%@", symbols);
+        [string appendString:symbols];
     }
     
-    state->state += value;
-    
-    return len;
+    return [[string copy] autorelease];
 }
+
+//#pragma mark -
+//#pragma mark NSFastEnumeration
+//
+//- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+//                                  objects:(id [])buffer
+//                                    count:(NSUInteger)len
+//{
+//   return [self.alphabets countByEnumeratingWithState:state objects:buffer count:len];
+//}
 
 #pragma mark -
 #pragma mark Private

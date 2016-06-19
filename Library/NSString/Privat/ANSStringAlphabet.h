@@ -13,6 +13,6 @@
 @interface ANSStringAlphabet : ANSAlphabet
 @property (nonatomic, readonly) NSArray *strings;
 
-- (instancetype)initWithArray:(NSArray *)strings;
+- (instancetype)initWithStrings:(NSArray *)strings;
 
 @end

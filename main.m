@@ -15,14 +15,24 @@
 int main(int argc, const char * argv[]) {    
 @autoreleasepool {
     
-    NSMutableString *mutableString = [NSMutableString object];
+    NSString *numericString = [NSString stringWithFormat:@"123456789"];
+    NSString *lowercaseString = [NSString stringWithFormat:@"abc"];
+    NSArray *strings = [NSArray arrayWithObjects:numericString, lowercaseString, nil];
+    ANSAlphabet *stringsAlphabet = [ANSAlphabet alphabetWithStrings:strings];
     
-    NSRange alphabetRange = ANSCreateAlphabetRange('A', 'Z');
-    ANSAlphabet *alphabet = [ANSAlphabet alphabetWithRange:alphabetRange];
-    NSString *value = [alphabet string];
+    ANSAlphabet *rangeAlphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
+    ANSAlphabet *clasterAlphabet = nil;
+    
+    NSArray *alphabets = [NSArray arrayWithObjects:rangeAlphabet,stringsAlphabet, nil];
+    clasterAlphabet = [ANSAlphabet alphabetWithAlphabets:alphabets];
+    
+    NSInteger count = clasterAlphabet.count;
+    NSLog(@"%ld", (long)count);
+    
+    NSString *value = [clasterAlphabet string];
     NSLog(@"%@", value);
         
-    NSLog(@"%@", mutableString);
+
     
 return 0;
 }

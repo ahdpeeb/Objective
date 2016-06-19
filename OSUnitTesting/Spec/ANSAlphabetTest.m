@@ -16,50 +16,121 @@
 SPEC_BEGIN(ANSAlphabetTest);
 
 describe(@"ANSAlphabet", ^{
-    __block ANSAlphabet *alphabet = nil;
+    __block ANSAlphabet *rangeAlphabet = nil;
+    __block ANSAlphabet *stringsAlphabet = nil;
+    __block ANSAlphabet *clasterAlphabet = nil;
+    
     registerMatchers(@"BG"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
-    context(@"alphabetWithRange testing", ^{
+    context(@"rangeAlphabet", ^{
         beforeAll(^{
-            alphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
+            rangeAlphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
         });
         
         it(@"should bee kind of class", ^{
-            [[alphabet should] beKindOfClass:[ANSRangeAlphabet class]];
+            [[rangeAlphabet should] beKindOfClass:[ANSRangeAlphabet class]];
         });
         
-        it(@"count should be 3", ^{
-            [[theValue([alphabet count]) should] equal:theValue(26)];
+        it(@"count should be 26", ^{
+            [[theValue([rangeAlphabet count]) should] equal:theValue(26)];
         });
         
         it(@"should not be empty", ^{
-            [[alphabet shouldNot] beEmpty];
+            [[rangeAlphabet shouldNot] beEmpty];
         });
         
-        it(@"firs symbol should be 'a'", ^{
-            [[[alphabet stringAtIndex:2] should] equal:@"C"];
+        it(@"firs symbol should be 'C'", ^{
+            [[[rangeAlphabet stringAtIndex:2] should] equal:@"C"];
         });
         
         it(@"should respond to selector stringAtIndex", ^{
-            [[alphabet should] respondToSelector:@selector(initWithRange:)];
+            [[rangeAlphabet should] respondToSelector:@selector(initWithRange:)];
         });
         
         it(@"result from [alphabet string] should be equal to ABCDEFGHIJKLMNOPQRSTUVWXYZ", ^{
-            [[[alphabet string] should] equal:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+            [[[rangeAlphabet string] should] equal:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
         });
         
         //alphabet should not bee nil;
         specify(^{
-            [[alphabet shouldNot] beNil];
+            [[rangeAlphabet shouldNot] beNil];
         });
         
         afterAll(^{ // Occurs once at the and
             
         });
+    });
+    
+    context(@"stringsAlphabet", ^{
+        beforeAll(^{
+            NSString *numericString = [NSString stringWithFormat:@"0123456789"];
+            NSString *lowercaseString = [NSString stringWithFormat:@"abc"];
+            NSArray *strings = [NSArray arrayWithObjects:numericString, lowercaseString, nil];
+            stringsAlphabet = [ANSAlphabet alphabetWithStrings:strings];
+        });
         
-        context(@"inner context", ^{
-            it(@"does another thing", ^{
-            });
-            
+        it(@"should bee kind of class", ^{
+            [[stringsAlphabet should] beKindOfClass:[ANSStringAlphabet class]];
+        });
+        
+        it(@"count should be 2", ^{
+            [[theValue([stringsAlphabet count]) should] equal:theValue(2)];
+        });
+        
+        it(@"should not be empty", ^{
+            [[stringsAlphabet shouldNot] beEmpty];
+        });
+        
+        it(@"firs symbol should be '2'", ^{
+            [[[stringsAlphabet stringAtIndex:0] should] equal:@"0123456789"];
+        });
+        
+        it(@"should respond to selector stringAtIndex", ^{
+            [[stringsAlphabet should] respondToSelector:@selector(string)];
+        });
+        
+        it(@"result from [alphabet string] should be equal to ABCDEFGHIJKLMNOPQRSTUVWXYZ", ^{
+            [[[stringsAlphabet string] should] equal:@"0123456789abc"];
+        });
+        
+        //alphabet should not bee nil;
+        specify(^{
+            [[stringsAlphabet shouldNot] beNil];
+        });
+    });
+    
+    context(@"clasterAlphabet", ^{
+        beforeAll(^{
+            NSArray *alphabets = [NSArray arrayWithObjects:rangeAlphabet,stringsAlphabet, nil];
+            clasterAlphabet = [ANSAlphabet alphabetWithAlphabets:alphabets];
+        });
+        
+        it(@"should bee kind of class", ^{
+            [[clasterAlphabet should] beKindOfClass:[ANSClusterAlphabet class]];
+        });
+        
+        it(@"count should be 28", ^{
+            [[theValue([clasterAlphabet count]) should] equal:theValue(28)];
+        });
+        
+        it(@"should not be empty", ^{
+            [[clasterAlphabet shouldNot] beEmpty];
+        });
+        
+        it(@"firs symbol should be '2'", ^{
+            [[[clasterAlphabet stringAtIndex:0] should] equal:@"A"];
+        });
+        
+        it(@"should respond to selector stringAtIndex", ^{
+            [[clasterAlphabet should] respondToSelector:@selector(string)];
+        });
+        
+        it(@"result from [alphabet string] should be equal to ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abc", ^{
+            [[[clasterAlphabet string] should] equal:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abc"];
+        });
+        
+        //alphabet should not bee nil;
+        specify(^{
+            [[clasterAlphabet shouldNot] beNil];
         });
     });
 });

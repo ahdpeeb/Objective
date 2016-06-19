@@ -24,7 +24,7 @@
     [super dealloc];
 }
 
-- (instancetype)initWithArray:(NSArray *)strings {
+- (instancetype)initWithStrings:(NSArray *)strings {
     self = [super init];
     if (self) {
         self.strings = strings;
@@ -46,6 +46,9 @@
 - (NSString *)stringAtIndex:(NSUInteger)index {
     return self.strings[index];
 }
+
+#pragma mark -
+#pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer
