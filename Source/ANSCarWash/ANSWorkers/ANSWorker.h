@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 
 #import "ANSMoneyOwner.h"
+#import "ANSWorkerDelegate.h"
 
-@interface ANSWorker : NSObject <ANSMoneyOwner>
+@interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
 @property (nonatomic, assign) float     income;
 @property (nonatomic, assign) NSInteger yearsOfExperience;
 
+@property (nonatomic, assign) id<ANSWorkerDelegate> delegat;
+@property (nonatomic, retain) id delegatingWorker;  
+
 - (void)processObject:(id)object;
+
+
 
 @end

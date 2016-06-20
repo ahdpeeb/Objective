@@ -22,6 +22,8 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
+    self.delegatingWorker = nil;
+    
     [super dealloc];
 }
 
@@ -30,6 +32,19 @@
     self.yearsOfExperience = 3;
     
     return self;
+}
+
+#pragma mark 
+#pragma marrk Accessors 
+
+- (void)setDelegatingObject:(id)delegatingWorker {
+    if (_delegatingWorker != delegatingWorker) {
+        [_delegatingWorker release];
+        [delegatingWorker setDelegat:nil];
+        _delegatingWorker = [delegatingWorker retain];
+        
+        [_delegatingWorker setDelegat:self];
+    }
 }
 
 #pragma mark -
@@ -51,6 +66,13 @@
 
 - (void)processObject:(id)object {
     NSLog(@"process object");
+}
+
+#pragma mark -
+#pragma mark ANSWorkerDelegate
+
+- (void)workerGotMoney:(id)worker {
+    [self processObject:worker];
 }
 
 @end

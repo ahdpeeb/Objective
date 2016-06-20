@@ -71,6 +71,7 @@
 		00BB46DAD617C15302EDFBEA /* Pods-OSUnitTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSUnitTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSUnitTesting/Pods-OSUnitTesting.debug.xcconfig"; sourceTree = "<group>"; };
 		1EDE8192052DE5DCFAC40416 /* libPods-OSUnitTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSUnitTesting.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9328B50D1D181A02001D6E62 /* ANSWorkerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSWorkerDelegate.h; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = washComlexTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93968A311D12AD73009E7EF1 /* ANSCarWashComlexTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashComlexTest.m; sourceTree = "<group>"; };
@@ -332,6 +333,7 @@
 		93DAD43E1D0DF2910055E7FB /* ANSWorkers */ = {
 			isa = PBXGroup;
 			children = (
+				9328B50D1D181A02001D6E62 /* ANSWorkerDelegate.h */,
 				93DAD4451D0DF2910055E7FB /* ANSWorker.h */,
 				93DAD4461D0DF2910055E7FB /* ANSWorker.m */,
 				93DAD4431D0DF2910055E7FB /* ANSCarWasher.h */,
@@ -779,6 +781,7 @@
 				93968A361D12AD73009E7EF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93DAD4191D0DF1740055E7FB /* Build configuration list for PBXNativeTarget "OSUnitTesting" */ = {
 			isa = XCConfigurationList;

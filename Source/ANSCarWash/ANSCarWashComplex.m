@@ -21,6 +21,7 @@
 @property (nonatomic, retain) ANSBuilding       *officeBuilding;
 @property (nonatomic, retain) ANSBuilding       *washBuilding;
 
+// test method.
 - (id)workerWithClass:(Class)cls;
 - (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
@@ -30,7 +31,7 @@
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark initialize / deallocate
+#pragma mark initializetion / deallocation
 
 - (void)dealloc {
     self.carQueue = nil;
@@ -56,8 +57,14 @@
     ANSBuilding *officeBuilding = self.officeBuilding;
     ANSBuilding *washBuilding = self.washBuilding;
     
-    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:[ANSAccountant object]
-                                                    boss:[ANSBoss object]] autorelease];
+    ANSAccountant *accountant = [ANSAccountant object];
+//  accountant.delegatingWorker = washer;
+    
+    ANSBoss *boss = [ANSBoss object];
+    boss.delegatingWorker = accountant;
+    
+    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:accountant
+                                                    boss:boss] autorelease];
     [officeBuilding addRoom:room];
     [washBuilding addRoom:[ANSBox object]];
 }

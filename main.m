@@ -21,6 +21,7 @@ int main(int argc, const char * argv[]) {
     ANSAlphabet *stringsAlphabet = [ANSAlphabet alphabetWithStrings:strings];
     
     ANSAlphabet *rangeAlphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
+    NSString *value = [rangeAlphabet string];
     ANSAlphabet *clasterAlphabet = nil;
     
     NSArray *alphabets = [NSArray arrayWithObjects:rangeAlphabet,stringsAlphabet, nil];
@@ -29,7 +30,7 @@ int main(int argc, const char * argv[]) {
     NSInteger count = clasterAlphabet.count;
     NSLog(@"%ld", (long)count);
     
-    NSString *value = [clasterAlphabet string];
+    
     NSLog(@"%@", value);
         
 
