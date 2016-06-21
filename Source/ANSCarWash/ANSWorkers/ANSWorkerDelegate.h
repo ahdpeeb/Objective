@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class ANSWorker;
+
 @protocol ANSWorkerDelegate <NSObject>
 
-- (void)workerGotMoney:(id)worker;
+- (void)didFinishedWork:(ANSWorker *) worker;
 
 @end

@@ -8,34 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ANSAlphabet.h"
+#import "ANSCarWashComplex.h"
 
 #import "NSObject+ANSExtension.h"
 
 int main(int argc, const char * argv[]) {    
-@autoreleasepool {
-    
-    NSString *numericString = [NSString stringWithFormat:@"123456789"];
-    NSString *lowercaseString = [NSString stringWithFormat:@"abc"];
-    NSArray *strings = [NSArray arrayWithObjects:numericString, lowercaseString, nil];
-    ANSAlphabet *stringsAlphabet = [ANSAlphabet alphabetWithStrings:strings];
-    
-    ANSAlphabet *rangeAlphabet = [ANSAlphabet alphabetWithRange:ANSCreateAlphabetRange('A', 'Z')];
-    NSString *value = [rangeAlphabet string];
-    ANSAlphabet *clasterAlphabet = nil;
-    
-    NSArray *alphabets = [NSArray arrayWithObjects:rangeAlphabet,stringsAlphabet, nil];
-    clasterAlphabet = [ANSAlphabet alphabetWithAlphabets:alphabets];
-    
-    NSInteger count = clasterAlphabet.count;
-    NSLog(@"%ld", (long)count);
-    
-    
-    NSLog(@"%@", value);
+    @autoreleasepool {
+        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        ANSCar *car = [ANSCar object];
+        [complex addCarToQueue:car];
         
-
-    
-return 0;
-}
+        return 0;
+    }
 
 }

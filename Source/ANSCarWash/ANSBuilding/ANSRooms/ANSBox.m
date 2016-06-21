@@ -29,8 +29,6 @@
 - (instancetype)init {
     self = [super init];
     self.mutableCars = [NSMutableArray object];
-    ANSCarWasher *washer = [ANSCarWasher object];
-    [self addWorker:washer];
     
     return self;
 }

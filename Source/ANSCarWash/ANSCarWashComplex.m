@@ -8,10 +8,11 @@
 
 #import "ANSCarWashComplex.h"
 
+#import "ANSBuilding.h"
 #import "ANSRoom.h"
+#import "ANSCarWasher.h"
 #import "ANSAccountant.h"
 #import "ANSBoss.h"
-#import "ANSBuilding.h"
 
 #import "NSObject+ANSExtension.h"
 #import "ANSQueue.h"
@@ -21,10 +22,9 @@
 @property (nonatomic, retain) ANSBuilding       *officeBuilding;
 @property (nonatomic, retain) ANSBuilding       *washBuilding;
 
-// test method.
-- (id)workerWithClass:(Class)cls;
 - (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
+- (ANSWorker* )freeWorkerInSquad:(NSArray *)squad;
 
 @end
 
@@ -58,15 +58,19 @@
     ANSBuilding *washBuilding = self.washBuilding;
     
     ANSAccountant *accountant = [ANSAccountant object];
-//  accountant.delegatingWorker = washer;
-    
     ANSBoss *boss = [ANSBoss object];
-    boss.delegatingWorker = accountant;
+    ANSCarWasher *washer = [ANSCarWasher object];
     
+    washer.delegate = accountant;
+    accountant.delegate = boss;
+    
+    ANSBox *box = [ANSBox object];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:accountant
                                                     boss:boss] autorelease];
+    
+    [box addWorker:washer];
+    [washBuilding addRoom:box];
     [officeBuilding addRoom:room];
-    [washBuilding addRoom:[ANSBox object]];
 }
 
 #pragma mark -
@@ -83,22 +87,23 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (id)workerWithClass:(Class)cls {
-    return [[self.officeBuilding workersWithClass:cls] firstObject];
+- (ANSWorker* )freeWorkerInSquad:(NSArray *)squad {
+    for (ANSWorker* worker in squad) {
+        if (worker.status == ANSWorkerFree) {
+            return worker;
+        }
+    }
+    
+    return nil;
 }
 
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
-        ANSCarWasher *washer = [freeBox randomWasher];
-        ANSBoss *boss = [self workerWithClass:[ANSBoss class]];
-        ANSAccountant *accountant = [self workerWithClass:[ANSAccountant class]];
-        
+        ANSCarWasher *washer = (ANSCarWasher *)[self freeWorkerInSquad:[self.washBuilding workersWithClass:[ANSCarWasher class]]];
         [freeBox addCar:car];
         
         [washer processObject:car];
-        [accountant processObject:washer];
-        [boss processObject:accountant];
         
         [freeBox removeCar:car];
         NSLog(@"%@ washed",car);

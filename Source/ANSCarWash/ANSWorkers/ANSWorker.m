@@ -22,7 +22,6 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
-    self.delegatingWorker = nil;
     
     [super dealloc];
 }
@@ -37,15 +36,6 @@
 #pragma mark 
 #pragma marrk Accessors 
 
-- (void)setDelegatingObject:(id)delegatingWorker {
-    if (_delegatingWorker != delegatingWorker) {
-        [_delegatingWorker release];
-        [delegatingWorker setDelegat:nil];
-        _delegatingWorker = [delegatingWorker retain];
-        
-        [_delegatingWorker setDelegat:self];
-    }
-}
 
 #pragma mark -
 #pragma mark Public methods
@@ -71,7 +61,7 @@
 #pragma mark -
 #pragma mark ANSWorkerDelegate
 
-- (void)workerGotMoney:(id)worker {
+- (void)didFinishedWork:(id)worker {
     [self processObject:worker];
 }
 

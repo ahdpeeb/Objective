@@ -11,12 +11,17 @@
 #import "ANSMoneyOwner.h"
 #import "ANSWorkerDelegate.h"
 
-@interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
-@property (nonatomic, assign) float     income;
-@property (nonatomic, assign) NSInteger yearsOfExperience;
+typedef enum {
+    ANSWorkerFree,
+    ANSWorkerBusy,
+} ANSWorkerStatus;
 
-@property (nonatomic, assign) id<ANSWorkerDelegate> delegat;
-@property (nonatomic, retain) id delegatingWorker;  
+@interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
+@property (nonatomic, assign) float                 income;
+@property (nonatomic, assign) NSInteger             yearsOfExperience;
+@property (nonatomic, readonly) ANSWorkerStatus     status;
+
+@property (nonatomic, assign) ANSWorker<ANSWorkerDelegate> *delegate;
 
 - (void)processObject:(id)object;
 
