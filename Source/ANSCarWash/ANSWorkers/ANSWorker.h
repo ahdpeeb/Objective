@@ -15,10 +15,10 @@
 @property (nonatomic, assign)                float      income;
 @property (nonatomic, assign)                NSInteger  yearsOfExperience;
 
-// can be read readonly from outside
-@property (nonatomic, assign, getter=isBusy) BOOL       busy;
+// can be readonly from outside
+@property (nonatomic, assign, getter=isBusy) BOOL                   busy;
 
-@property (nonatomic, assign) ANSWorker<ANSWorkerDelegate> *delegate;
+@property (nonatomic, assign)               id<ANSWorkerDelegate>   delegate;
 
 - (void)processObject:(id)object;
 

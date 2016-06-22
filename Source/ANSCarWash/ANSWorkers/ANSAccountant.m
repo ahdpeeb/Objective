@@ -18,7 +18,7 @@
 - (void)processObject:(id)object {
     [self takeMoneyFromObject:object];
     [self countMoney];
-    [self.delegate didFinishedWork:self]; // after accountant got money, inform boss
+    [self.delegate didFinishWork:self]; // after accountant got money, inform boss
 }
 
 @end

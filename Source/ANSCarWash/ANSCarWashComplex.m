@@ -110,7 +110,7 @@
 
 - (NSArray *)freeWorkerWithClass:(Class)cls {
     NSArray *workers = [self workersWithClass:cls];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == NO", @"busy"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"busy", NO]; //@"busy == NO"
     NSArray *result = [workers filteredArrayUsingPredicate:predicate];
     return result;
 }
