@@ -24,7 +24,10 @@
 
 - (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
-- (ANSWorker* )freeWorkerInSquad:(NSArray *)squad;
+- (id)suitableBuildingForWorkerClass:(Class)cls;
+- (NSArray *)workersWithClass:(Class)cls;
+- (NSArray *)freeWorkerWithClass:(Class)cls;
+- (id)reservedFreeWorkerWithClass:(Class)cls;
 
 @end
 
@@ -67,7 +70,6 @@
     ANSBox *box = [ANSBox object];
     ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:accountant
                                                     boss:boss] autorelease];
-    
     [box addWorker:washer];
     [washBuilding addRoom:box];
     [officeBuilding addRoom:room];
@@ -87,27 +89,34 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (ANSWorker* )freeWorkerInSquad:(NSArray *)squad {
-    for (ANSWorker* worker in squad) {
-        if (worker.status == ANSWorkerFree) {
-            return worker;
-        }
-    }
-    
-    return nil;
-}
-
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
-        ANSCarWasher *washer = (ANSCarWasher *)[self freeWorkerInSquad:[self.washBuilding workersWithClass:[ANSCarWasher class]]];
+        ANSCarWasher *washer = [self reservedFreeWorkerWithClass:[ANSAccountant class]];
+        
         [freeBox addCar:car];
-        
         [washer processObject:car];
-        
         [freeBox removeCar:car];
-        NSLog(@"%@ washed",car);
     }
+}
+
+- (id)suitableBuildingForWorkerClass:(Class)cls {
+    return [cls isSubclassOfClass:[ANSCarWasher class]] ? self.washBuilding : self.officeBuilding;
+}
+    //! workersWithClass also сontained in ANSBuilding public interfacer
+- (NSArray *)workersWithClass:(Class)cls {
+    return [[self suitableBuildingForWorkerClass:cls]workersWithClass:cls];
+}
+
+- (NSArray *)freeWorkerWithClass:(Class)cls {
+    NSArray *workers = [self workersWithClass:cls];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == NO", @"busy"];
+    NSArray *result = [workers filteredArrayUsingPredicate:predicate];
+    return result;
+}
+
+- (id)reservedFreeWorkerWithClass:(Class)cls {
+    return [[self freeWorkerWithClass:cls] firstObject];
 }
 
 @end

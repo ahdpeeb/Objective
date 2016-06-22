@@ -11,15 +11,12 @@
 #import "ANSMoneyOwner.h"
 #import "ANSWorkerDelegate.h"
 
-typedef enum {
-    ANSWorkerFree,
-    ANSWorkerBusy,
-} ANSWorkerStatus;
-
 @interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
-@property (nonatomic, assign) float                 income;
-@property (nonatomic, assign) NSInteger             yearsOfExperience;
-@property (nonatomic, readonly) ANSWorkerStatus     status;
+@property (nonatomic, assign)                float      income;
+@property (nonatomic, assign)                NSInteger  yearsOfExperience;
+
+// can be read readonly from outside
+@property (nonatomic, assign, getter=isBusy) BOOL       busy;
 
 @property (nonatomic, assign) ANSWorker<ANSWorkerDelegate> *delegate;
 
