@@ -12,6 +12,6 @@
 
 @protocol ANSWorkerDelegate <NSObject>
 
-- (void)didFinishWork:(ANSWorker *) worker;
+- (void)workerDidFinishWork:(ANSWorker *)worker;
 
 @end

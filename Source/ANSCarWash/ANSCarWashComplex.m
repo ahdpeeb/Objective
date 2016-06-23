@@ -40,6 +40,8 @@
     self.carQueue = nil;
     self.officeBuilding = nil;
     self.washBuilding = nil;
+//    washer.delegate = nil;      // create washer/accountant properertyes for breaking connections 
+//    accountant.delegate = nil;
     
     [super dealloc];
 }
@@ -92,7 +94,7 @@
 - (void)washCar:(ANSCar *)car; {
     ANSBox *freeBox = [self.washBuilding freeRoom];
     if (freeBox) {
-        ANSCarWasher *washer = [self reservedFreeWorkerWithClass:[ANSAccountant class]];
+        ANSCarWasher *washer = [self reservedFreeWorkerWithClass:[ANSCarWasher class]];
         
         [freeBox addCar:car];
         [washer processObject:car];
@@ -111,8 +113,7 @@
 - (NSArray *)freeWorkerWithClass:(Class)cls {
     NSArray *workers = [self workersWithClass:cls];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"busy", NO]; //@"busy == NO"
-    NSArray *result = [workers filteredArrayUsingPredicate:predicate];
-    return result;
+    return [workers filteredArrayUsingPredicate:predicate];
 }
 
 - (id)reservedFreeWorkerWithClass:(Class)cls {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9328B5141D1AD915001D6E62 /* ANSObservableObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5131D1AD915001D6E62 /* ANSObservableObjectTest.m */; };
+		9328B5171D1AE8D6001D6E62 /* ANSObserverObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5161D1AE8D6001D6E62 /* ANSObserverObjectTest.m */; };
+		9328B51A1D1AE95A001D6E62 /* ANSPurse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5191D1AE95A001D6E62 /* ANSPurse.m */; };
 		93968A321D12AD73009E7EF1 /* ANSCarWashComlexTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A311D12AD73009E7EF1 /* ANSCarWashComlexTest.m */; };
 		93968A371D13E4A3009E7EF1 /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */; };
 		93968A381D13E4B2009E7EF1 /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4391D0DF2910055E7FB /* ANSCar.m */; };
@@ -72,6 +75,12 @@
 		1EDE8192052DE5DCFAC40416 /* libPods-OSUnitTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSUnitTesting.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9328B50D1D181A02001D6E62 /* ANSWorkerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSWorkerDelegate.h; sourceTree = "<group>"; };
+		9328B5121D1AD915001D6E62 /* ANSObservableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObservableObjectTest.h; sourceTree = "<group>"; };
+		9328B5131D1AD915001D6E62 /* ANSObservableObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObservableObjectTest.m; sourceTree = "<group>"; };
+		9328B5151D1AE8D6001D6E62 /* ANSObserverObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObserverObjectTest.h; sourceTree = "<group>"; };
+		9328B5161D1AE8D6001D6E62 /* ANSObserverObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObserverObjectTest.m; sourceTree = "<group>"; };
+		9328B5181D1AE95A001D6E62 /* ANSPurse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSPurse.h; sourceTree = "<group>"; };
+		9328B5191D1AE95A001D6E62 /* ANSPurse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSPurse.m; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = washComlexTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93968A311D12AD73009E7EF1 /* ANSCarWashComlexTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashComlexTest.m; sourceTree = "<group>"; };
@@ -183,6 +192,20 @@
 				93968A2F1D12AD73009E7EF1 /* washComlexTest.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9328B5111D1AD915001D6E62 /* ANSObservableObjectTest */ = {
+			isa = PBXGroup;
+			children = (
+				9328B5121D1AD915001D6E62 /* ANSObservableObjectTest.h */,
+				9328B5131D1AD915001D6E62 /* ANSObservableObjectTest.m */,
+				9328B5181D1AE95A001D6E62 /* ANSPurse.h */,
+				9328B5191D1AE95A001D6E62 /* ANSPurse.m */,
+				9328B5151D1AE8D6001D6E62 /* ANSObserverObjectTest.h */,
+				9328B5161D1AE8D6001D6E62 /* ANSObserverObjectTest.m */,
+			);
+			name = ANSObservableObjectTest;
+			path = ANSCreature/ANSObservableObjectTest;
 			sourceTree = "<group>";
 		};
 		93968A301D12AD73009E7EF1 /* ANSCarWashComlexTest */ = {
@@ -303,6 +326,7 @@
 			children = (
 				93DAD42F1D0DF2910055E7FB /* ANSCarWash */,
 				93DAD4471D0DF2910055E7FB /* ANSCreature */,
+				9328B5111D1AD915001D6E62 /* ANSObservableObjectTest */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -560,9 +584,12 @@
 				93DAD46C1D0DF2910055E7FB /* ANSCarWasher.m in Sources */,
 				93DAD46E1D0DF2910055E7FB /* ANSWorker.m in Sources */,
 				93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */,
+				9328B5171D1AE8D6001D6E62 /* ANSObserverObjectTest.m in Sources */,
+				9328B51A1D1AE95A001D6E62 /* ANSPurse.m in Sources */,
 				93DAD45C1D0DF2910055E7FB /* main.m in Sources */,
 				93DAD4681D0DF2910055E7FB /* ANSAccountant.m in Sources */,
 				93DAD4521D0DF2910055E7FB /* ANSAlphabet.m in Sources */,
+				9328B5141D1AD915001D6E62 /* ANSObservableObjectTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

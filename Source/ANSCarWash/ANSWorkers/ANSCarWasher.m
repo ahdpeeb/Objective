@@ -13,7 +13,7 @@
 - (void)washCar:(ANSCar *)car {
     car.status = ANSCarClean;
     [self takeMoneyFromObject:car];
-    [self.delegate didFinishWork:self];  // after carWasher got money, inform accountant. / do not see
+    [self.delegate workerDidFinishWork:self];  // after carWasher got money, inform accountant. / do not see
 }
 
 - (void)processObject:(id)object {

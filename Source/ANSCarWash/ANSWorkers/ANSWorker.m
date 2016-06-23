@@ -62,7 +62,7 @@
 #pragma mark -
 #pragma mark ANSWorkerDelegate
 
-- (void)didFinishWork:(id)worker {
+- (void)workerDidFinishWork:(ANSWorker *)worker {
     [self processObject:worker];
 }
 
