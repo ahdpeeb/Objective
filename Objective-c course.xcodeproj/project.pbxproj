@@ -12,6 +12,13 @@
 		9328B51A1D1AE95A001D6E62 /* ANSPurse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5191D1AE95A001D6E62 /* ANSPurse.m */; };
 		9328B5201D1C1D73001D6E62 /* ANSThreading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B51F1D1C1D73001D6E62 /* ANSThreading.m */; };
 		9328B5241D1C1F15001D6E62 /* ANSCarWashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5231D1C1F15001D6E62 /* ANSCarWashTest.m */; };
+		9328B5251D1C4316001D6E62 /* ANSCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4391D0DF2910055E7FB /* ANSCar.m */; };
+		9328B5261D1C4326001D6E62 /* ANSCarWashComplex.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */; };
+		9328B5271D1C433C001D6E62 /* ANSWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4461D0DF2910055E7FB /* ANSWorker.m */; };
+		9328B5281D1C4341001D6E62 /* ANSCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4441D0DF2910055E7FB /* ANSCarWasher.m */; };
+		9328B5291D1C4344001D6E62 /* ANSAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4401D0DF2910055E7FB /* ANSAccountant.m */; };
+		9328B52A1D1C4347001D6E62 /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4421D0DF2910055E7FB /* ANSBoss.m */; };
+		9328B52B1D1C4354001D6E62 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
 		93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
@@ -515,11 +522,18 @@
 				93DAD4551D0DF2910055E7FB /* NSString+ANSExtension.m in Sources */,
 				93DAD4711D0DF2910055E7FB /* ANSCreature.m in Sources */,
 				93DAD4591D0DF2910055E7FB /* ANSRangeAlphabet.m in Sources */,
+				9328B5271D1C433C001D6E62 /* ANSWorker.m in Sources */,
 				93DAD4511D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */,
+				9328B52B1D1C4354001D6E62 /* ANSQueue.m in Sources */,
 				93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */,
 				93DAD4751D0DF2910055E7FB /* ANSCreatureMale.m in Sources */,
+				9328B52A1D1C4347001D6E62 /* ANSBoss.m in Sources */,
+				9328B5291D1C4344001D6E62 /* ANSAccountant.m in Sources */,
 				9328B5241D1C1F15001D6E62 /* ANSCarWashTest.m in Sources */,
+				9328B5261D1C4326001D6E62 /* ANSCarWashComplex.m in Sources */,
 				93DAD4571D0DF2910055E7FB /* ANSClusterAlphabet.m in Sources */,
+				9328B5251D1C4316001D6E62 /* ANSCar.m in Sources */,
+				9328B5281D1C4341001D6E62 /* ANSCarWasher.m in Sources */,
 				93DAD4731D0DF2910055E7FB /* ANSCreatureFemale.m in Sources */,
 				93DAD45B1D0DF2910055E7FB /* ANSStringAlphabet.m in Sources */,
 				93DAD44F1D0DF2910055E7FB /* ANSRandom.m in Sources */,

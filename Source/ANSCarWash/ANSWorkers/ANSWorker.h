@@ -10,7 +10,7 @@
 // after worker got money, he change status for=> ANSWorkerBusy
 // after worker will finished work, he change status for=> "ANSWorkIsPending"!
 // after worker inform delegate, delegate after processing worker change his state=> ANSWorkerFree!
-
+// boss has 2 conditions ANSWorkerBusy, ANSWorkerFree
 #import <Foundation/Foundation.h>
 
 #import "ANSMoneyOwner.h"

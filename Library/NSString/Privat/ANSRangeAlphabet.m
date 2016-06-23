@@ -12,6 +12,8 @@
 
 @interface ANSRangeAlphabet ()
 @property (nonatomic, assign) NSRange range;
+@property (nonatomic, assign) NSUInteger countValue;
+@property (nonatomic, assign) id *strings;
 
 @end
 
@@ -20,10 +22,17 @@
 #pragma mark -
 #pragma mark Initialization and deallocation
 
+- (void)dealloc {
+    self.strings = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)initWithRange:(NSRange)range {
     self = [super init];
     if (self) {
         self.range = range;
+        self.strings = malloc(sizeof(id *) * self.count);
     }
     
     return self;
@@ -49,24 +58,23 @@
                                   objects:(id [])buffer
                                     count:(NSUInteger)len
 {
-    
+    NSUInteger countValue = self.countValue;
     state->mutationsPtr = (unsigned long *)self;
-    NSUInteger count = self.count;
-    if (state->state >= count) {
+    countValue = self.count;
+    if (state->state >= countValue) {
         return 0;
     }
     
-    id *objects = malloc(sizeof(id) * count);
     
-    for (NSUInteger index = 0; index < count; index ++) {
+    for (NSUInteger index = 0; index < countValue; index ++) {
         NSString *symbol = [self stringAtIndex:index];
-        objects[index] = symbol;
+        self.strings[index] = symbol;
     }
     
-    state->itemsPtr = objects;
-    state->state = count;
+    state->itemsPtr = self.strings;
+    state->state = countValue;
     
-    return count;
+    return countValue;
 }
     
 @end

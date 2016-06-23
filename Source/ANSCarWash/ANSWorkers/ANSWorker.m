@@ -66,7 +66,7 @@
 
 - (void)workerDidFinishWork:(ANSWorker *)worker {
     [self processObject:worker];
-    worker.state = ANSWorkerFree;; //
+    worker.state = ANSWorkerFree;
 }
 
 @end

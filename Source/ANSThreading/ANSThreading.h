@@ -9,6 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ANSThreading : NSObject
-@property (nonatomic, assign) 
 
 @end

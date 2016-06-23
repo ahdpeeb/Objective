@@ -10,6 +10,7 @@
 
 #import "ANSCarWashComplex.h"
 
+
 #import "NSObject+ANSExtension.h"
 
 SPEC_BEGIN(ANSCarWashTest);
@@ -51,8 +52,7 @@ describe(@"ANSCarWashComplex", ^{
         
         //alphabet should not bee nil;
         specify(^{
-            [[complex shouldNot] beNil];
-            [[car shouldNot] beNil];
+        
         });
         
         afterAll(^{ // Occurs once at the and
