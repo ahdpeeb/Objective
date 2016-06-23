@@ -12,8 +12,7 @@
 #import "ANSRandom.h"
 
 @interface ANSWorker ()
-@property (nonatomic, assign) float      money;
-//@property (nonatomic, assign) BOOL     free;
+@property (nonatomic, assign) float money;
 
 @end
 
@@ -27,9 +26,10 @@
     [super dealloc];
 }
 
-- (instancetype)init {
+- (instancetype)initWithId:(NSUInteger)idNumber {
     self = [super init];
-    self.yearsOfExperience = 3;
+    self.idNumber = idNumber;
+    self.state = ANSWorkerFree;
     
     return self;
 }
@@ -53,10 +53,12 @@
     float money = owner.money;
     [owner giveMoney:money];
     [self receiveMoney:money];
+    self.state = ANSWorkerBusy; 
+
 }
 
 - (void)processObject:(id)object {
-    NSLog(@"process object");
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark -
@@ -64,6 +66,7 @@
 
 - (void)workerDidFinishWork:(ANSWorker *)worker {
     [self processObject:worker];
+    worker.state = ANSWorkerFree;; //
 }
 
 @end

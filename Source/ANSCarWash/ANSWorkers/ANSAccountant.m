@@ -12,6 +12,7 @@
 @implementation ANSAccountant
 
 - (void)countMoney {
+    self.state = ANSWorkerBusy;   
     NSLog(@"%f money in my cashbox", self.money);
 }
 

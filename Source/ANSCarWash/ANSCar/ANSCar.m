@@ -8,7 +8,7 @@
 
 #import "ANSCar.h"
 
-#import "ANSConstants.h"
+static const NSUInteger kANSServiceCost = 5;
 
 @interface ANSCar ()
 @property (nonatomic, assign) float money;
