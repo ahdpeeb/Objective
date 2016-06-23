@@ -7,6 +7,7 @@
 //
 
 #import "ANSAccountant.h"
+#import "ANSCarWasher.h"
 
 @implementation ANSAccountant
 
@@ -17,6 +18,7 @@
 - (void)processObject:(id)object {
     [self takeMoneyFromObject:object];
     [self countMoney];
+    [self.delegate workerDidFinishWork:self]; // after accountant got money, inform boss
 }
 
 @end

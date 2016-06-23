@@ -25,7 +25,9 @@
                                     lastSymbol:(unichar)lastSymbol
 {
     NSMutableString *result = [NSMutableString string];
-    NSRange range = NSMakeRange(firstSymbol, lastSymbol - firstSymbol);
+    NSUInteger headValue = MIN(firstSymbol, lastSymbol);
+    NSUInteger tailValue = MAX(firstSymbol, lastSymbol);
+    NSRange range = NSMakeRange(headValue, tailValue - headValue + 1);
     for (NSUInteger index = range.location; index <= NSMaxRange(range); index ++) {
         NSString *buffer = [[NSString alloc]initWithBytes:&index
                                                    length:1

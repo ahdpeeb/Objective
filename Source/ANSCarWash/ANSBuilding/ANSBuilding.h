@@ -20,7 +20,7 @@
 // returns free box for washing a car.
 - (ANSBox *)freeRoom;
 
-// returns array workers with class
+// returns array of workers with class
 - (NSArray *)workersWithClass:(Class)cls;
 
 @end

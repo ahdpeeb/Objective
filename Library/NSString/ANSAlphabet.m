@@ -9,16 +9,21 @@
 #import "ANSAlphabet.h"
 
 #import "ANSRangeAlphabet.h"
-#import "ANSClasterAlphabet.h"
+#import "ANSClusterAlphabet.h"
 #import "ANSStringAlphabet.h"
 
 #import "NSString+ANSExtension.h"
 
-NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
-    return NSMakeRange(MIN(value1, value2), MAX(value1, value2));
+NSRange ANSCreateAlphabetRange(unichar value1, unichar value2) {
+    NSUInteger headValue = MIN(value1, value2);
+    NSUInteger railValue = MAX(value1, value2);
+    
+    return NSMakeRange(headValue, railValue - headValue + 1);
 }
 
 @implementation ANSAlphabet
+
+@dynamic count;
 
 #pragma mark -
 #pragma mark Class methods
@@ -26,14 +31,17 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 + (instancetype)alphabetWithRange:(NSRange)range {
     return [[[ANSRangeAlphabet alloc] initWithRange:range] autorelease];
 }
+
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
     return [[[ANSStringAlphabet alloc] initWithStrings:strings] autorelease];
 }
-+ (instancetype)alphabetWithAlphabets:(NSArray *)alphabers {
-    return [[[ANSClasterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
+
++ (instancetype)alphabetWithCharacters:(NSString *)string {
+    return [[[ANSStringAlphabet alloc] initWithStrings:[string symbols]] autorelease];
 }
-+ (instancetype)alphabetWithCharacters:(NSString *)strings {
-    return [[[ANSStringAlphabet alloc] initWithStrings:[strings symbols]] autorelease];
+
++ (instancetype)alphabetWithAlphabets:(NSArray *)alphabers {
+    return [[[ANSClusterAlphabet alloc] initWithAlphabets:alphabers] autorelease];
 }
 
 #pragma mark -
@@ -47,18 +55,18 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
     return result;
 }
 
-- (instancetype)initWithAlphabets:(NSArray *)alphabets {
-    [self release];
-    
-    ANSAlphabet *result = [[ANSClasterAlphabet alloc] initWithAlphabets:alphabets];
-    
-    return result;
-}
-
 - (instancetype)initWithStrings:(NSArray *)strings {
     [self release];
     
     ANSAlphabet *result = [[ANSStringAlphabet alloc] initWithStrings:strings];
+    
+    return result;
+}
+
+- (instancetype)initWithAlphabets:(NSArray *)alphabets {
+    [self release];
+    
+    ANSAlphabet *result = [[ANSClusterAlphabet alloc] initWithAlphabets:alphabets];
     
     return result;
 }
@@ -72,7 +80,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 }
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Accessors
 
 - (NSUInteger)count {
     [self doesNotRecognizeSelector:_cmd];
@@ -80,7 +88,10 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
     return 0;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
+#pragma mark -
+#pragma mark Public methods
+
+- (NSString *)stringAtIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
     
     return 0;
@@ -93,6 +104,7 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 - (NSString *)string {
     NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
     for (NSString *symbols in self) {
+            NSLog(@"%@", symbols);
         [string appendString:symbols];
     }
     
@@ -103,22 +115,23 @@ NSRange ANSCreateAlphabetRange(unsigned char value1, unsigned char value2) {
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id [])buffer
+                                  objects:(id[])buffer
                                   count:(NSUInteger)len
 {
     state->mutationsPtr = (unsigned long *)self;
-    NSUInteger length = MIN(state->state + len, [self count]);
-    len  = length - state->state;
+    
+    NSUInteger length = MIN(state->state + len, self.count);
+    len = length - state->state;
     
     if (0 != len) {
         for (NSUInteger index = 0; index < len; index ++) {
-            buffer[index] = ((NSArray *)self)[index + state->state]; //
+            buffer[index] = self[index + state->state];
         }
     }
     
     state->itemsPtr = buffer;
     
-    state->state +=  len;
+    state->state += len;
     
     return len;
 }

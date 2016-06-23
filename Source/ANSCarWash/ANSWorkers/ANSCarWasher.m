@@ -11,8 +11,9 @@
 @implementation ANSCarWasher
 
 - (void)washCar:(ANSCar *)car {
-    [self takeMoneyFromObject:car];
     car.status = ANSCarClean;
+    [self takeMoneyFromObject:car];
+    [self.delegate workerDidFinishWork:self];  // after carWasher got money, inform accountant. / do not see
 }
 
 - (void)processObject:(id)object {

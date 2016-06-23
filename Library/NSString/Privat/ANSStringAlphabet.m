@@ -9,7 +9,7 @@
 #import "ANSStringAlphabet.h"
 
 @interface ANSStringAlphabet ()
-@property (nonatomic, assign) NSArray *strings;
+@property (nonatomic, retain) NSArray *strings;
 
 @end
 
@@ -24,7 +24,7 @@
     [super dealloc];
 }
 
-- (instancetype)initWithArray:(NSArray *)strings {
+- (instancetype)initWithStrings:(NSArray *)strings {
     self = [super init];
     if (self) {
         self.strings = strings;
@@ -34,15 +34,21 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Accessors
 
 - (NSUInteger)count {
     return self.strings.count;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
+#pragma mark -
+#pragma mark Public
+
+- (NSString *)stringAtIndex:(NSUInteger)index {
     return self.strings[index];
 }
+
+#pragma mark -
+#pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer

@@ -8,6 +8,8 @@
 
 #import "ANSRangeAlphabet.h"
 
+#import "NSObject+ANSExtension.h"
+
 @interface ANSRangeAlphabet ()
 @property (nonatomic, assign) NSRange range;
 
@@ -29,16 +31,42 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Accessors
 
 - (NSUInteger)count {
     return self.range.length;
 }
 
-- (NSString *)stringAtIndex:(NSInteger)index {
-    NSRange range = self.range;
-    
-    return [NSString stringWithFormat:@"%c",(char)(range.location + index)];
+#pragma mark -
+#pragma mark Public
+
+- (NSString *)stringAtIndex:(NSUInteger)index {
+    return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
 }
 
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id [])buffer
+                                    count:(NSUInteger)len
+{
+    
+    state->mutationsPtr = (unsigned long *)self;
+    NSUInteger count = self.count;
+    if (state->state >= count) {
+        return 0;
+    }
+    
+    id *objects = malloc(sizeof(id) * count);
+    
+    for (NSUInteger index = 0; index < count; index ++) {
+        NSString *symbol = [self stringAtIndex:index];
+        objects[index] = symbol;
+    }
+    
+    state->itemsPtr = objects;
+    state->state = count;
+    
+    return count;
+}
+    
 @end

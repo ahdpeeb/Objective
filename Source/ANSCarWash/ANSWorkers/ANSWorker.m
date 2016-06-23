@@ -12,7 +12,8 @@
 #import "ANSRandom.h"
 
 @interface ANSWorker ()
-@property (nonatomic, assign) float money;
+@property (nonatomic, assign) float      money;
+//@property (nonatomic, assign) BOOL     free;
 
 @end
 
@@ -22,6 +23,7 @@
 #pragma mark initialize / deallocate
 
 - (void)dealloc {
+    
     [super dealloc];
 }
 
@@ -31,6 +33,10 @@
     
     return self;
 }
+
+#pragma mark 
+#pragma marrk Accessors 
+
 
 #pragma mark -
 #pragma mark Public methods
@@ -51,6 +57,13 @@
 
 - (void)processObject:(id)object {
     NSLog(@"process object");
+}
+
+#pragma mark -
+#pragma mark ANSWorkerDelegate
+
+- (void)workerDidFinishWork:(ANSWorker *)worker {
+    [self processObject:worker];
 }
 
 @end
