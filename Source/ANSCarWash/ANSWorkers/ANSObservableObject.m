@@ -6,26 +6,24 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-#import "ANSObservableObjectTest.h"
+#import "ANSObservableObject.h"
 
 #import "NSObject+ANSExtension.h"
 
-@interface ANSObservableObjectTest ()
-@property (nonatomic, retain) NSMutableSet *mutableObserers;
+@interface ANSObservableObject ()
+@property (atomic, retain) NSHashTable *obserers;
 
-- (void)notifyOfStateChangeWithSelector:(SEL)selector;
+- (void)notifyObserversWithSelector:(SEL)selector;
 
 @end
 
-@implementation ANSObservableObjectTest
-
-@dynamic obserers;
+@implementation ANSObservableObject
 
 #pragma mark -
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.mutableObserers = nil;
+    self.obserers = nil;
     
     [super dealloc];
 }
@@ -33,24 +31,17 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableObserers = [NSMutableSet object];
+        self.obserers = [NSHashTable object];
     }
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Accsessors
-
-- (NSSet *)obserers {
-    return [[self.mutableObserers copy] autorelease];
 }
 
 - (void)setState:(ANSState)state {
     if (_state != state) {
         _state = state;
 
-        [self notifyOfStateChangeWithSelector:[self selectorForState:state]];
+        [self notifyObserversWithSelector:[self selectorForState:state]];
     }
 }
 
@@ -58,15 +49,15 @@
 #pragma mark Public
 
 - (void)addObserverObject:(id)object {
-    [self.mutableObserers addObject:object];
+    [self.obserers addObject:object];
 }
 
 - (void)removeObserverObject:(id)object {
-    [self.mutableObserers removeObject:object];
+    [self.obserers removeObject:object];
 }
 
 - (BOOL)isObservedByObject:(id)object {
-    return [self.mutableObserers containsObject:object];
+    return [self.obserers containsObject:object];
 }
 
 #pragma mark -
@@ -78,11 +69,11 @@
     return NULL;
 }
 
-- (void)notifyOfStateChangeWithSelector:(SEL)selector {
-    NSMutableSet *observers = self.mutableObserers;
+- (void)notifyObserversWithSelector:(SEL)selector {
+    NSHashTable *observers = self.obserers;
     for (id observer in observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self]; //
+            [observer performSelector:selector withObject:self]; 
         }
     }
 }

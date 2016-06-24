@@ -82,7 +82,7 @@
     NSMutableSet *observers = self.mutableObserers;
     for (id observer in observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self]; //
+            [observer performSelector:selector withObject:self]; 
         }
     }
 }

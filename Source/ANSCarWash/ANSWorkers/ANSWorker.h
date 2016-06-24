@@ -6,32 +6,29 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 
-
-// after worker got money, he change status for=> ANSWorkerBusy
-// after worker will finished work, he change status for=> "ANSWorkIsPending"!
-// after worker inform delegate, delegate after processing worker change his state=> ANSWorkerFree!
-// boss has 2 conditions ANSWorkerBusy, ANSWorkerFree
 #import <Foundation/Foundation.h>
 
+#import "ANSObservableObject.h"
+
 #import "ANSMoneyOwner.h"
-#import "ANSWorkerDelegate.h"
 
-typedef NS_ENUM(uint8_t, ASNWorkerState) {
-    ANSWorkerFree,
-    ANSWorkerBusy,
-    ANSWorkIsPending
-};
+@protocol ANSWorkerObserver <NSObject>
 
-@interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
+@optional
+- (void)workerBecameBusy:(id)worker;
+- (void)workerBecameIsPending:(id)worker;
+- (void)workerBecameFree:(id)worker;
 
-@property (nonatomic, assign)   NSInteger               idNumber;
+@end
 
-//this property readonly,readwrite only for inheritance
-@property (nonatomic, assign)   ASNWorkerState          state;
-@property (nonatomic, assign)   id<ANSWorkerDelegate>   delegate;
+@interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
+@property (atomic, assign) NSInteger idNumber;
 
 - (instancetype)initWithId:(NSUInteger)idNumber;
 
 - (void)processObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly.
+- (void)performWorkWithObject:(id)object;
 
 @end

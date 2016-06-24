@@ -14,10 +14,13 @@
     NSLog(@"my profit - %f", self.money);
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
     [self calculateProfit];
-    self.state = ANSWorkerFree;
+}
+
+- (void)workerBecameIsPending:(id)worker {
+    [self processObject:worker];
 }
 
 @end

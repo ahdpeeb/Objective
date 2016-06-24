@@ -17,10 +17,10 @@
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSQueue          *carQueue;
-@property (nonatomic, retain) ANSAccountant     *accountant;
-@property (nonatomic, retain) ANSBoss           *boss;
-@property (nonatomic, retain) NSMutableArray    *mutableWashers;
+@property (atomic, retain) ANSQueue          *carQueue;
+@property (atomic, retain) ANSAccountant     *accountant;
+@property (atomic, retain) ANSBoss           *boss;
+@property (atomic, retain) NSMutableArray    *mutableWashers;
 
 - (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
@@ -39,9 +39,7 @@
     self.accountant = nil;
     self.boss = nil;
     self.mutableWashers = nil;
-    
-    //self.washer.delegate = nil;    for all washers.delefate = nil.
-    self.accountant.delegate = nil;
+        //need breaking observer connections
     
     [super dealloc];
 }
@@ -58,12 +56,12 @@
     self.carQueue = [ANSQueue object];
     self.accountant = [ANSAccountant object];
     self.boss = [ANSBoss object];
-    self.accountant.delegate = self.boss;
+    [self.accountant addObserverObject:self.boss];
     
-    NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5);
-    for (NSUInteger count = 0; count < maxCount; count ++) {
+    NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
+    for (NSUInteger count = 0; count < 1; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
-        washer.delegate = self.accountant;
+        [washer addObserverObject:self.accountant];
         [self.mutableWashers addObject:washer];
     }
 }
@@ -84,7 +82,6 @@
 
 - (void)washCar:(ANSCar *)car; {
     ANSCarWasher *reservedWasher = [self reservedFreeWorker];
-    reservedWasher.state = ANSWorkerBusy;   // 
         [reservedWasher processObject:car];
 }
 

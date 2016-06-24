@@ -12,7 +12,7 @@
 #import "ANSRandom.h"
 
 @interface ANSWorker ()
-@property (nonatomic, assign) float money;
+@property (atomic, assign) float money;
 
 @end
 
@@ -34,10 +34,6 @@
     return self;
 }
 
-#pragma mark 
-#pragma marrk Accessors 
-
-
 #pragma mark -
 #pragma mark Public methods
 
@@ -53,20 +49,46 @@
     float money = owner.money;
     [owner giveMoney:money];
     [self receiveMoney:money];
-    self.state = ANSWorkerBusy; 
-
 }
 
 - (void)processObject:(id)object {
+    self.state = ANSWorkerBusy;
+    [self performWorkWithObject:object];
+    if ([object respondsToSelector:@selector(setState:)]) { // car does not respond to this selector
+        [object setState:ANSWorkerFree];
+    }
+    
+    self.state = ANSWorkIsPending;
+}
+
+- (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark -
-#pragma mark ANSWorkerDelegate
+#pragma mark Overloaded methods
 
-- (void)workerDidFinishWork:(ANSWorker *)worker {
-    [self processObject:worker];
-    worker.state = ANSWorkerFree;
+- (SEL)selectorForState:(ANSState)state {
+    switch (state) {
+        case ANSWorkerBusy:
+            return @selector(workerBecameBusy:);
+            
+        case ANSWorkIsPending:
+            return @selector(workerBecameIsPending:);
+            
+        case ANSWorkerFree:
+            return @selector(workerBecameFree:);
+            
+        default:
+            return NULL;
+    }
+}
+
+#pragma mark -
+#pragma mark private
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"worker id - %ld", (long)self.idNumber ];
 }
 
 @end

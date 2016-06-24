@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    ANSFirsState,
-    ANSSecondState,
-    ANSThirdState
-} ANSState;
+typedef NS_ENUM(uint8_t, ANSState) {
+    ANSWorkerFree,
+    ANSWorkerBusy,
+    ANSWorkIsPending
+};
 
-@interface ANSObservableObjectTest : NSObject
-@property (nonatomic, assign) ANSState  state;
-@property (nonatomic, readonly) NSSet   *obserers;
+@interface ANSObservableObject : NSObject
+@property (atomic, assign)      ANSState      state;
+@property (atomic, readonly)    NSHashTable   *obserers;
 
 - (void)addObserverObject:(id )object;
 - (void)removeObserverObject:(id)object;

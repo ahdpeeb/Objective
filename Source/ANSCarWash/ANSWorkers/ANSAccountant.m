@@ -12,14 +12,16 @@
 @implementation ANSAccountant
 
 - (void)countMoney {
-    self.state = ANSWorkerBusy;   
     NSLog(@"%f money in my cashbox", self.money);
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
     [self countMoney];
-    [self.delegate workerDidFinishWork:self]; // after accountant got money, inform boss
+}
+
+- (void)workerBecameIsPending:(id)worker {
+    [self processObject:worker];
 }
 
 @end

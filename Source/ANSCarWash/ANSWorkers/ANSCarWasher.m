@@ -11,15 +11,12 @@
 @implementation ANSCarWasher
 
 - (void)washCar:(ANSCar *)car {
-    [self takeMoneyFromObject:car];
     car.status = ANSCarClean;
-    self.state = ANSWorkIsPending;             // work finishd => change state ANSWorkIsPending
-    [self.delegate workerDidFinishWork:self];  // after carWasher did work, he inform delegat
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
+    [self takeMoneyFromObject:object];
     [self washCar:object];
-    
 }
 
 @end

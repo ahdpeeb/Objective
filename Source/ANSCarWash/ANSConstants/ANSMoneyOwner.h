@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol ANSMoneyOwner <NSObject>
-@property (nonatomic, readonly) float money;
+@property (atomic, readonly) float money;
 
 - (void)giveMoney:(float)number;
 - (void)receiveMoney:(float)number;

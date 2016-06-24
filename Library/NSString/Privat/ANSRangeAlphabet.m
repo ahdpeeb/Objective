@@ -25,6 +25,7 @@
 - (void)dealloc {
     self.strings = nil;
     
+    
     [super dealloc];
 }
 
@@ -53,7 +54,6 @@
     return [NSString stringWithFormat:@"%c", (unichar)(self.range.location + index)];
 }
 
-
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer
                                     count:(NSUInteger)len
@@ -64,7 +64,6 @@
     if (state->state >= countValue) {
         return 0;
     }
-    
     
     for (NSUInteger index = 0; index < countValue; index ++) {
         NSString *symbol = [self stringAtIndex:index];
