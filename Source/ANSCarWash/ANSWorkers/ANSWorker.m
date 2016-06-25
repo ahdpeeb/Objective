@@ -12,7 +12,8 @@
 #import "ANSRandom.h"
 
 @interface ANSWorker ()
-@property (atomic, assign) float money;
+@property (atomic, assign)     float           money;
+@property (nonatomic, assign)  NSUInteger      ID;
 
 @end
 
@@ -26,9 +27,9 @@
     [super dealloc];
 }
 
-- (instancetype)initWithId:(NSUInteger)idNumber {
+- (instancetype)initWithId:(NSUInteger)ID {
     self = [super init];
-    self.idNumber = idNumber;
+    self.ID = ID;
     self.state = ANSWorkerFree;
     
     return self;
@@ -52,13 +53,16 @@
 }
 
 - (void)processObject:(id)object {
+NSLog(@"%@ - меняет состояние на ANSWorkerBusy", self);
     self.state = ANSWorkerBusy;
     [self performWorkWithObject:object];
     if ([object respondsToSelector:@selector(setState:)]) { // car does not respond to this selector
+NSLog(@"%@ - меняет состояние на Free", object);
         [object setState:ANSWorkerFree];
     }
     
-    self.state = ANSWorkIsPending;
+    [self changeState];
+    
 }
 
 - (void)performWorkWithObject:(id)object {
@@ -71,24 +75,17 @@
 - (SEL)selectorForState:(ANSState)state {
     switch (state) {
         case ANSWorkerBusy:
-            return @selector(workerBecameBusy:);
+            return @selector(workerDidBecomeBusy:);
             
-        case ANSWorkIsPending:
-            return @selector(workerBecameIsPending:);
+        case ANSWorkerIsPending:
+            return @selector(workerDidBecomeIsPending:);
             
         case ANSWorkerFree:
-            return @selector(workerBecameFree:);
+            return @selector(workerDidBecomeFree:);
             
         default:
-            return NULL;
+            return [super selectorForState:state];
     }
-}
-
-#pragma mark -
-#pragma mark private
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"worker id - %ld", (long)self.idNumber ];
 }
 
 @end

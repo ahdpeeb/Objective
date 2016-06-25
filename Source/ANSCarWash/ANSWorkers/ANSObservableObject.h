@@ -8,21 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(uint8_t, ANSState) {
-    ANSWorkerFree,
-    ANSWorkerBusy,
-    ANSWorkIsPending
-};
-
 @interface ANSObservableObject : NSObject
-@property (atomic, assign)      ANSState      state;
-@property (atomic, readonly)    NSHashTable   *obserers;
+@property (nonatomic, assign)   NSUInteger    state;
+@property (atomic, readonly)    NSSet         *observersSet;
 
-- (void)addObserverObject:(id )object;
+- (void)addObserverObject:(id)object;
 - (void)removeObserverObject:(id)object;
 - (BOOL)isObservedByObject:(id)object;
 
 //this method is intended for subclasses. Never call it directly. 
-- (SEL)selectorForState:(ANSState)state;
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end

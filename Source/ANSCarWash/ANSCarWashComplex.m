@@ -39,7 +39,7 @@
     self.accountant = nil;
     self.boss = nil;
     self.mutableWashers = nil;
-        //need breaking observer connections
+        //need breaking observers connections
     
     [super dealloc];
 }
@@ -56,12 +56,13 @@
     self.carQueue = [ANSQueue object];
     self.accountant = [ANSAccountant object];
     self.boss = [ANSBoss object];
-    [self.accountant addObserverObject:self.boss];
+    ANSAccountant *accountant = self.accountant;
+    [accountant addObserverObject:self.boss];
     
-    NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
-    for (NSUInteger count = 0; count < 1; count ++) {
+//    NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
+    for (NSUInteger count = 0; count < 2; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
-        [washer addObserverObject:self.accountant];
+        [washer addObserverObject:accountant];
         [self.mutableWashers addObject:washer];
     }
 }
@@ -72,8 +73,11 @@
 - (void)addCarToQueue:(ANSCar *)car {
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
+NSLog(@"%@ - заехала в очередь", car);
     while (queue.count) {
-        [self washCar:[queue dequeue]];
+        ANSCar *car = [queue dequeue];
+NSLog(@"%@ - начинает мыться", car);
+        [self washCar:car];
     }
 }
 
@@ -82,11 +86,12 @@
 
 - (void)washCar:(ANSCar *)car; {
     ANSCarWasher *reservedWasher = [self reservedFreeWorker];
+NSLog(@"%@ начинает мыть %@", reservedWasher, car);
         [reservedWasher processObject:car];
 }
 
 - (NSArray *)freeWorkers {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
     return [self.mutableWashers filteredArrayUsingPredicate:predicate];
 }
 

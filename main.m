@@ -1,4 +1,4 @@
-//
+    //
 //  main.m
 //  Objective-C
 //
@@ -16,8 +16,11 @@
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
-        ANSCar *car = [ANSCar object];
-        [complex addCarToQueue:car];
+        
+        for (NSUInteger count = 0; count < 4; count++) {
+            ANSCar *car = [[ANSCar alloc] initWithID:count];
+            [complex addCarToQueue:car];
+        }
     }
     
     return 0;
