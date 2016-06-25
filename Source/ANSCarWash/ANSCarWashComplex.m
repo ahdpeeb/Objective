@@ -17,10 +17,10 @@
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (atomic, retain) ANSQueue          *carQueue;
-@property (atomic, retain) ANSAccountant     *accountant;
-@property (atomic, retain) ANSBoss           *boss;
-@property (atomic, retain) NSMutableArray    *mutableWashers;
+@property (nonatomic, retain) ANSQueue          *carQueue;
+@property (nonatomic, retain) ANSAccountant     *accountant;
+@property (nonatomic, retain) ANSBoss           *boss;
+@property (atomic, retain)    NSMutableArray    *mutableWashers;
 
 - (void)initInfrastructure;
 - (void)washCar:(ANSCar *)car;
@@ -76,7 +76,7 @@
 NSLog(@"%@ - заехала в очередь", car);
     while (queue.count) {
         ANSCar *car = [queue dequeue];
-NSLog(@"%@ - начинает мыться", car);
+NSLog(@"%@ - достали из очереди, чтоб помыть", car);
         [self washCar:car];
     }
 }
@@ -85,9 +85,13 @@ NSLog(@"%@ - начинает мыться", car);
 #pragma mark Private methods
 
 - (void)washCar:(ANSCar *)car; {
-    ANSCarWasher *reservedWasher = [self reservedFreeWorker];
-NSLog(@"%@ начинает мыть %@", reservedWasher, car);
-        [reservedWasher processObject:car];
+    @synchronized(self) {
+        ANSCarWasher *reservedWasher = [self reservedFreeWorker];
+        if (reservedWasher) {
+            NSLog(@"%@ начинает мыть %@", reservedWasher, car);
+            [reservedWasher processObject:car];
+        }
+    }
 }
 
 - (NSArray *)freeWorkers {

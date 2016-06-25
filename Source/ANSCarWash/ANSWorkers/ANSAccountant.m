@@ -9,6 +9,8 @@
 #import "ANSAccountant.h"
 #import "ANSCarWasher.h"
 
+static const NSUInteger KASNSleepSeconds = 0;
+
 @implementation ANSAccountant
 
 #pragma mark -
@@ -16,27 +18,31 @@
 
 - (instancetype)init {
     self = [super init];
-    self.profession = ANSAccountantProfession; 
     
     return self;
 }
 
 - (void)countMoney {
-    NSLog(@"%@ monet - %f ",self, self.money);
+    sleep(KASNSleepSeconds);
+    NSLog(@"%@ money - %f ",self, self.money);
 }
-
+    // this should be blocked two workers come at the same time
 - (void)performWorkWithObject:(id)object {
-    [self takeMoneyFromObject:object];
-NSLog(@"%@ забрал деньги у %@", self, object);
-    [self countMoney];
+    @synchronized(self) {
+        [self takeMoneyFromObject:object];
+        NSLog(@"%@ забрал деньги у %@", self, object);
+        [self countMoney];
+    }
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    [self processObject:worker];
+    [self performSelectorInBackground:@selector(processObject:) withObject:worker];
 }
 
-- (void)changeState {
-NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
+- (void)changeStateWithObject:(ANSWorker *)object {
+    NSLog(@"%@ - меняет состояние на Free", object);
+    object.state = ANSWorkerFree;
+    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
     self.state = ANSWorkerIsPending;
 }
 

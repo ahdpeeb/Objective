@@ -8,6 +8,8 @@
 
 #import "ANSCarWasher.h"
 
+static const NSUInteger KASNSleepSeconds = 2;
+
 @implementation ANSCarWasher
 
 #pragma mark -
@@ -15,24 +17,24 @@
 
 - (instancetype)init {
     self = [super init];
-    self.profession = ANSCarWasherProfession;
     
     return self;
 }
 
 - (void)washCar:(ANSCar *)car {
+    sleep(KASNSleepSeconds);
     car.status = ANSCarClean;
-NSLog(@"%@ стала чистой", car);
+    NSLog(@"%@ стала чистой", car);
 }
 
 - (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
-NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
+    NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
     [self washCar:object];
 }
 
-- (void)changeState {
-NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
+- (void)changeStateWithObject:(id)object {
+    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
     self.state = ANSWorkerIsPending;
 }
 

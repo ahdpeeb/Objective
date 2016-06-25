@@ -13,11 +13,13 @@
 
 #import "NSObject+ANSExtension.h"
 
+NSUInteger kANSCarCount = 6;
+
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
         
-        for (NSUInteger count = 0; count < 4; count++) {
+        for (NSUInteger count = 0; count < kANSCarCount; count++) {
             ANSCar *car = [[ANSCar alloc] initWithID:count];
             [complex addCarToQueue:car];
         }

@@ -15,7 +15,6 @@
 
 - (instancetype)init {
     self = [super init];
-    self.profession = ANSBossProfession;
     
     return self;
 }
@@ -26,15 +25,17 @@
 
 - (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
-NSLog(@"%@ забрал деньги у %@", self, object);
+    NSLog(@"%@ забрал деньги у %@", self, object);
     [self calculateProfit];
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    [self processObject:worker];
+    [self performSelectorInBackground:@selector(processObject:) withObject:worker];
 }
 
-- (void)changeState {
+- (void)changeStateWithObject:(ANSWorker *)object {
+NSLog(@"%@ - меняет состояние на Free", object);
+    object.state = ANSWorkerFree;
 NSLog(@"%@ - меняет состояние на Free", self);
     self.state = ANSWorkerFree;
 }

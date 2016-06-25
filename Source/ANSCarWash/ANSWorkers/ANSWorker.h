@@ -27,15 +27,8 @@ typedef NS_ENUM(uint8_t, ANSState) {
     ANSWorkerIsPending
 };
 
-typedef NS_ENUM(uint8_t, ANSProfessrionType) {
-    ANSCarWasherProfession,
-    ANSAccountantProfession,
-    ANSBossProfession,
-};
-
 @interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
-@property (nonatomic, assign) ANSProfessrionType profession;
-
+@property (nonatomic, readonly) NSLock *locker;
 
 - (instancetype)initWithId:(NSUInteger)ID;
 
@@ -45,6 +38,6 @@ typedef NS_ENUM(uint8_t, ANSProfessrionType) {
 - (void)performWorkWithObject:(id)object;
 
 //this method is intended for subclasses. Never call it directly.
-- (void)changeState;
+- (void)changeStateWithObject:(ANSWorker *)object;
 
 @end

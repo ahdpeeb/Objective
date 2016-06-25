@@ -14,6 +14,7 @@
 @interface ANSWorker ()
 @property (atomic, assign)     float           money;
 @property (nonatomic, assign)  NSUInteger      ID;
+@property (nonatomic, retain)  NSLock          *locker;
 
 @end
 
@@ -31,6 +32,7 @@
     self = [super init];
     self.ID = ID;
     self.state = ANSWorkerFree;
+    self.locker = [[NSLock new] autorelease];
     
     return self;
 }
@@ -47,25 +49,23 @@
 }
 
 - (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
-    float money = owner.money;
-    [owner giveMoney:money];
-    [self receiveMoney:money];
+        float money = owner.money;
+        [owner giveMoney:money];
+        [self receiveMoney:money];
 }
 
 - (void)processObject:(id)object {
-NSLog(@"%@ - меняет состояние на ANSWorkerBusy", self);
-    self.state = ANSWorkerBusy;
-    [self performWorkWithObject:object];
-    if ([object respondsToSelector:@selector(setState:)]) { // car does not respond to this selector
-NSLog(@"%@ - меняет состояние на Free", object);
-        [object setState:ANSWorkerFree];
-    }
-    
-    [self changeState];
-    
+        NSLog(@"%@ - меняет состояние на ANSWorkerBusy", self);
+        self.state = ANSWorkerBusy;
+        [self performWorkWithObject:object];
+        [self performSelectorOnMainThread:@selector(changeStateWithObject:) withObject:object waitUntilDone:YES];
 }
 
 - (void)performWorkWithObject:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)changeStateWithObject:(ANSWorker *)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
