@@ -32,14 +32,19 @@
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark initializetion / deallocation
+#pragma mark Initializetion / deallocation
 
 - (void)dealloc {
     self.carQueue = nil;
+    NSMutableArray *washers = self.mutableWashers;
+    ANSAccountant *accountant = self.accountant;
+    
+    [washers makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:accountant];
+    [accountant removeObserverObject:self.boss];
+    
+    self.mutableWashers = nil;
     self.accountant = nil;
     self.boss = nil;
-    self.mutableWashers = nil;
-        //need breaking observers connections
     
     [super dealloc];
 }

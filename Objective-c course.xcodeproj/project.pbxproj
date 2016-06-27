@@ -262,8 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				9328B51C1D1BECC7001D6E62 /* ANSMoneyOwner.h */,
-				93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */,
 				93DAD43A1D0DF2910055E7FB /* ANSCarWashComplex.h */,
+				93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */,
 				93DAD4371D0DF2910055E7FB /* ANSCar */,
 				93DAD43E1D0DF2910055E7FB /* ANSWorkers */,
 			);
