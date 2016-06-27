@@ -90,10 +90,10 @@ NSLog(@"%@ - достали из очереди, чтоб помыть", car);
 #pragma mark Private methods
 
 - (void)washCar:(ANSCar *)car; {
-        ANSCarWasher *reservedWasher = [self reservedFreeWorker];
-        if (reservedWasher) {
-                NSLog(@"%@ начинает мыть %@", reservedWasher, car);
-                [reservedWasher processObject:car];
+    ANSCarWasher *reservedWasher = [self reservedFreeWorker];
+    if (reservedWasher) {
+        NSLog(@"%@ начинает мыть %@", reservedWasher, car);
+        [reservedWasher processObject:car];
     }
 }
 
