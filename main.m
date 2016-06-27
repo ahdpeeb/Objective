@@ -23,6 +23,8 @@ int main(int argc, const char * argv[]) {
             ANSCar *car = [[ANSCar alloc] initWithID:count];
             [complex addCarToQueue:car];
         }
+        
+        sleep(100);
     }
     
     return 0;

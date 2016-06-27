@@ -7,43 +7,62 @@
 //
 
 #import "ANSAccountant.h"
+
 #import "ANSCarWasher.h"
 
-static const NSUInteger KASNSleepSeconds = 0;
+#import "ANSQueue.h"
+#import "NSObject+ANSExtension.h"
+
+static const NSUInteger KASNSleepSeconds = 3;
+
+@interface ANSAccountant ()
+@property (nonatomic, retain) ANSQueue *queue;
+
+@end
 
 @implementation ANSAccountant
 
 #pragma mark -
-#pragma mark initializetion / deallocation
+#pragma mark Initializetion / deallocation
+
+- (void)dealloc {
+    self.queue = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)init {
     self = [super init];
+    self.queue = [ANSQueue object];
     
     return self;
 }
 
+#pragma mark -
+#pragma mark Public
+
 - (void)countMoney {
-    sleep(KASNSleepSeconds);
-    NSLog(@"%@ money - %f ",self, self.money);
+        sleep(KASNSleepSeconds);
+        NSLog(@"%@ count money - %f ",self, self.money);
 }
     // this should be blocked two workers come at the same time
 - (void)performWorkWithObject:(id)object {
-    @synchronized(self) {
-        [self takeMoneyFromObject:object];
-        NSLog(@"%@ забрал деньги у %@", self, object);
-        [self countMoney];
+    @synchronized(object) {
+        ANSQueue *queue = self.queue;
+        while (queue.count) {
+            id washer = [queue dequeue];
+            [self takeMoneyFromObject:washer];
+            NSLog(@"%@ забрал деньги у %@", self, washer);
+            [washer setState:ANSWorkerFree];
+            NSLog(@"%@ - поменял состояние на Free и готов к работе", object);
+            [self countMoney];
+        }
     }
 }
-
+ 
 - (void)workerDidBecomeIsPending:(id)worker {
+    [self.queue enqueue:worker];
     [self performSelectorInBackground:@selector(processObject:) withObject:worker];
-}
-
-- (void)changeStateWithObject:(ANSWorker *)object {
-    NSLog(@"%@ - меняет состояние на Free", object);
-    object.state = ANSWorkerFree;
-    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
-    self.state = ANSWorkerIsPending;
 }
 
 #pragma mark -
@@ -52,6 +71,5 @@ static const NSUInteger KASNSleepSeconds = 0;
 - (NSString *)description {
     return [NSString stringWithFormat:@"Accountant %ld", (long)self.ID ];
 }
-
 
 @end

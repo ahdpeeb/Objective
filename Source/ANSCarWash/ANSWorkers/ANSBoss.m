@@ -24,19 +24,23 @@
 }
 
 - (void)performWorkWithObject:(id)object {
-    [self takeMoneyFromObject:object];
-    NSLog(@"%@ забрал деньги у %@", self, object);
-    [self calculateProfit];
+    @synchronized(self) {
+        [self takeMoneyFromObject:object];
+        NSLog(@"%@ забрал деньги у %@", self, object);
+        
+        NSLog(@"%@ - меняет состояние на Free", object);
+        [object setState: ANSWorkerFree];
+        
+        [self calculateProfit];
+    }
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
     [self performSelectorInBackground:@selector(processObject:) withObject:worker];
 }
 
-- (void)changeStateWithObject:(ANSWorker *)object {
-NSLog(@"%@ - меняет состояние на Free", object);
-    object.state = ANSWorkerFree;
-NSLog(@"%@ - меняет состояние на Free", self);
+- (void)changeState {
+    NSLog(@"%@ - меняет состояние на Free", self);
     self.state = ANSWorkerFree;
 }
 

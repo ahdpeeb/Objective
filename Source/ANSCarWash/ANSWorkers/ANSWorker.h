@@ -38,6 +38,6 @@ typedef NS_ENUM(uint8_t, ANSState) {
 - (void)performWorkWithObject:(id)object;
 
 //this method is intended for subclasses. Never call it directly.
-- (void)changeStateWithObject:(ANSWorker *)object;
+- (void)changeState;
 
 @end

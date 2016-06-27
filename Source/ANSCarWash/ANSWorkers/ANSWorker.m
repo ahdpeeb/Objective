@@ -49,24 +49,32 @@
 }
 
 - (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
+    @synchronized(self) {
         float money = owner.money;
         [owner giveMoney:money];
         [self receiveMoney:money];
+     }
 }
 
 - (void)processObject:(id)object {
-        NSLog(@"%@ - меняет состояние на ANSWorkerBusy", self);
+    @synchronized(self) {
         self.state = ANSWorkerBusy;
+        NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
         [self performWorkWithObject:object];
-        [self performSelectorOnMainThread:@selector(changeStateWithObject:) withObject:object waitUntilDone:YES];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void){
+        [self changeState];
+    });
 }
 
 - (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)changeStateWithObject:(ANSWorker *)object {
-    [self doesNotRecognizeSelector:_cmd];
+- (void)changeState {
+    self.state = ANSWorkerIsPending;
+    NSLog(@"%@ - поменял состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
 }
 
 #pragma mark -

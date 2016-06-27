@@ -8,7 +8,7 @@
 
 #import "ANSCarWasher.h"
 
-static const NSUInteger KASNSleepSeconds = 2;
+static const NSUInteger KASNSleepSeconds = 1;
 
 @implementation ANSCarWasher
 
@@ -31,11 +31,6 @@ static const NSUInteger KASNSleepSeconds = 2;
     [self takeMoneyFromObject:object];
     NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
     [self washCar:object];
-}
-
-- (void)changeStateWithObject:(id)object {
-    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
-    self.state = ANSWorkerIsPending;
 }
 
 #pragma mark -
