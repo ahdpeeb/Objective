@@ -59,14 +59,16 @@
 }
 
 - (void)processObject:(id)object {
+    @synchronized(self) {
         self.state = ANSWorkerBusy;
         NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
         [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
+    }
 }
 
 - (void)performWorkInBackgroundWithObject:(id)object {
-        [self performWorkWithObject:object];
-        [self performSelectorOnMainThread:@selector(changeStateWithObject:) withObject:object waitUntilDone:YES];
+    [self performWorkWithObject:object];
+    [self performSelectorOnMainThread:@selector(changeStateWithObject:) withObject:object waitUntilDone:YES];
 }
 
 - (void)performWorkWithObject:(id)object {
