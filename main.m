@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
             [complex addCarToQueue:car];
         }
         
-        sleep(100);
+        [[NSRunLoop mainRunLoop] run];
     }
     
     return 0;

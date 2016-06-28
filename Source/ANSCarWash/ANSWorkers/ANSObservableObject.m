@@ -11,7 +11,7 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSObservableObject ()
-@property (atomic, retain) NSHashTable *hashTableObservers;
+@property (nonatomic, retain) NSHashTable *hashTableObservers;
 
 - (void)notifyObserversWithSelector:(SEL)selector;
 

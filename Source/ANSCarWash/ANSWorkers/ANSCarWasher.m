@@ -28,9 +28,16 @@ static const NSUInteger KASNSleepSeconds = 1;
 }
 
 - (void)performWorkWithObject:(id)object {
-    [self takeMoneyFromObject:object];
-    NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
-    [self washCar:object];
+    @synchronized(self) {
+        [self takeMoneyFromObject:object];
+        NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
+        [self washCar:object];
+    }
+}
+
+- (void)changeStateWithObject:(id)object {
+    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует", self);
+    self.state = ANSWorkerIsPending;
 }
 
 #pragma mark -

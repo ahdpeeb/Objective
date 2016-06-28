@@ -25,30 +25,29 @@
 
 - (void)performWorkWithObject:(id)object {
     @synchronized(self) {
+        NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
         [self takeMoneyFromObject:object];
-        NSLog(@"%@ забрал деньги у %@", self, object);
-        
-        NSLog(@"%@ - меняет состояние на Free", object);
-        [object setState: ANSWorkerFree];
-        
         [self calculateProfit];
     }
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    [self performSelectorInBackground:@selector(processObject:) withObject:worker];
+    [self processObject:worker];
 }
 
-- (void)changeState {
-    NSLog(@"%@ - меняет состояние на Free", self);
+- (void)changeStateWithObject:(id)object {
     self.state = ANSWorkerFree;
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
+    
+    [object setState: ANSWorkerFree];
+    NSLog(@"%@ - поменял состояние на Free", object);
 }
 
 #pragma mark -
 #pragma mark Redefinition
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Boss %ld", (long)self.ID ];
+    return [NSString stringWithFormat:@"Boss %ld", (long)self.ID];
 }
 
 @end

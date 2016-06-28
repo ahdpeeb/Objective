@@ -17,13 +17,13 @@
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSQueue          *carQueue;
-@property (nonatomic, retain) ANSAccountant     *accountant;
-@property (nonatomic, retain) ANSBoss           *boss;
-@property (atomic, retain)    NSMutableArray    *mutableWashers;
+@property (atomic, retain)      ANSQueue          *carQueue;
+@property (nonatomic, retain)   ANSAccountant     *accountant;
+@property (nonatomic, retain)   ANSBoss           *boss;
+@property (atomic, retain)      NSMutableArray    *mutableWashers;
 
 - (void)initInfrastructure;
-- (void)washCar:(ANSCar *)car;
+- (void)washCar:(ANSCar *)car withWasher:(ANSCarWasher *)washer;
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
 
@@ -64,10 +64,11 @@
     ANSAccountant *accountant = self.accountant;
     [accountant addObserverObject:self.boss];
     
-//    NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
+//  NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
     for (NSUInteger count = 0; count < 2; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
         [washer addObserverObject:accountant];
+        [washer addObserverObject:self];
         [self.mutableWashers addObject:washer];
     }
 }
@@ -78,22 +79,33 @@
 - (void)addCarToQueue:(ANSCar *)car {
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
-NSLog(@"%@ - заехала в очередь", car);
-    while (queue.count) {
-        ANSCar *car = [queue dequeue];
-NSLog(@"%@ - достали из очереди, чтоб помыть", car);
-        [self washCar:car];
+    NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
+    
+    ANSCarWasher *reserverWasher = [self reservedFreeWorker];
+    if (reserverWasher) {
+        [self washCar:[queue dequeue] withWasher:reserverWasher];
     }
+}
+
+#pragma mark -
+#pragma mark - ANSWorkerObserver protocol
+
+- (void)workerDidBecomeFree:(id)worker {
+    ANSCar *car = [self.carQueue dequeue];
+    if (!car) {
+        exit(1); // test
+    }
+    
+    [self washCar:car withWasher:worker];
 }
 
 #pragma mark -
 #pragma mark Private methods
 
-- (void)washCar:(ANSCar *)car; {
-    ANSCarWasher *reservedWasher = [self reservedFreeWorker];
-    if (reservedWasher) {
-        NSLog(@"%@ начинает мыть %@", reservedWasher, car);
-        [reservedWasher processObject:car];
+- (void)washCar:(ANSCar *)car withWasher:(ANSCarWasher *)washer {
+    @synchronized(self) {
+        NSLog(@"%@ начинает мыть %@", washer, car);
+        [washer processObject:car];
     }
 }
 

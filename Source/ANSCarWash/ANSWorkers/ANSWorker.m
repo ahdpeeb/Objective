@@ -16,6 +16,8 @@
 @property (nonatomic, assign)  NSUInteger      ID;
 @property (nonatomic, retain)  NSLock          *locker;
 
+- (void)performWorkInBackgroundWithObject:(id)object;
+
 @end
 
 @implementation ANSWorker
@@ -57,24 +59,22 @@
 }
 
 - (void)processObject:(id)object {
-    @synchronized(self) {
         self.state = ANSWorkerBusy;
         NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
+        [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
+}
+
+- (void)performWorkInBackgroundWithObject:(id)object {
         [self performWorkWithObject:object];
-    }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void){
-        [self changeState];
-    });
+        [self performSelectorOnMainThread:@selector(changeStateWithObject:) withObject:object waitUntilDone:YES];
 }
 
 - (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)changeState {
-    self.state = ANSWorkerIsPending;
-    NSLog(@"%@ - поменял состояние на ANSWorkerIsPending и нотифицирует обсерверов", self);
+- (void)changeStateWithObject:(id) object {
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark -

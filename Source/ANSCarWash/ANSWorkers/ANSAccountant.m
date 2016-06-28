@@ -13,7 +13,7 @@
 #import "ANSQueue.h"
 #import "NSObject+ANSExtension.h"
 
-static const NSUInteger KASNSleepSeconds = 3;
+static const NSUInteger KASNSleepSeconds = 2;
 
 @interface ANSAccountant ()
 @property (nonatomic, retain) ANSQueue *queue;
@@ -42,27 +42,35 @@ static const NSUInteger KASNSleepSeconds = 3;
 #pragma mark Public
 
 - (void)countMoney {
-        sleep(KASNSleepSeconds);
-        NSLog(@"%@ count money - %f ",self, self.money);
+    sleep(KASNSleepSeconds);
+    NSLog(@"%@ count money - %f ",self, self.money);
 }
+
     // this should be blocked two workers come at the same time
 - (void)performWorkWithObject:(id)object {
-    @synchronized(object) {
+    @synchronized(self) {
         ANSQueue *queue = self.queue;
         while (queue.count) {
             id washer = [queue dequeue];
+            NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
             [self takeMoneyFromObject:washer];
-            NSLog(@"%@ забрал деньги у %@", self, washer);
-            [washer setState:ANSWorkerFree];
-            NSLog(@"%@ - поменял состояние на Free и готов к работе", object);
-            [self countMoney];
         }
+        
+        [self countMoney];
     }
 }
  
 - (void)workerDidBecomeIsPending:(id)worker {
     [self.queue enqueue:worker];
-    [self performSelectorInBackground:@selector(processObject:) withObject:worker];
+    [self processObject:worker];
+}
+
+- (void)changeStateWithObject:(id)object {
+    self.state = ANSWorkerIsPending;
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
+    
+    [object setState: ANSWorkerFree];
+    NSLog(@"%@ - поменял состояние на Free", object);
 }
 
 #pragma mark -
