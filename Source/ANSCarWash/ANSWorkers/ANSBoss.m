@@ -8,6 +8,8 @@
 
 #import "ANSBoss.h"
 
+static const NSUInteger kASNSleepSeconds = 3;
+
 @implementation ANSBoss
 
 #pragma mark -
@@ -20,6 +22,7 @@
 }
 
 - (void)calculateProfit {
+    sleep(kASNSleepSeconds);
     NSLog(@"BOSS profir - %f", self.money);
 }
 
@@ -32,15 +35,21 @@
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    [self processObject:worker];
+    @synchronized(self) {
+        [self.queue enqueue:worker];
+        [self startProcessing];
+    }
 }
 
-- (void)changeStateWithObject:(id)object {
+- (void)finishProcessing {
     self.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
-    
+}
+
+- (void)finishProcessingObject:(id)object {
     [object setState: ANSWorkerFree];
-    NSLog(@"%@ - поменял состояние на Free", object);
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
+    [object startProcessing]; // when object become free and collect all object he runs process.!
 }
 
 #pragma mark -

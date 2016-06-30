@@ -32,7 +32,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.hashTableObservers = [NSHashTable object];
+    self.hashTableObservers = [[NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory] autorelease];
     
     return self;
 }

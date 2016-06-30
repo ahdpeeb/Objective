@@ -11,6 +11,7 @@
 #import "ANSObservableObject.h"
 
 #import "ANSMoneyOwner.h"
+#import "ANSQueue.h"
 
 @protocol ANSWorkerObserver <NSObject>
 
@@ -28,16 +29,23 @@ typedef NS_ENUM(uint8_t, ANSState) {
 };
 
 @interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
-@property (nonatomic, readonly) NSLock *locker;
+@property (nonatomic, readonly) NSLock          *locker;
+
+// this property readWrote only for subclass
+@property (nonatomic, readonly)   ANSQueue        *queue;
 
 - (instancetype)initWithId:(NSUInteger)ID;
 
-- (void)processObject:(id)object;
+- (void)startProcessing;
 
 //this method is intended for subclasses. Never call it directly.
 - (void)performWorkWithObject:(id)object;
 
 //this method is intended for subclasses. Never call it directly.
-- (void)changeStateWithObject:(id) object;
+- (void)finishProcessingObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly.
+- (void)finishProcessing;
+
 
 @end
