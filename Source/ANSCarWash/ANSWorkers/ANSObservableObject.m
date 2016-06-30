@@ -18,7 +18,7 @@
 @end
 
 @implementation ANSObservableObject
-
+@synthesize state = _state;
 @dynamic observersSet;
 
 #pragma mark -
@@ -45,6 +45,10 @@
     }
 }
 
+- (NSUInteger)state {
+    return _state;
+}
+
 #pragma mark -
 #pragma mark Accessors 
 
@@ -56,15 +60,21 @@
 #pragma mark Public
 
 - (void)addObserverObject:(id)object {
-    [self.hashTableObservers addObject:object];
+    @synchronized(self) {
+        [self.hashTableObservers addObject:object];
+    }
 }
 
 - (void)removeObserverObject:(id)object {
-    [self.hashTableObservers removeObject:object];
+    @synchronized(self) {
+        [self.hashTableObservers removeObject:object];
+    }
 }
 
 - (BOOL)isObservedByObject:(id)object {
-    return [self.hashTableObservers containsObject:object];
+    @synchronized(self) {
+        return [self.hashTableObservers containsObject:object];
+    }
 }
 
 #pragma mark -

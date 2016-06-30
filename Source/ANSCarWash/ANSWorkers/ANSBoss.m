@@ -35,8 +35,9 @@ static const NSUInteger kASNSleepSeconds = 3;
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
+    [self.queue enqueue:worker];
+    
     @synchronized(self) {
-        [self.queue enqueue:worker];
         [self startProcessing];
     }
 }
@@ -49,7 +50,9 @@ static const NSUInteger kASNSleepSeconds = 3;
 - (void)finishProcessingObject:(id)object {
     [object setState: ANSWorkerFree];
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
-    [object startProcessing]; // when object become free and collect all object he runs process.!
+    if ([object queue].count) {
+        [object startProcessing]; // when object become free and collect all object he runs process.!
+    }
 }
 
 #pragma mark -

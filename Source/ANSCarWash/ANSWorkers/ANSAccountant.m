@@ -53,11 +53,11 @@ static const NSUInteger kASNSleepSeconds = 2;
 }
  
 - (void)workerDidBecomeIsPending:(id)worker {
-    @synchronized(self) {
-        [self.queue enqueue:worker];
-    }
+    [self.queue enqueue:worker];
     
-    [self startProcessing];
+    @synchronized(self) {
+        [self startProcessing];
+    }
 }
 
 - (void)finishProcessing {

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ANSObservableObject : NSObject
-@property (nonatomic, assign)       NSUInteger    state;
+@property (atomic, assign)          NSUInteger    state;
 @property (nonatomic, readonly)     NSSet         *observersSet;
 
 - (void)addObserverObject:(id)object;
