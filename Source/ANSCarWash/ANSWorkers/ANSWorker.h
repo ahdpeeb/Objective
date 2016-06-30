@@ -29,9 +29,9 @@ typedef NS_ENUM(uint8_t, ANSState) {
 };
 
 @interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
+// this property only for subclasses
 @property (nonatomic, readonly) NSLock          *locker;
 
-// this property readWrote only for subclass
 @property (nonatomic, readonly)   ANSQueue        *queue;
 
 - (instancetype)initWithId:(NSUInteger)ID;

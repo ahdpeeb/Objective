@@ -25,6 +25,7 @@
 - (void)initInfrastructure;
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
+- (void)startWashingByWasher:(ANSCarWasher*)washer;
 
 @end
 
@@ -81,18 +82,10 @@
         ANSQueue *queue = self.carQueue;
         [queue enqueue:car];
         NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
-    }
-    
-    ANSCarWasher *reserverWasher = [self reservedFreeWorker];
-    if (reserverWasher) {
-        // remove duplication________________________________
-        @synchronized(self) {
-            ANSCar *car = [self.carQueue dequeue];
-            if (car) {
-                [[reserverWasher queue] enqueue:car];
-                NSLog(@"%@ начинает мыть %@", reserverWasher, car);
-                [reserverWasher startProcessing];
-            }
+        
+        ANSCarWasher *reserverWasher = [self reservedFreeWorker];
+        if (reserverWasher) {
+            [self startWashingByWasher:reserverWasher];
         }
     }
 }
@@ -101,17 +94,7 @@
 #pragma mark - ANSWorkerObserver protocol
 
 - (void)workerDidBecomeFree:(id)worker {
-    @synchronized(self) {
-// remove duplication_________________________________
-        @synchronized(self) {
-            ANSCar *car = [self.carQueue dequeue];
-            if (car) {
-                [[worker queue] enqueue:car];
-                NSLog(@"%@ начинает мыть %@", worker, car);
-                [worker startProcessing];
-            }
-        }
-    }
+    [self startWashingByWasher:worker];
 }
 
 #pragma mark -
@@ -124,6 +107,17 @@
 
 - (id)reservedFreeWorker {
     return [[self freeWorkers] firstObject];
+}
+
+- (void)startWashingByWasher:(ANSCarWasher*)washer {
+    @synchronized(self) {
+        ANSCar *car = [self.carQueue dequeue];
+        if (car) {
+            [[washer queue] enqueue:car];
+            NSLog(@"%@ начинает мыть %@", washer, car);
+            [washer startProcessing];
+        }
+    }
 }
 
 @end

@@ -11,7 +11,8 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSQueue ()
-@property (nonatomic, retain) NSMutableArray *objects;
+@property (nonatomic, retain) NSMutableArray    *objects;
+@property (nonatomic, retain) NSLock            *locker;
 
 @end
 
@@ -24,6 +25,7 @@
 
 - (void)dealloc {
     self.objects = nil;
+    self.locker = nil;
     
     [super dealloc];
 }
@@ -32,6 +34,7 @@
     self = [super init];
     if (self) {
         self.objects = [NSMutableArray object];
+        self.locker = [NSLock object];
     }
     
     return self;
@@ -41,7 +44,8 @@
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    return self.objects.count;
+    NSUInteger count = self.objects.count;
+    return count;
 }
 
 #pragma mark -
