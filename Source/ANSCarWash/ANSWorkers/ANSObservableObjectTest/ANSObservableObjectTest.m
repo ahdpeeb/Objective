@@ -15,6 +15,8 @@
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector;
 
+- (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object;
+
 @end
 
 @implementation ANSObservableObjectTest
@@ -79,10 +81,14 @@
 }
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
+    [self notifyOfStateChangeWithSelector:selector object:self];
+}
+
+- (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object {
     NSMutableSet *observers = self.mutableObserers;
     for (id observer in observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self]; 
+            [observer performSelector:selector withObject:object];
         }
     }
 }
