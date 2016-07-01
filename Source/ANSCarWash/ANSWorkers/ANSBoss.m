@@ -8,7 +8,7 @@
 
 #import "ANSBoss.h"
 
-static const NSUInteger kASNSleepSeconds = 0;
+static const NSUInteger kASNSleepSeconds = 2;
 
 @implementation ANSBoss
 
@@ -22,12 +22,14 @@ static const NSUInteger kASNSleepSeconds = 0;
 }
 
 - (void)calculateProfit {
-    sleep(kASNSleepSeconds);
-    NSLog(@"BOSS profir - %f", self.money);
+    @synchronized(self) {
+        sleep(kASNSleepSeconds);
+        NSLog(@"BOSS profir - %f", self.money);
+    }
 }
 
 - (void)performWorkWithObject:(id)object {
-    NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
+    NSLog(@"%@ забирает деньги(%f) у %@", self, [object money], object);
     [self takeMoneyFromObject:object];
     [self calculateProfit];
 }
@@ -39,13 +41,6 @@ static const NSUInteger kASNSleepSeconds = 0;
 - (void)finishProcessing {
     self.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
-}
-
-#pragma mark -
-#pragma mark Redefinition
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"Boss %ld", (long)self.ID];
 }
 
 @end

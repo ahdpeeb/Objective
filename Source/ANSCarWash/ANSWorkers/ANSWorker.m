@@ -68,13 +68,13 @@
 }
 
 - (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
-    float money = 0;
+    float money = owner.money;
     @synchronized(owner) {
         money = owner.money;
         [owner giveMoney:money];
-    }
-        [self receiveMoney:money];
-  
+   }
+    
+    [self receiveMoney:money];
 }
 //________________________________________________________________________________
 - (void)startProcessingObject:(id)object {
@@ -96,8 +96,8 @@
 #pragma mark Private methods
 
 - (void)performWorkInBackgroundWithObject:(id)object {
-    [self performWorkWithObject:object];
-    [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
+        [self performWorkWithObject:object];
+        [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {
@@ -148,6 +148,14 @@
         default:
             return [super selectorForState:state];
     }
+}
+
+#pragma mark -
+#pragma mark Redefinition
+
+- (NSString *)description {
+    NSString *name = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"ANS" withString:@""];
+    return [NSString stringWithFormat:@"%@ %ld",name, (long)self.ID];
 }
 
 @end

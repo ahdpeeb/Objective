@@ -36,10 +36,12 @@
 
 - (void)dealloc {
     self.carQueue = nil;
-    // Break connection in separete method.
     NSMutableArray *washers = self.mutableWashers;
     ANSAccountant *accountant = self.accountant;
-    [washers makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:accountant];
+    for (ANSCarWasher *washer in washers) {
+        [washer removeObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
+    }
+    
     [accountant removeObserverObject:self.boss];
     
     self.mutableWashers = nil;
@@ -64,11 +66,9 @@
     ANSAccountant *accountant = self.accountant;
     [accountant addObserverObject:self.boss];
     
-//  NSUInteger maxCount = ANSRandomIntegerWithValues(3, 5); // temporary do not use.
     for (NSUInteger count = 0; count < 3; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
-        [washer addObserverObject:accountant];
-        [washer addObserverObject:self];
+        [washer addObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
         NSMutableArray *washers = self.mutableWashers;
         [washers addObject:washer];
     }
@@ -112,7 +112,7 @@
 }
 
 - (void)startWashingByWasher:(ANSCarWasher*)washer {
-    @synchronized(self) {
+    @synchronized(washer) {
         ANSCar *car = [self.carQueue dequeue];
         if (car) {
             NSLog(@"%@ начинает мыть %@", washer, car);

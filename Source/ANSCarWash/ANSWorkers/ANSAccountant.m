@@ -13,7 +13,7 @@
 #import "ANSQueue.h"
 #import "NSObject+ANSExtension.h"
 
-static const NSUInteger kASNSleepSeconds = 0;
+static const NSUInteger kASNSleepSeconds = 1;
 
 @interface ANSAccountant ()
 
@@ -39,26 +39,20 @@ static const NSUInteger kASNSleepSeconds = 0;
 #pragma mark Public
 
 - (void)countMoney {
-    sleep(kASNSleepSeconds);
-    NSLog(@"%@ count money - %f ",self, self.money);
+    @synchronized(self) {
+        sleep(kASNSleepSeconds);
+        NSLog(@"%@ count money - %f ",self, self.money);
+    }
 }
 
-    // this should be blocked two workers come at the same time
 - (void)performWorkWithObject:(id)object {
-    NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
+    NSLog(@"%@ забирает деньги(%f) у %@", self, [object money], object);
     [self takeMoneyFromObject:object];
     [self countMoney];
 }
  
 - (void)workerDidBecomeIsPending:(id)worker {
     [self startProcessingObject:worker];
-}
-
-#pragma mark -
-#pragma mark Redefinition
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"Accountant %ld", (long)self.ID ];
 }
 
 @end

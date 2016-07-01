@@ -26,21 +26,14 @@ static const NSUInteger kASNSleepSeconds = 0;
 }
 
 - (void)performWorkWithObject:(id)object {
+    NSLog(@"%@ забирает деньги у %@, которую начинает мыть", self, object);
     [self takeMoneyFromObject:object];
-    NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
     [self washCar:object];
 }
 
 - (void)finishProcessingObject:(id)object {
     [object setStatus:ANSCarClean];
     NSLog(@"%@ стала чистой, ее помыл %@", object, self);
-}
-
-#pragma mark -
-#pragma mark Redefinition
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"Washer %ld", (long)self.ID];
 }
 
 @end

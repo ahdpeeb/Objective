@@ -55,7 +55,7 @@
 #pragma mark Accessors 
 
 - (NSSet *)getObserversSet {
-    return [[self.hashTableObservers copy] autorelease];
+    return [[self.hashTableObservers.setRepresentation copy] autorelease];
 }
 
 #pragma mark -
@@ -78,6 +78,14 @@
 - (void)removeObserverObject:(id)object {
     @synchronized(self) {
         [self.hashTableObservers removeObject:object];
+    }
+}
+
+- (void)removeObserverObjects:(NSArray *)objects {
+    @synchronized(self) {
+        for (id observer in objects) {
+            [self.hashTableObservers removeObject:observer];
+        }
     }
 }
 
