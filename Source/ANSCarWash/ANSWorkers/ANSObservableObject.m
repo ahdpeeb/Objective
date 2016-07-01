@@ -11,7 +11,7 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSObservableObject ()
-@property (nonatomic, retain) NSHashTable *hashTableObservers;
+@property (nonatomic, retain) NSHashTable *observersHashTable;
 
 - (void)notifyObserversWithSelector:(SEL)selector;
 
@@ -25,14 +25,14 @@
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.hashTableObservers = nil;
+    self.observersHashTable = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.hashTableObservers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+    self.observersHashTable = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
     
     return self;
 }
@@ -55,7 +55,7 @@
 #pragma mark Accessors 
 
 - (NSSet *)getObserversSet {
-    return [[self.hashTableObservers.setRepresentation copy] autorelease];
+    return [[self.observersHashTable.setRepresentation copy] autorelease];
 }
 
 #pragma mark -
@@ -63,35 +63,35 @@
 
 - (void)addObserverObject:(id)object {
     @synchronized(self) {
-        [self.hashTableObservers addObject:object];
+        [self.observersHashTable addObject:object];
     }
 }
 
 - (void)addObserverObjects:(NSArray *)objects {
     @synchronized(self) {
         for (id observer in objects) {
-            [self.hashTableObservers addObject:observer];
+            [self.observersHashTable addObject:observer];
         }
     }
 }
 
 - (void)removeObserverObject:(id)object {
     @synchronized(self) {
-        [self.hashTableObservers removeObject:object];
+        [self.observersHashTable removeObject:object];
     }
 }
 
 - (void)removeObserverObjects:(NSArray *)objects {
     @synchronized(self) {
         for (id observer in objects) {
-            [self.hashTableObservers removeObject:observer];
+            [self.observersHashTable removeObject:observer];
         }
     }
 }
 
 - (BOOL)isObservedByObject:(id)object {
     @synchronized(self) {
-        return [self.hashTableObservers containsObject:object];
+        return [self.observersHashTable containsObject:object];
     }
 }
 
@@ -108,7 +108,7 @@
 
 - (void)notifyObserversWithSelector:(SEL)selector object:(id)object {
     @synchronized(self) {
-        NSHashTable *observers = self.hashTableObservers;
+        NSHashTable *observers = self.observersHashTable;
         for (id observer in observers) {
             if ([observer respondsToSelector:selector]) {
                 [observer performSelector:selector withObject:object];

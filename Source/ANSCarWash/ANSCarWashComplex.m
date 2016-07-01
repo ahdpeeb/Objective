@@ -108,7 +108,9 @@
 }
 
 - (id)reservedFreeWorker {
-    return [[self freeWorkers] firstObject];
+    @synchronized(self) {
+        return [[self freeWorkers] firstObject];
+    }
 }
 
 - (void)startWashingByWasher:(ANSCarWasher*)washer {

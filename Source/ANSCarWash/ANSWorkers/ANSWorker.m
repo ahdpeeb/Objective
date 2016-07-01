@@ -96,8 +96,8 @@
 #pragma mark Private methods
 
 - (void)performWorkInBackgroundWithObject:(id)object {
-        [self performWorkWithObject:object];
-        [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
+    [self performWorkWithObject:object];
+    [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {
