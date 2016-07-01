@@ -94,7 +94,9 @@
 #pragma mark - ANSWorkerObserver protocol
 
 - (void)workerDidBecomeFree:(id)worker {
-    [self startWashingByWasher:worker];
+    @synchronized(self) {
+        [self startWashingByWasher:worker];
+    }
 }
 
 #pragma mark -
@@ -113,9 +115,8 @@
     @synchronized(self) {
         ANSCar *car = [self.carQueue dequeue];
         if (car) {
-            [[washer queue] enqueue:car];
             NSLog(@"%@ начинает мыть %@", washer, car);
-            [washer startProcessing];
+            [washer startProcessingObject:car];
         }
     }
 }

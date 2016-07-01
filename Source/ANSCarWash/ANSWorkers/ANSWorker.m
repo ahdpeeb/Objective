@@ -16,7 +16,7 @@
 @interface ANSWorker ()
 @property (atomic, assign)          float           money;
 @property (nonatomic, assign)       NSUInteger      ID;
-@property (nonatomic, retain)       NSLock          *locker;
+@property (nonatomic, retain)       id<NSLocking>   locker;
 @property (nonatomic, retain)       ANSQueue        *queue;
 
 - (void)performWorkInBackgroundWithObject:(id)object;
@@ -68,29 +68,27 @@
 }
 
 - (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
-    @synchronized(self) {
-        float money = owner.money;
+    float money = 0;
+    @synchronized(owner) {
+        money = owner.money;
         [owner giveMoney:money];
-        [self receiveMoney:money];
     }
+        [self receiveMoney:money];
+  
 }
 //________________________________________________________________________________
-- (void)startProcessing {
+- (void)startProcessingObject:(id)object {
     @synchronized(self) { 
          if (self.state != ANSWorkerFree) {
              NSLog(@"WARNING %@ состояние = %lu", self, (unsigned long)self.state);
+             [self.queue enqueue:object];
+             NSLog(@"%@ добавил к себе на обработку %@", self, object);
              return;
-         }
-    
-         self.state = ANSWorkerBusy;
-         NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
-         
-         ANSQueue *queue = self.queue;
-         while (queue.count) {
-             id operand = [queue dequeue];
-             NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
-             [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
-         }
+        }
+        
+            self.state = ANSWorkerBusy;
+            NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
+            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
     }
 }
 
@@ -99,26 +97,38 @@
 
 - (void)performWorkInBackgroundWithObject:(id)object {
     [self performWorkWithObject:object];
-    [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {
     @synchronized(self) {
         [self finishProcessingObject:object];
+        
+        ANSQueue *queue = self.queue;
+        while (queue.count) {
+            self.state = ANSWorkerFree;
+            NSLog(@"WARNING %@", self);
+            id operand = [queue dequeue];
+            NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
+            [self startProcessingObject:operand];
+        }
+        
         [self finishProcessing];
     }
 }
 
-- (void)finishProcessingObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)finishProcessing {
-    [self doesNotRecognizeSelector:_cmd];
+- (void)finishProcessingObject:(id)object {
+    [object setState: ANSWorkerFree];
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
-    
-- (void)performWorkWithObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
+
+- (void)finishProcessing {
+    self.state = ANSWorkerIsPending;
+    NSLog(@"%@ - поменял состояние на ANSWorkerIsPending в главном потоке", self);
 }
 
 #pragma mark -

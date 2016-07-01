@@ -32,16 +32,18 @@
 
 - (instancetype)init {
     self = [super init];
-    self.hashTableObservers = [[NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory] autorelease];
+    self.hashTableObservers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
     
     return self;
 }
 
 - (void)setState:(NSUInteger)state {
-    if (_state != state) {
-        _state = state;
-
-        [self notifyObserversWithSelector:[self selectorForState:state]];
+    @synchronized(self) {
+        if (_state != state) {
+            _state = state;
+            
+            [self notifyObserversWithSelector:[self selectorForState:state]];
+        }
     }
 }
 
@@ -62,6 +64,14 @@
 - (void)addObserverObject:(id)object {
     @synchronized(self) {
         [self.hashTableObservers addObject:object];
+    }
+}
+
+- (void)addObserverObjects:(NSArray *)objects {
+    @synchronized(self) {
+        for (id observer in objects) {
+            [self.hashTableObservers addObject:observer];
+        }
     }
 }
 
@@ -89,10 +99,12 @@
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector object:(id)object {
-    NSHashTable *observers = self.hashTableObservers;
-    for (id observer in observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:object];
+    @synchronized(self) {
+        NSHashTable *observers = self.hashTableObservers;
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:object];
+            }
         }
     }
 }

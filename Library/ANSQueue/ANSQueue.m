@@ -12,7 +12,6 @@
 
 @interface ANSQueue ()
 @property (nonatomic, retain) NSMutableArray    *objects;
-@property (nonatomic, retain) NSLock            *locker;
 
 @end
 
@@ -25,7 +24,6 @@
 
 - (void)dealloc {
     self.objects = nil;
-    self.locker = nil;
     
     [super dealloc];
 }
@@ -34,7 +32,6 @@
     self = [super init];
     if (self) {
         self.objects = [NSMutableArray object];
-        self.locker = [NSLock object];
     }
     
     return self;
@@ -44,25 +41,31 @@
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    NSUInteger count = self.objects.count;
-    return count;
+    @synchronized(self) {
+        NSUInteger count = self.objects.count;
+        return count;
+    }
 }
 
 #pragma mark -
 #pragma mark Public Methods 
 
 - (void)enqueue:(id)object {
-    NSMutableArray *objects = self.objects;
-    if (![objects containsObject:object]) {
-        [objects addObject:object];
-     }
+    @synchronized(self) {
+        NSMutableArray *objects = self.objects;
+        if (![objects containsObject:object]) {
+            [objects addObject:object];
+        }
+    }
 }
 - (id)dequeue {
-    NSMutableArray *objects = self.objects;
-    id object = [[[objects firstObject] retain] autorelease];
-    [objects removeObject:object];
+    @synchronized(self) {
+        NSMutableArray *objects = self.objects;
+        id object = [[[objects firstObject] retain] autorelease];
+        [objects removeObject:object];
     
     return object;
+    }
 }
 
 @end

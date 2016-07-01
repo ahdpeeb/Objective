@@ -13,7 +13,7 @@
 #import "ANSQueue.h"
 #import "NSObject+ANSExtension.h"
 
-static const NSUInteger kASNSleepSeconds = 2;
+static const NSUInteger kASNSleepSeconds = 0;
 
 @interface ANSAccountant ()
 
@@ -45,29 +45,13 @@ static const NSUInteger kASNSleepSeconds = 2;
 
     // this should be blocked two workers come at the same time
 - (void)performWorkWithObject:(id)object {
-    @synchronized(self) {
-        NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
-        [self takeMoneyFromObject:object];
-        [self countMoney];
-    }
+    NSLog(@"%@ cобирается забрать деньги(%f) у %@", self, [object money], object);
+    [self takeMoneyFromObject:object];
+    [self countMoney];
 }
  
 - (void)workerDidBecomeIsPending:(id)worker {
-    [self.queue enqueue:worker];
-    
-    @synchronized(self) {
-        [self startProcessing];
-    }
-}
-
-- (void)finishProcessing {
-    self.state = ANSWorkerIsPending;
-    NSLog(@"%@ - поменял состояние на ANSWorkerIsPending в главном потоке", self);
-}
-
-- (void)finishProcessingObject:(id)object {
-    [object setState: ANSWorkerFree];
-    NSLog(@"%@ - поменял состояние на Free", object);
+    [self startProcessingObject:worker];
 }
 
 #pragma mark -

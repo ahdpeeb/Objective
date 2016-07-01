@@ -8,7 +8,7 @@
 
 #import "ANSCarWasher.h"
 
-static const NSUInteger kASNSleepSeconds = 1;
+static const NSUInteger kASNSleepSeconds = 0;
 
 @implementation ANSCarWasher
 
@@ -26,28 +26,21 @@ static const NSUInteger kASNSleepSeconds = 1;
 }
 
 - (void)performWorkWithObject:(id)object {
-    @synchronized(object) {
-        [self takeMoneyFromObject:object];
-        NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
-        [self washCar:object];
-    }
+    [self takeMoneyFromObject:object];
+    NSLog(@"%@ забрал деньги у %@, которую начинает мыть", self, object);
+    [self washCar:object];
 }
 
 - (void)finishProcessingObject:(id)object {
     [object setStatus:ANSCarClean];
-    NSLog(@"%@ стала чистой", object);
-}
-
-- (void)finishProcessing {
-    NSLog(@"%@ - меняет состояние на ANSWorkerIsPending и нотифицирует", self);
-    self.state = ANSWorkerIsPending;
+    NSLog(@"%@ стала чистой, ее помыл %@", object, self);
 }
 
 #pragma mark -
 #pragma mark Redefinition
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Waser %ld", (long)self.ID];
+    return [NSString stringWithFormat:@"Washer %ld", (long)self.ID];
 }
 
 @end

@@ -43,11 +43,15 @@ static const NSUInteger kANSServiceCost = 5;
 #pragma mark Protocol <ANSMoneyOwner>
 
 - (void)receiveMoney:(float)number {
-    self.money += number;
+     @synchronized(self) {
+        self.money += number;
+    }
 }
 
 - (void)giveMoney:(float)number {
-    self.money -= number;
+    @synchronized(self) {
+        self.money -= number;
+    }
 }
 
 #pragma mark -
