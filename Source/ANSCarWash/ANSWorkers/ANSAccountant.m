@@ -31,7 +31,7 @@ static const NSUInteger kASNSleepSeconds = 1;
 }
 
 #pragma mark -
-#pragma mark Public Public methods
+#pragma mark Public methods
 
 - (void)countMoney {
     sleep(kASNSleepSeconds);

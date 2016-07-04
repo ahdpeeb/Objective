@@ -21,6 +21,9 @@ static const NSUInteger kASNSleepSeconds = 1;
     return self;
 }
 
+#pragma mark -
+#pragma mark Public methods
+
 - (void)washCar:(ANSCar *)car {
     sleep(kASNSleepSeconds);
 }

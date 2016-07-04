@@ -65,7 +65,7 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Public methods
 
 - (void)addObserverObject:(id)object {
     @synchronized(self) {
@@ -113,7 +113,7 @@
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Private methods
 
 - (SEL)selectorForState:(NSUInteger)state {
     return NULL;

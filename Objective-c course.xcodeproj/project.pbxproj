@@ -273,8 +273,8 @@
 		93DAD43E1D0DF2910055E7FB /* ANSWorkers */ = {
 			isa = PBXGroup;
 			children = (
-				9328B53C1D1D53D3001D6E62 /* ANSObservableObject.h */,
 				9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */,
+				9328B53C1D1D53D3001D6E62 /* ANSObservableObject.h */,
 				93DAD4451D0DF2910055E7FB /* ANSWorker.h */,
 				93DAD4461D0DF2910055E7FB /* ANSWorker.m */,
 				93DAD4431D0DF2910055E7FB /* ANSCarWasher.h */,
