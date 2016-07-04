@@ -21,26 +21,30 @@ static void *objectContext = &objectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
-        ANSCarWashComplex *complex = [ANSCarWashComplex object];
-        
-        for (NSUInteger count = 0; count < kANSCarCount; count++) {
-            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
-            [complex addCarToQueue:car];
-        }
-        
-        [[NSRunLoop mainRunLoop] run];
-    }
-    
-//        ANSKVOtest *object = [ANSKVOtest object];
-//        ANSKVOtestObserver *observer = [ANSKVOtestObserver object];
+//        ANSCarWashComplex *complex = [ANSCarWashComplex object];
 //        
-//        [object addObserver:observer forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:objectContext];
+//        for (NSUInteger count = 0; count < kANSCarCount; count++) {
+//            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
+//            [complex addCarToQueue:car];
+//        }
 //        
-//        [object addObserver:observer forKeyPath:@"age" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-//     
-//        object.name = @"Bob";
-//        object.age = 0;
+//        [[NSRunLoop mainRunLoop] run];
 //    }
     
+        ANSKVOtest *object = [ANSKVOtest object];
+        ANSKVOtestObserver *observer = [ANSKVOtestObserver object];
+        
+        [object addObserver:observer forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+        
+        [object addObserver:observer forKeyPath:@"age" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+     
+        object.name = @"Vasia";
+        object.name = @"Marina";
+        object.age = 13;
+        
+        [object removeObserver:observer forKeyPath:@"age"];
+        [object removeObserver:observer forKeyPath:@"name"];
+    }
+
     return 0;
 }

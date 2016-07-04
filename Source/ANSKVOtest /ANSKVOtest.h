@@ -10,7 +10,7 @@
 
 @interface ANSKVOtest : NSObject
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) NSUInteger age;
+@property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, assign)   NSUInteger  age;
 
 @end
