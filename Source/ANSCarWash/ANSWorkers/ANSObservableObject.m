@@ -14,6 +14,8 @@
 @property (nonatomic, retain) NSHashTable *observersHashTable;
 
 - (void)notifyObserversWithSelector:(SEL)selector;
+- (void)notifyObserversWithSelector:(SEL)selector object:(id)object;
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end
 
@@ -37,25 +39,29 @@
     return self;
 }
 
-- (void)setState:(NSUInteger)state {
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setState:(NSUInteger)state withObject:(id)object {
     @synchronized(self) {
         if (_state != state) {
             _state = state;
             
-            [self notifyObserversWithSelector:[self selectorForState:state]];
+            [self notifyObserversWithSelector:[self selectorForState:state] object:object];
         }
     }
+}
+
+- (void)setState:(NSUInteger)state {
+    [self setState:state withObject:self];
 }
 
 - (NSUInteger)state {
     return _state;
 }
 
-#pragma mark -
-#pragma mark Accessors 
-
-- (NSSet *)getObserversSet {
-    return [[self.observersHashTable.setRepresentation copy] autorelease];
+- (NSSet *)observersSet {
+    return self.observersHashTable.setRepresentation;
 }
 
 #pragma mark -
@@ -95,10 +101,21 @@
     }
 }
 
+- (void)notifyOfState:(NSUInteger)state {
+    [self notifyOfState:state WithObject:self];
+}
+
+- (void)notifyOfState:(NSUInteger)state WithObject:(id)object {
+    @synchronized(self) {
+       SEL selector = [self selectorForState:state];
+        [self notifyObserversWithSelector:selector object:object];
+    }
+}
+
 #pragma mark -
 #pragma mark Private
 
-- (SEL)selectorForState:(NSUInteger)state {    
+- (SEL)selectorForState:(NSUInteger)state {
     return NULL;
 }
 

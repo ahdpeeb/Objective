@@ -8,7 +8,7 @@
 
 #import "ANSBoss.h"
 
-static const NSUInteger kASNSleepSeconds = 2;
+static const NSUInteger kASNSleepSeconds = 3;
 
 @implementation ANSBoss
 
@@ -21,11 +21,12 @@ static const NSUInteger kASNSleepSeconds = 2;
     return self;
 }
 
+#pragma mark -
+#pragma mark Public methods
+
 - (void)calculateProfit {
-    @synchronized(self) {
-        sleep(kASNSleepSeconds);
-        NSLog(@"BOSS profir - %f", self.money);
-    }
+    sleep(kASNSleepSeconds);
+    NSLog(@"BOSS profir - %f", self.money);
 }
 
 - (void)performWorkWithObject:(id)object {

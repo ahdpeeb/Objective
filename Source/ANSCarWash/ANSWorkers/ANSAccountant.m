@@ -24,11 +24,6 @@ static const NSUInteger kASNSleepSeconds = 1;
 #pragma mark -
 #pragma mark Initializetion / deallocation
 
-- (void)dealloc {
-    
-    [super dealloc];
-}
-
 - (instancetype)init {
     self = [super init];
     
@@ -36,13 +31,11 @@ static const NSUInteger kASNSleepSeconds = 1;
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Public Public methods
 
 - (void)countMoney {
-    @synchronized(self) {
-        sleep(kASNSleepSeconds);
-        NSLog(@"%@ count money - %f ",self, self.money);
-    }
+    sleep(kASNSleepSeconds);
+    NSLog(@"%@ count money - %f ",self, self.money);
 }
 
 - (void)performWorkWithObject:(id)object {

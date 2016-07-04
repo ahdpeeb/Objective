@@ -68,7 +68,7 @@
 }
 
 - (void)takeMoneyFromObject:(id<ANSMoneyOwner>)owner {
-    float money = owner.money;
+    float money = 0;
     @synchronized(owner) {
         money = owner.money;
         [owner giveMoney:money];
@@ -101,16 +101,19 @@
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {
-    @synchronized(self) {
+    @synchronized(object) {
         [self finishProcessingObject:object];
-        
+    }
+    
+    @synchronized(self) {
         ANSQueue *queue = self.queue;
-        while (queue.count) {
-            self.state = ANSWorkerFree;
+        if (queue.count) {
             NSLog(@"WARNING %@", self);
             id operand = [queue dequeue];
             NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
-            [self startProcessingObject:operand];
+            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
+            
+            return;
         }
         
         [self finishProcessing];
@@ -121,8 +124,8 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)finishProcessingObject:(id)object {
-    [object setState: ANSWorkerFree];
+- (void)finishProcessingObject:(ANSWorker *)object {
+    object.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
 
@@ -155,6 +158,7 @@
 
 - (NSString *)description {
     NSString *name = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"ANS" withString:@""];
+    
     return [NSString stringWithFormat:@"%@ %ld",name, (long)self.ID];
 }
 

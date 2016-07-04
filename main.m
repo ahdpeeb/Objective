@@ -11,9 +11,13 @@
 #import "ANSCarWashComplex.h"
 #import "ANSWorker.h"
 
+#import "ANSKVOtest.h"
+#import "ANSKVOtestObserver.h"
+
 #import "NSObject+ANSExtension.h"
 
-NSUInteger kANSCarCount = 10;
+NSUInteger kANSCarCount = 100;
+static void *objectContext = &objectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
@@ -26,6 +30,17 @@ int main(int argc, const char * argv[]) {
         
         [[NSRunLoop mainRunLoop] run];
     }
+    
+//        ANSKVOtest *object = [ANSKVOtest object];
+//        ANSKVOtestObserver *observer = [ANSKVOtestObserver object];
+//        
+//        [object addObserver:observer forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:objectContext];
+//        
+//        [object addObserver:observer forKeyPath:@"age" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//     
+//        object.name = @"Bob";
+//        object.age = 0;
+//    }
     
     return 0;
 }

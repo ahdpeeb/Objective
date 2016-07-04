@@ -8,7 +8,7 @@
 
 #import "ANSCarWasher.h"
 
-static const NSUInteger kASNSleepSeconds = 0;
+static const NSUInteger kASNSleepSeconds = 1;
 
 @implementation ANSCarWasher
 
@@ -31,9 +31,9 @@ static const NSUInteger kASNSleepSeconds = 0;
     [self washCar:object];
 }
 
-- (void)finishProcessingObject:(id)object {
-    [object setStatus:ANSCarClean];
-    NSLog(@"%@ стала чистой, ее помыл %@", object, self);
+- (void)finishProcessingObject:(ANSCar *)car {
+    car.status = ANSCarClean;
+    NSLog(@"%@ стала чистой, ее помыл %@", car, self);
 }
 
 @end

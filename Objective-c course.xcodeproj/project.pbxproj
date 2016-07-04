@@ -15,16 +15,12 @@
 		9328B5291D1C4344001D6E62 /* ANSAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4401D0DF2910055E7FB /* ANSAccountant.m */; };
 		9328B52A1D1C4347001D6E62 /* ANSBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4421D0DF2910055E7FB /* ANSBoss.m */; };
 		9328B52B1D1C4354001D6E62 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
-		9328B5361D1D5386001D6E62 /* ANSObservableObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5311D1D5386001D6E62 /* ANSObservableObjectTest.m */; };
-		9328B5371D1D5386001D6E62 /* ANSObservableObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5311D1D5386001D6E62 /* ANSObservableObjectTest.m */; };
-		9328B5381D1D5386001D6E62 /* ANSObserverObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5331D1D5386001D6E62 /* ANSObserverObjectTest.m */; };
-		9328B5391D1D5386001D6E62 /* ANSObserverObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5331D1D5386001D6E62 /* ANSObserverObjectTest.m */; };
-		9328B53A1D1D5386001D6E62 /* ANSPurse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5351D1D5386001D6E62 /* ANSPurse.m */; };
-		9328B53B1D1D5386001D6E62 /* ANSPurse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B5351D1D5386001D6E62 /* ANSPurse.m */; };
 		9328B53E1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		9328B53F1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
+		93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */; };
+		93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */; };
 		93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD44F1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD4501D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4201D0DF2910055E7FB /* NSObject+ANSExtension.m */; };
@@ -67,18 +63,16 @@
 		931D0F1D1D00480900DF749C /* Objective-c course */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objective-c course"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9328B51C1D1BECC7001D6E62 /* ANSMoneyOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSMoneyOwner.h; path = ANSConstants/ANSMoneyOwner.h; sourceTree = "<group>"; };
 		9328B5231D1C1F15001D6E62 /* ANSCarWashTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashTest.m; sourceTree = "<group>"; };
-		9328B5301D1D5386001D6E62 /* ANSObservableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObservableObjectTest.h; sourceTree = "<group>"; };
-		9328B5311D1D5386001D6E62 /* ANSObservableObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObservableObjectTest.m; sourceTree = "<group>"; };
-		9328B5321D1D5386001D6E62 /* ANSObserverObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObserverObjectTest.h; sourceTree = "<group>"; };
-		9328B5331D1D5386001D6E62 /* ANSObserverObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObserverObjectTest.m; sourceTree = "<group>"; };
-		9328B5341D1D5386001D6E62 /* ANSPurse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSPurse.h; sourceTree = "<group>"; };
-		9328B5351D1D5386001D6E62 /* ANSPurse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSPurse.m; sourceTree = "<group>"; };
 		9328B53C1D1D53D3001D6E62 /* ANSObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObservableObject.h; sourceTree = "<group>"; };
 		9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObservableObject.m; sourceTree = "<group>"; };
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		93968A461D13F0E0009E7EF1 /* ANSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSQueue.h; sourceTree = "<group>"; };
 		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
 		93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAlphabetTest.m; path = Spec/ANSAlphabetTest.m; sourceTree = "<group>"; };
+		93C360391D29AD6400E632F9 /* ANSKVOtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSKVOtest.h; sourceTree = "<group>"; };
+		93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSKVOtest.m; sourceTree = "<group>"; };
+		93C3603C1D29AE6D00E632F9 /* ANSKVOtestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSKVOtestObserver.h; sourceTree = "<group>"; };
+		93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSKVOtestObserver.m; sourceTree = "<group>"; };
 		93DAD4121D0DF1730055E7FB /* OSUnitTesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSUnitTesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DAD4161D0DF1740055E7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93DAD41C1D0DF2910055E7FB /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
@@ -161,20 +155,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9328B52F1D1D5386001D6E62 /* ANSObservableObjectTest */ = {
-			isa = PBXGroup;
-			children = (
-				9328B5301D1D5386001D6E62 /* ANSObservableObjectTest.h */,
-				9328B5311D1D5386001D6E62 /* ANSObservableObjectTest.m */,
-				9328B5341D1D5386001D6E62 /* ANSPurse.h */,
-				9328B5351D1D5386001D6E62 /* ANSPurse.m */,
-				9328B5321D1D5386001D6E62 /* ANSObserverObjectTest.h */,
-				9328B5331D1D5386001D6E62 /* ANSObserverObjectTest.m */,
-			);
-			name = ANSObservableObjectTest;
-			path = ANSCarWash/ANSWorkers/ANSObservableObjectTest;
-			sourceTree = "<group>";
-		};
 		93968A451D13F0E0009E7EF1 /* ANSQueue */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +162,17 @@
 				93968A471D13F0E0009E7EF1 /* ANSQueue.m */,
 			);
 			path = ANSQueue;
+			sourceTree = "<group>";
+		};
+		93C360381D29AD6400E632F9 /* ANSKVOtest  */ = {
+			isa = PBXGroup;
+			children = (
+				93C360391D29AD6400E632F9 /* ANSKVOtest.h */,
+				93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */,
+				93C3603C1D29AE6D00E632F9 /* ANSKVOtestObserver.h */,
+				93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */,
+			);
+			path = "ANSKVOtest ";
 			sourceTree = "<group>";
 		};
 		93DAD4131D0DF1740055E7FB /* OSUnitTesting */ = {
@@ -252,7 +243,7 @@
 		93DAD42E1D0DF2910055E7FB /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9328B52F1D1D5386001D6E62 /* ANSObservableObjectTest */,
+				93C360381D29AD6400E632F9 /* ANSKVOtest  */,
 				93DAD42F1D0DF2910055E7FB /* ANSCarWash */,
 			);
 			path = Source;
@@ -452,13 +443,13 @@
 			files = (
 				93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */,
 				93DAD4541D0DF2910055E7FB /* NSString+ANSExtension.m in Sources */,
-				9328B5361D1D5386001D6E62 /* ANSObservableObjectTest.m in Sources */,
 				93DAD4661D0DF2910055E7FB /* ANSCarWashComplex.m in Sources */,
+				93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */,
 				93DAD4581D0DF2910055E7FB /* ANSRangeAlphabet.m in Sources */,
+				93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */,
 				93DAD4501D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */,
 				93DAD46A1D0DF2910055E7FB /* ANSBoss.m in Sources */,
 				93DAD4641D0DF2910055E7FB /* ANSCar.m in Sources */,
-				9328B53A1D1D5386001D6E62 /* ANSPurse.m in Sources */,
 				93DAD4561D0DF2910055E7FB /* ANSClusterAlphabet.m in Sources */,
 				93DAD45A1D0DF2910055E7FB /* ANSStringAlphabet.m in Sources */,
 				93DAD46C1D0DF2910055E7FB /* ANSCarWasher.m in Sources */,
@@ -466,7 +457,6 @@
 				93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */,
 				93DAD45C1D0DF2910055E7FB /* main.m in Sources */,
 				9328B53E1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */,
-				9328B5381D1D5386001D6E62 /* ANSObserverObjectTest.m in Sources */,
 				93DAD4681D0DF2910055E7FB /* ANSAccountant.m in Sources */,
 				93DAD4521D0DF2910055E7FB /* ANSAlphabet.m in Sources */,
 			);
@@ -483,15 +473,12 @@
 				9328B52B1D1C4354001D6E62 /* ANSQueue.m in Sources */,
 				93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */,
 				9328B52A1D1C4347001D6E62 /* ANSBoss.m in Sources */,
-				9328B5391D1D5386001D6E62 /* ANSObserverObjectTest.m in Sources */,
-				9328B53B1D1D5386001D6E62 /* ANSPurse.m in Sources */,
 				9328B5291D1C4344001D6E62 /* ANSAccountant.m in Sources */,
 				9328B5241D1C1F15001D6E62 /* ANSCarWashTest.m in Sources */,
 				9328B5261D1C4326001D6E62 /* ANSCarWashComplex.m in Sources */,
 				93DAD4571D0DF2910055E7FB /* ANSClusterAlphabet.m in Sources */,
 				9328B5251D1C4316001D6E62 /* ANSCar.m in Sources */,
 				9328B5281D1C4341001D6E62 /* ANSCarWasher.m in Sources */,
-				9328B5371D1D5386001D6E62 /* ANSObservableObjectTest.m in Sources */,
 				93DAD45B1D0DF2910055E7FB /* ANSStringAlphabet.m in Sources */,
 				93DAD44F1D0DF2910055E7FB /* ANSRandom.m in Sources */,
 				9328B53F1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */,
