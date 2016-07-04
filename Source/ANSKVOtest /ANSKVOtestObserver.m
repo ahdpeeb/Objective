@@ -32,4 +32,19 @@
     }
 }
 
+//ANSKVOtest *object = [ANSKVOtest object];
+//ANSKVOtestObserver *observer = [ANSKVOtestObserver object];
+//
+//[object addObserver:observer forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//
+//[object addObserver:observer forKeyPath:@"age" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//
+//object.name = @"Vasia";
+//object.name = @"Marina";
+//object.age = 13;
+//
+//[object removeObserver:observer forKeyPath:@"age"];
+//[object removeObserver:observer forKeyPath:@"name"];
+//}
+
 @end

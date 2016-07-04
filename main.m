@@ -13,6 +13,7 @@
 
 #import "ANSKVOtest.h"
 #import "ANSKVOtestObserver.h"
+#import "ANSThread.h"
 
 #import "NSObject+ANSExtension.h"
 
@@ -26,25 +27,16 @@ int main(int argc, const char * argv[]) {
 //        for (NSUInteger count = 0; count < kANSCarCount; count++) {
 //            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
 //            [complex addCarToQueue:car];
-//        }
-//        
-//        [[NSRunLoop mainRunLoop] run];
-//    }
-    
-        ANSKVOtest *object = [ANSKVOtest object];
-        ANSKVOtestObserver *observer = [ANSKVOtestObserver object];
         
-        [object addObserver:observer forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+        ANSThread *thread = [ANSThread object];
+        thread.block = ^() {
+            NSLog(@"Blia");
+        };
         
-        [object addObserver:observer forKeyPath:@"age" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-     
-        object.name = @"Vasia";
-        object.name = @"Marina";
-        object.age = 13;
+        [thread start];
         
-        [object removeObserver:observer forKeyPath:@"age"];
-        [object removeObserver:observer forKeyPath:@"name"];
+        [[NSRunLoop mainRunLoop] run];
     }
-
+    
     return 0;
 }
