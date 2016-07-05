@@ -25,6 +25,7 @@
 - (void)setPurse:(ANSPurse *)purse {
     if (_purse != purse) {
         [_purse removeObserverObject:self];
+        [_purse release];
         _purse = [purse retain];
         
         [_purse addObserverObject:self];

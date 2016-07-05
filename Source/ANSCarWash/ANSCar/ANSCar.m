@@ -8,21 +8,21 @@
 
 #import "ANSCar.h"
 
-#import "ANSConstants.h"
+static const NSUInteger kANSServiceCost = 5;
 
 @interface ANSCar ()
 @property (nonatomic, assign) float money;
+@property (nonatomic, assign) NSUInteger ID;
 
 @end
 
 @implementation ANSCar
 
 #pragma mark -
-#pragma mark initialize / deallocate
+#pragma mark initializetion / deallocation
 
 - (void)dealloc {
-    [super dealloc];
-}
+    [super dealloc]; }
 
 - (instancetype)init {
     self = [super init];
@@ -32,15 +32,33 @@
     return self;
 }
 
+- (instancetype)initWithID:(NSUInteger)ID {
+    self = [self init];
+    self.ID = ID;
+    
+    return self;
+}
+
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Protocol <ANSMoneyOwner>
 
 - (void)receiveMoney:(float)number {
-    self.money += number;
+     @synchronized(self) {
+        self.money += number;
+    }
 }
 
 - (void)giveMoney:(float)number {
-    self.money -= number;
+    @synchronized(self) {
+        self.money -= number;
+    }
+}
+
+#pragma mark -
+#pragma mark Redefinition
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"CAR %ld", (long)self.ID ];
 }
 
 @end

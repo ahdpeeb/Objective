@@ -21,4 +21,7 @@ FOUNDATION_EXPORT
 const NSInteger  kANSMaxCarWasherCapacity;
 
 FOUNDATION_EXPORT
+const float kASNSleepSeconds;
+
+FOUNDATION_EXPORT
 NSString * const kANSallBoxesFul;

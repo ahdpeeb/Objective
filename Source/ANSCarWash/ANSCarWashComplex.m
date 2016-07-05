@@ -8,40 +8,42 @@
 
 #import "ANSCarWashComplex.h"
 
-#import "ANSBuilding.h"
-#import "ANSRoom.h"
 #import "ANSCarWasher.h"
 #import "ANSAccountant.h"
 #import "ANSBoss.h"
+#import "ANSConstants.h"
 
 #import "NSObject+ANSExtension.h"
+#import "ANSRandom.h"
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (nonatomic, retain) ANSQueue          *carQueue;
-@property (nonatomic, retain) ANSBuilding       *officeBuilding;
-@property (nonatomic, retain) ANSBuilding       *washBuilding;
+@property (atomic, retain)      ANSQueue          *carQueue;
+@property (nonatomic, retain)   ANSAccountant     *accountant;
+@property (nonatomic, retain)   ANSBoss           *boss;
+@property (atomic, retain)      NSMutableArray    *mutableWashers;
 
 - (void)initInfrastructure;
-- (void)washCar:(ANSCar *)car;
-- (id)suitableBuildingForWorkerClass:(Class)cls;
-- (NSArray *)workersWithClass:(Class)cls;
-- (NSArray *)freeWorkerWithClass:(Class)cls;
-- (id)reservedFreeWorkerWithClass:(Class)cls;
+- (NSArray *)freeWorkers;
+- (id)reservedFreeWorker;
+- (void)startWashingByWasher:(ANSCarWasher*)washer;
+- (void)ripObservation;
 
 @end
 
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark initializetion / deallocation
+#pragma mark Initializetion / deallocation
 
 - (void)dealloc {
     self.carQueue = nil;
-    self.officeBuilding = nil;
-    self.washBuilding = nil;
-//    washer.delegate = nil;      // create washer/accountant properertyes for breaking connections 
-//    accountant.delegate = nil;
+    
+    [self ripObservation];
+    
+    self.mutableWashers = nil;
+    self.accountant = nil;
+    self.boss = nil;
     
     [super dealloc];
 }
@@ -54,27 +56,19 @@
 }
 
 - (void)initInfrastructure {
+    self.mutableWashers = [NSMutableArray object];
     self.carQueue = [ANSQueue object];
+    self.accountant = [ANSAccountant object];
+    self.boss = [ANSBoss object];
+    ANSAccountant *accountant = self.accountant;
+    [accountant addObserverObject:self.boss];
     
-    self.officeBuilding = [ANSBuilding object];
-    self.washBuilding = [ANSBuilding object];
-    
-    ANSBuilding *officeBuilding = self.officeBuilding;
-    ANSBuilding *washBuilding = self.washBuilding;
-    
-    ANSAccountant *accountant = [ANSAccountant object];
-    ANSBoss *boss = [ANSBoss object];
-    ANSCarWasher *washer = [ANSCarWasher object];
-    
-    washer.delegate = accountant;
-    accountant.delegate = boss;
-    
-    ANSBox *box = [ANSBox object];
-    ANSRoom *room = [[[ANSRoom alloc] initWithAccountant:accountant
-                                                    boss:boss] autorelease];
-    [box addWorker:washer];
-    [washBuilding addRoom:box];
-    [officeBuilding addRoom:room];
+    for (NSUInteger count = 0; count < kANSMaxCarWasherCapacity; count ++) {
+        ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
+        [washer addObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
+        NSMutableArray *washers = self.mutableWashers;
+        [washers addObject:washer];
+    }
 }
 
 #pragma mark -
@@ -83,41 +77,67 @@
 - (void)addCarToQueue:(ANSCar *)car {
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
-    while (!queue.count == 0) {
-        [self washCar:[queue dequeue]];
+    NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
+    
+    ANSAccountant *account = self.accountant;
+    @synchronized(account) {
+        if (account.queue.count == kANSMaxCarWasherCapacity) {
+            [account processObjects];
+        }
+    }
+    
+    @synchronized(self) {
+        ANSCarWasher *reserverWasher = [self reservedFreeWorker];
+        if (reserverWasher) {
+            [self startWashingByWasher:reserverWasher];
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark - ANSWorkerObserver protocol
+
+- (void)workerDidBecomeFree:(ANSCarWasher *)worker {
+    ANSQueue *queue = worker.queue;
+    @synchronized(queue) {
+        if (!queue.count) {
+            [self startWashingByWasher:worker];
+        }
     }
 }
 
 #pragma mark -
 #pragma mark Private methods
 
-- (void)washCar:(ANSCar *)car; {
-    ANSBox *freeBox = [self.washBuilding freeRoom];
-    if (freeBox) {
-        ANSCarWasher *washer = [self reservedFreeWorkerWithClass:[ANSCarWasher class]];
-        
-        [freeBox addCar:car];
-        [washer processObject:car];
-        [freeBox removeCar:car];
+- (NSArray *)freeWorkers {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
+    
+    return [self.mutableWashers filteredArrayUsingPredicate:predicate];
+}
+
+- (id)reservedFreeWorker {
+    @synchronized(self) {
+        return [[self freeWorkers] firstObject];
     }
 }
 
-- (id)suitableBuildingForWorkerClass:(Class)cls {
-    return [cls isSubclassOfClass:[ANSCarWasher class]] ? self.washBuilding : self.officeBuilding;
-}
-    //! workersWithClass also сontained in ANSBuilding public interfacer
-- (NSArray *)workersWithClass:(Class)cls {
-    return [[self suitableBuildingForWorkerClass:cls]workersWithClass:cls];
-}
-
-- (NSArray *)freeWorkerWithClass:(Class)cls {
-    NSArray *workers = [self workersWithClass:cls];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"busy", NO]; //@"busy == NO"
-    return [workers filteredArrayUsingPredicate:predicate];
+- (void)startWashingByWasher:(ANSCarWasher*)washer {
+    ANSQueue *carQueue = self.carQueue;
+    ANSCar *car = [carQueue dequeue];
+    if (car) {
+        NSLog(@"%@ начинает мыть %@", washer, car);
+        [washer startProcessingObject:car];
+    }
 }
 
-- (id)reservedFreeWorkerWithClass:(Class)cls {
-    return [[self freeWorkerWithClass:cls] firstObject];
+- (void)ripObservation {
+    NSMutableArray *washers = self.mutableWashers;
+    ANSAccountant *accountant = self.accountant;
+    for (ANSCarWasher *washer in washers) {
+        [washer removeObserverObjects:[NSArray arrayWithObjects:accountant, self, nil]];
+    }
+    
+    [accountant removeObserverObject:self.boss];
 }
 
 @end

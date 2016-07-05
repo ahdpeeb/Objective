@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    ANSFirsState,
+    ANSSecondState,
+    ANSThirdState
+} ANSState;
+
 @interface ANSObservableObjectTest : NSObject
+@property (nonatomic, assign) ANSState  state;
+@property (nonatomic, readonly) NSSet   *obserers;
+
+- (void)addObserverObject:(id )object;
+- (void)removeObserverObject:(id)object;
+- (BOOL)isObservedByObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly. 
+- (SEL)selectorForState:(ANSState)state;
 
 @end

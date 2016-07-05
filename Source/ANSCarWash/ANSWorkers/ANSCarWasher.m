@@ -8,16 +8,26 @@
 
 #import "ANSCarWasher.h"
 
+#import "ANSConstants.h"
+
 @implementation ANSCarWasher
 
+#pragma mark -
+#pragma mark Public methods
+
 - (void)washCar:(ANSCar *)car {
-    car.status = ANSCarClean;
-    [self takeMoneyFromObject:car];
-    [self.delegate workerDidFinishWork:self];  // after carWasher got money, inform accountant. / do not see
+    usleep(kASNSleepSeconds);
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
+    NSLog(@"%@ забирает деньги у %@, которую начинает мыть", self, object);
+    [self takeMoneyFromObject:object];
     [self washCar:object];
+}
+
+- (void)finishProcessingObject:(ANSCar *)car {
+    car.status = ANSCarClean;
+    NSLog(@"%@ стала чистой, ее помыл %@", car, self);
 }
 
 @end

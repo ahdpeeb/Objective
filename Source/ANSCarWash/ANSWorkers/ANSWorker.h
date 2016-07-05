@@ -8,18 +8,48 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ANSObservableObject.h"
+
 #import "ANSMoneyOwner.h"
-#import "ANSWorkerDelegate.h"
+#import "ANSQueue.h"
 
-@interface ANSWorker : NSObject <ANSMoneyOwner, ANSWorkerDelegate>
-@property (nonatomic, assign)                float      income;
-@property (nonatomic, assign)                NSInteger  yearsOfExperience;
+@protocol ANSWorkerObserver <NSObject>
 
-// can be readonly from outside
-@property (nonatomic, assign, getter=isBusy) BOOL                   busy;
+@optional
+- (void)workerDidBecomeBusy:(id)worker;
+- (void)workerDidBecomeIsPending:(id)worker;
+- (void)workerDidBecomeFree:(id)worker;
 
-@property (nonatomic, assign)               id<ANSWorkerDelegate>   delegate;
+@end
 
-- (void)processObject:(id)object;
+typedef NS_ENUM(uint8_t, ANSState) {
+    ANSWorkerFree,
+    ANSWorkerBusy,
+    ANSWorkerIsPending
+};
 
+@interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
+// this property only for subclasses
+@property (nonatomic, readonly)     id<NSLocking>   locker;
+@property (nonatomic, readonly)     ANSQueue        *queue;
+
+- (instancetype)initWithId:(NSUInteger)ID;
+
+- (void)startProcessingObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly.
+//This method should be processed in background thread. 
+- (void)performWorkWithObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly.
+//This method should be processed in main thread. it's change state of object
+- (void)finishProcessingObject:(id)object;
+
+//this method is intended for subclasses. Never call it directly.
+//This method should be processed in main thread. it's change state of self
+- (void)finishProcessing;
+
+//this method is intended for subclasses. Never call it directly.
+//This method process workers form self.queue.
+- (void)processObjects;
 @end

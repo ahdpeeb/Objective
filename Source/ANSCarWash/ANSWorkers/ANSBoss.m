@@ -8,15 +8,36 @@
 
 #import "ANSBoss.h"
 
+#import "ANSConstants.h"
+
 @implementation ANSBoss
 
+#pragma mark -
+#pragma mark Public methods
+
 - (void)calculateProfit {
-    NSLog(@"my profit - %f", self.money);
+    usleep(kASNSleepSeconds);
+    NSLog(@"BOSS profir - %f", self.money);
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
+    NSLog(@"%@ забирает деньги(%f) у %@", self, [object money], object);
     [self takeMoneyFromObject:object];
     [self calculateProfit];
+}
+
+- (void)finishProcessing {
+    self.state = ANSWorkerFree;
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
+}
+
+- (void)finishProcessingObject:(ANSWorker *)object {
+    if (object.queue.count == kANSMaxCarWasherCapacity) {
+        [object processObjects];
+    }
+    
+    object.state = ANSWorkerFree;
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
 
 @end

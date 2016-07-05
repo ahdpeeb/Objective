@@ -7,18 +7,31 @@
 //
 
 #import "ANSAccountant.h"
+
 #import "ANSCarWasher.h"
+#import "ANSConstants.h"
+
+#import "ANSQueue.h"
+#import "NSObject+ANSExtension.h"
+
+@interface ANSAccountant ()
+
+@end
 
 @implementation ANSAccountant
 
+#pragma mark -
+#pragma mark Public methods
+
 - (void)countMoney {
-    NSLog(@"%f money in my cashbox", self.money);
+    usleep(kASNSleepSeconds);
+    NSLog(@"%@ count money - %f ",self, self.money);
 }
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
+    NSLog(@"%@ забирает деньги(%f) у %@", self, [object money], object);
     [self takeMoneyFromObject:object];
     [self countMoney];
-    [self.delegate workerDidFinishWork:self]; // after accountant got money, inform boss
 }
-
+ 
 @end

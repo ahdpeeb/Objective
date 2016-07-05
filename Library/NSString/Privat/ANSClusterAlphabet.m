@@ -67,16 +67,6 @@
     return [[string copy] autorelease];
 }
 
-//#pragma mark -
-//#pragma mark NSFastEnumeration
-//
-//- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-//                                  objects:(id [])buffer
-//                                    count:(NSUInteger)len
-//{
-//   return [self.alphabets countByEnumeratingWithState:state objects:buffer count:len];
-//}
-
 #pragma mark -
 #pragma mark Private
 
