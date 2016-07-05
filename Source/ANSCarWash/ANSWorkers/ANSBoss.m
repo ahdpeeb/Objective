@@ -32,7 +32,7 @@
 }
 
 - (void)finishProcessingObject:(ANSWorker *)object {
-    if (object.queue.count == kANSMaxCarWasherCapacity) {
+    if (object.queue.count == kANSMaxCarWashersCapacity) {
         [object processObjects];
     }
     

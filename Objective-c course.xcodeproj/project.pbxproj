@@ -19,6 +19,7 @@
 		9328B53F1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93A642A71D2BD6DE00313EEB /* ANSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642A51D2BD6DE00313EEB /* ANSConstants.m */; };
+		93A642AE1D2BFFF100313EEB /* ANSGeneralDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642AD1D2BFFF100313EEB /* ANSGeneralDispatcher.m */; };
 		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
 		93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */; };
 		93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */; };
@@ -73,6 +74,8 @@
 		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
 		93A642A41D2BD6DE00313EEB /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
 		93A642A51D2BD6DE00313EEB /* ANSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSConstants.m; sourceTree = "<group>"; };
+		93A642AC1D2BFFF100313EEB /* ANSGeneralDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSGeneralDispatcher.h; sourceTree = "<group>"; };
+		93A642AD1D2BFFF100313EEB /* ANSGeneralDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSGeneralDispatcher.m; sourceTree = "<group>"; };
 		93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAlphabetTest.m; path = Spec/ANSAlphabetTest.m; sourceTree = "<group>"; };
 		93C360391D29AD6400E632F9 /* ANSKVOtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSKVOtest.h; sourceTree = "<group>"; };
 		93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSKVOtest.m; sourceTree = "<group>"; };
@@ -182,6 +185,15 @@
 			path = ANSConstants;
 			sourceTree = "<group>";
 		};
+		93A642AB1D2BFFF100313EEB /* ANSDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				93A642AC1D2BFFF100313EEB /* ANSGeneralDispatcher.h */,
+				93A642AD1D2BFFF100313EEB /* ANSGeneralDispatcher.m */,
+			);
+			path = ANSDispatcher;
+			sourceTree = "<group>";
+		};
 		93C360381D29AD6400E632F9 /* ANSKVOtest  */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +294,7 @@
 		93DAD42F1D0DF2910055E7FB /* ANSCarWash */ = {
 			isa = PBXGroup;
 			children = (
+				93A642AB1D2BFFF100313EEB /* ANSDispatcher */,
 				93A642A31D2BD6DE00313EEB /* ANSConstants */,
 				9328B51C1D1BECC7001D6E62 /* ANSMoneyOwner.h */,
 				93DAD43A1D0DF2910055E7FB /* ANSCarWashComplex.h */,
@@ -472,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A642AE1D2BFFF100313EEB /* ANSGeneralDispatcher.m in Sources */,
 				93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */,
 				93DAD4541D0DF2910055E7FB /* NSString+ANSExtension.m in Sources */,
 				93C360481D2AAF3300E632F9 /* ANSThreadPool.m in Sources */,

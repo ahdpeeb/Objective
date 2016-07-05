@@ -21,7 +21,7 @@
 - (BOOL)isObservedByObject:(id)object;
 
 - (void)notifyOfState:(NSUInteger)state;
-- (void)notifyOfState:(NSUInteger)state WithObject:(id)object;
+- (void)notifyOfState:(NSUInteger)state withObject:(id)object;
 
 
 //This method is intended for subclasses. Never call it directly.
