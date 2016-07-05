@@ -5,6 +5,9 @@
 //  Created by Nikola Andriiev on 05.07.16.
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
+// передать клас как парамерт, либо на уровне роутера. протокол { вызывать методы из протокола по обработке
+}
+
 
 #import "ANSGeneralDispatcher.h"
 
@@ -62,7 +65,7 @@
 }
 
 - (void)workerDidBecomeIsPending:(id)worker {
-
+    // слушает за мойщиками.
 }
 
 - (void)workerDidBecomeFree:(id)worker {
