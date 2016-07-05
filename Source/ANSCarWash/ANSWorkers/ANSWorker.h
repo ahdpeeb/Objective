@@ -49,5 +49,7 @@ typedef NS_ENUM(uint8_t, ANSState) {
 //This method should be processed in main thread. it's change state of self
 - (void)finishProcessing;
 
-
+//this method is intended for subclasses. Never call it directly.
+//This method process workers form self.queue.
+- (void)processObjects;
 @end

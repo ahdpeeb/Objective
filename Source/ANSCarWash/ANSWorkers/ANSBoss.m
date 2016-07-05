@@ -8,24 +8,15 @@
 
 #import "ANSBoss.h"
 
-static const NSUInteger kASNSleepSeconds = 3;
+#import "ANSConstants.h"
 
 @implementation ANSBoss
-
-#pragma mark -
-#pragma mark initializetion / deallocation
-
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
 
 #pragma mark -
 #pragma mark Public methods
 
 - (void)calculateProfit {
-    sleep(kASNSleepSeconds);
+    usleep(kASNSleepSeconds);
     NSLog(@"BOSS profir - %f", self.money);
 }
 
@@ -35,13 +26,18 @@ static const NSUInteger kASNSleepSeconds = 3;
     [self calculateProfit];
 }
 
-- (void)workerDidBecomeIsPending:(id)worker {
-    [self startProcessingObject:worker];
-}
-
 - (void)finishProcessing {
     self.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
+}
+
+- (void)finishProcessingObject:(ANSWorker *)object {
+    if (object.queue.count == kANSMaxCarWasherCapacity) {
+        [object processObjects];
+    }
+    
+    object.state = ANSWorkerFree;
+    NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
 
 @end

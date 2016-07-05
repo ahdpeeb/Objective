@@ -11,6 +11,7 @@
 #import "ANSCarWasher.h"
 #import "ANSAccountant.h"
 #import "ANSBoss.h"
+#import "ANSConstants.h"
 
 #import "NSObject+ANSExtension.h"
 #import "ANSRandom.h"
@@ -26,6 +27,7 @@
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
 - (void)startWashingByWasher:(ANSCarWasher*)washer;
+- (void)ripObservation;
 
 @end
 
@@ -36,13 +38,8 @@
 
 - (void)dealloc {
     self.carQueue = nil;
-    NSMutableArray *washers = self.mutableWashers;
-    ANSAccountant *accountant = self.accountant;
-    for (ANSCarWasher *washer in washers) {
-        [washer removeObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
-    }
     
-    [accountant removeObserverObject:self.boss];
+    [self ripObservation];
     
     self.mutableWashers = nil;
     self.accountant = nil;
@@ -66,7 +63,7 @@
     ANSAccountant *accountant = self.accountant;
     [accountant addObserverObject:self.boss];
     
-    for (NSUInteger count = 0; count < 3; count ++) {
+    for (NSUInteger count = 0; count < kANSMaxCarWasherCapacity; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
         [washer addObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
         NSMutableArray *washers = self.mutableWashers;
@@ -78,11 +75,18 @@
 #pragma mark Public implementation
 
 - (void)addCarToQueue:(ANSCar *)car {
+    ANSQueue *queue = self.carQueue;
+    [queue enqueue:car];
+    NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
+    
+    ANSAccountant *account = self.accountant;
+    @synchronized(account) {
+        if (account.queue.count == kANSMaxCarWasherCapacity) {
+            [account processObjects];
+        }
+    }
+    
     @synchronized(self) {
-        ANSQueue *queue = self.carQueue;
-        [queue enqueue:car];
-        NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
-        
         ANSCarWasher *reserverWasher = [self reservedFreeWorker];
         if (reserverWasher) {
             [self startWashingByWasher:reserverWasher];
@@ -107,6 +111,7 @@
 
 - (NSArray *)freeWorkers {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
+    
     return [self.mutableWashers filteredArrayUsingPredicate:predicate];
 }
 
@@ -118,15 +123,21 @@
 
 - (void)startWashingByWasher:(ANSCarWasher*)washer {
     ANSQueue *carQueue = self.carQueue;
-    @synchronized(carQueue) {
-        ANSCar *car = [carQueue dequeue];
-        if (car) {
-            @synchronized(washer) {
-                NSLog(@"%@ начинает мыть %@", washer, car);
-                [washer startProcessingObject:car];
-            }
-        }
+    ANSCar *car = [carQueue dequeue];
+    if (car) {
+        NSLog(@"%@ начинает мыть %@", washer, car);
+        [washer startProcessingObject:car];
     }
+}
+
+- (void)ripObservation {
+    NSMutableArray *washers = self.mutableWashers;
+    ANSAccountant *accountant = self.accountant;
+    for (ANSCarWasher *washer in washers) {
+        [washer removeObserverObjects:[NSArray arrayWithObjects:accountant, self, nil]];
+    }
+    
+    [accountant removeObserverObject:self.boss];
 }
 
 @end

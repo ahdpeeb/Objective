@@ -8,24 +8,15 @@
 
 #import "ANSCarWasher.h"
 
-static const NSUInteger kASNSleepSeconds = 1;
+#import "ANSConstants.h"
 
 @implementation ANSCarWasher
-
-#pragma mark -
-#pragma mark initializetion / deallocation
-
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
 
 #pragma mark -
 #pragma mark Public methods
 
 - (void)washCar:(ANSCar *)car {
-    sleep(kASNSleepSeconds);
+    usleep(kASNSleepSeconds);
 }
 
 - (void)performWorkWithObject:(id)object {

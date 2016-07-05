@@ -18,23 +18,23 @@
 #import "NSObject+ANSExtension.h"
 
 NSUInteger kANSCarCount = 100;
-static void *objectContext = &objectContext;
+static void *ANSObjectContext = &ANSObjectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
-//        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        
+        for (NSUInteger count = 0; count < kANSCarCount; count++) {
+            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
+            [complex addCarToQueue:car];
+        }
+//        ANSThread *thread = [ANSThread object];
+//        thread.block = ^() {
+//            NSLog(@"Blia");
+//        };
 //        
-//        for (NSUInteger count = 0; count < kANSCarCount; count++) {
-//            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
-//            [complex addCarToQueue:car];
-        
-        ANSThread *thread = [ANSThread object];
-        thread.block = ^() {
-            NSLog(@"Blia");
-        };
-        
-        [thread start];
-        
+//        [thread start];
+//        
         [[NSRunLoop mainRunLoop] run];
     }
     

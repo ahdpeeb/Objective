@@ -18,6 +18,7 @@
 		9328B53E1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		9328B53F1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
+		93A642A71D2BD6DE00313EEB /* ANSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642A51D2BD6DE00313EEB /* ANSConstants.m */; };
 		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
 		93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */; };
 		93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */; };
@@ -70,6 +71,8 @@
 		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		93968A461D13F0E0009E7EF1 /* ANSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSQueue.h; sourceTree = "<group>"; };
 		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
+		93A642A41D2BD6DE00313EEB /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
+		93A642A51D2BD6DE00313EEB /* ANSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSConstants.m; sourceTree = "<group>"; };
 		93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAlphabetTest.m; path = Spec/ANSAlphabetTest.m; sourceTree = "<group>"; };
 		93C360391D29AD6400E632F9 /* ANSKVOtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSKVOtest.h; sourceTree = "<group>"; };
 		93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSKVOtest.m; sourceTree = "<group>"; };
@@ -168,6 +171,15 @@
 				93968A471D13F0E0009E7EF1 /* ANSQueue.m */,
 			);
 			path = ANSQueue;
+			sourceTree = "<group>";
+		};
+		93A642A31D2BD6DE00313EEB /* ANSConstants */ = {
+			isa = PBXGroup;
+			children = (
+				93A642A41D2BD6DE00313EEB /* ANSConstants.h */,
+				93A642A51D2BD6DE00313EEB /* ANSConstants.m */,
+			);
+			path = ANSConstants;
 			sourceTree = "<group>";
 		};
 		93C360381D29AD6400E632F9 /* ANSKVOtest  */ = {
@@ -270,6 +282,7 @@
 		93DAD42F1D0DF2910055E7FB /* ANSCarWash */ = {
 			isa = PBXGroup;
 			children = (
+				93A642A31D2BD6DE00313EEB /* ANSConstants */,
 				9328B51C1D1BECC7001D6E62 /* ANSMoneyOwner.h */,
 				93DAD43A1D0DF2910055E7FB /* ANSCarWashComplex.h */,
 				93DAD43B1D0DF2910055E7FB /* ANSCarWashComplex.m */,
@@ -291,8 +304,8 @@
 		93DAD43E1D0DF2910055E7FB /* ANSWorkers */ = {
 			isa = PBXGroup;
 			children = (
-				9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */,
 				9328B53C1D1D53D3001D6E62 /* ANSObservableObject.h */,
+				9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */,
 				93DAD4451D0DF2910055E7FB /* ANSWorker.h */,
 				93DAD4461D0DF2910055E7FB /* ANSWorker.m */,
 				93DAD4431D0DF2910055E7FB /* ANSCarWasher.h */,
@@ -463,6 +476,7 @@
 				93DAD4541D0DF2910055E7FB /* NSString+ANSExtension.m in Sources */,
 				93C360481D2AAF3300E632F9 /* ANSThreadPool.m in Sources */,
 				93DAD4661D0DF2910055E7FB /* ANSCarWashComplex.m in Sources */,
+				93A642A71D2BD6DE00313EEB /* ANSConstants.m in Sources */,
 				93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */,
 				93DAD4581D0DF2910055E7FB /* ANSRangeAlphabet.m in Sources */,
 				93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */,

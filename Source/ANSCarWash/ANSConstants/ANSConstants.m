@@ -8,9 +8,11 @@
 
 #import "ANSConstants.h"
 
-const float      kANSServiceCost             = 5;
-const NSInteger  kANSMaxCarCapacity          = 1;
-const NSInteger  kANSMaxWorkersCapacity      = 2;
-const NSInteger  kANSMaxCarWasherCapacity    = 1;
+const float      kANSServiceCost                = 5;
+const NSInteger  kANSMaxCarCapacity             = 1;
+const NSInteger  kANSMaxWorkersCapacity         = 2;
+const NSInteger  kANSMaxCarWasherCapacity       = 3;
+const float kASNSleepSeconds               = 100000;
+
 
 NSString * const kANSallBoxesFul = @"No suitable box for car";

@@ -11,7 +11,7 @@
 #import <libkern/OSAtomic.h>
 
 @interface ANSThread ()
-@property (nonatomic, retain) NSLock
+//@property (nonatomic, retain) NSLock
 
 @end
 

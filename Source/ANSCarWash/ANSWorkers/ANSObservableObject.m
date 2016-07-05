@@ -20,7 +20,9 @@
 @end
 
 @implementation ANSObservableObject
+
 @synthesize state = _state;
+
 @dynamic observersSet;
 
 #pragma mark -
@@ -75,8 +77,9 @@
 
 - (void)addObserverObjects:(NSArray *)objects {
     @synchronized(self) {
+        NSHashTable *observers = self.observersHashTable;
         for (id observer in objects) {
-            [self.observersHashTable addObject:observer];
+            [observers addObject:observer];
         }
     }
 }

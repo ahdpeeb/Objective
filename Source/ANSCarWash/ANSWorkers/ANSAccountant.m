@@ -9,11 +9,10 @@
 #import "ANSAccountant.h"
 
 #import "ANSCarWasher.h"
+#import "ANSConstants.h"
 
 #import "ANSQueue.h"
 #import "NSObject+ANSExtension.h"
-
-static const NSUInteger kASNSleepSeconds = 1;
 
 @interface ANSAccountant ()
 
@@ -22,19 +21,10 @@ static const NSUInteger kASNSleepSeconds = 1;
 @implementation ANSAccountant
 
 #pragma mark -
-#pragma mark Initializetion / deallocation
-
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
-
-#pragma mark -
 #pragma mark Public methods
 
 - (void)countMoney {
-    sleep(kASNSleepSeconds);
+    usleep(kASNSleepSeconds);
     NSLog(@"%@ count money - %f ",self, self.money);
 }
 
@@ -44,8 +34,4 @@ static const NSUInteger kASNSleepSeconds = 1;
     [self countMoney];
 }
  
-- (void)workerDidBecomeIsPending:(id)worker {
-    [self startProcessingObject:worker];
-}
-
 @end

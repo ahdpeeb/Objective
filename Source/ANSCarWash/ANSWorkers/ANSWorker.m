@@ -79,16 +79,16 @@
 //________________________________________________________________________________
 - (void)startProcessingObject:(id)object {
     @synchronized(self) { 
-         if (self.state != ANSWorkerFree) {
-             NSLog(@"WARNING %@ состояние = %lu", self, (unsigned long)self.state);
-             [self.queue enqueue:object];
-             NSLog(@"%@ добавил к себе на обработку %@", self, object);
-             return;
+        if (self.state != ANSWorkerFree) {
+            NSLog(@"WARNING %@ состояние = %lu", self, (unsigned long)self.state);
+            [self.queue enqueue:object];
+            NSLog(@"%@ добавил к себе на обработку %@", self, object);
+            return;
         }
         
-            self.state = ANSWorkerBusy;
-            NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
-            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
+        self.state = ANSWorkerBusy;
+        NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
+        [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
     }
 }
 
@@ -106,16 +106,7 @@
     }
     
     @synchronized(self) {
-        ANSQueue *queue = self.queue;
-        if (queue.count) {
-            NSLog(@"WARNING %@", self);
-            id operand = [queue dequeue];
-            NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
-            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
-            
-            return;
-        }
-        
+        [self processObjects];
         [self finishProcessing];
     }
 }
@@ -132,6 +123,25 @@
 - (void)finishProcessing {
     self.state = ANSWorkerIsPending;
     NSLog(@"%@ - поменял состояние на ANSWorkerIsPending в главном потоке", self);
+}
+
+- (void)processObjects {
+    @synchronized(self) {
+        ANSQueue *queue = self.queue;
+        while (queue.count) {
+            NSLog(@"WARNING %@", self);
+            id operand = [queue dequeue];
+            NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
+            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark Protocol ANSWorkerObserver
+
+- (void)workerDidBecomeIsPending:(id)worker {
+    [self startProcessingObject:worker];
 }
 
 #pragma mark -
