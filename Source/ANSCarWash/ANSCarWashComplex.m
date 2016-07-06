@@ -24,16 +24,14 @@
 @property (atomic, retain)      ANSQueue                *carQueue;
 @property (atomic, retain)      NSMutableArray          *mutableWashers;
 @property (nonatomic, retain)   NSMutableArray          *mutableAccountants;
-@property (nonatomic, retain)   ANSBoss                 *boss;
+@property (nonatomic, retain)   NSMutableArray          *mutablebosses;
 
 @property (nonatomic, retain)   ANSDispatcher           *washersObserver;
 @property (nonatomic, retain)   ANSDispatcher           *accountantsObserver;
-@property (nonatomic, retain)   ANSDispatcher           *bossObserver;
+@property (nonatomic, retain)   ANSDispatcher           *bossesObserver;
 //@property (nonatomic, retain)   ANSComplexDispatcher    *complexObserver;
 
 - (void)initInfrastructure;
-- (NSArray *)freeWorkers;
-- (id)reservedFreeWorker;
 - (void)startWashingByWasher:(ANSCarWasher*)washer;
 - (void)stopObservation;
 
@@ -55,7 +53,7 @@
     
     self.mutableWashers = nil;
     self.mutableAccountants = nil;
-    self.boss = nil;
+    self.mutablebosses = nil;
     
     [super dealloc];
 }
@@ -69,13 +67,20 @@
 
 - (void)initInfrastructure {
     self.carQueue = [ANSQueue object];
+    
+    ANSDispatcher *washersDispatcher = self.washersObserver;
+    ANSDispatcher *accountantDispatcher = self.accountantsObserver;
+    ANSDispatcher *bosseDispatcher = self.bossesObserver;
+    
+    NSArray *forWashers = [NSArray arrayWithObjects:washersDispatcher, accountantDispatcher, nil];
+    NSArray *forAccountants = [NSArray arrayWithObjects:accountantDispatcher, bosseDispatcher, nil];
+    NSArray *forBosses = [NSArray arrayWithObject:bosseDispatcher];
+    
+    self.mutableWashers = [self workersWithClass:[ANSCarWasher class] count:3 observers:forWashers];
+    self.mutableAccountants = [self workersWithClass:[ANSAccountant class] count:2 observers:forAccountants];
+    self.mutablebosses = [self workersWithClass:[ANSBoss class] count:1 observers:forBosses];
+    
     [self setObservers];
-    
-    self.boss = [ANSBoss object];
-    [self.boss addObserverObject:self.bossObserver];
-    
-    self.mutableWashers = [self workersWithClass:[ANSCarWasher class] count:3 observers:nil];
-    self.mutableAccountants = [self workersWithClass:[ANSAccountant class] count:2 observers:nil];
 }
 
 #pragma mark -
@@ -95,31 +100,7 @@
 }
 
 #pragma mark -
-#pragma mark - ANSWorkerObserver protocol
-
-- (void)workerDidBecomeFree:(ANSCarWasher *)worker {
-    ANSQueue *queue = worker.queue;
-    @synchronized(queue) {
-        if (!queue.count) {
-            [self startWashingByWasher:worker];
-        }
-    }
-}
-
-#pragma mark -
 #pragma mark Private methods
-
-- (NSArray *)freeWorkers {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
-    
-    return [self.mutableWashers filteredArrayUsingPredicate:predicate];
-}
-
-- (id)reservedFreeWorker {
-    @synchronized(self) {
-        return [[self freeWorkers] firstObject];
-    }
-}
 
 - (void)startWashingByWasher:(ANSCarWasher*)washer {
     ANSQueue *carQueue = self.carQueue;
@@ -146,9 +127,9 @@
 }
 
 - (void)setObservers {
-    self.washersObserver = [ANSDispatcher object];
-    self.accountantsObserver = [ANSDispatcher object];
-    self.bossObserver = [ANSDispatcher object];
+    self.washersObserver = [[ANSDispatcher alloc] initWithName:@"WashersObserver"];
+    self.accountantsObserver = [[ANSDispatcher alloc] initWithName:@"AccountantsObserver"];
+    self.bossesObserver = [[ANSDispatcher alloc] initWithName:@"BossObserver"];
 //    self.complexObserver = [ANSComplexDispatcher object];
 }
 
@@ -159,13 +140,9 @@
 }
 
 - (void)stopObservation {
-    NSMutableArray *washers = self.mutableWashers;
-    [self removeObservers:nil fromObjects:washers]; //replace nil for Observers
-    
-    NSMutableArray *accountants = self.mutableAccountants;
-    [self removeObservers:nil fromObjects:accountants]; //replace nil for Observers
-    
-    [self.boss removeObserverObject:nil]; //replace nil for Observers
+    [self removeObservers:nil fromObjects:self.mutableWashers]; //replace nil for Observers
+    [self removeObservers:nil fromObjects:self.mutableAccountants]; //replace nil for Observers
+    [self removeObservers:nil fromObjects:self.mutablebosses]; //replace nil for Observers
 }
 
 @end

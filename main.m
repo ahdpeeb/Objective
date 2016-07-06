@@ -10,6 +10,8 @@
 
 #import "ANSCarWashComplex.h"
 #import "ANSWorker.h"
+#import "ANSCarWasher.h"
+#import "ANSCar.h"
 
 #import "ANSKVOtest.h"
 #import "ANSKVOtestObserver.h"
@@ -23,6 +25,15 @@ static void *ANSObjectContext = &ANSObjectContext;
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
+        
+        NSSet *washerObservers = [complex.mutableWashers.firstObject observersSet];
+        NSLog(@"washerObserver - %@", washerObservers);
+        
+        NSSet *accountanObservers = [complex.mutableAccountants.firstObject observersSet];
+        NSLog(@"washerObserver - %@", accountanObservers);
+        
+        NSSet *bossObservers = [complex.mutablebosses.firstObject observersSet];
+        NSLog(@"washerObserver - %@", bossObservers);
         
         for (NSUInteger count = 0; count < kANSCarCount; count++) {
             ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];

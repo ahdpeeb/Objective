@@ -17,7 +17,10 @@
 @interface ANSDispatcher ()
 @property (nonatomic, retain)       NSMutableArray  *mutableProcessors;
 @property (nonatomic, retain)       ANSQueue        *processingObjects;
-                                                    //or busy, or ready to work
+@property (nonatomic, copy)         NSString        *name;
+
+- (NSArray *)freeWorkers;
+- (id)reservedFreeWorker;
 
 @end
 
@@ -31,16 +34,22 @@
 - (void)dealloc {
     self.mutableProcessors = nil;
     self.processingObjects = nil;
+    self.name = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.processingObjects = [ANSQueue object];
-        self.mutableProcessors = [NSMutableArray object];
-    }
+    self.processingObjects = [ANSQueue object];
+    self.mutableProcessors = [NSMutableArray object];
+    
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name {
+    self = [self init];
+    self.name = name;
     
     return self;
 }
@@ -57,21 +66,71 @@
 
 //if accountant become busy - add it mutableProcessors
 - (void)workerDidBecomeBusy:(id)worker {
-    if ([worker isMemberOfClass:[ANSAccountant class]]) {
-        [worker addObject:self.mutableProcessors];
-    }
+
 }
 
+// Dispatcher only interested in what the processing object can be processed.
 - (void)workerDidBecomeIsPending:(id)worker {
-    // слушает за мойщиками.
+    @synchronized(self) {
+        if (![self isWorkerMemberOfProcessors:worker]) {
+        
+            ANSQueue *queue = self.processingObjects;
+            [queue enqueue:worker];
+        
+            id processor = [self reservedFreeWorker];
+            if (processor && queue.count) {
+                [processor startProcessingObject:[queue dequeue]];
+            }
+        }
+    }
+}
+// Dispatcher interested when processor od free and can get next objext
+- (void)workerDidBecomeFree:(id)worker {
+    @synchronized(self) {
+        if ([self isWorkerMemberOfProcessors:worker]) {
+            ANSQueue *queue = self.processingObjects;
+            if (queue.count) {
+                [worker startProcessingObject:[queue dequeue]];
+            }
+        }
+    }
 }
 
-- (void)workerDidBecomeFree:(id)worker {
-    ANSQueue *washersQueue = self.processingObjects;
-    if (washersQueue.count) {
-        ANSCarWasher *washer = [washersQueue dequeue];
-        [worker startProcessingObject:washer];
+#pragma mark -
+#pragma mark Public methods
+
+
+
+#pragma mark -
+#pragma mark Privat Methods
+
+- (NSArray *)freeWorkers {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
+    
+    return [self.mutableProcessors filteredArrayUsingPredicate:predicate];
+}
+
+- (id)reservedFreeWorker {
+    @synchronized(self) {
+        ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
+        freeWorker.state = ANSWorkerBusy;
+        NSLog(@"%@ - поменял состояние на ANSWorkerBusy", freeWorker);
+        
+        return freeWorker;
     }
+    
+    return nil;
+}
+
+- (BOOL)isWorkerMemberOfProcessors:(id)worker {
+    return [worker isMemberOfClass:[self.mutableProcessors.firstObject class]];
+}
+
+#pragma mark -
+#pragma mark Overriden
+
+- (NSString *)description {
+    return [NSString stringWithString:self.name];
 }
 
 @end

@@ -11,6 +11,9 @@
 #import "ANSCar.h"
 
 @interface ANSCarWashComplex : NSObject
+@property (atomic, readonly)      NSMutableArray          *mutableWashers;
+@property (nonatomic, readonly)   NSMutableArray          *mutableAccountants;
+@property (nonatomic, readonly)   NSMutableArray          *mutablebosses;
 
 - (void)addCarToQueue:(ANSCar *)car;
 

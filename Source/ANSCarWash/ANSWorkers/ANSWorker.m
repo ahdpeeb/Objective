@@ -17,7 +17,6 @@
 @property (atomic, assign)          float           money;
 @property (nonatomic, assign)       NSUInteger      ID;
 @property (nonatomic, retain)       id<NSLocking>   locker;
-@property (nonatomic, retain)       ANSQueue        *queue;
 
 - (void)performWorkInBackgroundWithObject:(id)object;
 - (void)finishOnMainThreadWorkingWithObject:(id)object;
@@ -31,7 +30,6 @@
 
 - (void)dealloc {
     self.locker = nil;
-    self.queue = nil;
     
     [super dealloc];
 }
@@ -40,7 +38,6 @@
     self = [super init];
     self.state = ANSWorkerFree;
     self.locker = [NSLock object];
-    self.queue = [ANSQueue object];
 
     return self;
 }
@@ -78,18 +75,7 @@
 }
 //________________________________________________________________________________
 - (void)startProcessingObject:(id)object {
-    @synchronized(self) { 
-        if (self.state != ANSWorkerFree) {
-            NSLog(@"WARNING %@ состояние = %lu", self, (unsigned long)self.state);
-            [self.queue enqueue:object];
-            NSLog(@"%@ добавил к себе на обработку %@", self, object);
-            return;
-        }
-        
-        self.state = ANSWorkerBusy;
-        NSLog(@"%@ - поменял состояние на ANSWorkerBusy", self);
-        [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
-    }
+    [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
 }
 
 #pragma mark -
@@ -101,14 +87,8 @@
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {
-    @synchronized(object) {
-        [self finishProcessingObject:object];
-    }
-    
-    @synchronized(self) {
-        [self processObjects];
-        [self finishProcessing];
-    }
+    [self finishProcessingObject:object];
+    [self finishProcessing];
 }
 
 - (void)performWorkWithObject:(id)object {
@@ -116,10 +96,6 @@
 }
 
 - (void)finishProcessingObject:(ANSWorker *)object {
-    if (object.queue.count) {
-        [object processObjects];
-    }
-    
     object.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
@@ -127,25 +103,6 @@
 - (void)finishProcessing {
     self.state = ANSWorkerIsPending;
     NSLog(@"%@ - поменял состояние на ANSWorkerIsPending в главном потоке", self);
-}
-
-- (void)processObjects {
-    @synchronized(self) {
-        ANSQueue *queue = self.queue;
-        while (queue.count) {
-            NSLog(@"WARNING %@", self);
-            id operand = [queue dequeue];
-            NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
-            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
-        }
-    }
-}
-
-#pragma mark -
-#pragma mark Protocol ANSWorkerObserver
-
-- (void)workerDidBecomeIsPending:(id)worker {
-    [self startProcessingObject:worker];
 }
 
 #pragma mark -

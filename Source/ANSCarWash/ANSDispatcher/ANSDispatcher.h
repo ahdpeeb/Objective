@@ -12,8 +12,10 @@
 #import "ANSWorker.h"
 
 @interface ANSDispatcher : NSObject <ANSWorkerObserver>
-@property (nonatomic, readonly)     ANSQueue  *processingObjects;
-@property (nonatomic, readonly)     NSArray   *processors;
+@property (nonatomic, readonly)     ANSQueue        *processingObjects;
+@property (nonatomic, readonly)     NSArray         *processors;
+@property (nonatomic, readonly)     NSString        *name;
 
+- (instancetype)initWithName:(NSString *)name;
 
 @end
