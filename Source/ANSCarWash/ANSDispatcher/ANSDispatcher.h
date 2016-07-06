@@ -11,7 +11,7 @@
 #import "ANSQueue.h"
 #import "ANSWorker.h"
 
-@interface ANSGeneralDispatcher : NSObject <ANSWorkerObserver>
+@interface ANSDispatcher : NSObject <ANSWorkerObserver>
 @property (nonatomic, readonly)     ANSQueue  *processingObjects;
 @property (nonatomic, readonly)     NSArray   *processors;
 

@@ -1,0 +1,40 @@
+//
+//  NSArray+ANSExtension.m
+//  Objective-c course
+//
+//  Created by Nikola Andriiev on 06.07.16.
+//  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
+//
+
+#import "NSArray+ANSExtension.h"
+
+#import "NSObject+ANSExtension.h"
+
+@implementation NSArray (ANSExtension)
+
++ (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block {
+    if (!block) {
+        return Nil;
+    }
+    
+    NSMutableArray *objects = [NSMutableArray object];
+    for (NSUInteger value = 0; value < count; value ++) {
+        [objects addObject:block];
+    }
+    
+    return [[objects copy] autorelease];
+}
+
+- (NSArray *)filteredArrayWithBlock:(BOOL(^)(id object))block {
+    if (!block) {
+        return Nil;
+    }
+    
+    NSPredicate *filter = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return block(evaluatedObject);
+    }];
+    
+    return [self filteredArrayUsingPredicate:filter];
+}
+
+@end

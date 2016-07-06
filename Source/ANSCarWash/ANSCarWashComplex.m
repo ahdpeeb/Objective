@@ -12,26 +12,35 @@
 #import "ANSAccountant.h"
 #import "ANSBoss.h"
 #import "ANSConstants.h"
+#import "ANSObservableObject.h"
+#import "ANSDispatcher.h"
 
 #import "NSObject+ANSExtension.h"
+#import "NSArray+ANSExtension.h"
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (atomic, retain)      ANSQueue          *carQueue;
-@property (atomic, retain)      NSMutableArray    *mutableWashers;
-@property (nonatomic, retain)   NSMutableArray    *mutableAccountants;
-@property (nonatomic, retain)   ANSBoss           *boss;
+@property (atomic, retain)      ANSQueue                *carQueue;
+@property (atomic, retain)      NSMutableArray          *mutableWashers;
+@property (nonatomic, retain)   NSMutableArray          *mutableAccountants;
+@property (nonatomic, retain)   ANSBoss                 *boss;
+
+@property (nonatomic, retain)   ANSDispatcher           *washersObserver;
+@property (nonatomic, retain)   ANSDispatcher           *accountantsObserver;
+@property (nonatomic, retain)   ANSDispatcher           *bossObserver;
+//@property (nonatomic, retain)   ANSComplexDispatcher    *complexObserver;
 
 - (void)initInfrastructure;
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
 - (void)startWashingByWasher:(ANSCarWasher*)washer;
-- (void)ripObservation;
+- (void)stopObservation;
 
-- (NSArray *)workersWithClass:(Class)cls
-                        count:(NSUInteger)count
-                    observers:(NSArray *)observers;
+- (NSMutableArray *)workersWithClass:(Class)cls
+                               count:(NSUInteger)count
+                           observers:(NSArray *)observers;
+
 @end
 
 @implementation ANSCarWashComplex
@@ -42,7 +51,7 @@
 - (void)dealloc {
     self.carQueue = nil;
     
-    [self ripObservation];
+    [self stopObservation];
     
     self.mutableWashers = nil;
     self.mutableAccountants = nil;
@@ -60,15 +69,13 @@
 
 - (void)initInfrastructure {
     self.carQueue = [ANSQueue object];
+    [self setObservers];
     
     self.boss = [ANSBoss object];
-    [self.boss addObserverObject:nil];
+    [self.boss addObserverObject:self.bossObserver];
     
-    NSArray *carWashers = [self workersWithClass:[ANSCarWasher class] count:kANSMaxCarWashersCapacity observers:nil];
-    NSArray *accountants = [self workersWithClass:[ANSAccountant class] count:kANSMaxAccountantsCapacity observers:nil];
-    
-    self.mutableWashers = [NSMutableArray arrayWithArray:carWashers];
-    self.mutableAccountants = [NSMutableArray arrayWithArray:accountants];
+    self.mutableWashers = [self workersWithClass:[ANSCarWasher class] count:3 observers:nil];
+    self.mutableAccountants = [self workersWithClass:[ANSAccountant class] count:2 observers:nil];
 }
 
 #pragma mark -
@@ -78,13 +85,6 @@
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
     NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
-    
-    ANSAccountant *account = self.accountant;
-    @synchronized(account) {
-        if (account.queue.count == kANSMaxCarWasherCapacity) {
-            [account processObjects];
-        }
-    }
     
     @synchronized(self) {
         ANSCarWasher *reserverWasher = [self reservedFreeWorker];
@@ -129,30 +129,43 @@
         [washer startProcessingObject:car];
     }
 }
-    // It should be oberride
-- (void)ripObservation {
-    NSMutableArray *washers = self.mutableWashers;
-    ANSAccountant *accountant = self.accountant; // need to be changed
-    for (ANSCarWasher *washer in washers) {
-        [washer removeObserverObjects:[NSArray arrayWithObjects:accountant, self, nil]];
-    }
-    
-    [accountant removeObserverObject:self.boss];
-}
 
-- (NSArray *)workersWithClass:(Class)cls
+- (NSMutableArray *)workersWithClass:(Class)cls
                         count:(NSUInteger)count
                     observers:(NSArray *)observers
 
 {
     NSMutableArray *workers = [NSMutableArray object];
     for (NSUInteger value = 0; value < count; value ++) {
-        ANSWorker *worker = [[[[cls class] alloc] initWithId:count] autorelease];
+        id worker = [[[[cls class] alloc] initWithId:value] autorelease];
         [worker addObserverObjects:observers];
         [workers addObject:worker];
     }
     
-    return [[workers copy] autorelease];
+    return workers;
+}
+
+- (void)setObservers {
+    self.washersObserver = [ANSDispatcher object];
+    self.accountantsObserver = [ANSDispatcher object];
+    self.bossObserver = [ANSDispatcher object];
+//    self.complexObserver = [ANSComplexDispatcher object];
+}
+
+- (void)removeObservers:(NSArray *)observers fromObjects:(NSArray*)objects {
+    for (id object in objects) {
+        [object removeObserverObjects:observers];
+    }
+}
+
+- (void)stopObservation {
+    NSMutableArray *washers = self.mutableWashers;
+    [self removeObservers:nil fromObjects:washers]; //replace nil for Observers
+    
+    NSMutableArray *accountants = self.mutableAccountants;
+    [self removeObservers:nil fromObjects:accountants]; //replace nil for Observers
+    
+    [self.boss removeObserverObject:nil]; //replace nil for Observers
 }
 
 @end

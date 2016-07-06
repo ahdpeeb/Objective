@@ -6,24 +6,22 @@
 //  Copyright © 2016 Anfriiev.Mykola. All rights reserved.
 //
 // передать клас как парамерт, либо на уровне роутера. протокол { вызывать методы из протокола по обработке
-}
 
-
-#import "ANSGeneralDispatcher.h"
+#import "ANSDispatcher.h"
 
 #import "ANSAccountant.h"
 #import "ANSCarWasher.h"
 
 #import "NSObject+ANSExtension.h"
 
-@interface ANSGeneralDispatcher ()
+@interface ANSDispatcher ()
 @property (nonatomic, retain)       NSMutableArray  *mutableProcessors;
 @property (nonatomic, retain)       ANSQueue        *processingObjects;
                                                     //or busy, or ready to work
 
 @end
 
-@implementation ANSGeneralDispatcher
+@implementation ANSDispatcher
 
 @dynamic processors;
 
