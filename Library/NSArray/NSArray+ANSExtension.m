@@ -12,13 +12,13 @@
 
 @implementation NSArray (ANSExtension)
 
-+ (NSArray *)objectsWithCount:(NSUInteger)count object:(id)object {
++ (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block; {
     NSMutableArray *objects = [NSMutableArray object];
     for (NSUInteger value = 0; value < count; value ++) {
-        [objects addObject:object];
+        [objects addObject:block];
     }
     
-    return [[object copy] autorelease];
+    return [[objects copy] autorelease];
 }
 
 @end

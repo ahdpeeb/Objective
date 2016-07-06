@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef id(^objectBlock)(void);
+
 @interface NSArray (ANSExtension)
 
-+ (NSArray *)objectsWithCount:(NSUInteger)count object:(id)object;
++ (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block;
 
 @end
