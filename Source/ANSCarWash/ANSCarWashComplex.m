@@ -27,7 +27,7 @@
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
 - (void)startWashingByWasher:(ANSCarWasher*)washer;
-- (void)ripObservation;
+- (void)stopObservation;
 
 @end
 
@@ -39,7 +39,7 @@
 - (void)dealloc {
     self.carQueue = nil;
     
-    [self ripObservation];
+    [self stopObservation];
     
     self.mutableWashers = nil;
     self.accountant = nil;
@@ -58,15 +58,16 @@
 - (void)initInfrastructure {
     self.mutableWashers = [NSMutableArray object];
     self.carQueue = [ANSQueue object];
+    
     self.accountant = [ANSAccountant object];
     self.boss = [ANSBoss object];
     ANSAccountant *accountant = self.accountant;
     [accountant addObserverObject:self.boss];
     
+    NSMutableArray *washers = self.mutableWashers;
     for (NSUInteger count = 0; count < kANSMaxCarWasherCapacity; count ++) {
         ANSCarWasher *washer = [[[ANSCarWasher alloc] initWithId:count] autorelease];
-        [washer addObserverObjects:[NSArray arrayWithObjects:accountant,self , nil]];
-        NSMutableArray *washers = self.mutableWashers;
+        [washer addObserverObjects:[NSArray arrayWithObjects:accountant, self, nil]];
         [washers addObject:washer];
     }
 }
@@ -78,13 +79,6 @@
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
     NSLog(@"%@ - заехала в очередь, кол-во - %lu", car, (unsigned long)queue.count);
-    
-    ANSAccountant *account = self.accountant;
-    @synchronized(account) {
-        if (account.queue.count == kANSMaxCarWasherCapacity) {
-            [account processObjects];
-        }
-    }
     
     @synchronized(self) {
         ANSCarWasher *reserverWasher = [self reservedFreeWorker];
@@ -99,7 +93,7 @@
 
 - (void)workerDidBecomeFree:(ANSCarWasher *)worker {
     ANSQueue *queue = worker.queue;
-    @synchronized(queue) {
+    @synchronized(self) {
         if (!queue.count) {
             [self startWashingByWasher:worker];
         }
@@ -130,7 +124,7 @@
     }
 }
 
-- (void)ripObservation {
+- (void)stopObservation {
     NSMutableArray *washers = self.mutableWashers;
     ANSAccountant *accountant = self.accountant;
     for (ANSCarWasher *washer in washers) {

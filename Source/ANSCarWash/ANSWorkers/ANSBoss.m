@@ -31,13 +31,4 @@
     NSLog(@"%@ - поменял состояние на Free в главном потоке", self);
 }
 
-- (void)finishProcessingObject:(ANSWorker *)object {
-    if (object.queue.count == kANSMaxCarWasherCapacity) {
-        [object processObjects];
-    }
-    
-    object.state = ANSWorkerFree;
-    NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
-}
-
 @end

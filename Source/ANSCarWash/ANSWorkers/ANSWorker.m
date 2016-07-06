@@ -114,8 +114,12 @@
 - (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
-
+    // могут одновременное выполнятся 
 - (void)finishProcessingObject:(ANSWorker *)object {
+    if (object.queue.count) {
+        [object processObjects];
+    }
+    
     object.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
@@ -128,11 +132,13 @@
 - (void)processObjects {
     @synchronized(self) {
         ANSQueue *queue = self.queue;
-        while (queue.count) {
+        if (queue.count) {
             NSLog(@"WARNING %@", self);
             id operand = [queue dequeue];
             NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
             [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
+            
+            return;
         }
     }
 }
