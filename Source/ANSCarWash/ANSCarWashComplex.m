@@ -39,7 +39,7 @@
 #pragma mark Initializetion / deallocation
 
 - (void)dealloc {
-    [self.carQueue removeObserver:self forKeyPath:@"objectsValue" context:nil];
+    [self.carQueue removeObserver:self forKeyPath:@"subjects" context:nil];
     self.carQueue = nil;
     
     [self stopObservation];
@@ -54,7 +54,7 @@
 - (instancetype)init {
     self = [super init];
     [self initInfrastructure];
-    [self.carQueue addObserver:self forKeyPath:@"objectsValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [self.carQueue addObserver:self forKeyPath:@"subjects" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     return self;
 }
@@ -150,9 +150,9 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"objectsValue"]) {
+    if ([keyPath isEqualToString:@"subjects"]) {
         NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver");
-        NSLog(@"%@ - %@",object, change);
+        NSLog(@"%@ - %@", object, change);
         [self conveyCars];
     }
 }

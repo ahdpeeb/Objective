@@ -37,14 +37,6 @@
     return self;
 }
 
-+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
-    if ([key isEqualToString:@"subjects"]) {
-        return YES;
-    }
-    
-    return [super automaticallyNotifiesObserversForKey:key];
-}
-
 #pragma mark -
 #pragma mark Accessors
 
@@ -55,7 +47,7 @@
 }
 
 - (NSArray *)objects {
-    return [[self.subjects copy] autorelease];
+   return [self subjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self countOfSubjects])]];
 }
 
 #pragma mark -
@@ -69,7 +61,8 @@
         }
     }
 }
-    //needToBeRewrited!
+
+//need to be rewrited for KVO
 - (id)dequeue {
     @synchronized(self) {
         NSMutableArray *objects = self.subjects;
@@ -77,6 +70,7 @@
         [objects removeObject:object];
     
     return object;
+        
     }
 }
 
