@@ -12,6 +12,7 @@
 #import "ANSWorker.h"
 #import "ANSCarWasher.h"
 #import "ANSCar.h"
+#import "ANSComplexDispatcher.h"
 
 #import "ANSKVOtest.h"
 #import "ANSKVOtestObserver.h"
@@ -19,7 +20,6 @@
 
 #import "NSObject+ANSExtension.h"
 
-NSUInteger kANSCarCount = 100;
 static void *ANSObjectContext = &ANSObjectContext;
 
 int main(int argc, const char * argv[]) {    
@@ -27,27 +27,30 @@ int main(int argc, const char * argv[]) {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
         
         NSSet *washerObservers = [complex.mutableWashers.firstObject observersSet];
-        NSLog(@"washerObserver - %@", washerObservers);
+        NSLog(@"washerObservers - %@", washerObservers);
         
         NSSet *accountanObservers = [complex.mutableAccountants.firstObject observersSet];
-        NSLog(@"washerObserver - %@", accountanObservers);
+        NSLog(@"accountanObservers - %@", accountanObservers);
         
         NSSet *bossObservers = [complex.mutablebosses.firstObject observersSet];
-        NSLog(@"washerObserver - %@", bossObservers);
+        NSLog(@"bossObservers - %@", bossObservers);
         
-        for (NSUInteger count = 0; count < kANSCarCount; count++) {
-            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
-            [complex addCarToQueue:car];
-        }
-//        ANSThread *thread = [ANSThread object];
-//        thread.block = ^() {
-//            NSLog(@"Blia");
-//        };
-//        
-//        [thread start];
-//        
+        ANSComplexDispatcher *dispatcher = [ANSComplexDispatcher object];
+        
+        ANSCar *car = [[ANSCar alloc] initWithID:1];
+        
+        [complex addCarToQueue:car];
+        
         [[NSRunLoop mainRunLoop] run];
     }
     
     return 0;
 }
+
+//        ANSThread *thread = [ANSThread object];
+//        thread.block = ^() {
+//            NSLog(@"Blia");
+//        };
+//
+//        [thread start];
+//

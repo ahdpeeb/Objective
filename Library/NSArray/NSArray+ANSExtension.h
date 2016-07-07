@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef id(^objectBlock)(void);
+typedef id(^ANSObjectBlock)(void);
 
 @interface NSArray (ANSExtension)
 

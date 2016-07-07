@@ -9,16 +9,19 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT
-const float         kANSServiceCost;
+const NSInteger     kANSMaxCarCount;
 
 FOUNDATION_EXPORT
-const NSInteger     kANSMaxCarCapacity;
+const NSInteger     kANSMaxCyclesCount;
 
 FOUNDATION_EXPORT
 const NSInteger     kANSMaxCarWashersCapacity;
 
 FOUNDATION_EXPORT
 const NSInteger     kANSMaxAccountantsCapacity;
+
+FOUNDATION_EXPORT
+const float         kANSServiceCost;
 
 FOUNDATION_EXPORT
 const float         kASNSleepSeconds;

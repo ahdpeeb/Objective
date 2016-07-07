@@ -11,7 +11,7 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSQueue ()
-@property (nonatomic, retain) NSMutableArray    *objects;
+@property (nonatomic, retain) NSMutableArray *objectsValue;
 
 @end
 
@@ -23,7 +23,7 @@
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.objects = nil;
+    self.objectsValue = nil;
     
     [super dealloc];
 }
@@ -31,7 +31,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.objects = [NSMutableArray object];
+        self.objectsValue = [NSMutableArray object];
     }
     
     return self;
@@ -42,8 +42,7 @@
 
 - (NSUInteger)count {
     @synchronized(self) {
-        NSUInteger count = self.objects.count;
-        return count;
+        return [self countOfObjectsValue];
     }
 }
 
@@ -52,20 +51,44 @@
 
 - (void)enqueue:(id)object {
     @synchronized(self) {
-        NSMutableArray *objects = self.objects;
+        NSMutableArray *objects = self.objectsValue;
         if (![objects containsObject:object]) {
-            [objects addObject:object];
+            [self addObjectsValueObject:object];
         }
     }
 }
+    //needToBeRewrited!
 - (id)dequeue {
     @synchronized(self) {
-        NSMutableArray *objects = self.objects;
+        NSMutableArray *objects = self.objectsValue;
         id object = [[[objects firstObject] retain] autorelease];
         [objects removeObject:object];
     
     return object;
     }
+}
+
+#pragma mark -
+#pragma mark Methods for KVO compatibility
+
+- (void)addObjectsValueObject:(id)object {
+    [self.objectsValue addObject:object];
+}
+
+- (NSUInteger)countOfObjectsValue {
+    return self.objectsValue.count;
+}
+
+- (id)objectInObjectsValueAtIndex:(NSUInteger)index {
+    return [self.objectsValue objectAtIndex:index];
+}
+
+-(void)insertObject:(id)object inObjectsValueAtIndex:(NSUInteger)index {
+    [self.objectsValue insertObject:object atIndex:index];
+}
+
+- (void)removeObjectFromObjectsValueAtIndex:(NSUInteger)index; {
+    [self.objectsValue removeObjectAtIndex:index];
 }
 
 @end

@@ -17,5 +17,7 @@
 @property (nonatomic, readonly)     NSString        *name;
 
 - (instancetype)initWithName:(NSString *)name;
+- (void)setProcessors:(NSArray *)processors;
+- (id)reservedFreeWorker;
 
 @end

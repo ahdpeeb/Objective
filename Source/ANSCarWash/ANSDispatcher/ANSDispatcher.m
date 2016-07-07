@@ -20,7 +20,6 @@
 @property (nonatomic, copy)         NSString        *name;
 
 - (NSArray *)freeWorkers;
-- (id)reservedFreeWorker;
 
 @end
 
@@ -57,6 +56,10 @@
 #pragma mark -
 #pragma mark Accsessors 
 
+- (void)setProcessors:(NSArray *)processors {
+    self.mutableProcessors = [NSMutableArray arrayWithArray:processors];
+}
+
 - (NSArray *)processors {
     return [[self.mutableProcessors copy] autorelease];
 }
@@ -64,16 +67,14 @@
 #pragma mark -
 #pragma mark Protocol ANSWorkerObserver
 
-//if accountant become busy - add it mutableProcessors
 - (void)workerDidBecomeBusy:(id)worker {
 
 }
-
+// обсерверу мойщиков нужно закинуть машины на обработку
 // Dispatcher only interested in what the processing object can be processed.
 - (void)workerDidBecomeIsPending:(id)worker {
     @synchronized(self) {
         if (![self isWorkerMemberOfProcessors:worker]) {
-        
             ANSQueue *queue = self.processingObjects;
             [queue enqueue:worker];
         
@@ -84,7 +85,7 @@
         }
     }
 }
-// Dispatcher interested when processor od free and can get next objext
+// Dispatcher interested when processor free and he can get next objext
 - (void)workerDidBecomeFree:(id)worker {
     @synchronized(self) {
         if ([self isWorkerMemberOfProcessors:worker]) {
@@ -99,7 +100,19 @@
 #pragma mark -
 #pragma mark Public methods
 
-
+- (id)reservedFreeWorker {
+    @synchronized(self) {
+        ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
+        if (freeWorker) {
+            freeWorker.state = ANSWorkerBusy;
+            NSLog(@"%@ - поменял состояние на ANSWorkerBusy", freeWorker);
+            
+            return freeWorker;
+        }
+    }
+    
+    return nil;
+}
 
 #pragma mark -
 #pragma mark Privat Methods
@@ -108,18 +121,6 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
     
     return [self.mutableProcessors filteredArrayUsingPredicate:predicate];
-}
-
-- (id)reservedFreeWorker {
-    @synchronized(self) {
-        ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
-        freeWorker.state = ANSWorkerBusy;
-        NSLog(@"%@ - поменял состояние на ANSWorkerBusy", freeWorker);
-        
-        return freeWorker;
-    }
-    
-    return nil;
 }
 
 - (BOOL)isWorkerMemberOfProcessors:(id)worker {
