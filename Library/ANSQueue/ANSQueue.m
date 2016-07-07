@@ -11,19 +11,19 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSQueue ()
-@property (nonatomic, retain) NSMutableArray *objectsValue;
+@property (nonatomic, retain) NSMutableArray *subjects;
 
 @end
 
 @implementation ANSQueue
 
-@dynamic count;
+@dynamic objects;
 
 #pragma mark -
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.objectsValue = nil;
+    self.subjects = nil;
     
     [super dealloc];
 }
@@ -31,10 +31,18 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.objectsValue = [NSMutableArray object];
+        self.subjects = [NSMutableArray object];
     }
     
     return self;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if ([key isEqualToString:@"subjects"]) {
+        return YES;
+    }
+    
+    return [super automaticallyNotifiesObserversForKey:key];
 }
 
 #pragma mark -
@@ -42,8 +50,12 @@
 
 - (NSUInteger)count {
     @synchronized(self) {
-        return [self countOfObjectsValue];
+        return [self countOfSubjects];
     }
+}
+
+- (NSArray *)objects {
+    return [[self.subjects copy] autorelease];
 }
 
 #pragma mark -
@@ -51,16 +63,16 @@
 
 - (void)enqueue:(id)object {
     @synchronized(self) {
-        NSMutableArray *objects = self.objectsValue;
+        NSMutableArray *objects = self.subjects;
         if (![objects containsObject:object]) {
-            [self addObjectsValueObject:object];
+            [self addSubjectsObject:object];
         }
     }
 }
     //needToBeRewrited!
 - (id)dequeue {
     @synchronized(self) {
-        NSMutableArray *objects = self.objectsValue;
+        NSMutableArray *objects = self.subjects;
         id object = [[[objects firstObject] retain] autorelease];
         [objects removeObject:object];
     
@@ -71,24 +83,28 @@
 #pragma mark -
 #pragma mark Methods for KVO compatibility
 
-- (void)addObjectsValueObject:(id)object {
-    [self.objectsValue addObject:object];
+- (void)insertObject:(id)object inSubjectsAtIndex:(NSUInteger)index {
+    self.subjects[index] = object;
 }
 
-- (NSUInteger)countOfObjectsValue {
-    return self.objectsValue.count;
+- (void)removeObjectFromSubjectsAtIndex:(NSUInteger)index {
+    [self.subjects removeObjectAtIndex:index];
 }
 
-- (id)objectInObjectsValueAtIndex:(NSUInteger)index {
-    return [self.objectsValue objectAtIndex:index];
+- (id)objectInSubjectsAtIndex:(NSUInteger)index {
+    return self.subjects[index];
 }
 
--(void)insertObject:(id)object inObjectsValueAtIndex:(NSUInteger)index {
-    [self.objectsValue insertObject:object atIndex:index];
+- (NSArray *)subjectsAtIndexes:(NSIndexSet *)indexes {
+    return [self.subjects objectsAtIndexes:indexes];
 }
 
-- (void)removeObjectFromObjectsValueAtIndex:(NSUInteger)index; {
-    [self.objectsValue removeObjectAtIndex:index];
+- (NSUInteger)countOfSubjects {
+    return [self.subjects count];
+}
+
+- (void)addSubjectsObject:(id)object {
+    [self insertObject:object inSubjectsAtIndex:[self count]];
 }
 
 @end

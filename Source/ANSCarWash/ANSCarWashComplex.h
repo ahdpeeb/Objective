@@ -16,6 +16,7 @@
 @property (nonatomic, readonly)   NSMutableArray          *mutablebosses;
 
 - (void)addCarToQueue:(ANSCar *)car;
+
 - (NSMutableArray *)objectsWithClass:(Class)cls
                                count:(NSUInteger)count
                            observers:(NSArray *)observers;
