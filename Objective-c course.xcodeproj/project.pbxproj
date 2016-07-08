@@ -194,8 +194,8 @@
 		93A642AB1D2BFFF100313EEB /* ANSDispatcher */ = {
 			isa = PBXGroup;
 			children = (
-				93A642AD1D2BFFF100313EEB /* ANSDispatcher.m */,
 				93A642AC1D2BFFF100313EEB /* ANSDispatcher.h */,
+				93A642AD1D2BFFF100313EEB /* ANSDispatcher.m */,
 				93A642BC1D2E615D00313EEB /* ANSComplexDispatcher.h */,
 				93A642BD1D2E615D00313EEB /* ANSComplexDispatcher.m */,
 			);

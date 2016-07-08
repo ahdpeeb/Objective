@@ -17,16 +17,15 @@
 @implementation ANSComplexDispatcher
 
 - (NSArray *)cars {
-    sleep(5);
     __block NSUInteger value = 0;
     ANSObjectBlock object = ^id(void) {
         ANSCar *car  = [[ANSCar alloc] initWithID:value];
-        value += 1;
+        value ++;
         return car;
     };
     
     
-    return [NSArray objectsWithCount:kANSMaxCarCount object:object()];
+    return [NSArray objectsWithCount:kANSMaxCarCount block:object];
 }
 
 @end

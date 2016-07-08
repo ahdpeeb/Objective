@@ -19,6 +19,8 @@
 @property (nonatomic, retain)       ANSQueue        *processingObjects;
 @property (nonatomic, copy)         NSString        *name;
 
+- (BOOL)isWorkerMemberOfProcessors:(id)worker;
+- (id)reservedFreeWorker;
 - (NSArray *)freeWorkers;
 
 @end
@@ -39,15 +41,14 @@
 }
 
 - (instancetype)init {
+    return [self initWithName:nil];
+}
+
+- (instancetype)initWithName:(NSString *)name {
     self = [super init];
     self.processingObjects = [ANSQueue object];
     self.mutableProcessors = [NSMutableArray object];
     
-    return self;
-}
-
-- (instancetype)initWithName:(NSString *)name {
-    self = [self init];
     self.name = name;
     
     return self;
@@ -56,10 +57,6 @@
 #pragma mark -
 #pragma mark Accsessors 
 
-- (void)setProcessors:(NSArray *)processors {
-    self.mutableProcessors = [NSMutableArray arrayWithArray:processors];
-}
-
 - (NSArray *)processors {
     return [[self.mutableProcessors copy] autorelease];
 }
@@ -67,24 +64,15 @@
 #pragma mark -
 #pragma mark Protocol ANSWorkerObserver
 
-- (void)workerDidBecomeBusy:(id)worker {
-
-}
-// обсерверу мойщиков нужно закинуть машины на обработку
 // Dispatcher only interested in what the processing object can be processed.
 - (void)workerDidBecomeIsPending:(id)worker {
     @synchronized(self) {
         if (![self isWorkerMemberOfProcessors:worker]) {
-            ANSQueue *queue = self.processingObjects;
-            [queue enqueue:worker];
-        
-            id processor = [self reservedFreeWorker];
-            if (processor && queue.count) {
-                [processor startProcessingObject:[queue dequeue]];
-            }
+            [self processObject:worker];
         }
     }
 }
+
 // Dispatcher interested when processor free and he can get next objext
 - (void)workerDidBecomeFree:(id)worker {
     @synchronized(self) {
@@ -100,6 +88,46 @@
 #pragma mark -
 #pragma mark Public methods
 
+- (void)processObject:(id)object {
+    @synchronized(self) {
+        ANSQueue *queue = self.processingObjects;
+        [self.processingObjects enqueue:object];
+        
+        id processor = [self reservedFreeWorker];
+        if (processor && queue.count) {
+            [processor startProcessingObject:[queue dequeue]];
+        }
+    }
+}
+    
+- (void)addProcessors:(NSArray *)processors {
+    @synchronized(self) {
+        self.mutableProcessors = [NSMutableArray arrayWithArray:processors];
+    }
+}
+
+- (void)removeProcessors:(NSArray *)processors {
+    [self.mutableProcessors removeAllObjects];
+}
+
+- (void)addProcessor:(id)processor {
+    @synchronized(self) {
+        NSMutableArray *processors = self.mutableProcessors;
+        if (![processors containsObject:processor]) {
+            [self.mutableProcessors addObject:processor];
+        }
+    }
+}
+
+- (void)removeProcessor:(id)processor {
+    @synchronized(self) {
+        [self.mutableProcessors removeObject:processor];
+    }
+}
+
+#pragma mark -
+#pragma mark Privat Methods
+
 - (id)reservedFreeWorker {
     @synchronized(self) {
         ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
@@ -114,9 +142,6 @@
     return nil;
 }
 
-#pragma mark -
-#pragma mark Privat Methods
-
 - (NSArray *)freeWorkers {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
     
@@ -124,7 +149,7 @@
 }
 
 - (BOOL)isWorkerMemberOfProcessors:(id)worker {
-    return [worker isMemberOfClass:[self.mutableProcessors.firstObject class]];
+    return [self.mutableProcessors containsObject:worker];
 }
 
 #pragma mark -

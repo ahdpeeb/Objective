@@ -17,7 +17,13 @@
 @property (nonatomic, readonly)     NSString        *name;
 
 - (instancetype)initWithName:(NSString *)name;
-- (void)setProcessors:(NSArray *)processors;
-- (id)reservedFreeWorker;
+
+- (void)processObject:(id)object; 
+
+- (void)addProcessors:(NSArray *)processors;
+- (void)removeProcessors:(NSArray *)processors; // not implemented
+
+- (void)addProcessor:(id)processor;  // not implemented
+- (void)removeProcessor:(id)processor; // not implemented
 
 @end

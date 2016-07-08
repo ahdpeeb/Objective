@@ -27,7 +27,6 @@
 @property (nonatomic, retain)   ANSDispatcher           *bossesObserver;
 
 - (void)initInfrastructure;
-- (void)startWashingByWasher:(ANSCarWasher*)washer;
 - (void)stopObservation;
 - (void)conveyCars;
 
@@ -77,9 +76,9 @@
     NSArray *forBosses = [NSArray arrayWithObject:bosseDispatcher];
     self.mutablebosses = [self objectsWithClass:[ANSBoss class] count:1 observers:forBosses];
     
-    [washersDispatcher setProcessors:self.mutableWashers];
-    [accountantDispatcher setProcessors:self.mutableAccountants];
-    [bosseDispatcher setProcessors:self.mutablebosses];
+    [washersDispatcher addProcessors:self.mutableWashers];
+    [accountantDispatcher addProcessors:self.mutableAccountants];
+    [bosseDispatcher addProcessors:self.mutablebosses];
 }
 
 #pragma mark -
@@ -101,19 +100,9 @@
         ANSQueue *carsQueueu = self.carQueue;
         while (carsQueueu.count) {
             ANSCar *car = [carsQueueu dequeue];
-            ANSQueue *processorQueue = self.washersObserver.processingObjects;
-            [processorQueue enqueue:car];
-            NSLog(@"%@ - передана обсерверу мойщиков, кол-во - %lu", car, processorQueue.count);
+            [self.washersObserver processObject:car];
+            NSLog(@"%@ - передана обсерверу мойщиков, осталось - %lu машин",car , carsQueueu.count);
         }
-    }
-}
-
-// TEST IMPLEMENTATION
-- (void)startWashingByWasher:(ANSCarWasher*)washer {
-    ANSCar *car = [self.washersObserver.processingObjects dequeue];
-    if (car) {
-        NSLog(@"%@ начинает мыть %@", washer, car);
-        [washer startProcessingObject:car];
     }
 }
 
@@ -132,9 +121,16 @@
 }
 
 - (void)setObservers {
-    self.washersObserver = [[ANSDispatcher alloc] initWithName:@"WashersObserver"];
-    self.accountantsObserver = [[ANSDispatcher alloc] initWithName:@"AccountantsObserver"];
-    self.bossesObserver = [[ANSDispatcher alloc] initWithName:@"BossObserver"];
+//    NSArray *observers = [NSArray arrayWithObjects:self.washersObserver, self.accountantsObserver, self.bossesObserver, nil];
+//    NSArray *names = [NSArray arrayWithObjects:@"WashersObserver", @"AccountantsObserver", @"BossObserver", nil];
+//    for (NSUInteger index = 0; index < [names count]; index++) {
+//        id object = observers[index];
+//        object = [[[[object class] alloc] initWithName:names[index]] autorelease];
+//    }
+
+    self.washersObserver = [[[ANSDispatcher alloc] initWithName:@"WashersObserver"] autorelease];
+    self.accountantsObserver = [[[ANSDispatcher alloc] initWithName:@"AccountantsObserver"] autorelease];
+    self.bossesObserver = [[[ANSDispatcher alloc] initWithName:@"BossObserver"] autorelease];
 }
 
 - (void)removeObservers:(NSArray *)observers fromObjects:(NSArray*)objects {
@@ -151,8 +147,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"subjects"]) {
-        NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver");
-        NSLog(@"%@ - %@", object, change);
+        NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver %@", change);
         [self conveyCars];
     }
 }

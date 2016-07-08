@@ -36,10 +36,11 @@ int main(int argc, const char * argv[]) {
         NSLog(@"bossObservers - %@", bossObservers);
         
         ANSComplexDispatcher *dispatcher = [ANSComplexDispatcher object];
+        NSArray *cars = [dispatcher cars];
         
-        ANSCar *car = [[ANSCar alloc] initWithID:1];
-        
-        [complex addCarToQueue:car];
+        for (ANSCar *car in cars) {
+             [complex addCarToQueue:car];
+        }
         
         [[NSRunLoop mainRunLoop] run];
     }
