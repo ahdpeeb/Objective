@@ -13,6 +13,7 @@
 #import "ANSDispatcher.h"
 
 #import "NSObject+ANSExtension.h"
+#import "NSArray+ANSExtension.h"
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
@@ -67,6 +68,7 @@
     ANSDispatcher *accountantDispatcher = self.accountantsObserver;
     ANSDispatcher *bosseDispatcher = self.bossesObserver;
     
+    
     NSArray *forWashers = [NSArray arrayWithObjects:washersDispatcher, accountantDispatcher, nil];
     self.mutableWashers = [self objectsWithClass:[ANSCarWasher class] count:3 observers:forWashers];
     
@@ -79,6 +81,19 @@
     [washersDispatcher addProcessors:self.mutableWashers];
     [accountantDispatcher addProcessors:self.mutableAccountants];
     [bosseDispatcher addProcessors:self.mutablebosses];
+    
+
+    NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class cls, NSUInteger count, NSArray *observers) {
+        
+        __block NSUInteger ID = 0;
+        ANSObjectBlock worker = ^id(void) {
+            id object = [[[cls alloc] initWithID:ID++] autorelease];
+            [object addObserverObjects:observers];
+            return object;
+        };
+        
+        return [NSArray objectsWithCount:count block:worker];
+    };
 }
 
 #pragma mark -
@@ -112,7 +127,7 @@
 {
     NSMutableArray *workers = [NSMutableArray object];
     for (NSUInteger value = 0; value < count; value ++) {
-        id worker = [[[[cls class] alloc] initWithId:value] autorelease];
+        id worker = [[[[cls class] alloc] initWithID:value] autorelease];
         [worker addObserverObjects:observers];
         [workers addObject:worker];
     }

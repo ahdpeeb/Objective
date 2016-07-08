@@ -42,7 +42,7 @@
     return self;
 }
 
-- (instancetype)initWithId:(NSUInteger)ID {
+- (instancetype)initWithID:(NSUInteger)ID {
     self = [self init];
     self.ID = ID;
 

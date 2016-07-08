@@ -32,7 +32,7 @@ typedef NS_ENUM(uint8_t, ANSState) {
 // this property only for subclasses
 @property (nonatomic, readonly)     id<NSLocking>   locker;
 
-- (instancetype)initWithId:(NSUInteger)ID;
+- (instancetype)initWithID:(NSUInteger)ID;
 
 - (void)startProcessingObject:(id)object;
 
