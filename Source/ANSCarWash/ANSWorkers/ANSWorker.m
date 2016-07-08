@@ -114,12 +114,14 @@
 - (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
-    // могут одновременное выполнятся 
+
 - (void)finishProcessingObject:(ANSWorker *)object {
-    if (object.queue.count) {
-        [object processObjects];
+    @synchronized(object) {
+        if (object.queue.count) {
+            [object processObjects];
+        }
     }
-    
+
     object.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }

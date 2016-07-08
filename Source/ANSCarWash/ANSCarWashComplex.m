@@ -59,10 +59,12 @@
     self.mutableWashers = [NSMutableArray object];
     self.carQueue = [ANSQueue object];
     
-    self.accountant = [ANSAccountant object];
-    self.boss = [ANSBoss object];
-    ANSAccountant *accountant = self.accountant;
-    [accountant addObserverObject:self.boss];
+    ANSAccountant *accountant = [ANSAccountant object];
+    self.accountant = accountant;
+    
+    ANSBoss *boss = [ANSBoss object];
+    self.boss = boss;
+    [accountant addObserverObject:boss];
     
     NSMutableArray *washers = self.mutableWashers;
     for (NSUInteger count = 0; count < kANSMaxCarWasherCapacity; count ++) {
@@ -93,10 +95,8 @@
 
 - (void)workerDidBecomeFree:(ANSCarWasher *)worker {
     ANSQueue *queue = worker.queue;
-    @synchronized(self) {
-        if (!queue.count) {
-            [self startWashingByWasher:worker];
-        }
+    if (!queue.count) {
+        [self startWashingByWasher:worker];
     }
 }
 
@@ -116,11 +116,13 @@
 }
 
 - (void)startWashingByWasher:(ANSCarWasher*)washer {
-    ANSQueue *carQueue = self.carQueue;
-    ANSCar *car = [carQueue dequeue];
-    if (car) {
-        NSLog(@"%@ начинает мыть %@", washer, car);
-        [washer startProcessingObject:car];
+    @synchronized(self) {
+        ANSQueue *carQueue = self.carQueue;
+        ANSCar *car = [carQueue dequeue];
+        if (car) {
+            NSLog(@"%@ начинает мыть %@", washer, car);
+            [washer startProcessingObject:car];
+        }
     }
 }
 
