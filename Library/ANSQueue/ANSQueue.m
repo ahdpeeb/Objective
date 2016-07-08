@@ -62,12 +62,11 @@
     }
 }
 
-//need to be rewrited for KVO
+
 - (id)dequeue {
     @synchronized(self) {
-        NSMutableArray *objects = self.subjects;
-        id object = [[[objects firstObject] retain] autorelease];
-        [objects removeObject:object];
+        id object = [[[self.subjects firstObject] retain] autorelease];
+        [self removeObjectFromSubjectsAtIndex:0];
     
     return object;
         
@@ -98,7 +97,9 @@
 }
 
 - (void)addSubjectsObject:(id)object {
-    [self insertObject:object inSubjectsAtIndex:[self count]];
+    @synchronized(self) {
+        [self insertObject:object inSubjectsAtIndex:[self count]];
+    }
 }
 
 @end

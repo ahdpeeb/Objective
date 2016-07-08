@@ -21,9 +21,9 @@
 - (void)processObject:(id)object; 
 
 - (void)addProcessors:(NSArray *)processors;
-- (void)removeProcessors:(NSArray *)processors; // not implemented
+- (void)removeProcessors:(NSArray *)processors;
 
-- (void)addProcessor:(id)processor;  // not implemented
-- (void)removeProcessor:(id)processor; // not implemented
+- (void)addProcessor:(id)processor;
+- (void)removeProcessor:(id)processor;
 
 @end

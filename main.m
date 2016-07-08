@@ -35,12 +35,7 @@ int main(int argc, const char * argv[]) {
         NSSet *bossObservers = [complex.mutablebosses.firstObject observersSet];
         NSLog(@"bossObservers - %@", bossObservers);
         
-        ANSComplexDispatcher *dispatcher = [ANSComplexDispatcher object];
-        NSArray *cars = [dispatcher cars];
-        
-        for (ANSCar *car in cars) {
-             [complex addCarToQueue:car];
-        }
+        ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
         
         [[NSRunLoop mainRunLoop] run];
     }

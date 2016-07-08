@@ -8,8 +8,14 @@
 
 #import "ANSDispatcher.h"
 
-@interface ANSComplexDispatcher : ANSDispatcher
+#import "ANSCarWashComplex.h"
 
-- (NSArray *)cars;
+@interface ANSComplexDispatcher : ANSDispatcher
+@property (nonatomic, readonly) NSTimer *timer;
+@property (nonatomic, readonly) ANSCarWashComplex *carComplex;
+
+- (instancetype)initWithComplex:(ANSCarWashComplex *)carComplex;
+
+- (void)conveyCars;
 
 @end

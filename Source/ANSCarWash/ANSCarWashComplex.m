@@ -17,7 +17,7 @@
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
-NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class cls, NSUInteger count, NSArray *observers) {
+NSArray *(^ANSObjectsWithClass)(Class cls, NSUInteger count, NSArray *observers) = ^NSArray *(Class cls, NSUInteger count, NSArray *observers) {
     
     __block NSUInteger ID = 0;
     ANSObjectBlock worker = ^id(void) {
@@ -56,7 +56,7 @@ NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class
 #pragma mark Initializetion / deallocation
 
 - (void)dealloc {
-    [self.carQueue removeObserver:self forKeyPath:@"subjects" context:nil];
+//    [self.carQueue removeObserver:self forKeyPath:@"subjects" context:nil];
     self.carQueue = nil;
     
     [self stopObservation];
@@ -71,7 +71,7 @@ NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class
 - (instancetype)init {
     self = [super init];
     [self initInfrastructure];
-    [self.carQueue addObserver:self forKeyPath:@"subjects" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//    [self.carQueue addObserver:self forKeyPath:@"subjects" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     return self;
 }
@@ -108,6 +108,7 @@ NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class
     @synchronized(self) {
         ANSQueue *queue = self.carQueue;
         [queue enqueue:car];
+        [self conveyCars];
     }
 }
 
@@ -165,11 +166,11 @@ NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class
     [self removeObservers:nil fromObjects:self.mutablebosses]; //replace nil for Observers
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"subjects"]) {
-        NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver %@", change);
-        [self conveyCars];
-    }
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+//    if ([keyPath isEqualToString:@"subjects"]) {
+//        NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver %@", change);
+//        [self conveyCars];
+//    }
+//}
 
 @end
