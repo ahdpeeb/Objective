@@ -17,6 +17,19 @@
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
+NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class cls, NSUInteger count, NSArray *observers) {
+    
+    __block NSUInteger ID = 0;
+    ANSObjectBlock worker = ^id(void) {
+        id object = [[[cls alloc] initWithID:ID++] autorelease];
+        [object addObserverObjects:observers];
+        return object;
+    };
+    
+    return [NSArray objectsWithCount:count block:worker];
+};
+
+
 @interface ANSCarWashComplex ()
 @property (atomic, retain)      ANSQueue                *carQueue;
 @property (atomic, retain)      NSMutableArray          *mutableWashers;
@@ -30,6 +43,10 @@
 - (void)initInfrastructure;
 - (void)stopObservation;
 - (void)conveyCars;
+- (NSMutableArray *)objectsWithClass:(Class)cls
+                               count:(NSUInteger)count
+                           observers:(NSArray *)observers;
+
 
 @end
 
@@ -60,6 +77,7 @@
 }
 
 - (void)initInfrastructure {
+    
     self.carQueue = [ANSQueue object];
     
     [self setObservers];
@@ -68,32 +86,18 @@
     ANSDispatcher *accountantDispatcher = self.accountantsObserver;
     ANSDispatcher *bosseDispatcher = self.bossesObserver;
     
-    
     NSArray *forWashers = [NSArray arrayWithObjects:washersDispatcher, accountantDispatcher, nil];
-    self.mutableWashers = [self objectsWithClass:[ANSCarWasher class] count:3 observers:forWashers];
+    self.mutableWashers = [NSMutableArray arrayWithArray:ANSObjectsWithClass([ANSCarWasher class], 4, forWashers)];
     
     NSArray *forAccountants = [NSArray arrayWithObjects:accountantDispatcher, bosseDispatcher, nil];
-    self.mutableAccountants = [self objectsWithClass:[ANSAccountant class] count:2 observers:forAccountants];
+    self.mutableAccountants = [NSMutableArray arrayWithArray:ANSObjectsWithClass([ANSAccountant class], 2, forAccountants)];
     
     NSArray *forBosses = [NSArray arrayWithObject:bosseDispatcher];
-    self.mutablebosses = [self objectsWithClass:[ANSBoss class] count:1 observers:forBosses];
+    self.mutablebosses = [NSMutableArray arrayWithArray:ANSObjectsWithClass([ANSBoss class], 1, forBosses)];
     
     [washersDispatcher addProcessors:self.mutableWashers];
     [accountantDispatcher addProcessors:self.mutableAccountants];
     [bosseDispatcher addProcessors:self.mutablebosses];
-    
-
-    NSArray *(^ANSObjectsWithClass)(Class, NSUInteger, NSArray *) = ^NSArray *(Class cls, NSUInteger count, NSArray *observers) {
-        
-        __block NSUInteger ID = 0;
-        ANSObjectBlock worker = ^id(void) {
-            id object = [[[cls alloc] initWithID:ID++] autorelease];
-            [object addObserverObjects:observers];
-            return object;
-        };
-        
-        return [NSArray objectsWithCount:count block:worker];
-    };
 }
 
 #pragma mark -
@@ -110,6 +114,7 @@
 #pragma mark -
 #pragma mark Private methods
 
+// TEST IMPLEMENTATION
 - (void)conveyCars {
     @synchronized(self) {
         ANSQueue *carsQueueu = self.carQueue;
