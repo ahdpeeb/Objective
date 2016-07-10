@@ -12,7 +12,7 @@
 
 @implementation NSArray (ANSExtension)
 
-+ (NSArray *)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block {
++ (instancetype)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block {
     if (!block) {
         return nil;
     }
@@ -22,7 +22,7 @@
         [objects addObject:block()]; //block() => result of block implementation;
     }
     
-    return [[objects copy] autorelease];
+    return [self arrayWithArray:objects];
 }
 
 - (NSArray *)filteredArrayWithBlock:(BOOL(^)(id object))block {

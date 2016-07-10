@@ -15,7 +15,7 @@
 
 // kANSMaxCarCount = 100;
 @interface ANSComplexDispatcher ()
-@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, retain) ANSCarWashComplex *carComplex;
 
 @end
@@ -49,11 +49,9 @@
 #pragma mark Public methods
 
 - (void)conveyCars {
-    @synchronized(self) {
-        NSArray *cars = [self cars];
-        for (ANSCar *car in cars) {
-            [self.carComplex performSelectorInBackground:@selector(addCarToQueue:) withObject:car];
-        }
+    NSArray *cars = [self cars];
+    for (ANSCar *car in cars) {
+        [self.carComplex performSelectorInBackground:@selector(addCarToQueue:) withObject:car];
     }
 }
 
@@ -62,13 +60,8 @@
 
 - (NSArray *)cars {
     __block NSUInteger value = 0;
-    ANSObjectBlock object = ^id(void) {
-        ANSCar *car  = [[ANSCar alloc] initWithID:value];
-        value ++;
-        return car;
-    };
     
-    return [NSArray objectsWithCount:kANSMaxCarCount block:object];
+    return [NSArray objectsWithCount:kANSMaxCarCount block:^id(void) { return [[ANSCar alloc] initWithID:value++]; }];
 }
 
 @end

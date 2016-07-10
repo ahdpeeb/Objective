@@ -19,7 +19,7 @@
 @property (nonatomic, retain)       ANSQueue        *processingObjects;
 @property (nonatomic, copy)         NSString        *name;
 
-- (BOOL)isWorkerMemberOfProcessors:(id)worker;
+- (BOOL)containsProcessors:(id)worker;
 - (id)reservedFreeWorker;
 - (NSArray *)freeWorkers;
 
@@ -67,7 +67,7 @@
 // Dispatcher only interested in what the processing object can be processed.
 - (void)workerDidBecomeIsPending:(id)worker {
     @synchronized(self) {
-        if (![self isWorkerMemberOfProcessors:worker]) {
+        if (![self containsProcessors:worker]) {
             [self processObject:worker];
         }
     }
@@ -76,7 +76,7 @@
 // Dispatcher interested when processor free and he can get next objext
 - (void)workerDidBecomeFree:(id)worker {
     @synchronized(self) {
-        if ([self isWorkerMemberOfProcessors:worker]) {
+        if ([self containsProcessors:worker]) {
             ANSQueue *queue = self.processingObjects;
             if (queue.count) {
                 [worker startProcessingObject:[queue dequeue]];
@@ -102,7 +102,7 @@
     
 - (void)addProcessors:(NSArray *)processors {
     @synchronized(self) {
-        self.mutableProcessors = [NSMutableArray arrayWithArray:processors];
+        [self.mutableProcessors addObjectsFromArray:processors];
     }
 }
 
@@ -148,7 +148,7 @@
     return [self.mutableProcessors filteredArrayUsingPredicate:predicate];
 }
 
-- (BOOL)isWorkerMemberOfProcessors:(id)worker {
+- (BOOL)containsProcessors:(id)worker {
     return [self.mutableProcessors containsObject:worker];
 }
 

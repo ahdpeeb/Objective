@@ -13,7 +13,7 @@ typedef id(^ANSObjectBlock)(void);
 @interface NSArray (ANSExtension)
 
 //returns array of objects taken from block
-+ (NSArray *)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block;
++ (instancetype)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block;
 
 //returns array of filted objects
 - (NSArray *)filteredArrayWithBlock:(BOOL(^)(id))block;

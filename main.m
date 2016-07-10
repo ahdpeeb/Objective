@@ -37,7 +37,8 @@ int main(int argc, const char * argv[]) {
         
         ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
         
-        [[NSRunLoop mainRunLoop] run];
+        NSRunLoop *loop = [NSRunLoop mainRunLoop];
+        [loop run]; 
     }
     
     return 0;
