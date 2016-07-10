@@ -103,11 +103,13 @@
 - (void)addProcessors:(NSArray *)processors {
     @synchronized(self) {
         [self.mutableProcessors addObjectsFromArray:processors];
+        [processors makeObjectsPerformSelector:@selector(addObserverObject:) withObject:self];
     }
 }
 
 - (void)removeProcessors:(NSArray *)processors {
-    [self.mutableProcessors removeAllObjects];
+    [self.mutableProcessors removeObjectsInArray:processors];
+    [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:processors];
 }
 
 - (void)addProcessor:(id)processor {
@@ -115,6 +117,7 @@
         NSMutableArray *processors = self.mutableProcessors;
         if (![processors containsObject:processor]) {
             [self.mutableProcessors addObject:processor];
+            [processor addObserverObject:self];
         }
     }
 }
@@ -122,6 +125,7 @@
 - (void)removeProcessor:(id)processor {
     @synchronized(self) {
         [self.mutableProcessors removeObject:processor];
+        [processor removeObserverObject:self];
     }
 }
 

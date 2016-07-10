@@ -78,8 +78,8 @@
 - (void)addObserverObjects:(NSArray *)objects {
     @synchronized(self) {
         NSHashTable *observers = self.observersHashTable;
-        for (id observer in objects) {
-            [observers addObject:observer];
+        for (id observer in observers) {
+            [observer addObjectsFromArray:objects];
         }
     }
 }
