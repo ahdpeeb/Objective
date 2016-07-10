@@ -126,11 +126,11 @@
             return object;
         }];
     };
-    
-    self.mutableWashers = workersFactory([ANSCarWasher class], 4, accountantDispatcher);
+
+    self.mutableWashers = workersFactory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher]);
     [washersDispatcher addProcessors:self.mutableWashers];
     
-    self.mutableAccountants = workersFactory([ANSAccountant class], 2, accountantDispatcher);
+    self.mutableAccountants = workersFactory([ANSAccountant class], 2,[NSArray arrayWithObject:bosseDispatcher]);
     [accountantDispatcher addProcessors:self.mutableAccountants];
     
     self.mutablebosses = workersFactory([ANSBoss class], 1, nil);

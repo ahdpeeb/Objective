@@ -26,14 +26,14 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
         
-        NSSet *washerObservers = [complex.mutableWashers.firstObject observersSet];
-        NSLog(@"washerObservers - %@", washerObservers);
+        NSSet *washerDispatchers = [complex.mutableWashers.firstObject observersSet];
+        NSLog(@"washer - %@", washerDispatchers);
         
-        NSSet *accountanObservers = [complex.mutableAccountants.firstObject observersSet];
-        NSLog(@"accountanObservers - %@", accountanObservers);
+        NSSet *accountanDispatchers = [complex.mutableAccountants.firstObject observersSet];
+        NSLog(@"accounta - %@", accountanDispatchers);
         
-        NSSet *bossObservers = [complex.mutablebosses.firstObject observersSet];
-        NSLog(@"bossObservers - %@", bossObservers);
+        NSSet *bossDispatchers = [complex.mutablebosses.firstObject observersSet];
+        NSLog(@"boss - %@", bossDispatchers);
         
         ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
         

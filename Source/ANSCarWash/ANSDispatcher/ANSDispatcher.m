@@ -99,18 +99,6 @@
         }
     }
 }
-    
-- (void)addProcessors:(NSArray *)processors {
-    @synchronized(self) {
-        [self.mutableProcessors addObjectsFromArray:processors];
-        [processors makeObjectsPerformSelector:@selector(addObserverObject:) withObject:self];
-    }
-}
-
-- (void)removeProcessors:(NSArray *)processors {
-    [self.mutableProcessors removeObjectsInArray:processors];
-    [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:processors];
-}
 
 - (void)addProcessor:(id)processor {
     @synchronized(self) {
@@ -127,6 +115,18 @@
         [self.mutableProcessors removeObject:processor];
         [processor removeObserverObject:self];
     }
+}
+
+- (void)addProcessors:(NSArray *)processors {
+    @synchronized(self) {
+        [self.mutableProcessors addObjectsFromArray:processors];
+        [processors makeObjectsPerformSelector:@selector(addObserverObject:) withObject:self];
+    }
+}
+
+- (void)removeProcessors:(NSArray *)processors {
+    [self.mutableProcessors removeObjectsInArray:processors];
+    [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:processors];
 }
 
 #pragma mark -
