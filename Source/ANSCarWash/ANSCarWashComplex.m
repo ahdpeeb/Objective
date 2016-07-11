@@ -43,7 +43,7 @@
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark Initializetion / deallocation
+#pragma mark Initialization / deallocation
 
 - (void)dealloc {
 //    [self.carQueue removeObserver:self forKeyPath:@"subjects" context:nil];

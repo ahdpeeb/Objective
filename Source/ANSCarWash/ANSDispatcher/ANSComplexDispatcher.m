@@ -13,7 +13,6 @@
 
 #import "NSArray+ANSExtension.h"
 
-// kANSMaxCarCount = 100;
 @interface ANSComplexDispatcher ()
 @property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, retain) ANSCarWashComplex *carComplex;
@@ -26,10 +25,7 @@
 #pragma mark Initialization / deallocation
 
 - (void)dealloc {
-    NSTimer *timer = self.timer;
-    [timer invalidate];
-    timer = nil;
-    
+    self.timer = nil;
     self.carComplex = nil;
     
     [super dealloc];
@@ -43,6 +39,17 @@
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accsessors
+
+- (void)setTimer:(NSTimer *)timer {
+    if (_timer != timer) {
+        [_timer invalidate];
+        _timer = nil;
+        _timer = timer;
+    }
 }
 
 #pragma mark -

@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
         NSSet *bossDispatchers = [complex.mutablebosses.firstObject observersSet];
         NSLog(@"boss - %@", bossDispatchers);
         
-        ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
+        [[ANSComplexDispatcher alloc] initWithComplex:complex];
         
         NSRunLoop *loop = [NSRunLoop mainRunLoop];
         [loop run]; 
