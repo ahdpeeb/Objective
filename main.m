@@ -24,30 +24,36 @@ static void *ANSObjectContext = &ANSObjectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
-        ANSCarWashComplex *complex = [ANSCarWashComplex object];
-        
-        NSSet *washerDispatchers = [complex.mutableWashers.firstObject observersSet];
-        NSLog(@"washer - %@", washerDispatchers);
-        
-        NSSet *accountanDispatchers = [complex.mutableAccountants.firstObject observersSet];
-        NSLog(@"accounta - %@", accountanDispatchers);
-        
-        NSSet *bossDispatchers = [complex.mutablebosses.firstObject observersSet];
-        NSLog(@"boss - %@", bossDispatchers);
-        
-        [[ANSComplexDispatcher alloc] initWithComplex:complex];
-        
-        NSRunLoop *loop = [NSRunLoop mainRunLoop];
-        [loop run]; 
-    }
-    
-    return 0;
-}
+//        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+//        
+//        NSSet *washerDispatchers = [complex.mutableWashers.firstObject observersSet];
+//        NSLog(@"washer - %@", washerDispatchers);
+//        
+//        NSSet *accountanDispatchers = [complex.mutableAccountants.firstObject observersSet];
+//        NSLog(@"accounta - %@", accountanDispatchers);
+//        
+//        NSSet *bossDispatchers = [complex.mutablebosses.firstObject observersSet];
+//        NSLog(@"boss - %@", bossDispatchers);
+//        
+//        [[ANSComplexDispatcher alloc] initWithComplex:complex];
+//        
+//        NSRunLoop *loop = [NSRunLoop mainRunLoop];
+//        [loop run]; 
+//    }
+//    
+//    return 0;
+//}
 
-//        ANSThread *thread = [ANSThread object];
-//        thread.block = ^() {
-//            NSLog(@"Blia");
-//        };
-//
-//        [thread start];
-//
+        ANSThread *thread = [ANSThread object];
+        thread.block = ^() {
+            NSLog(@"Blia");
+        };
+
+        [thread start];
+
+        NSRunLoop *loop = [NSRunLoop mainRunLoop];
+        [loop run];
+    }
+
+return 0;
+}
