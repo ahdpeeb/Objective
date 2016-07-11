@@ -64,7 +64,6 @@
 #pragma mark -
 #pragma mark Protocol ANSWorkerObserver
 
-// Dispatcher only interested in what the processing object can be processed.
 - (void)workerDidBecomeIsPending:(id)worker {
     @synchronized(self) {
         if (![self containsProcessors:worker]) {
@@ -73,9 +72,8 @@
     }
 }
 
-// Dispatcher interested when processor free and he can get next objext
 - (void)workerDidBecomeFree:(id)worker {
-    @synchronized(self) {
+    @synchronized(worker) {
         if ([self containsProcessors:worker]) {
             ANSQueue *queue = self.processingObjects;
             if (queue.count) {
