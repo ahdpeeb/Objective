@@ -102,8 +102,9 @@
 
 - (void)removeObserverObjects:(NSArray *)objects {
     @synchronized(self) {
+        NSHashTable *observers = self.observersHashTable;
         for (id observer in objects) {
-            [self.observersHashTable removeObject:observer];
+            [observers removeObject:observer];
         }
     }
 }
