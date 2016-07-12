@@ -90,13 +90,13 @@
     return [[self alloc] initWithName:name];
 }
     // пффф
-- (void)processObject:(id)object {
+- (void)processObject:(id<ANSMoneyOwner>)object {
     @synchronized(self.processingObjects) {
         ANSQueue *queue = self.processingObjects;
         [queue enqueue:object];
-   }
+    }
     
-    @synchronized(self) {
+    @synchronized(object) {
         [self processing];
     }
 }
@@ -148,7 +148,7 @@
 }
 
 - (id)reservedFreeWorker {
-    @synchronized(self) {
+    @synchronized(self.processors) {
         ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
         if (freeWorker) {
             freeWorker.state = ANSWorkerBusy;

@@ -17,6 +17,10 @@
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
+static NSString * const kANSWashersDispatcher = @"WashersDispatcher";
+static NSString * const kANSAccountantsDispatcher = @"AccountantsDispatcher";
+static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
+
 @interface ANSCarWashComplex ()
 @property (nonatomic, retain)   ANSQueue                *carQueue;
 
@@ -29,7 +33,6 @@
 
 - (void)initWorkers;
 - (void)initDispatchers;
-- (ANSDispatcher *)initDispatcherWithName:(NSString *)name;
 
 @end
 
@@ -92,9 +95,9 @@
 }
 
 - (void)initDispatchers {
-    self.washersDispatcher = [ANSDispatcher dispatcherWithName:@"WashersDispatcher"];
-    self.accountantsDispatcher = [ANSDispatcher dispatcherWithName:@"AccountantsDispatcher"];
-    self.bossesDispatcher = [ANSDispatcher dispatcherWithName:@"bossesDispatcher"];
+    self.washersDispatcher = [ANSDispatcher dispatcherWithName:kANSWashersDispatcher];
+    self.accountantsDispatcher = [ANSDispatcher dispatcherWithName:kANSAccountantsDispatcher];
+    self.bossesDispatcher = [ANSDispatcher dispatcherWithName:kANSBossesDispatcher];
 }
 
 - (void)removeObservers:(NSArray *)observers fromObjects:(NSArray*)objects {

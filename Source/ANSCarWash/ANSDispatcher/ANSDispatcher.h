@@ -18,7 +18,7 @@
 
 + (ANSDispatcher *)dispatcherWithName:(NSString *)name;
 
-- (void)processObject:(id)object; 
+- (void)processObject:(id<ANSMoneyOwner>)object;
 
 - (void)addProcessors:(NSArray *)processors;
 - (void)removeProcessors:(NSArray *)processors;
