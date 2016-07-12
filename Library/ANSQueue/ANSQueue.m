@@ -47,7 +47,9 @@
 }
 
 - (NSArray *)objects {
-   return [self subjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self countOfSubjects])]];
+    @synchronized(self) {
+        return [self subjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self countOfSubjects])]];
+    }
 }
 
 #pragma mark -

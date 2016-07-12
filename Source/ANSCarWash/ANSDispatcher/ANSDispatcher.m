@@ -22,6 +22,7 @@
 - (BOOL)containsProcessors:(id)worker;
 - (id)reservedFreeWorker;
 - (NSArray *)freeWorkers;
+- (void)processing;
 
 @end
 
@@ -58,27 +59,26 @@
 #pragma mark Accsessors 
 
 - (NSArray *)processors {
-    return [[self.mutableProcessors copy] autorelease];
+    @synchronized(self) {
+        return [[self.mutableProcessors copy] autorelease];
+    }
 }
 
 #pragma mark -
 #pragma mark Protocol ANSWorkerObserver
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    @synchronized(self) {
+    @synchronized(worker) {
         if (![self containsProcessors:worker]) {
             [self processObject:worker];
         }
     }
 }
-
+    
 - (void)workerDidBecomeFree:(id)worker {
     @synchronized(worker) {
         if ([self containsProcessors:worker]) {
-            ANSQueue *queue = self.processingObjects;
-            if (queue.count) {
-                [worker startProcessingObject:[queue dequeue]];
-            }
+            [self processing];
         }
     }
 }
@@ -86,15 +86,18 @@
 #pragma mark -
 #pragma mark Public methods
 
++ (ANSDispatcher *)dispatcherWithName:(NSString *)name {
+    return [[self alloc] initWithName:name];
+}
+    // пффф
 - (void)processObject:(id)object {
-    @synchronized(self) {
+    @synchronized(self.processingObjects) {
         ANSQueue *queue = self.processingObjects;
-        [self.processingObjects enqueue:object];
-        
-        id processor = [self reservedFreeWorker];
-        if (processor && queue.count) {
-            [processor startProcessingObject:[queue dequeue]];
-        }
+        [queue enqueue:object];
+   }
+    
+    @synchronized(self) {
+        [self processing];
     }
 }
 
@@ -102,7 +105,7 @@
     @synchronized(self) {
         NSMutableArray *processors = self.mutableProcessors;
         if (![processors containsObject:processor]) {
-            [self.mutableProcessors addObject:processor];
+            [processors addObject:processor];
             [processor addObserverObject:self];
         }
     }
@@ -123,12 +126,26 @@
 }
 
 - (void)removeProcessors:(NSArray *)processors {
-    [self.mutableProcessors removeObjectsInArray:processors];
-    [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:processors];
+    @synchronized(self) {
+        [self.mutableProcessors removeObjectsInArray:processors];
+        [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:self];
+    }
 }
 
 #pragma mark -
-#pragma mark Privat Methods
+#pragma mark Private Methods
+// пффф
+- (void)processing {
+    @synchronized(self.processingObjects) {
+        ANSQueue *queue = self.processingObjects;
+        if (queue.count) {
+            id processor = [self reservedFreeWorker];
+            if (processor) {
+                [processor startProcessingObject:[queue dequeue]];
+            }
+        }
+    }
+}
 
 - (id)reservedFreeWorker {
     @synchronized(self) {

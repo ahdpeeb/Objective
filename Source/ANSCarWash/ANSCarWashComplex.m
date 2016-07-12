@@ -18,10 +18,7 @@
 #import "ANSQueue.h"
 
 @interface ANSCarWashComplex ()
-@property (atomic, retain)      ANSQueue                *carQueue;
-@property (atomic, retain)      NSMutableArray          *mutableWashers;
-@property (nonatomic, retain)   NSMutableArray          *mutableAccountants;
-@property (nonatomic, retain)   NSMutableArray          *mutablebosses;
+@property (nonatomic, retain)   ANSQueue                *carQueue;
 
 @property (nonatomic, retain)   ANSDispatcher           *washersDispatcher;
 @property (nonatomic, retain)   ANSDispatcher           *accountantsDispatcher;
@@ -29,13 +26,9 @@
 
 - (void)initInfrastructure;
 - (void)stopObservation;
-- (void)conveyCars;
-- (NSMutableArray *)objectsWithClass:(Class)cls
-                               count:(NSUInteger)count
-                           observers:(NSArray *)observers;
 
 - (void)initWorkers;
-- (void)initObservers;
+- (void)initDispatchers;
 - (ANSDispatcher *)initDispatcherWithName:(NSString *)name;
 
 @end
@@ -46,14 +39,9 @@
 #pragma mark Initialization / deallocation
 
 - (void)dealloc {
-//    [self.carQueue removeObserver:self forKeyPath:@"subjects" context:nil];
     self.carQueue = nil;
     
     [self stopObservation];
-    
-    self.mutableWashers = nil;
-    self.mutableAccountants = nil;
-    self.mutablebosses = nil;
     
     [super dealloc];
 }
@@ -61,14 +49,13 @@
 - (instancetype)init {
     self = [super init];
     [self initInfrastructure];
-//    [self.carQueue addObserver:self forKeyPath:@"subjects" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     return self;
 }
 
 - (void)initInfrastructure {
     self.carQueue = [ANSQueue object];
-    [self initObservers];
+    [self initDispatchers];
     [self initWorkers];
 }
 
@@ -76,45 +63,16 @@
 #pragma mark Public implementation
 
 - (void)addCarToQueue:(ANSCar *)car; {
-    @synchronized(self) {
-        ANSQueue *queue = self.carQueue;
-        [queue enqueue:car];
-        [self conveyCars];
-    }
+    [self.washersDispatcher processObject:car];
 }
 
 #pragma mark -
 #pragma mark Private methods
 
-- (void)conveyCars {
-    @synchronized(self) {
-        ANSQueue *carsQueueu = self.carQueue;
-        while (carsQueueu.count) {
-            ANSCar *car = [carsQueueu dequeue];
-            [self.washersDispatcher processObject:car];
-            NSLog(@"%@ - передана обсерверу мойщиков, осталось - %lu машин",car , carsQueueu.count);
-        }
-    }
-}
-
-- (NSMutableArray *)objectsWithClass:(Class)cls
-                        count:(NSUInteger)count
-                    observers:(NSArray *)observers
-{
-    NSMutableArray *workers = [NSMutableArray object];
-    for (NSUInteger value = 0; value < count; value ++) {
-        id worker = [[[[cls class] alloc] initWithID:value] autorelease];
-        [worker addObserverObjects:observers];
-        [workers addObject:worker];
-    }
-    
-    return workers;
-}
-
 - (void)initWorkers {
     ANSDispatcher *washersDispatcher = self.washersDispatcher;
     ANSDispatcher *accountantDispatcher = self.accountantsDispatcher;
-    ANSDispatcher *bosseDispatcher = self.bossesDispatcher;
+    ANSDispatcher *bossesDispatcher = self.bossesDispatcher;
     
     NSMutableArray *(^workersFactory)(Class, NSUInteger, id)  = ^NSMutableArray *(Class cls, NSUInteger count, NSArray *observers) {
         __block NSUInteger ID = 0;
@@ -126,20 +84,17 @@
         }];
     };
 
-    self.mutableWashers = workersFactory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher]);
-    [washersDispatcher addProcessors:self.mutableWashers];
+    [washersDispatcher addProcessors:workersFactory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher])];
     
-    self.mutableAccountants = workersFactory([ANSAccountant class], 2,[NSArray arrayWithObject:bosseDispatcher]);
-    [accountantDispatcher addProcessors:self.mutableAccountants];
+    [accountantDispatcher addProcessors:workersFactory([ANSAccountant class], 2,[NSArray arrayWithObject:bossesDispatcher])];
     
-    self.mutablebosses = workersFactory([ANSBoss class], 1, nil);
-    [bosseDispatcher addProcessors:self.mutablebosses];
+    [bossesDispatcher addProcessors:workersFactory([ANSBoss class], 1, nil)];
 }
 
-- (void)initObservers {
-    self.washersDispatcher = [self initDispatcherWithName:@"WashersObserver"];
-    self.accountantsDispatcher = [self initDispatcherWithName:@"AccountantsObserver"];
-    self.bossesDispatcher = [self initDispatcherWithName:@"bossesObserver"];
+- (void)initDispatchers {
+    self.washersDispatcher = [ANSDispatcher dispatcherWithName:@"WashersDispatcher"];
+    self.accountantsDispatcher = [ANSDispatcher dispatcherWithName:@"AccountantsDispatcher"];
+    self.bossesDispatcher = [ANSDispatcher dispatcherWithName:@"bossesDispatcher"];
 }
 
 - (void)removeObservers:(NSArray *)observers fromObjects:(NSArray*)objects {
@@ -149,19 +104,8 @@
 }
 
 - (void)stopObservation {
-    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:self.mutableWashers];
-    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:self.mutableAccountants];
+    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:nil];
+    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:nil];
 }
-
-- (ANSDispatcher *)initDispatcherWithName:(NSString *)name {
-    return [[ANSDispatcher alloc] initWithName:name];
-}
-
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-//    if ([keyPath isEqualToString:@"subjects"]) {
-//        NSLog(@"ВАЖНО! В мойку поступили машины, начать перадачу washersObserver %@", change);
-//        [self conveyCars];
-//    }
-//}
 
 @end

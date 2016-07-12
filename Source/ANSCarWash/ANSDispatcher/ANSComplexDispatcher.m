@@ -13,8 +13,10 @@
 
 #import "NSArray+ANSExtension.h"
 
+static const NSUInteger kANSTimer = 3;
+
 @interface ANSComplexDispatcher ()
-@property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, assign) NSTimer *timer;
 @property (nonatomic, retain) ANSCarWashComplex *carComplex;
 
 @end
@@ -34,7 +36,12 @@
 - (instancetype)initWithComplex:(ANSCarWashComplex *)carComplex {
     self = [super init];
     if (self) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(conveyCars) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:kANSTimer
+                                                      target:self
+                                                    selector:@selector(conveyCars)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        
         self.carComplex = carComplex;
     }
     
@@ -47,7 +54,6 @@
 - (void)setTimer:(NSTimer *)timer {
     if (_timer != timer) {
         [_timer invalidate];
-        _timer = nil;
         _timer = timer;
     }
 }
@@ -68,7 +74,7 @@
 - (NSArray *)cars {
     __block NSUInteger value = 0;
     
-    return [NSArray objectsWithCount:kANSMaxCarCount block:^id(void) { return [[ANSCar alloc] initWithID:value++]; }];
+    return [NSArray objectsWithCount:kANSMaxCarCount block:^id(void) { return [ANSCar carWithID:value++]; }];
 }
 
 @end

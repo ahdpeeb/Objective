@@ -55,15 +55,21 @@
 }
 
 - (void)setState:(NSUInteger)state {
-    [self setState:state withObject:self];
+    @synchronized(self) {
+        [self setState:state withObject:self];
+    }
 }
 
 - (NSUInteger)state {
-    return _state;
+    @synchronized(self) {
+        return _state;
+    }
 }
 
 - (NSSet *)observersSet {
-    return self.observersHashTable.setRepresentation;
+    @synchronized(self) {
+        return self.observersHashTable.setRepresentation;
+    }
 }
 
 #pragma mark -

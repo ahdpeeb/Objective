@@ -16,7 +16,7 @@
 @property (nonatomic, readonly)     NSArray         *processors;
 @property (nonatomic, readonly)     NSString        *name;
 
-- (instancetype)initWithName:(NSString *)name;
++ (ANSDispatcher *)dispatcherWithName:(NSString *)name;
 
 - (void)processObject:(id)object; 
 

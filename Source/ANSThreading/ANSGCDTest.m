@@ -10,7 +10,7 @@
 
 typedef void(^ANSPerformanceBlock)(void);
 
-static uint32_t kANSMaxSec = 3;
+static const uint32_t kANSMaxSec = 3;
 static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 
 @interface ANSGCDTest ()
@@ -21,6 +21,16 @@ static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 @end
 
 @implementation ANSGCDTest
+
+- (instancetype)initWithType:(dispatch_queue_attr_t)attribute {
+    self = [super init];
+    
+    dispatch_queue_t queue = dispatch_queue_create([kANSdispatchLable cStringUsingEncoding:NSUTF8StringEncoding], attribute);
+    self.queue = queue;
+    dispatch_release(queue);
+
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accsessors
@@ -52,18 +62,13 @@ static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 #pragma mark Private
 
 - (void)executeWithQueueType:(dispatch_queue_attr_t)attribute {
-    dispatch_queue_t queue = dispatch_queue_create([kANSdispatchLable cStringUsingEncoding:NSUTF8StringEncoding], attribute);
-    self.queue = queue;
-    dispatch_release(queue);
-    
-    ANSPerformanceBlock block = ^(void) {
+    dispatch_async(self.queue, ^(void) {
         uint32_t time = arc4random_uniform(kANSMaxSec);
-        sleep(time);
         NSLog(@"sleep time = %u", time);
-    };
+        sleep(time);
+    } );
     
-    dispatch_async(self.queue, block);
-        
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"main thread execution");
     });

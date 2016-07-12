@@ -11,8 +11,8 @@
 #import "ANSCarWashComplex.h"
 
 @interface ANSComplexDispatcher : ANSDispatcher
-@property (nonatomic, readonly) NSTimer *timer;
-@property (nonatomic, readonly) ANSCarWashComplex *carComplex;
+@property (nonatomic, readonly)                 ANSCarWashComplex *carComplex;
+@property (nonatomic, assign, getter=isRunning) BOOL              running;
 
 - (instancetype)initWithComplex:(ANSCarWashComplex *)carComplex;
 
