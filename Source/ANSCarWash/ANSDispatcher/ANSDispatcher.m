@@ -59,9 +59,7 @@
 #pragma mark Accsessors 
 
 - (NSArray *)processors {
-    @synchronized(self) {
-        return [[self.mutableProcessors copy] autorelease];
-    }
+    return [[self.mutableProcessors copy] autorelease];
 }
 
 #pragma mark -
@@ -136,7 +134,7 @@
 #pragma mark Private Methods
 // пффф
 - (void)processing {
-    @synchronized(self.processingObjects) {
+    @synchronized(self.processors) {
         ANSQueue *queue = self.processingObjects;
         if (queue.count) {
             id processor = [self reservedFreeWorker];
