@@ -67,17 +67,13 @@
 
 - (void)workerDidBecomeIsPending:(id)worker {
     if (![self containsProcessors:worker]) {
-        @synchronized(worker) {
-            [self processObject:worker];
-        }
+        [self processObject:worker];
     }
 }
     
 - (void)workerDidBecomeFree:(id)worker {
     if ([self containsProcessors:worker]) {
-        @synchronized(worker) {
-            [self processing];
-        }
+        [self processing];
     }
 }
 
@@ -89,14 +85,12 @@
 }
     // пффф
 - (void)processObject:(id<ANSMoneyOwner>)object {
-    @synchronized(self.processingObjects) {
+    @synchronized(self.processors) {
         ANSQueue *queue = self.processingObjects;
         [queue enqueue:object];
     }
     
-    @synchronized(self) {
-        [self processing];
-    }
+    [self processing];
 }
 
 - (void)addProcessor:(id)processor {
