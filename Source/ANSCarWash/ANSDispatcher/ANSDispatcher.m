@@ -68,16 +68,16 @@
 #pragma mark Protocol ANSWorkerObserver
 
 - (void)workerDidBecomeIsPending:(id)worker {
-    @synchronized(worker) {
-        if (![self containsProcessors:worker]) {
+    if (![self containsProcessors:worker]) {
+        @synchronized(worker) {
             [self processObject:worker];
         }
     }
 }
     
 - (void)workerDidBecomeFree:(id)worker {
-    @synchronized(worker) {
-        if ([self containsProcessors:worker]) {
+    if ([self containsProcessors:worker]) {
+        @synchronized(worker) {
             [self processing];
         }
     }
@@ -96,7 +96,7 @@
         [queue enqueue:object];
     }
     
-    @synchronized(object) {
+    @synchronized(self) {
         [self processing];
     }
 }
