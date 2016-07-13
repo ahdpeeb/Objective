@@ -96,12 +96,6 @@
 }
 
 - (void)finishProcessingObject:(ANSWorker *)object {
-    @synchronized(object) {
-        if (object.queue.count) {
-            [object processObjects];
-        }
-    }
-
     object.state = ANSWorkerFree;
     NSLog(@"%@ - поменял состояние на Free в главном потоке", object);
 }
@@ -111,30 +105,6 @@
     NSLog(@"%@ - поменял состояние на ANSWorkerIsPending в главном потоке", self);
 }
 
-<<<<<<< HEAD
-- (void)processObjects {
-    @synchronized(self) {
-        ANSQueue *queue = self.queue;
-        if (queue.count) {
-            NSLog(@"WARNING %@", self);
-            id operand = [queue dequeue];
-            NSLog(@"%@ достал из очереди объект на обработку %@ ", self, operand);
-            [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:operand];
-            
-            return;
-        }
-    }
-}
-
-#pragma mark -
-#pragma mark Protocol ANSWorkerObserver
-
-- (void)workerDidBecomeIsPending:(id)worker {
-    [self startProcessingObject:worker];
-}
-
-=======
->>>>>>> feature/Task_8
 #pragma mark -
 #pragma mark Overloaded methods
 

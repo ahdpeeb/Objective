@@ -121,7 +121,7 @@
 
 - (void)notifyOfState:(NSUInteger)state withObject:(id)object {
     @synchronized(self) {
-        SEL selector = [self selectorForState:state];
+       SEL selector = [self selectorForState:state];
         [self notifyObserversWithSelector:selector object:object];
     }
 }

@@ -12,15 +12,6 @@
 
 @implementation NSArray (ANSExtension)
 
-<<<<<<< HEAD
-+ (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block; {
-    NSMutableArray *objects = [NSMutableArray object];
-    for (NSUInteger value = 0; value < count; value ++) {
-        [objects addObject:block];
-    }
-    
-    return [[objects copy] autorelease];
-=======
 + (instancetype)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block {
     if (!block) {
         return nil;
@@ -44,7 +35,6 @@
     }];
     
     return [self filteredArrayUsingPredicate:filter];
->>>>>>> feature/Task_8
 }
 
 @end

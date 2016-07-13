@@ -19,14 +19,10 @@
 		9328B53F1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */; };
 		93968A481D13F0E0009E7EF1 /* ANSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 93968A471D13F0E0009E7EF1 /* ANSQueue.m */; };
 		93A642A71D2BD6DE00313EEB /* ANSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642A51D2BD6DE00313EEB /* ANSConstants.m */; };
-<<<<<<< HEAD
-		93A642B71D2CF8FC00313EEB /* NSArray+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642B51D2CF8FC00313EEB /* NSArray+ANSExtension.m */; };
-=======
 		93A642AE1D2BFFF100313EEB /* ANSDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642AD1D2BFFF100313EEB /* ANSDispatcher.m */; };
 		93A642BB1D2D241C00313EEB /* NSArray+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642BA1D2D241C00313EEB /* NSArray+ANSExtension.m */; };
 		93A642BE1D2E615D00313EEB /* ANSComplexDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642BD1D2E615D00313EEB /* ANSComplexDispatcher.m */; };
 		93A642C61D33DDCF00313EEB /* ANSGCDTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A642C51D33DDCF00313EEB /* ANSGCDTest.m */; };
->>>>>>> feature/Task_8
 		93BE28151D11A893008DABB7 /* ANSAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */; };
 		93C3603B1D29AD6400E632F9 /* ANSKVOtest.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */; };
 		93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */; };
@@ -81,10 +77,6 @@
 		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
 		93A642A41D2BD6DE00313EEB /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
 		93A642A51D2BD6DE00313EEB /* ANSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSConstants.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		93A642B41D2CF8FC00313EEB /* NSArray+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ANSExtension.h"; sourceTree = "<group>"; };
-		93A642B51D2CF8FC00313EEB /* NSArray+ANSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ANSExtension.m"; sourceTree = "<group>"; };
-=======
 		93A642AC1D2BFFF100313EEB /* ANSDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSDispatcher.h; sourceTree = "<group>"; };
 		93A642AD1D2BFFF100313EEB /* ANSDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSDispatcher.m; sourceTree = "<group>"; };
 		93A642B91D2D241C00313EEB /* NSArray+ANSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ANSExtension.h"; sourceTree = "<group>"; };
@@ -93,7 +85,6 @@
 		93A642BD1D2E615D00313EEB /* ANSComplexDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSComplexDispatcher.m; sourceTree = "<group>"; };
 		93A642C41D33DDCF00313EEB /* ANSGCDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSGCDTest.h; sourceTree = "<group>"; };
 		93A642C51D33DDCF00313EEB /* ANSGCDTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSGCDTest.m; sourceTree = "<group>"; };
->>>>>>> feature/Task_8
 		93BE28141D11A893008DABB7 /* ANSAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSAlphabetTest.m; path = Spec/ANSAlphabetTest.m; sourceTree = "<group>"; };
 		93C360391D29AD6400E632F9 /* ANSKVOtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSKVOtest.h; sourceTree = "<group>"; };
 		93C3603A1D29AD6400E632F9 /* ANSKVOtest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSKVOtest.m; sourceTree = "<group>"; };
@@ -203,13 +194,6 @@
 			path = ANSConstants;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		93A642B31D2CF8FC00313EEB /* NSArray */ = {
-			isa = PBXGroup;
-			children = (
-				93A642B41D2CF8FC00313EEB /* NSArray+ANSExtension.h */,
-				93A642B51D2CF8FC00313EEB /* NSArray+ANSExtension.m */,
-=======
 		93A642AB1D2BFFF100313EEB /* ANSDispatcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +210,6 @@
 			children = (
 				93A642B91D2D241C00313EEB /* NSArray+ANSExtension.h */,
 				93A642BA1D2D241C00313EEB /* NSArray+ANSExtension.m */,
->>>>>>> feature/Task_8
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -269,11 +252,7 @@
 		93DAD41A1D0DF2910055E7FB /* Library */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				93A642B31D2CF8FC00313EEB /* NSArray */,
-=======
 				93A642B81D2D241C00313EEB /* NSArray */,
->>>>>>> feature/Task_8
 				93968A451D13F0E0009E7EF1 /* ANSQueue */,
 				93DAD41B1D0DF2910055E7FB /* ANSRandom */,
 				93DAD41E1D0DF2910055E7FB /* NSObject */,
@@ -544,7 +523,6 @@
 				93A642BB1D2D241C00313EEB /* NSArray+ANSExtension.m in Sources */,
 				93DAD46A1D0DF2910055E7FB /* ANSBoss.m in Sources */,
 				93DAD4641D0DF2910055E7FB /* ANSCar.m in Sources */,
-				93A642B71D2CF8FC00313EEB /* NSArray+ANSExtension.m in Sources */,
 				93C360471D2AAF3300E632F9 /* ANSThread.m in Sources */,
 				93DAD4561D0DF2910055E7FB /* ANSClusterAlphabet.m in Sources */,
 				93DAD45A1D0DF2910055E7FB /* ANSStringAlphabet.m in Sources */,

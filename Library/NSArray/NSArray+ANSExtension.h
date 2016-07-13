@@ -8,13 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-<<<<<<< HEAD
-typedef id(^objectBlock)(void);
-
-@interface NSArray (ANSExtension)
-
-+ (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block;
-=======
 typedef id(^ANSObjectBlock)(void);
 
 @interface NSArray (ANSExtension)
@@ -24,6 +17,5 @@ typedef id(^ANSObjectBlock)(void);
 
 //returns array of filted objects
 - (NSArray *)filteredArrayWithBlock:(BOOL(^)(id))block;
->>>>>>> feature/Task_8
 
 @end
