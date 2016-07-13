@@ -18,6 +18,7 @@ typedef enum {
 @interface ANSCar : NSObject <ANSMoneyOwner>
 @property (atomic, assign)  ANSCarStatus    status;
 
++ (ANSCar *)carWithID:(NSUInteger)ID;
 - (instancetype)initWithID:(NSUInteger)ID;
 
 @end

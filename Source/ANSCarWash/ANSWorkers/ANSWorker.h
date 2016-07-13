@@ -31,9 +31,8 @@ typedef NS_ENUM(uint8_t, ANSState) {
 @interface ANSWorker : ANSObservableObject <ANSMoneyOwner, ANSWorkerObserver>
 // this property only for subclasses
 @property (nonatomic, readonly)     id<NSLocking>   locker;
-@property (nonatomic, readonly)     ANSQueue        *queue;
 
-- (instancetype)initWithId:(NSUInteger)ID;
+- (instancetype)initWithID:(NSUInteger)ID;
 
 - (void)startProcessingObject:(id)object;
 
@@ -49,7 +48,4 @@ typedef NS_ENUM(uint8_t, ANSState) {
 //This method should be processed in main thread. it's change state of self
 - (void)finishProcessing;
 
-//this method is intended for subclasses. Never call it directly.
-//This method process workers form self.queue.
-- (void)processObjects;
 @end

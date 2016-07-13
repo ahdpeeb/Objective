@@ -9,32 +9,33 @@
 #import <Foundation/Foundation.h>
 
 #import "ANSCarWashComplex.h"
-#import "ANSWorker.h"
+#import "ANSComplexDispatcher.h"
+#import "ANSGCDTest.h"
 
-#import "ANSKVOtest.h"
 #import "ANSKVOtestObserver.h"
 #import "ANSThread.h"
 
 #import "NSObject+ANSExtension.h"
 
-NSUInteger kANSCarCount = 100;
 static void *ANSObjectContext = &ANSObjectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
         ANSCarWashComplex *complex = [ANSCarWashComplex object];
+       ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
         
-        for (NSUInteger count = 0; count < kANSCarCount; count++) {
-            ANSCar *car = [[[ANSCar alloc] initWithID:count] autorelease];
-            [complex addCarToQueue:car];
-        }
-//        ANSThread *thread = [ANSThread object];
-//        thread.block = ^() {
-//            NSLog(@"Blia");
-//        };
-//        
-//        [thread start];
-//        
+        dispatcher.running = YES;
+        
+//        for (NSUInteger value = 0; value < 100000; value ++) {
+//            NSLog(@"%lu", (unsigned long)value);
+//            dispatcher.running = NO;
+//        }
+        
+       
+        
+//        ANSGCDTest *gcd = [[ANSGCDTest alloc] initWithType:DISPATCH_QUEUE_SERIAL];
+//        [gcd executeSerial];
+        
         [[NSRunLoop mainRunLoop] run];
     }
     

@@ -11,7 +11,7 @@
 #import <libkern/OSAtomic.h>
 
 @interface ANSThread ()
-//@property (nonatomic, retain) NSLock
+@property (nonatomic, assign) volatile OSSpinLock  *locker;
 
 @end
 
@@ -26,15 +26,21 @@
     [super dealloc];
 }
 
+
 #pragma mark -
 #pragma mark Publick methods 
 
 - (void)main {
-    ANSThreadBlock block = [self.block retain];
-    if (block) {
-        block();
+    @autoreleasepool {
+        OSSpinLockLock(_locker);
+        ANSThreadBlock block = [self.block retain];
+        if (block) {
+            block();
+        }
+        
+        [block release];
+        OSSpinLockUnlock(_locker);
     }
-    
-    [block release];
 }
+
 @end

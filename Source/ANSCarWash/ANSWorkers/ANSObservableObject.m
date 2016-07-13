@@ -55,15 +55,21 @@
 }
 
 - (void)setState:(NSUInteger)state {
-    [self setState:state withObject:self];
+    @synchronized(self) {
+        [self setState:state withObject:self];
+    }
 }
 
 - (NSUInteger)state {
-    return _state;
+    @synchronized(self) {
+        return _state;
+    }
 }
 
 - (NSSet *)observersSet {
-    return self.observersHashTable.setRepresentation;
+    @synchronized(self) {
+        return self.observersHashTable.setRepresentation;
+    }
 }
 
 #pragma mark -
@@ -78,8 +84,12 @@
 - (void)addObserverObjects:(NSArray *)objects {
     @synchronized(self) {
         NSHashTable *observers = self.observersHashTable;
-        for (id observer in objects) {
-            [observers addObject:observer];
+        if (!objects) {
+            return;
+        }
+            
+        for (id object in objects) {
+            [observers addObject:object];
         }
     }
 }
@@ -92,8 +102,9 @@
 
 - (void)removeObserverObjects:(NSArray *)objects {
     @synchronized(self) {
+        NSHashTable *observers = self.observersHashTable;
         for (id observer in objects) {
-            [self.observersHashTable removeObject:observer];
+            [observers removeObject:observer];
         }
     }
 }

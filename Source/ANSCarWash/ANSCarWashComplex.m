@@ -9,41 +9,55 @@
 #import "ANSCarWashComplex.h"
 
 #import "ANSCarWasher.h"
-#import "ANSAccountant.h"
-#import "ANSBoss.h"
 #import "ANSConstants.h"
+#import "ANSDispatcher.h"
 
 #import "NSObject+ANSExtension.h"
+#import "NSArray+ANSExtension.h"
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
+static NSString * const kANSWashersDispatcher =     @"WashersDispatcher";
+static NSString * const kANSAccountantsDispatcher = @"AccountantsDispatcher";
+static NSString * const kANSBossesDispatcher =      @"BossesDispatcher";
+
+typedef NSMutableArray *(^ANSWorkersFactory)(Class, NSUInteger, id);
+
 @interface ANSCarWashComplex ()
-@property (atomic, retain)      ANSQueue          *carQueue;
-@property (nonatomic, retain)   ANSAccountant     *accountant;
-@property (nonatomic, retain)   ANSBoss           *boss;
-@property (atomic, retain)      NSMutableArray    *mutableWashers;
+@property (nonatomic, retain)   ANSQueue                *carQueue;
+
+@property (nonatomic, retain)   ANSDispatcher           *washersDispatcher;
+@property (nonatomic, retain)   ANSDispatcher           *accountantsDispatcher;
+@property (nonatomic, retain)   ANSDispatcher           *bossesDispatcher;
 
 - (void)initInfrastructure;
+<<<<<<< HEAD
 - (NSArray *)freeWorkers;
 - (id)reservedFreeWorker;
 - (void)startWashingByWasher:(ANSCarWasher*)washer;
 - (void)stopObservation;
+=======
+- (void)stopObservation;
+
+- (void)initWorkers;
+- (void)initDispatchers;
+>>>>>>> feature/Task_8
 
 @end
 
 @implementation ANSCarWashComplex
 
 #pragma mark -
-#pragma mark Initializetion / deallocation
+#pragma mark Initialization / deallocation
 
 - (void)dealloc {
     self.carQueue = nil;
     
     [self stopObservation];
     
-    self.mutableWashers = nil;
-    self.accountant = nil;
-    self.boss = nil;
+    self.washersDispatcher = nil;
+    self.accountantsDispatcher = nil;
+    self.bossesDispatcher = nil;
     
     [super dealloc];
 }
@@ -56,8 +70,8 @@
 }
 
 - (void)initInfrastructure {
-    self.mutableWashers = [NSMutableArray object];
     self.carQueue = [ANSQueue object];
+<<<<<<< HEAD
     
     ANSAccountant *accountant = [ANSAccountant object];
     self.accountant = accountant;
@@ -72,11 +86,16 @@
         [washer addObserverObjects:[NSArray arrayWithObjects:accountant, self, nil]];
         [washers addObject:washer];
     }
+=======
+    [self initDispatchers];
+    [self initWorkers];
+>>>>>>> feature/Task_8
 }
 
 #pragma mark -
 #pragma mark Public implementation
 
+<<<<<<< HEAD
 - (void)addCarToQueue:(ANSCar *)car {
     ANSQueue *queue = self.carQueue;
     [queue enqueue:car];
@@ -98,23 +117,38 @@
     if (!queue.count) {
         [self startWashingByWasher:worker];
     }
+=======
+- (void)addCarToQueue:(ANSCar *)car; {
+    [self.washersDispatcher processObject:car];
+>>>>>>> feature/Task_8
 }
 
 #pragma mark -
 #pragma mark Private methods
 
-- (NSArray *)freeWorkers {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", @"state", ANSWorkerFree]; //@"busy == NO"
+- (void)initWorkers {
+    ANSDispatcher *washersDispatcher = self.washersDispatcher;
+    ANSDispatcher *accountantDispatcher = self.accountantsDispatcher;
+    ANSDispatcher *bossesDispatcher = self.bossesDispatcher;
     
-    return [self.mutableWashers filteredArrayUsingPredicate:predicate];
+    ANSWorkersFactory factory  = ^NSMutableArray *(Class cls, NSUInteger count, NSArray *observers) {
+        __block NSUInteger ID = 0;
+        return [NSMutableArray objectsWithCount:count block: ^id(void) {
+            id object = [[[cls alloc] initWithID:ID++] autorelease];
+            [object addObserverObjects:observers];
+            
+            return object;
+        }];
+    };
+    
+    [washersDispatcher addProcessors:factory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher])];
+    
+    [accountantDispatcher addProcessors:factory([ANSAccountant class], 2,[NSArray arrayWithObject:bossesDispatcher])];
+    
+    [bossesDispatcher addProcessors:factory([ANSBoss class], 1, nil)];
 }
 
-- (id)reservedFreeWorker {
-    @synchronized(self) {
-        return [[self freeWorkers] firstObject];
-    }
-}
-
+<<<<<<< HEAD
 - (void)startWashingByWasher:(ANSCarWasher*)washer {
     @synchronized(self) {
         ANSQueue *carQueue = self.carQueue;
@@ -134,6 +168,19 @@
     }
     
     [accountant removeObserverObject:self.boss];
+=======
+- (void)initDispatchers {
+    self.washersDispatcher = [ANSDispatcher dispatcherWithName:kANSWashersDispatcher];
+    self.accountantsDispatcher = [ANSDispatcher dispatcherWithName:kANSAccountantsDispatcher];
+    self.bossesDispatcher = [ANSDispatcher dispatcherWithName:kANSBossesDispatcher];
+}
+
+- (void)stopObservation {
+    NSArray *washers = self.washersDispatcher.processors;
+    [washers makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.accountantsDispatcher];
+    NSArray *accountants = self.accountantsDispatcher.processors;
+    [accountants makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.bossesDispatcher];
+>>>>>>> feature/Task_8
 }
 
 @end

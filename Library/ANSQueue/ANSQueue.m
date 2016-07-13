@@ -11,19 +11,19 @@
 #import "NSObject+ANSExtension.h"
 
 @interface ANSQueue ()
-@property (nonatomic, retain) NSMutableArray    *objects;
+@property (nonatomic, retain) NSMutableArray *subjects;
 
 @end
 
 @implementation ANSQueue
 
-@dynamic count;
+@dynamic objects;
 
 #pragma mark -
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.objects = nil;
+    self.subjects = nil;
     
     [super dealloc];
 }
@@ -31,7 +31,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.objects = [NSMutableArray object];
+        self.subjects = [NSMutableArray object];
     }
     
     return self;
@@ -42,8 +42,13 @@
 
 - (NSUInteger)count {
     @synchronized(self) {
-        NSUInteger count = self.objects.count;
-        return count;
+        return [self countOfSubjects];
+    }
+}
+
+- (NSArray *)objects {
+    @synchronized(self) {
+        return [self subjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self countOfSubjects])]];
     }
 }
 
@@ -52,19 +57,53 @@
 
 - (void)enqueue:(id)object {
     @synchronized(self) {
-        NSMutableArray *objects = self.objects;
+        NSMutableArray *objects = self.subjects;
         if (![objects containsObject:object]) {
-            [objects addObject:object];
+            [self addSubjectsObject:object];
         }
     }
 }
+
+
 - (id)dequeue {
     @synchronized(self) {
-        NSMutableArray *objects = self.objects;
-        id object = [[[objects firstObject] retain] autorelease];
-        [objects removeObject:object];
+        id object = [[[self.subjects firstObject] retain] autorelease];
+        if (object) {
+            [self removeObjectFromSubjectsAtIndex:0];
+        }
+        
     
     return object;
+        
+    }
+}
+
+#pragma mark -
+#pragma mark Methods for KVO compatibility
+
+- (void)insertObject:(id)object inSubjectsAtIndex:(NSUInteger)index {
+    self.subjects[index] = object;
+}
+
+- (void)removeObjectFromSubjectsAtIndex:(NSUInteger)index {
+    [self.subjects removeObjectAtIndex:index];
+}
+
+- (id)objectInSubjectsAtIndex:(NSUInteger)index {
+    return self.subjects[index];
+}
+
+- (NSArray *)subjectsAtIndexes:(NSIndexSet *)indexes {
+    return [self.subjects objectsAtIndexes:indexes];
+}
+
+- (NSUInteger)countOfSubjects {
+    return [self.subjects count];
+}
+
+- (void)addSubjectsObject:(id)object {
+    @synchronized(self) {
+        [self insertObject:object inSubjectsAtIndex:[self count]];
     }
 }
 

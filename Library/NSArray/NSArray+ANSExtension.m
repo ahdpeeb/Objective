@@ -12,6 +12,7 @@
 
 @implementation NSArray (ANSExtension)
 
+<<<<<<< HEAD
 + (NSArray *)objectsWithCount:(NSUInteger)count object:(id(^)(void))block; {
     NSMutableArray *objects = [NSMutableArray object];
     for (NSUInteger value = 0; value < count; value ++) {
@@ -19,6 +20,31 @@
     }
     
     return [[objects copy] autorelease];
+=======
++ (instancetype)objectsWithCount:(NSUInteger)count block:(ANSObjectBlock)block {
+    if (!block) {
+        return nil;
+    }
+    
+    NSMutableArray *objects = [NSMutableArray object];
+    for (NSUInteger value = 0; value < count; value ++) {
+        [objects addObject:block()]; //block() => result of block implementation;
+    }
+    
+    return [self arrayWithArray:objects];
+}
+
+- (NSArray *)filteredArrayWithBlock:(BOOL(^)(id object))block {
+    if (!block) {
+        return Nil;
+    }
+    
+    NSPredicate *filter = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return block(evaluatedObject);
+    }];
+    
+    return [self filteredArrayUsingPredicate:filter];
+>>>>>>> feature/Task_8
 }
 
 @end

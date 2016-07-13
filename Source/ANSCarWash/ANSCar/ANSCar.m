@@ -40,6 +40,13 @@ static const NSUInteger kANSServiceCost = 5;
 }
 
 #pragma mark -
+#pragma mark public
+
++ (ANSCar *)carWithID:(NSUInteger)ID {
+    return [[[ANSCar alloc] initWithID:ID] autorelease];
+}
+
+#pragma mark -
 #pragma mark Protocol <ANSMoneyOwner>
 
 - (void)receiveMoney:(float)number {
