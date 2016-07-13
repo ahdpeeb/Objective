@@ -16,7 +16,6 @@ static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 @interface ANSGCDTest ()
 @property (nonatomic, retain) dispatch_queue_t queue;
 
-- (void)executeWithQueueType:(dispatch_queue_attr_t)attribute;
 
 @end
 
@@ -25,43 +24,16 @@ static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 - (instancetype)initWithType:(dispatch_queue_attr_t)attribute {
     self = [super init];
     
-    dispatch_queue_t queue = dispatch_queue_create([kANSdispatchLable cStringUsingEncoding:NSUTF8StringEncoding], attribute);
+    dispatch_queue_t queue = [dispatch_queue_create([kANSdispatchLable UTF8String], attribute) autorelease];
     self.queue = queue;
-    dispatch_release(queue);
 
     return self;
 }
 
 #pragma mark -
-#pragma mark Accsessors
-
-- (void)setQueue:(dispatch_queue_t)queue {
-    if (queue != _queue) {
-        if (_queue) {
-            dispatch_release(_queue);
-        }
-        
-        _queue = queue;
-        if (queue) {
-            dispatch_retain(queue);
-        }
-    }
-}
-
-#pragma mark -
 #pragma mark Public
 
-- (void)executeSerial {
-    [self executeWithQueueType:DISPATCH_QUEUE_SERIAL];
-}
-- (void)executeConcurent {
-    [self executeWithQueueType:DISPATCH_QUEUE_CONCURRENT];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)executeWithQueueType:(dispatch_queue_attr_t)attribute {
+- (void)execute {
     dispatch_async(self.queue, ^(void) {
         uint32_t time = arc4random_uniform(kANSMaxSec);
         NSLog(@"sleep time = %u", time);

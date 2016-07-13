@@ -12,7 +12,6 @@
 
 - (instancetype)initWithType:(dispatch_queue_attr_t)attribute;
 
-- (void)executeSerial;
-- (void)executeConcurent; 
+- (void)execute;
 
 @end

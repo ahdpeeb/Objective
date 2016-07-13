@@ -17,9 +17,11 @@
 #import "ANSRandom.h"
 #import "ANSQueue.h"
 
-static NSString * const kANSWashersDispatcher = @"WashersDispatcher";
+static NSString * const kANSWashersDispatcher =     @"WashersDispatcher";
 static NSString * const kANSAccountantsDispatcher = @"AccountantsDispatcher";
-static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
+static NSString * const kANSBossesDispatcher =      @"BossesDispatcher";
+
+typedef NSMutableArray *(^ANSWorkersFactory)(Class, NSUInteger, id);
 
 @interface ANSCarWashComplex ()
 @property (nonatomic, retain)   ANSQueue                *carQueue;
@@ -45,6 +47,10 @@ static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
     self.carQueue = nil;
     
     [self stopObservation];
+    
+    self.washersDispatcher = nil;
+    self.accountantsDispatcher = nil;
+    self.bossesDispatcher = nil;
     
     [super dealloc];
 }
@@ -77,7 +83,7 @@ static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
     ANSDispatcher *accountantDispatcher = self.accountantsDispatcher;
     ANSDispatcher *bossesDispatcher = self.bossesDispatcher;
     
-    NSMutableArray *(^workersFactory)(Class, NSUInteger, id)  = ^NSMutableArray *(Class cls, NSUInteger count, NSArray *observers) {
+    ANSWorkersFactory factory  = ^NSMutableArray *(Class cls, NSUInteger count, NSArray *observers) {
         __block NSUInteger ID = 0;
         return [NSMutableArray objectsWithCount:count block: ^id(void) {
             id object = [[[cls alloc] initWithID:ID++] autorelease];
@@ -86,12 +92,12 @@ static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
             return object;
         }];
     };
-
-    [washersDispatcher addProcessors:workersFactory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher])];
     
-    [accountantDispatcher addProcessors:workersFactory([ANSAccountant class], 2,[NSArray arrayWithObject:bossesDispatcher])];
+    [washersDispatcher addProcessors:factory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher])];
     
-    [bossesDispatcher addProcessors:workersFactory([ANSBoss class], 1, nil)];
+    [accountantDispatcher addProcessors:factory([ANSAccountant class], 2,[NSArray arrayWithObject:bossesDispatcher])];
+    
+    [bossesDispatcher addProcessors:factory([ANSBoss class], 1, nil)];
 }
 
 - (void)initDispatchers {
@@ -100,15 +106,11 @@ static NSString * const kANSBossesDispatcher = @"BossesDispatcher";
     self.bossesDispatcher = [ANSDispatcher dispatcherWithName:kANSBossesDispatcher];
 }
 
-- (void)removeObservers:(NSArray *)observers fromObjects:(NSArray*)objects {
-    for (id object in objects) {
-        [object removeObserverObjects:observers];
-    }
-}
-
 - (void)stopObservation {
-    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:nil];
-    [self removeObservers:[NSArray arrayWithObject:self.accountantsDispatcher] fromObjects:nil];
+    NSArray *washers = self.washersDispatcher.processors;
+    [washers makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.accountantsDispatcher];
+    NSArray *accountants = self.accountantsDispatcher.processors;
+    [accountants makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.bossesDispatcher];
 }
 
 @end

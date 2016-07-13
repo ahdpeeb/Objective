@@ -35,16 +35,7 @@ static const NSUInteger kANSTimer = 3;
 
 - (instancetype)initWithComplex:(ANSCarWashComplex *)carComplex {
     self = [super init];
-    if (self) {
-        NSTimer *timer = [NSTimer timerWithTimeInterval:kANSTimer
-                                                      target:self
-                                                    selector:@selector(conveyCars)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        
-        self.timer = timer;
-        self.carComplex = carComplex;
-    }
+    self.carComplex = carComplex;
     
     return self;
 }
@@ -62,12 +53,10 @@ static const NSUInteger kANSTimer = 3;
 - (void)setRunning:(BOOL)running {
     if (_running != running) {
         _running = running;
-        NSTimer *timer = self.timer;
         if (running) {
-            [timer fire];
-            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+            [self performSelectorOnMainThread:@selector(initTimer) withObject:nil waitUntilDone:YES];
         } else {
-            [timer invalidate];
+            [self.timer performSelectorOnMainThread:@selector(invalidate) withObject:nil waitUntilDone:YES];
         }
     }
 }
@@ -89,6 +78,14 @@ static const NSUInteger kANSTimer = 3;
     __block NSUInteger value = 0;
     
     return [NSArray objectsWithCount:kANSMaxCarCount block:^id(void) { return [ANSCar carWithID:value++]; }];
+}
+
+- (void)initTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kANSTimer
+                                                  target:self
+                                                selector:@selector(conveyCars)
+                                                userInfo:nil
+                                                repeats:YES];
 }
 
 @end

@@ -31,6 +31,13 @@
 @dynamic processors;
 
 #pragma mark -
+#pragma mark Class methods
+
++ (ANSDispatcher *)dispatcherWithName:(NSString *)name {
+    return [[[self alloc] initWithName:name] autorelease];
+}
+
+#pragma mark -
 #pragma mark Initialization / deallocation
 
 - (void)dealloc {
@@ -59,42 +66,25 @@
 #pragma mark Accsessors 
 
 - (NSArray *)processors {
-    return [[self.mutableProcessors copy] autorelease];
-}
-
-#pragma mark -
-#pragma mark Protocol ANSWorkerObserver
-
-- (void)workerDidBecomeIsPending:(id)worker {
-    if (![self containsProcessors:worker]) {
-        [self processObject:worker];
-    }
-}
-    
-- (void)workerDidBecomeFree:(id)worker {
-    if ([self containsProcessors:worker]) {
-        [self processing];
+    @synchronized(self.mutableProcessors) {
+        return [[self.mutableProcessors copy] autorelease];
     }
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-+ (ANSDispatcher *)dispatcherWithName:(NSString *)name {
-    return [[self alloc] initWithName:name];
-}
-    // пффф
 - (void)processObject:(id<ANSMoneyOwner>)object {
-    @synchronized(self.processors) {
+    @synchronized(self) {
         ANSQueue *queue = self.processingObjects;
         [queue enqueue:object];
     }
     
-    [self processing];
+    [self performSelectorInBackground:@selector(processing) withObject:nil];
 }
 
 - (void)addProcessor:(id)processor {
-    @synchronized(self) {
+    @synchronized(self.mutableProcessors) {
         NSMutableArray *processors = self.mutableProcessors;
         if (![processors containsObject:processor]) {
             [processors addObject:processor];
@@ -104,21 +94,21 @@
 }
 
 - (void)removeProcessor:(id)processor {
-    @synchronized(self) {
+    @synchronized(self.mutableProcessors) {
         [self.mutableProcessors removeObject:processor];
         [processor removeObserverObject:self];
     }
 }
 
 - (void)addProcessors:(NSArray *)processors {
-    @synchronized(self) {
+    @synchronized(self.mutableProcessors) {
         [self.mutableProcessors addObjectsFromArray:processors];
         [processors makeObjectsPerformSelector:@selector(addObserverObject:) withObject:self];
     }
 }
 
 - (void)removeProcessors:(NSArray *)processors {
-    @synchronized(self) {
+    @synchronized(self.mutableProcessors) {
         [self.mutableProcessors removeObjectsInArray:processors];
         [processors makeObjectsPerformSelector:@selector(removeObserverObjects:) withObject:self];
     }
@@ -128,19 +118,22 @@
 #pragma mark Private Methods
 // пффф
 - (void)processing {
-    @synchronized(self.processors) {
+    @synchronized(self) {
         ANSQueue *queue = self.processingObjects;
-        if (queue.count) {
+        id processedObject = [queue dequeue];
+        if (processedObject) {
             id processor = [self reservedFreeWorker];
             if (processor) {
-                [processor startProcessingObject:[queue dequeue]];
+                [processor startProcessingObject:processedObject];
+            } else {
+                [queue enqueue:processedObject];
             }
         }
     }
 }
 
 - (id)reservedFreeWorker {
-    @synchronized(self.processors) {
+    @synchronized(self) {
         ANSWorker *freeWorker =  [[self freeWorkers] firstObject];
         if (freeWorker) {
             freeWorker.state = ANSWorkerBusy;
@@ -160,7 +153,9 @@
 }
 
 - (BOOL)containsProcessors:(id)worker {
-    return [self.mutableProcessors containsObject:worker];
+    @synchronized(self.mutableProcessors) {
+        return [self.mutableProcessors containsObject:worker];
+    }
 }
 
 #pragma mark -
@@ -168,6 +163,21 @@
 
 - (NSString *)description {
     return [NSString stringWithString:self.name];
+}
+
+#pragma mark -
+#pragma mark Protocol ANSWorkerObserver
+
+- (void)workerDidBecomeIsPending:(id)worker {
+    if (![self containsProcessors:worker]) {
+        [self processObject:worker];
+    }
+}
+
+- (void)workerDidBecomeFree:(id)worker {
+    if ([self containsProcessors:worker]) {
+        [self performSelectorInBackground:@selector(processing) withObject:nil];
+    }
 }
 
 @end
