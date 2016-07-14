@@ -26,16 +26,10 @@ int main(int argc, const char * argv[]) {
         
         dispatcher.running = YES;
         
-//        for (NSUInteger value = 0; value < 100000; value ++) {
-//            NSLog(@"%lu", (unsigned long)value);
-//            dispatcher.running = NO;
-//        }
-        
-       
-        
+    
 //        ANSGCDTest *gcd = [[ANSGCDTest alloc] initWithType:DISPATCH_QUEUE_SERIAL];
-//        [gcd executeSerial];
-        
+//        [gcd execute];
+//        
         [[NSRunLoop mainRunLoop] run];
     }
     

@@ -83,7 +83,10 @@
 
 - (void)performWorkInBackgroundWithObject:(id)object {
     [self performWorkWithObject:object];
-    [self performSelectorOnMainThread:@selector(finishOnMainThreadWorkingWithObject:) withObject:object waitUntilDone:NO];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self finishOnMainThreadWorkingWithObject:object];
+    });
 }
 
 - (void)finishOnMainThreadWorkingWithObject:(id)object {

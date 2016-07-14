@@ -80,7 +80,7 @@
         [queue enqueue:object];
     }
     
-    [self performSelectorInBackground:@selector(processing) withObject:nil];
+    [self processing];
 }
 
 - (void)addProcessor:(id)processor {
@@ -116,7 +116,7 @@
 
 #pragma mark -
 #pragma mark Private Methods
-// пффф
+
 - (void)processing {
     @synchronized(self) {
         ANSQueue *queue = self.processingObjects;
@@ -170,13 +170,18 @@
 
 - (void)workerDidBecomeIsPending:(id)worker {
     if (![self containsProcessors:worker]) {
-        [self processObject:worker];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self processObject:worker];
+        });
+        
     }
 }
 
 - (void)workerDidBecomeFree:(id)worker {
     if ([self containsProcessors:worker]) {
-        [self performSelectorInBackground:@selector(processing) withObject:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self processing];
+        });
     }
 }
 

@@ -32,17 +32,21 @@ static NSString * const kANSdispatchLable = @"kANSdispatchLable";
 
 #pragma mark -
 #pragma mark Public
+// async / sync = do not wait for execution of the block / block the current thread to wait for execution of the block.
+// dispatch_apply - stops the current thread (in which he was called), and keeps it until all operations in it.
 
 - (void)execute {
-    dispatch_async(self.queue, ^(void) {
-        uint32_t time = arc4random_uniform(kANSMaxSec);
-        NSLog(@"sleep time = %u", time);
-        sleep(time);
-    } );
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"main thread execution");
+    dispatch_apply(100, self.queue, ^(size_t count) {
+        dispatch_async(self.queue, ^(void) {
+            uint32_t time = arc4random_uniform(kANSMaxSec);
+            NSLog(@"sleep time = %u", time);
+            sleep(time);
+        } );
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"main thread execution");
+        });
     });
 }
 
