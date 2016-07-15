@@ -24,7 +24,7 @@ void ANSPerformInSyncQueue(ANSPrioriryType type, ANSGCDBlock block) {
     dispatch_sync(dispatch_get_global_queue(ANSPrioriry(type), 0), block);
 }
 
-void ANSPerformOnMainQueue(ANSDispatch function, ANSGCDBlock block) {
+void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
     if ([NSThread isMainThread]) {
         block();
     } else {
@@ -49,8 +49,3 @@ long ANSPrioriry(ANSPrioriryType type) {
           return  DISPATCH_QUEUE_PRIORITY_DEFAULT;
     }
 }
-
-
-
-
-

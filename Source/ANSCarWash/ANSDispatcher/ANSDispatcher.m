@@ -13,6 +13,7 @@
 #import "ANSCarWasher.h"
 
 #import "NSObject+ANSExtension.h"
+#import "ANSGCD.h"
 
 @interface ANSDispatcher ()
 @property (nonatomic, retain)       NSMutableArray  *mutableProcessors;
@@ -170,16 +171,15 @@
 
 - (void)workerDidBecomeIsPending:(id)worker {
     if (![self containsProcessors:worker]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ANSPerformInAsyncQueue(ANSPriorityDefault, ^{
             [self processObject:worker];
         });
-        
     }
 }
 
 - (void)workerDidBecomeFree:(id)worker {
     if ([self containsProcessors:worker]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ANSPerformInAsyncQueue(ANSPriorityDefault, ^{
             [self processing];
         });
     }

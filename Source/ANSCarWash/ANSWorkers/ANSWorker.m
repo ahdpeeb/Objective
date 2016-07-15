@@ -12,6 +12,7 @@
 #import "ANSRandom.h"
 
 #import "NSObject+ANSExtension.h"
+#import "ANSGCD.h"
 
 @interface ANSWorker ()
 @property (atomic, assign)          float           money;
@@ -84,7 +85,7 @@
 - (void)performWorkInBackgroundWithObject:(id)object {
     [self performWorkWithObject:object];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    ANSPerformInMainQueue(dispatch_async, ^{
         [self finishOnMainThreadWorkingWithObject:object];
     });
 }

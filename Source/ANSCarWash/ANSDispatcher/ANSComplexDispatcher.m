@@ -83,7 +83,7 @@ static const NSUInteger kANSTimer = 3;
                                                   target:self
                                                 selector:@selector(conveyCars)
                                                 userInfo:nil
-                                                repeats:YES];
+                                                 repeats:YES];
 }
 
 @end
