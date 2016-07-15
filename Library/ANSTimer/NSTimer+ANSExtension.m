@@ -23,7 +23,7 @@
     
     ANSTimerBlock copy = [block copy];
     NSTimer *timer = [NSTimer timerWithTimeInterval:interval
-                                             target:self selector:@selector(executeBlock)
+                                             target:self selector:@selector(executeBlock:)
                                            userInfo:copy
                                             repeats:yesOrNo];
     
@@ -44,7 +44,7 @@
     
     ANSTimerBlock copy = [block copy];
     NSTimer *timer = [NSTimer timerWithTimeInterval:interval
-                                             target:self selector:@selector(executeBlock)
+                                             target:self selector:@selector(executeBlock:)
                                            userInfo:copy
                                             repeats:yesOrNo];
     
@@ -56,9 +56,11 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)executeBlock {
-    ANSTimerBlock block = self.userInfo;
-    block();
++ (void)executeBlock:(NSTimer *)timer {
+    ANSTimerBlock block = timer.userInfo;
+    if (block) {
+        block();
+    }
 }
 
 @end

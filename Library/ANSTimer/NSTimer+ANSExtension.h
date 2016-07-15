@@ -12,6 +12,10 @@ typedef void(^ANSTimerBlock)(void);
 
 @interface NSTimer (ANSExtension)
 
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval
+                             block:(ANSTimerBlock)block
+                           repeats:(BOOL)yesOrNo;
+
 + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                       block:(ANSTimerBlock)block
                                     repeats:(BOOL)yesOrNo; 
