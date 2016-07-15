@@ -75,7 +75,7 @@
 }
 //________________________________________________________________________________
 - (void)startProcessingObject:(id)object {
-    [self performWorkInBackgroundWithObject:object];
+    [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
 }
 
 #pragma mark -

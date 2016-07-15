@@ -53,11 +53,9 @@ static const NSUInteger kANSTimer = 3;
 - (void)setRunning:(BOOL)running {
     if (_running != running) {
         _running = running;
-        if (running) {
-            [self performSelectorOnMainThread:@selector(initTimer) withObject:nil waitUntilDone:YES];
-        } else {
-            [self.timer performSelectorOnMainThread:@selector(invalidate) withObject:nil waitUntilDone:YES];
-        }
+        [self performSelectorOnMainThread: running ? @selector(initTimer) : @selector(setTimer:)
+                               withObject:nil
+                            waitUntilDone:NO];
     }
 }
 

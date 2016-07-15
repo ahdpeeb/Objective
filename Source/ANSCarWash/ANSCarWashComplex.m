@@ -83,19 +83,20 @@ typedef NSMutableArray *(^ANSWorkersFactory)(Class, NSUInteger, id);
     ANSDispatcher *accountantDispatcher = self.accountantsDispatcher;
     ANSDispatcher *bossesDispatcher = self.bossesDispatcher;
     
-    ANSWorkersFactory factory  = ^NSMutableArray *(Class cls, NSUInteger count, NSArray *observers) {
+    ANSWorkersFactory factory  = ^NSMutableArray *(Class cls, NSUInteger count, id observer) {
         __block NSUInteger ID = 0;
+        
         return [NSMutableArray objectsWithCount:count block: ^id(void) {
             id object = [[[cls alloc] initWithID:ID++] autorelease];
-            [object addObserverObjects:observers];
+            [object addObserverObject:observer];
             
             return object;
         }];
     };
     
-    [washersDispatcher addProcessors:factory([ANSCarWasher class], 4, [NSArray arrayWithObject:accountantDispatcher])];
+    [washersDispatcher addProcessors:factory([ANSCarWasher class], 4, accountantDispatcher)];
     
-    [accountantDispatcher addProcessors:factory([ANSAccountant class], 2,[NSArray arrayWithObject:bossesDispatcher])];
+    [accountantDispatcher addProcessors:factory([ANSAccountant class], 2,bossesDispatcher)];
     
     [bossesDispatcher addProcessors:factory([ANSBoss class], 1, nil)];
 }
@@ -109,6 +110,7 @@ typedef NSMutableArray *(^ANSWorkersFactory)(Class, NSUInteger, id);
 - (void)stopObservation {
     NSArray *washers = self.washersDispatcher.processors;
     [washers makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.accountantsDispatcher];
+    
     NSArray *accountants = self.accountantsDispatcher.processors;
     [accountants makeObjectsPerformSelector:@selector(removeObserverObject:) withObject:self.bossesDispatcher];
 }

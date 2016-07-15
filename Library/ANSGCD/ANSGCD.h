@@ -8,20 +8,41 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark -
+#pragma mark Accessories
+
+//new type for dispatch_queue_t.
+typedef dispatch_queue_t ANSQSGCQueue;
+
+//block signature for execution
 typedef void(^ANSGCDBlock)(void);
-/*Funcrion takes "identifier"   *  - QOS_CLASS_USER_INTERACTIVE
-                                *  - QOS_CLASS_USER_INITIATED
-                                *  - QOS_CLASS_DEFAULT
-                                *  - QOS_CLASS_UTILITY
-                                *  - QOS_CLASS_BACKGROUND
- 
-    and block of code, which will be performed. */
 
-// block asynchronously executу in backgrounds thread.
-void ANSPerformAsyncQueue(long identifier, ANSGCDBlock block);
+//signature to dispatch_async/ dispatch_async functions
+typedef void (*ANSDispatch)(ANSQSGCQueue queue, ANSGCDBlock block);
 
-// block synchronously executу in backgrounds thread.
-void ANSPerformSyncQueue(long identifier, ANSGCDBlock block);
+//Identifier of queue prioryty
+typedef enum {
+    ANSPriorityHigh,            //  *  - DISPATCH_QUEUE_PRIORITY_HIGH:
+    ANSPriorityDefault,         //  *  - DISPATCH_QUEUE_PRIORITY_DEFAULT:
+    ANSPriorityLow,             //  *  - DISPATCH_QUEUE_PRIORITY_LOW:
+    ANSPriorityBackground       //  *  - DISPATCH_QUEUE_PRIORITY_BACKGROUND:
+} ANSPrioriryType;
 
-// perform block in main thread.
-void ANSPerformMainQueue(long identifier, ANSGCDBlock block);
+#pragma mark -
+#pragma mark Public functions
+
+/*Funcrions take ANSPrioriryType - "identifier of queue prioryty"
+ and block of code, which will be performed. Default type - ANSPriorityDefault*/
+
+// Block asynchronously executу in backgrounds thread.
+// It must be called from background thread.
+void ANSPerformInAsyncQueue(ANSPrioriryType type, ANSGCDBlock block);
+
+// Block synchronously executу in backgrounds thread.
+// It must be called from background thread.
+void ANSPerformInSyncQueue(ANSPrioriryType type, ANSGCDBlock block);
+
+//  Perform block in main thread.
+//  Functios must take ONLY "dispatch_async", "dispatch_async".
+void ANSPerformOnMainQueue(ANSDispatch function, ANSGCDBlock block);
+
