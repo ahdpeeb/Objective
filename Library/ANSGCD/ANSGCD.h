@@ -22,11 +22,11 @@ typedef void (*ANSDispatch)(ANSQSGCQueue queue, ANSGCDBlock block);
 
 //Identifier of queue prioryty
 typedef enum {
-    ANSPriorityHigh     = DISPATCH_QUEUE_PRIORITY_HIGH,            //  *  - DISPATCH_QUEUE_PRIORITY_HIGH:
-    ANSPriorityDefault  = DISPATCH_QUEUE_PRIORITY_DEFAULT,         //  *  - DISPATCH_QUEUE_PRIORITY_DEFAULT:
-    ANSPriorityLow      = DISPATCH_QUEUE_PRIORITY_LOW,             //  *  - DISPATCH_QUEUE_PRIORITY_LOW:
-    ANSPriorityBackground = DISPATCH_QUEUE_PRIORITY_BACKGROUND     //  *  - DISPATCH_QUEUE_PRIORITY_BACKGROUND:
-} ANSPrioriryType;
+    ANSPriorityHigh         = DISPATCH_QUEUE_PRIORITY_HIGH,             //  *  - DISPATCH_QUEUE_PRIORITY_HIGH:
+    ANSPriorityDefault      = DISPATCH_QUEUE_PRIORITY_DEFAULT,          //  *  - DISPATCH_QUEUE_PRIORITY_DEFAULT:
+    ANSPriorityLow          = DISPATCH_QUEUE_PRIORITY_LOW,              //  *  - DISPATCH_QUEUE_PRIORITY_LOW:
+    ANSPriorityBackground   = DISPATCH_QUEUE_PRIORITY_BACKGROUND        //  *  - DISPATCH_QUEUE_PRIORITY_BACKGROUND:
+} ANSPriorityType;
 
 #pragma mark -
 #pragma mark Public functions
@@ -36,11 +36,11 @@ typedef enum {
 
 // Block asynchronously executу in backgrounds thread.
 // It must be called from background thread.
-void ANSPerformInAsyncQueue(ANSPrioriryType type, ANSGCDBlock block);
+void ANSPerformInAsyncQueue(ANSPriorityType type, ANSGCDBlock block);
 
 // Block synchronously executу in backgrounds thread.
 // It must be called from background thread.
-void ANSPerformInSyncQueue(ANSPrioriryType type, ANSGCDBlock block);
+void ANSPerformInSyncQueue(ANSPriorityType type, ANSGCDBlock block);
 
 //  Perform block in main thread.
 //  Functios must take ONLY "dispatch_async", "dispatch_async".
