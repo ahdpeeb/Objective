@@ -48,4 +48,4 @@ void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block);
 
 //  Perform block after deley in main thread. 
 //  if flag repeat = YES, this block will be perform
-void dispatchTimer(uint seconds, bool repeat, ANSGCDBlock block);
+void ANSDispatchTimer(uint seconds, bool repeat, ANSGCDBlock block);

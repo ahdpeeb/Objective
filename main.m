@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
 //        };
 //        
 //        NSTimer *timer = [NSTimer  scheduledTimerWithTimeInterval:1 block:block repeats:YES];
-//        [[NSRunLoop mainRunLoop] run];
+        [[NSRunLoop mainRunLoop] run];
  
     }
     

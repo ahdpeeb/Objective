@@ -71,7 +71,9 @@ static const NSUInteger kANSTimer = 3;
 - (void)conveyCars {
     NSArray *cars = [self cars];
     for (ANSCar *car in cars) {
-        [self.carComplex performSelectorInBackground:@selector(addCarToQueue:) withObject:car];
+        ANSPerformInAsyncQueue(ANSPriorityDefault, ^{
+            [self.carComplex addCarToQueue:car];
+        });
     }
 }
 
@@ -85,7 +87,7 @@ static const NSUInteger kANSTimer = 3;
 }
 
 - (void)initTimer {
-    dispatchTimer(kANSTimer, YES, ^{
+    ANSDispatchTimer(kANSTimer, YES, ^{
         [self conveyCars];
     });
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:kANSTimer

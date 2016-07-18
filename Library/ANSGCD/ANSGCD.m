@@ -32,16 +32,15 @@ void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
     }
 }
 
-void dispatchTimer(uint seconds, bool repeat, ANSGCDBlock block) {
+void ANSDispatchTimer(uint seconds, bool repeat, ANSGCDBlock block) {
     __block bool value = repeat;
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
         block();
         if(value) {
-            dispatchTimer(seconds, value, block);
+            ANSDispatchTimer(seconds, value, block);
         }
     });
-    
 }
 
 #pragma mark -
