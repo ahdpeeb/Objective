@@ -15,17 +15,18 @@
 
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval
                              block:(ANSTimerBlock)block
-                           repeats:(BOOL)yesOrNo
+                           repeats:(BOOL)flag
 {
     if (!block) {
         return 0;
     }
     
     ANSTimerBlock copy = [block copy];
+    
     NSTimer *timer = [NSTimer timerWithTimeInterval:interval
                                              target:self selector:@selector(executeBlock:)
                                            userInfo:copy
-                                            repeats:yesOrNo];
+                                            repeats:flag];
     
     [copy release];
     
@@ -34,21 +35,11 @@
 
 + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                     block:(ANSTimerBlock)block
-                                    repeats:(BOOL)yesOrNo
+                                    repeats:(BOOL)flag
 
 {
-    
-    if (!block) {
-        return 0;
-    }
-    
-    ANSTimerBlock copy = [block copy];
-    NSTimer *timer = [NSTimer timerWithTimeInterval:interval
-                                             target:self selector:@selector(executeBlock:)
-                                           userInfo:copy
-                                            repeats:yesOrNo];
-    
-    [copy release];
+    NSTimer *timer = [self timerWithTimeInterval:interval block:block repeats:flag];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     return timer;
 }

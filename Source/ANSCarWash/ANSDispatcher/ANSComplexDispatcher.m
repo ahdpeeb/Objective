@@ -12,12 +12,15 @@
 #import "ANSConstants.h"
 
 #import "NSArray+ANSExtension.h"
+#import "ANSGCD.h"
 
 static const NSUInteger kANSTimer = 3;
 
 @interface ANSComplexDispatcher ()
 @property (nonatomic, assign) NSTimer *timer;
 @property (nonatomic, retain) ANSCarWashComplex *carComplex;
+
+- (void)initTimer;
 
 @end
 
@@ -46,16 +49,19 @@ static const NSUInteger kANSTimer = 3;
 - (void)setTimer:(NSTimer *)timer {
     if (_timer != timer) {
         [_timer invalidate];
-        _timer = timer;
+        _timer = timer; 
     }
 }
 
-- (void)setRunning:(BOOL)running {
-    if (_running != running) {
-        _running = running;
-        [self performSelectorOnMainThread: running ? @selector(initTimer) : @selector(setTimer:)
-                               withObject:nil
-                            waitUntilDone:NO];
+- (void)setRepeats:(BOOL)repeats {
+    if (_repeats != repeats) {
+        _repeats = repeats;
+        ANSPerformInMainQueue(dispatch_sync, ^{
+            [self initTimer];
+        });
+//        [self performSelectorOnMainThread: repeats ? @selector(initTimer) : @selector(setTimer:)
+//                               withObject:nil
+//                            waitUntilDone:NO];
     }
 }
 
@@ -79,11 +85,14 @@ static const NSUInteger kANSTimer = 3;
 }
 
 - (void)initTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:kANSTimer
-                                                  target:self
-                                                selector:@selector(conveyCars)
-                                                userInfo:nil
-                                                 repeats:YES];
+    dispatchTimer(kANSTimer, YES, ^{
+        [self conveyCars];
+    });
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:kANSTimer
+//                                                  target:self
+//                                                selector:@selector(conveyCars)
+//                                                userInfo:nil
+//                                                 repeats:YES];
 }
 
 @end

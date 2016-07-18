@@ -14,10 +14,10 @@ typedef void(^ANSTimerBlock)(void);
 
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval
                              block:(ANSTimerBlock)block
-                           repeats:(BOOL)yesOrNo;
+                           repeats:(BOOL)flag;
 
 + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                       block:(ANSTimerBlock)block
-                                    repeats:(BOOL)yesOrNo; 
+                                    repeats:(BOOL)flag; 
 
 @end

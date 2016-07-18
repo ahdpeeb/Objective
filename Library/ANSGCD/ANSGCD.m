@@ -32,20 +32,27 @@ void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
     }
 }
 
+void dispatchTimer(uint seconds, bool repeat, ANSGCDBlock block) {
+    __block bool value = repeat;
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        block();
+        if(value) {
+            dispatchTimer(seconds, value, block);
+        }
+    });
+    
+}
+
 #pragma mark -
 #pragma mark Private
 
 long ANSPrioriry(ANSPrioriryType type) {
     switch (type) {
-        case ANSPriorityHigh:
-         return  DISPATCH_QUEUE_PRIORITY_HIGH;
-        case ANSPriorityDefault:
-          return  DISPATCH_QUEUE_PRIORITY_DEFAULT;
-        case ANSPriorityLow:
-          return  DISPATCH_QUEUE_PRIORITY_LOW;
-        case ANSPriorityBackground:
-          return  DISPATCH_QUEUE_PRIORITY_BACKGROUND;
-        default:
-          return  DISPATCH_QUEUE_PRIORITY_DEFAULT;
+        case ANSPriorityHigh:       return  DISPATCH_QUEUE_PRIORITY_HIGH;
+        case ANSPriorityDefault:    return  DISPATCH_QUEUE_PRIORITY_DEFAULT;
+        case ANSPriorityLow:        return  DISPATCH_QUEUE_PRIORITY_LOW;
+        case ANSPriorityBackground: return  DISPATCH_QUEUE_PRIORITY_BACKGROUND;
+        default:                    return  DISPATCH_QUEUE_PRIORITY_DEFAULT;
     }
 }

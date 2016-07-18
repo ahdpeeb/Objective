@@ -17,15 +17,15 @@ typedef dispatch_queue_t ANSQSGCQueue;
 //block signature for execution
 typedef void(^ANSGCDBlock)(void);
 
-//signature to dispatch_async/ dispatch_async functions
+//signature to dispatch_async/ dispatch_sync functions
 typedef void (*ANSDispatch)(ANSQSGCQueue queue, ANSGCDBlock block);
 
 //Identifier of queue prioryty
 typedef enum {
-    ANSPriorityHigh,            //  *  - DISPATCH_QUEUE_PRIORITY_HIGH:
-    ANSPriorityDefault,         //  *  - DISPATCH_QUEUE_PRIORITY_DEFAULT:
-    ANSPriorityLow,             //  *  - DISPATCH_QUEUE_PRIORITY_LOW:
-    ANSPriorityBackground       //  *  - DISPATCH_QUEUE_PRIORITY_BACKGROUND:
+    ANSPriorityHigh     = DISPATCH_QUEUE_PRIORITY_HIGH,            //  *  - DISPATCH_QUEUE_PRIORITY_HIGH:
+    ANSPriorityDefault  = DISPATCH_QUEUE_PRIORITY_DEFAULT,         //  *  - DISPATCH_QUEUE_PRIORITY_DEFAULT:
+    ANSPriorityLow      = DISPATCH_QUEUE_PRIORITY_LOW,             //  *  - DISPATCH_QUEUE_PRIORITY_LOW:
+    ANSPriorityBackground = DISPATCH_QUEUE_PRIORITY_BACKGROUND     //  *  - DISPATCH_QUEUE_PRIORITY_BACKGROUND:
 } ANSPrioriryType;
 
 #pragma mark -
@@ -45,3 +45,7 @@ void ANSPerformInSyncQueue(ANSPrioriryType type, ANSGCDBlock block);
 //  Perform block in main thread.
 //  Functios must take ONLY "dispatch_async", "dispatch_async".
 void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block);
+
+//  Perform block after deley in main thread. 
+//  if flag repeat = YES, this block will be perform
+void dispatchTimer(uint seconds, bool repeat, ANSGCDBlock block);

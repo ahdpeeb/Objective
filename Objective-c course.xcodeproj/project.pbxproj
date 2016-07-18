@@ -74,7 +74,6 @@
 		9328B5231D1C1F15001D6E62 /* ANSCarWashTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSCarWashTest.m; sourceTree = "<group>"; };
 		9328B53C1D1D53D3001D6E62 /* ANSObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSObservableObject.h; sourceTree = "<group>"; };
 		9328B53D1D1D53D3001D6E62 /* ANSObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSObservableObject.m; sourceTree = "<group>"; };
-		937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		93968A461D13F0E0009E7EF1 /* ANSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSQueue.h; sourceTree = "<group>"; };
 		93968A471D13F0E0009E7EF1 /* ANSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSQueue.m; sourceTree = "<group>"; };
 		93A642A41D2BD6DE00313EEB /* ANSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSConstants.h; sourceTree = "<group>"; };
@@ -162,7 +161,6 @@
 		931D0F141D00480900DF749C = {
 			isa = PBXGroup;
 			children = (
-				937FBEA91D044B8100BD0F3F /* iOS Study Plan.txt */,
 				93DAD41A1D0DF2910055E7FB /* Library */,
 				93DAD42E1D0DF2910055E7FB /* Source */,
 				93DAD42D1D0DF2910055E7FB /* main.m */,

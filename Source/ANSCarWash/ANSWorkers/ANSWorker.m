@@ -19,9 +19,6 @@
 @property (nonatomic, assign)       NSUInteger      ID;
 @property (nonatomic, retain)       id<NSLocking>   locker;
 
-- (void)performWorkInBackgroundWithObject:(id)object;
-- (void)finishOnMainThreadWorkingWithObject:(id)object;
-
 @end
 
 @implementation ANSWorker
@@ -76,24 +73,18 @@
 }
 //________________________________________________________________________________
 - (void)startProcessingObject:(id)object {
-    [self performSelectorInBackground:@selector(performWorkInBackgroundWithObject:) withObject:object];
+    ANSPerformInSyncQueue(ANSPriorityDefault, ^{
+        [self performWorkWithObject:object];
+        
+        ANSPerformInMainQueue(dispatch_async, ^{
+            [self finishProcessingObject:object];
+            [self finishProcessing];
+        });
+    });
 }
 
 #pragma mark -
 #pragma mark Private methods
-
-- (void)performWorkInBackgroundWithObject:(id)object {
-    [self performWorkWithObject:object];
-    
-    ANSPerformInMainQueue(dispatch_async, ^{
-        [self finishOnMainThreadWorkingWithObject:object];
-    });
-}
-
-- (void)finishOnMainThreadWorkingWithObject:(id)object {
-    [self finishProcessingObject:object];
-    [self finishProcessing];
-}
 
 - (void)performWorkWithObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];

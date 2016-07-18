@@ -12,7 +12,7 @@
 
 @interface ANSComplexDispatcher : ANSDispatcher
 @property (nonatomic, readonly)                 ANSCarWashComplex *carComplex;
-@property (nonatomic, assign, getter=isRunning) BOOL              running;
+@property (nonatomic, assign, getter=isRepeats) BOOL              repeats;
 
 - (instancetype)initWithComplex:(ANSCarWashComplex *)carComplex;
 
