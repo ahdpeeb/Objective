@@ -19,7 +19,7 @@
 
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval
                              block:(ANSTimerBlock)block
-                           repeats:(BOOL)flag
+                           repeats:(BOOL)repeats
 {
     if (!block) {
         return 0;
@@ -31,7 +31,7 @@
                                              target:object
                                            selector:@selector(executeBlock:)
                                            userInfo:copy
-                                            repeats:flag];
+                                            repeats:repeats];
     
     [copy release];
     
@@ -40,10 +40,10 @@
 
 + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                     block:(ANSTimerBlock)block
-                                    repeats:(BOOL)flag
+                                    repeats:(BOOL)repeats
 
 {
-    NSTimer *timer = [self timerWithTimeInterval:interval block:block repeats:flag];
+    NSTimer *timer = [self timerWithTimeInterval:interval block:block repeats:repeats];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     return timer;
