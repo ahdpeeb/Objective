@@ -11,20 +11,33 @@
 #pragma mark -
 #pragma mark Private declaration
 
-long ANSPrioriry(ANSPriorityType type);
+long ANSPriority(ANSPriorityType type);
+dispatch_queue_t ANSQueueWithPriotity(ANSPriorityType priotity);
 
 #pragma mark -
 #pragma mark Public methods
 
 void ANSPerformInAsyncQueue(ANSPriorityType type, ANSGCDBlock block) {
-    dispatch_async(dispatch_get_global_queue(ANSPrioriry(type), 0), block);
+    if (!block) {
+        return;
+    }
+    
+    dispatch_async(ANSQueueWithPriotity(type), block);
 }
 
 void ANSPerformInSyncQueue(ANSPriorityType type, ANSGCDBlock block) {
-    dispatch_sync(dispatch_get_global_queue(ANSPrioriry(type), 0), block);
+    if (!block) {
+        return;
+    }
+    
+    dispatch_sync(ANSQueueWithPriotity(type), block);
 }
 
 void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
+    if (!block) {
+        return;
+    }
+    
     if ([NSThread isMainThread]) {
         block();
     } else {
@@ -33,6 +46,10 @@ void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
 }
 
 void ANSDispatchTimer(uint seconds, bool repeat, ANSGCDBlock block) {
+    if (!block) {
+        return;
+    }
+    
     __block bool value = repeat;
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
@@ -46,7 +63,11 @@ void ANSDispatchTimer(uint seconds, bool repeat, ANSGCDBlock block) {
 #pragma mark -
 #pragma mark Private
 
-long ANSPrioriry(ANSPriorityType type) {
+dispatch_queue_t ANSQueueWithPriotity(ANSPriorityType priotity) {
+    return dispatch_get_global_queue(ANSPriority(priotity), 0);
+}
+
+long ANSPriority(ANSPriorityType type) {
     switch (type) {
         case ANSPriorityHigh:       return  DISPATCH_QUEUE_PRIORITY_HIGH;
         case ANSPriorityDefault:    return  DISPATCH_QUEUE_PRIORITY_DEFAULT;

@@ -8,6 +8,10 @@
 
 #import "NSTimer+ANSExtension.h"
 
+#import "ANSTimerPrivate.h"
+
+#import "NSObject+ANSExtension.h"
+
 @implementation NSTimer (ANSExtension)
 
 #pragma mark -
@@ -22,9 +26,10 @@
     }
     
     ANSTimerBlock copy = [block copy];
-    
+    ANSTimerPrivate *object = [ANSTimerPrivate object];
     NSTimer *timer = [NSTimer timerWithTimeInterval:interval
-                                             target:self selector:@selector(executeBlock:)
+                                             target:object
+                                           selector:@selector(executeBlock:)
                                            userInfo:copy
                                             repeats:flag];
     
@@ -42,16 +47,6 @@
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     return timer;
-}
-
-#pragma mark -
-#pragma mark Private
-
-+ (void)executeBlock:(NSTimer *)timer {
-    ANSTimerBlock block = timer.userInfo;
-    if (block) {
-        block();
-    }
 }
 
 @end

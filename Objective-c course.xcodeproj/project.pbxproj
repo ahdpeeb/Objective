@@ -30,6 +30,7 @@
 		93C3603E1D29AE6D00E632F9 /* ANSKVOtestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C3603D1D29AE6D00E632F9 /* ANSKVOtestObserver.m */; };
 		93C360471D2AAF3300E632F9 /* ANSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C360441D2AAF3300E632F9 /* ANSThread.m */; };
 		93C360481D2AAF3300E632F9 /* ANSThreadPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C360461D2AAF3300E632F9 /* ANSThreadPool.m */; };
+		93C5A54A1D3E5C6B002FBCA8 /* ANSTimerPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C5A5491D3E5C6B002FBCA8 /* ANSTimerPrivate.m */; };
 		93DAD44E1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD44F1D0DF2910055E7FB /* ANSRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD41D1D0DF2910055E7FB /* ANSRandom.m */; };
 		93DAD4501D0DF2910055E7FB /* NSObject+ANSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DAD4201D0DF2910055E7FB /* NSObject+ANSExtension.m */; };
@@ -99,6 +100,8 @@
 		93C360441D2AAF3300E632F9 /* ANSThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSThread.m; sourceTree = "<group>"; };
 		93C360451D2AAF3300E632F9 /* ANSThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSThreadPool.h; sourceTree = "<group>"; };
 		93C360461D2AAF3300E632F9 /* ANSThreadPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSThreadPool.m; sourceTree = "<group>"; };
+		93C5A5481D3E5C6B002FBCA8 /* ANSTimerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSTimerPrivate.h; sourceTree = "<group>"; };
+		93C5A5491D3E5C6B002FBCA8 /* ANSTimerPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSTimerPrivate.m; sourceTree = "<group>"; };
 		93DAD4121D0DF1730055E7FB /* OSUnitTesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSUnitTesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DAD4161D0DF1740055E7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93DAD41C1D0DF2910055E7FB /* ANSRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSRandom.h; sourceTree = "<group>"; };
@@ -240,6 +243,7 @@
 			children = (
 				93ABC07B1D390A1E00FC420F /* NSTimer+ANSExtension.h */,
 				93ABC07C1D390A1E00FC420F /* NSTimer+ANSExtension.m */,
+				93C5A54B1D3E63AA002FBCA8 /* ANSPrivateObject */,
 			);
 			path = ANSTimer;
 			sourceTree = "<group>";
@@ -266,6 +270,15 @@
 				93C360461D2AAF3300E632F9 /* ANSThreadPool.m */,
 			);
 			path = ANSThreading;
+			sourceTree = "<group>";
+		};
+		93C5A54B1D3E63AA002FBCA8 /* ANSPrivateObject */ = {
+			isa = PBXGroup;
+			children = (
+				93C5A5481D3E5C6B002FBCA8 /* ANSTimerPrivate.h */,
+				93C5A5491D3E5C6B002FBCA8 /* ANSTimerPrivate.m */,
+			);
+			name = ANSPrivateObject;
 			sourceTree = "<group>";
 		};
 		93DAD4131D0DF1740055E7FB /* OSUnitTesting */ = {
@@ -566,6 +579,7 @@
 				9328B53E1D1D53D3001D6E62 /* ANSObservableObject.m in Sources */,
 				93A642D11D37AD5800313EEB /* ANSGCD.m in Sources */,
 				93DAD4681D0DF2910055E7FB /* ANSAccountant.m in Sources */,
+				93C5A54A1D3E5C6B002FBCA8 /* ANSTimerPrivate.m in Sources */,
 				93DAD4521D0DF2910055E7FB /* ANSAlphabet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

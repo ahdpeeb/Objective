@@ -22,20 +22,20 @@ static void *ANSObjectContext = &ANSObjectContext;
 
 int main(int argc, const char * argv[]) {    
     @autoreleasepool {
-        ANSCarWashComplex *complex = [ANSCarWashComplex object];
-        ANSComplexDispatcher *dispatcher = [[ANSComplexDispatcher alloc] initWithComplex:complex];
-        
-        dispatcher.repeats = YES;
+//        ANSCarWashComplex *complex = [ANSCarWashComplex object];
+//        ANSComplexDispatcher *dispatcher = [[[ANSComplexDispatcher alloc] initWithComplex:complex] autorelease];
+//        
+//        dispatcher.repeats = YES;
 //
 //    
 //        ANSGCDTest *gcd = [[ANSGCDTest alloc] initWithType:DISPATCH_QUEUE_SERIAL];
 //        [gcd execute];
 
-//        ANSTimerBlock block = ^{
-//            NSLog(@"blia");
-//        };
-//        
-//        NSTimer *timer = [NSTimer  scheduledTimerWithTimeInterval:1 block:block repeats:YES];
+        ANSTimerBlock block = ^{
+            NSLog(@"blia");
+        };
+        
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 block:block repeats:YES];
         [[NSRunLoop mainRunLoop] run];
  
     }
