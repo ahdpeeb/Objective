@@ -33,7 +33,7 @@ void ANSPerformInSyncQueue(ANSPriorityType type, ANSGCDBlock block) {
     dispatch_sync(ANSQueueWithPriotity(type), block);
 }
 
-void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
+void ANSPerformInMainQueue(ANSDispatch timing, ANSGCDBlock block) {
     if (!block) {
         return;
     }
@@ -41,7 +41,7 @@ void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block) {
     if ([NSThread isMainThread]) {
         block();
     } else {
-        function(dispatch_get_main_queue(), block);
+        timing(dispatch_get_main_queue(), block);
     }
 }
 

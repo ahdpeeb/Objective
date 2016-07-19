@@ -44,7 +44,7 @@ void ANSPerformInSyncQueue(ANSPriorityType type, ANSGCDBlock block);
 
 //  Perform block in main thread.
 //  Functios must take ONLY "dispatch_async", "dispatch_async".
-void ANSPerformInMainQueue(ANSDispatch function, ANSGCDBlock block);
+void ANSPerformInMainQueue(ANSDispatch timing, ANSGCDBlock block);
 
 //  Perform block after deley in main thread. 
 //  if flag repeat = YES, this block will be perform
